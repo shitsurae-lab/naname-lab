@@ -16,4 +16,4 @@ jobs:
           key: ${{ secrets.SECRET_SSH_KEY }}
           known_hosts: 162.43.107.10
       - name: rsync deploy
-        run: rsync -vrlp -e "ssh -p 10022 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./wp-content/ naname@naname.wpx.jp:/home/naname/naname-lab.net/public_html/staging.naname-lab.net/wp-content/
+        run: rsync -vrlp -e "ssh -p 10022 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./wp-content/ /home/naname/naname-lab.net/public_html/wp-content
