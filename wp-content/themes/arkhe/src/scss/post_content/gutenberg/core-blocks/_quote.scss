@@ -1,0 +1,30 @@
+// 引用
+[data-type="core/quote"],
+[data-type="core/pullquote"] {
+
+	p {
+		margin-bottom: 0 !important;
+	}
+
+	p:first-child {
+		margin-top: 0 !important;
+	}
+
+	p + p {
+		margin-top: 1rem;
+	}
+}
+
+// cite
+.wp-block-quote__citation,
+.wp-block-pullquote__citation {
+	margin-top: 1rem;
+}
+
+.wp-block-quote.is-style-large {
+
+	&::after {
+		left: initial;
+	}
+}
+

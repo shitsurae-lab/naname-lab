@@ -1,0 +1,15 @@
+/* Breakpoints(Arkhe) */
+$breakpoint: (
+  mobile: 'not all and (min-width: 600px)',
+  tablet: '(min-width: 600px)',
+  sp: 'not all and (min-width: 1000px)',
+  pc: '(min-width: 1000px)',
+  wide: '(min-width: 1200px)',
+); //map-get()メソッド.カッコの後ろにセミコロン
+
+//Set mixin
+@mixin mq($bp) {
+  @media #{map-get($breakpoint,$bp)} {
+    @content; //@contentの後ろにセミコロン
+  }
+}

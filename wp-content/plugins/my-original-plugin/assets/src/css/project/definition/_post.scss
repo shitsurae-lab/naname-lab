@@ -1,0 +1,33 @@
+@use '../../global' as *;
+.p-post-definition {
+  $this: &;
+  &__list.ark-block-dl__div {
+    flex-direction: column;
+    @include mq(tablet) {
+      flex-direction: row;
+      padding: 0;
+      border-top: none; //リセット index.css(1px solid var(--ark-color--border,#c8c8c880))
+      border-bottom: none; //リセット index.css(1px solid var(--ark-color--border,#c8c8c880))
+    }
+    #{$this}__term.ark-block-dl__dt {
+      width: 100%;
+      flex: 1 1 auto;
+      margin-right: 0; //リセット index.css(margin-right: 1em;)
+      @include mq(tablet) {
+        width: 32%;
+        padding: 0.75em 0.5em;
+        border-bottom: 2px solid #5b8f8f;
+      }
+    }
+  }
+  #{$this}__desc.ark-block-dl__dd {
+    width: 100%;
+    //flex: 0 1 auto; //flex初期値
+    flex: 1 1 auto;
+    @include mq(tablet) {
+      width: calc(100% - 32%);
+      padding: 0.75em 0.5em;
+      border-bottom: 2px solid #bbb;
+    }
+  }
+}

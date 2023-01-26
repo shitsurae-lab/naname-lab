@@ -1,0 +1,212 @@
+<?php
+/**
+ * @package Flexible_Spacer_Block
+ * @author Aki Hamano
+ * @license GPL-2.0+
+ */
+
+namespace Flexible_Spacer_Block;
+
+class Options {
+
+	private $options;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		// Add option page
+		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+		// Initialize option page
+		add_action( 'admin_init', array( $this, 'init_options_page' ) );
+	}
+
+	/**
+	 * Add option page
+	 */
+	public function add_options_page() {
+		add_options_page(
+			__( 'Flexible Spacer Block', 'flexible-spacer-block' ),
+			__( 'Flexible Spacer Block', 'flexible-spacer-block' ),
+			'manage_options',
+			'flexible-spacer-block-option',
+			array( $this, 'create_options_page' )
+		);
+	}
+
+	/**
+	 * Initialize option page
+	 */
+	public function init_options_page() {
+		register_setting(
+			'flexible-spacer-block-group',
+			'flexible_spacer_block_breakpoint',
+			array( $this, 'sanitize_breakpoint' )
+		);
+
+		register_setting(
+			'flexible-spacer-block-group',
+			'flexible_spacer_block_show_block',
+			array( $this, 'sanitize_checkbox' )
+		);
+
+		add_settings_section(
+			'flexible_spacer_block_section',
+			'',
+			'',
+			'flexible-spacer-block-group'
+		);
+
+		add_settings_field(
+			'flexible_spacer_block_breakpoint_field',
+			__( 'Responsive Setting', 'flexible-spacer-block' ),
+			array( $this, 'flexible_spacer_block_breakpoint_display_field' ),
+			'flexible-spacer-block-group',
+			'flexible_spacer_block_section'
+		);
+
+		add_settings_field(
+			'flexible_spacer_block_editor_field',
+			__( 'Block Editor Setting', 'flexible-spacer-block' ),
+			array( $this, 'flexible_spacer_block_editor_display_field' ),
+			'flexible-spacer-block-group',
+			'flexible_spacer_block_section'
+		);
+	}
+
+	/**
+	 * Create option page
+	 */
+	public function create_options_page() {
+		$this->options = get_option( 'flexible_spacer_block_breakpoint' );
+		?>
+		<div class="wrap">
+			<h1><?php _e( 'Flexible Spacer Block', 'flexible-spacer-block' ); ?></h1>
+			<form class="fsb-option-form" method="post" action="options.php">
+				<?php
+				settings_fields( 'flexible-spacer-block-group' );
+				do_settings_sections( 'flexible-spacer-block-group' );
+				?>
+				<h2><?php _e( 'About Negative Space', 'flexible-spacer-block' ); ?></h2>
+				<ul>
+					<li><?php _e( '"<strong>Negative space</strong>" narrows the margins both blocks above and below the spacer, and it is also possible to overlap the blocks.', 'flexible-spacer-block' ); ?></li>
+					<li><?php _e( 'If unintended overlap occurs, <strong>add a CSS class</strong> named <code>fsb-style-show-front</code> to the block you want to show in the front.', 'flexible-spacer-block' ); ?></li>
+					<li><?php _e( 'To apply the CSS class to the block, click on the block on WordPress editor, and check the block settings on the right for the Advanced setting ,then enter the CSS class.', 'flexible-spacer-block' ); ?></li>
+				</ul>
+				<?php submit_button(); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Display field (Responsive Setting)
+	 */
+	public function flexible_spacer_block_breakpoint_display_field() {
+		$breakpoint_sm = isset( $this->options['sm'] ) ? $this->options['sm'] : FSB_BREAKPOINT_SM;
+		$breakpoint_md = isset( $this->options['md'] ) ? $this->options['md'] : FSB_BREAKPOINT_MD;
+		?>
+		<div class="fsb-option-breakpoint">
+			<div class="fsb-option-breakpoint__device">
+				<svg viewBox="0 0 24 24" width="48" height="48"><path d="M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z"></path></svg>
+				<?php _e( 'Mobile', 'flexible-spacer-block' ); ?>
+			</div>
+			<span class="fsb-option-breakpoint__sign">&le;</span>
+			<div class="fsb-option-breakpoint__input">
+				<input type="number" name="flexible_spacer_block_breakpoint[sm]" min="<?php echo FSB_BREAKPOINT_MIN; ?>" max="<?php echo FSB_BREAKPOINT_MAX; ?>" value="<?php echo esc_attr( $breakpoint_sm ); ?>">
+				<span>px</span>
+			</div>
+			<span class="fsb-option-breakpoint__sign">&lt;</span>
+			<div class="fsb-option-breakpoint__device">
+				<svg viewBox="0 0 24 24" width="48" height="48"><path d="M17 4H7c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5v12zm-7.5-.5h4V16h-4v1.5z"></path></svg>
+				<?php _e( 'Tablet', 'flexible-spacer-block' ); ?>
+			</div>
+			<span class="fsb-option-breakpoint__sign">&le;</span>
+			<div class="fsb-option-breakpoint__input">
+				<input type="number" name="flexible_spacer_block_breakpoint[md]" min="<?php echo FSB_BREAKPOINT_MIN; ?>" max="<?php echo FSB_BREAKPOINT_MAX; ?>" value="<?php echo esc_attr( $breakpoint_md ); ?>">
+				<span>px</span>
+			</div>
+			<span class="fsb-option-breakpoint__sign">&lt;</span>
+			<div class="fsb-option-breakpoint__device">
+				<svg viewBox="0 0 24 24" width="48" height="48"><path d="M20.5 16h-.7V8c0-1.1-.9-2-2-2H6.2c-1.1 0-2 .9-2 2v8h-.7c-.8 0-1.5.7-1.5 1.5h20c0-.8-.7-1.5-1.5-1.5zM5.7 8c0-.3.2-.5.5-.5h11.6c.3 0 .5.2.5.5v7.6H5.7V8z"></path></svg>
+				<?php _e( 'Desktop', 'flexible-spacer-block' ); ?>
+			</div>
+		</div>
+		<ul>
+			<li><?php _e( 'Enter the screen width (breakpoint) that will be the basis for switching between each device.', 'flexible-spacer-block' ); ?></li>
+			<li><?php _e( 'If both values are the same, The spacer setting for tablets will be disabled.', 'flexible-spacer-block' ); ?></li>
+		</ul>
+		<?php
+	}
+
+	/**
+	 * Display field (Block Editor Setting)
+	 */
+	public function flexible_spacer_block_editor_display_field() {
+		?>
+		<fieldset>
+			<label>
+				<input type="checkbox" name="flexible_spacer_block_show_block" value="1" <?php checked( get_option( 'flexible_spacer_block_show_block', false ) ); ?>><?php _e( 'Always show blocks in block editor', 'flexible-spacer-block' ); ?>
+			</label>
+			<p class="description"><?php _e( 'The block will always be visible even when it is not selected.', 'flexible-spacer-block' ); ?></p>
+		</fieldset>
+		<?php
+	}
+
+	/**
+	 * Sanitizer (breakpoint)
+	 * @param array $input input values.
+	 *
+	 * @return array
+	 */
+	public function sanitize_breakpoint( $input ) {
+		$this->options = get_option( 'flexible_spacer_block_breakpoint' );
+
+		$new_input = array();
+
+		$breakpoint_md = isset( $input['md'] ) ? absint( $input['md'] ) : '';
+		$breakpoint_sm = isset( $input['sm'] ) ? absint( $input['sm'] ) : '';
+
+		if ( 0 === $breakpoint_md || 0 === $breakpoint_sm ) {
+			add_settings_error(
+				'flexible-spacer-block-breakpoint',
+				'flexible-spacer-block-breakpoint-null',
+				__( 'Fill in both fields in Responsive Setting.', 'flexible-spacer-block' )
+			);
+			$new_input = array(
+				'md' => isset( $this->options['md'] ) ? $this->options['md'] : '',
+				'sm' => isset( $this->options['sm'] ) ? $this->options['sm'] : '',
+			);
+		} elseif ( $breakpoint_md < $breakpoint_sm ) {
+			add_settings_error(
+				'flexible-spacer-block-breakpoint',
+				'flexible-spacer-block-breakpoint-compare',
+				__( 'The Device Width Setting value in the left field must be equal to or smaller than the value in the right field.', 'flexible-spacer-block' )
+			);
+			$new_input = array(
+				'md' => isset( $this->options['md'] ) ? $this->options['md'] : '',
+				'sm' => isset( $this->options['sm'] ) ? $this->options['sm'] : '',
+			);
+		} else {
+			$new_input = array(
+				'md' => min( max( $breakpoint_md, FSB_BREAKPOINT_MIN ), FSB_BREAKPOINT_MAX ),
+				'sm' => min( max( $breakpoint_sm, FSB_BREAKPOINT_MIN ), FSB_BREAKPOINT_MAX ),
+			);
+		}
+		return $new_input;
+	}
+
+	/**
+	 * Sanitizer (Chechbox)
+	 * @param string $value input value.
+	 *
+	 * @return boolean
+	 */
+	public static function sanitize_checkbox( $value ) {
+		return ( isset( $value ) ? true : false );
+	}
+}
+
+if ( is_admin() ) {
+	new Options();
+}

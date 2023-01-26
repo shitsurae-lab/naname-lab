@@ -1,0 +1,64 @@
+@charset 'UTF-8';
+
+@use 'variable';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+//Font Family
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
+
+//横スクロールしないように(子要素を親要素からはみ出させた場合のため)
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+//Typography
+.l-content {
+  h1 {
+    font-size: var(--font-xl);
+  }
+  h2 {
+    font-size: var(--font-xl);
+  }
+  h3 {
+    font-size: var(--font-lg);
+  }
+  h4 {
+    font-size: var(--font-md);
+  }
+  h5 {
+    font-size: var(--font-sm);
+  }
+  p {
+    font-size: var(--font-sm);
+  }
+}
+
+//List
+ol,
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; //リセット(main.css) padding-left: var(--ark-list-padding,0 0 0 1.5em)
+}
+
+//Image{
+img {
+  vertical-align: bottom;
+}
+
+//Anchor
+a {
+  display: block;
+}

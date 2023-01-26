@@ -1,0 +1,61 @@
+# Translation of Plugins - Flexible Table Block - Stable (latest release) in Japanese
+# This file is distributed under the same license as the Plugins - Flexible Table Block - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-10-19 12:49:41+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Plugins - Flexible Table Block - Stable (latest release)\n"
+
+#. Author of the plugin
+msgid "Aki Hamano"
+msgstr "Aki Hamano"
+
+#: build/block.json src/block.json
+msgctxt "block description"
+msgid "Create flexible configuration table."
+msgstr "自由度の高い柔軟なテーブルを作成することができます。"
+
+#: build/block.json src/block.json
+msgctxt "block keyword"
+msgid "data"
+msgstr "データ"
+
+#: build/block.json src/block.json
+msgctxt "block keyword"
+msgid "cell"
+msgstr "セル"
+
+#: build/block.json src/block.json
+msgctxt "block keyword"
+msgid "table"
+msgstr "テーブル"
+
+#: build/block.json src/block.json
+msgctxt "block title"
+msgid "Flexible Table"
+msgstr "Flexible Table"
+
+#: classes/class-api.php:152
+msgid "Settings have been restored."
+msgstr "設定を復元しました。"
+
+#: classes/class-api.php:132
+msgid "Setting saved."
+msgstr "設定を保存しました。"
+
+#. Author URI of the plugin
+msgid "https://github.com/t-hamano"
+msgstr "https://github.com/t-hamano"
+
+#. Description of the plugin
+msgid "Easily create flexible configuration tables."
+msgstr "柔軟な設定を持つテーブルを簡単に作成することができます。"
+
+#. Plugin Name of the plugin
+msgid "Flexible Table Block"
+msgstr "Flexible Table Block"

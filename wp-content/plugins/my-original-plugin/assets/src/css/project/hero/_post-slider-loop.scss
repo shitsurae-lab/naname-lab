@@ -1,0 +1,62 @@
+@use '../../global' as *;
+.p-infinete__slider {
+  position: relative;
+  z-index: -1;
+}
+.infinite__slider {
+  width: 100%;
+  margin: 0 auto;
+  background: var(--color-white-smoke);
+  .swiper-wrapper {
+    transition-timing-function: linear;
+    // height: 300px;
+    // height: 584px;
+    height: auto;
+  }
+  .swiper-slide {
+    //スライダーの縦幅・横幅を指定:重要!important
+    width: auto;
+    padding: 96px 0;
+    @include mq(tablet) {
+      padding: 160px 0;
+    }
+    p {
+      font-size: 120px;
+      line-height: 120px;
+      background: var(--color-linear-fly-high-light);
+      background-clip: text;
+      color: transparent;
+      opacity: 0.2;
+      @include mq(tablet) {
+        font-size: 200px;
+        line-height: 200px;
+      }
+    }
+    // background: var(--color-pale-gray);
+    //     background: transparent;
+  }
+}
+// END .swiper
+
+.c-slide-content {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 300px;
+  font-size: 120px;
+  font-weight: 300;
+  text-align: center;
+  color: var(--color-pale-gray);
+  background: var(--color-primary);
+}
+
+.l-hero--swiper {
+  // display: block;
+  // height: 100%;
+  // left: 0;
+  // position: relative;
+  // top: 0;
+  // width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}

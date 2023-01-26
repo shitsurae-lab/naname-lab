@@ -1,0 +1,8 @@
+@use '../global' as *;
+
+.admin-bar {
+  .p-drawer {
+    height: 100vh;
+    top: 0;
+  }
+}

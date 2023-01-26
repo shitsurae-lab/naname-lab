@@ -1,0 +1,7 @@
+@mixin section_gradient($color-primary: #fbfbfb, $color-secondary: #ebedee) {
+  background-image: linear-gradient(
+    120deg,
+    $color-primary 0%,
+    $color-secondary 100%
+  );
+}

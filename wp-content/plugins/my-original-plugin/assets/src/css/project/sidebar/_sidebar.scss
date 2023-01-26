@@ -1,0 +1,25 @@
+@use '../../global' as *;
+
+.l-sidebar {
+  .p-sidebar__heading {
+    .p-sidebar__date {
+      color: var(--color-spindle);
+      font-size: var(--font-md);
+    }
+    .p-newsList__heading {
+      a {
+        text-decoration: none;
+        color: transparent;
+        background: var(--color-linear-fly-high);
+        background-clip: text;
+        font-size: var(--font-md);
+        font-weight: 500;
+      }
+    }
+  }
+  .p-sidebar__share {
+    img {
+      width: 32px;
+    }
+  }
+}

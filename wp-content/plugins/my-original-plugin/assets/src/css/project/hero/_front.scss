@@ -1,0 +1,64 @@
+@use '../../global' as *;
+.index-hero {
+  $this: &;
+  .ark-block-section__body {
+    background: var(--color-primary);
+  }
+  .ark-block-section__bodyInner {
+    padding: 0; //Reset (index.cssのvar(--arkb-padding)をリセット)
+    position: relative;
+
+    #{$this}__container {
+      width: 100%;
+      // padding: 32px 24px;
+      // background: #062d6a;
+      // color: #ffffff;
+      // position: relative;
+      position: absolute;
+      z-index: 1;
+      bottom: 24%;
+      background: var(--color-bahama-blue);
+      // backdrop-filter: blur(12px);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      @include mq(tablet) {
+        width: 50%;
+      }
+      @include mq(wide) {
+        width: 42%;
+      }
+
+      &.c-emphasis {
+        h1 {
+          // box-decoration-break: clone;
+          // display: inline;
+          // padding: 10px;
+          font-size: var(--font-xl);
+          font-weight: 700;
+          // line-height: 2.2;
+          line-height: 2.4;
+          // background: var(--color-primary);
+          color: var(--color-primary);
+          // border: 1px solid var(--color-success);
+        }
+      }
+    }
+  }
+
+  &__image__container {
+    width: 100vw;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+    margin-top: 0;
+    padding-left: 32px;
+    @include mq(tablet) {
+      margin-left: auto;
+      padding-left: 64px;
+    }
+    @include mq(wide) {
+      // padding-left: 160px;
+      padding-left: 240px;
+    }
+  }
+}

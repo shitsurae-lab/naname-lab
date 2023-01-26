@@ -1,0 +1,90 @@
+@use '../../global' as *;
+
+// .p-front {
+.p-index-about {
+  $this: &;
+  &__container.ark-block-container {
+    gap: 0; //リセット index.css var(--arkb-gap);
+    flex-direction: row-reverse;
+    margin-left: calc(var(--arkb-gap) * -2);
+    align-items: flex-start;
+    //※注意: 詳細度の関係でココから中括弧(})までに記述を追加しない
+  }
+  &__container.ark-block-columns {
+    .ark-block-columns__inner {
+      flex-direction: column;
+      @include mq(tablet) {
+        flex-direction: row;
+      }
+    }
+  }
+  //--START: p-index-about__containerの子要素
+  &__container {
+    #{$this}__textarea {
+      // width: 56%;
+      // margin-left: calc(var(--arkb-gap) * 2);
+    }
+    #{$this}__heading {
+      width: 100%;
+      h2 {
+        font-size: var(--font-xxl);
+      }
+    }
+    #{$this}__image {
+      // width: 44%;
+      // margin-left: calc(var(--arkb-gap) * 2);
+      &:has(figure) {
+        figure {
+          border-radius: 8px;
+          overflow: hidden;
+          @include mq(tablet) {
+            border-radius: 16px;
+          }
+        }
+      }
+    }
+  }
+  //--END: p-index-about__containerの子要素
+  // &__heading {
+  //   width: 100%;
+  // }
+  &__textarea--par {
+    margin-top: var(--space-md);
+  }
+  // &__columns {
+  //   flex: 9 0 min(1065px, 90%);
+  //   width: min(1065px, 90%);
+  //   // margin-left: var(--arkb-gap--x);
+  // }
+
+  &__image {
+    // &:has(figure) {
+    //   figure {
+    //     border-radius: 8px;
+    //     overflow: hidden;
+    //     @include mq(tablet) {
+    //       border-radius: 16px;
+    //     }
+    //   }
+    // }
+    &:has(.p-index-about__textarea) {
+      #{$this}__textarea {
+        aspect-ratio: 8 / 5;
+      }
+      #{$this}__textarea--top {
+        writing-mode: vertical-rl;
+        margin-left: auto;
+      }
+      #{$this}__textarea--par {
+        line-height: 2;
+      }
+      #{$this}__cta {
+        @include mq(tablet) {
+          margin-top: 5rem;
+        }
+      }
+    }
+  }
+}
+
+// }

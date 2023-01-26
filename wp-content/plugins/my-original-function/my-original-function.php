@@ -1,0 +1,59 @@
+<?php
+
+/**
+ *Plugin Name: My Original Function Plugin
+ *Description: functions.phpのカスタム記述
+ *Version: 1.0
+ *Author: Toshiyuki Kurashima
+ */
+
+/**
+ *アクションフック
+ */
+//フッターのカスタマイズ(Simple !)
+include_once(plugin_dir_path(__FILE__) . 'function/custom_footer.php');
+
+//固定ページのコンテンツ前後(...「固定ページのコンテンツの前(後)です」)
+include_once(plugin_dir_path(__FILE__) . 'function/before_after_page.content.php');
+
+//画像サイズの調整
+include_once(plugin_dir_path(__FILE__) . 'function/custom_image.php');
+
+//カスタム投稿タイプ-投稿詳細ページサイドバーカスタマイズ(追従)
+include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar.php');
+
+//アーカイブページサイドバーカスタマイズ(追従)
+include_once(plugin_dir_path(__FILE__) . 'function/custom_archive_sidebar.php');
+
+//画像付きのページネーション
+include_once(plugin_dir_path(__FILE__) . 'function/custom_pagination.php');
+
+//カスタム投稿タイプの登録
+include_once(plugin_dir_path(__FILE__) . 'function/register_custom_post_type.php');
+
+//ショートコードの登録
+include_once(plugin_dir_path(__FILE__) . 'function/register_shortcode.php');
+
+//ローディングアニメーション + オープニングアニメーション
+include_once(plugin_dir_path(__FILE__) . 'function/add_opening_interaction.php');
+
+//フロントページのみにスライダーを実装
+include_once(plugin_dir_path(__FILE__) . 'function/insert_front_slider.php');
+
+//カスタム投稿タイプ等にメインビジュアルを挿入
+include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
+
+
+//details・summaryでアコーディオン
+include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
+
+
+/**
+ *フィルターフック
+ */
+
+//記述したFont Awesome Scriptに crossorigin="anonymous"を付加する
+include_once(plugin_dir_path(__FILE__) . 'function/custom_script_loader_tag.php');
+
+//固定ページ(home.phpを含む)のヘッド部分書き換え(特に見出し・キャプション箇所)
+include_once(plugin_dir_path(__FILE__) . 'function/over_write_top.php');

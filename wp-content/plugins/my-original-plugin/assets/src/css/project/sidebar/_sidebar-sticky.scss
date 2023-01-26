@@ -1,0 +1,68 @@
+@use '../../global' as *;
+.p-sidebar {
+  &__content {
+    color: var(--color-spindle);
+    font-size: var(--font-md);
+
+    @include mq(pc) {
+      position: sticky;
+      top: 160px;
+      padding-top: 48px;
+      padding-left: 48px;
+    }
+    ul {
+      // margin-top: -32px;
+      @include mq(tablet) {
+        // padding-inline-start: 0;
+        // padding-left: 88px;
+      }
+    }
+  }
+  &__item {
+    list-style-type: none;
+    &:not(:nth-of-type(1)) {
+      margin-top: 32px;
+    }
+  }
+  &__item {
+    a {
+      text-decoration: none;
+      position: relative;
+      padding-left: 24px;
+      color: var(--color-spindle);
+      font-size: var(--font-sm);
+      color: transparent;
+      background: var(--color-linear-fly-high);
+      background-clip: text;
+      &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 2px;
+        background: var(--color-spindle);
+        background: var(--color-linear-fly-high);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  &__share {
+    margin-top: var(--space-sm);
+    font-size: var(--font-md);
+    ul {
+      padding-left: 0; //ユーザーエージェントスタイルシートのリセット
+      display: flex;
+      margin-left: -16px;
+      margin-top: 24px;
+    }
+    li {
+      list-style-type: none;
+      margin-left: 16px;
+      a {
+        display: block;
+      }
+    }
+  }
+}

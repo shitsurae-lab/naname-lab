@@ -1,0 +1,30 @@
+@use '../global' as *;
+//アーカイブページ、投稿ページ大見出し
+.c-pageTitle__main {
+  font-size: var(--font-xl);
+  padding-top: 8px;
+
+  &::before {
+    content: '';
+    display: block;
+    // width: 24px;
+    width: 20px;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    // left: 0;
+    left: 2px;
+    // background: var(--color-text-eclipse);
+    background: var(--color-bahama-blue);
+  }
+}
+
+//セクション見出し
+.ark-block-heading .ark-block-heading__line:before {
+  background-color: currentColor;
+  border-radius: 2px;
+  content: '';
+  display: block;
+  height: 2px;
+  width: 2em;
+}

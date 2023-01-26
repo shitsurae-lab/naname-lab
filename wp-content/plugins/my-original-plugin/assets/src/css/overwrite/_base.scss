@@ -1,0 +1,136 @@
+@use '../global' as *;
+//トップページ p-media::first-of-type(1)
+// .c-postContent > .p-media:first-of-type {
+//   margin-top: 0;
+// }
+
+/* トップページ */
+//ヒーロースライダー直下
+.l-main__body.p-front > .c-postContent {
+  margin-top: 0;
+}
+
+//サイドバーの左右を入れ替え
+[data-sidebar='on'] .l-content__body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  row-gap: 40px;
+  @include mq(pc) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    row-gap: 0;
+  }
+}
+
+//サイドバー追従箇所を一定以上下げない(PC時)
+[data-sidebar='on'] .l-sidebar {
+  display: none;
+  @include mq(pc) {
+    display: block;
+    padding-bottom: 5rem;
+  }
+}
+
+//投稿詳細ページ(カスタム投稿タイプ/投稿ページ)スライダー上にメインコンテントを重ねる
+.p-infinete__slider + .l-content__body {
+  // margin-top: -200px;
+}
+
+//投稿詳細ページ(カスタム投稿タイプ/投稿)パーティクル上にメインコンテンツを重ねる
+.p-hero__particles + .l-content__body {
+  margin-top: 0;
+  @include mq(tablet) {
+    margin-top: -120px;
+  }
+  @include mq(pc) {
+    margin-top: -120px;
+  }
+  .l-main {
+    @include mq(tablet) {
+      padding-top: 40px;
+      padding-right: 40px;
+      padding-left: 40px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      background: #ffffff;
+    }
+  }
+  //メタ情報
+  .p-entry__head .c-postMetas {
+    color: var(--color-spindle);
+  }
+}
+
+.p-hero__blendParticles + .l-content > .l-content__body {
+  margin-top: 0;
+  @include mq(tablet) {
+    margin-top: -120px;
+    padding-top: 80px;
+    padding-right: 40px;
+    padding-left: 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: var(--color-primary);
+  }
+  @include mq(pc) {
+    margin-top: -120px;
+  }
+
+  //メタ情報
+  .p-entry__head .c-postMetas {
+    color: var(--color-spindle);
+  }
+}
+
+//ヘッダー
+// .l-header {
+//   .l-header__body.l-container {
+//     max-width: 100%;
+//   }
+//   &__logo {
+//     .c-headLogo__img {
+//       max-width: 184px;
+//       width: 100%;
+//     }
+//   }
+// }
+
+//フッター
+// .l-footer {
+//   // background-color: var(--color-floral-white);
+// }
+
+// .l-footer__inner {
+//   .ark-block-heading {
+//     margin-top: 0;
+//   }
+//   //エディターで入力した場合はデフォで0になる。フックで入力した箇所のため、こちらでpaddingを0にする
+//   .p-lead {
+//     .ark-block-section__bodyInner {
+//       padding: 0;
+//     }
+//   }
+// }
+
+//リストホバー:カラーをrgba(透過をプラス)に変更
+.p-postList.-type-simple .p-postList__link:hover {
+  background-color: rgb(247 247 247 / 40%);
+}
+
+//追従ボタン
+.c-fixBtn {
+  background: var(--color-linear-fly-high-light);
+  border-radius: 100px;
+}
+
+//投稿時の画像にwidthとmax-widthを加える
+.wp-block-image:not(.is-style-rounded) > a,
+.wp-block-image:not(.is-style-rounded) img {
+  border-radius: inherit;
+  max-width: 100%;
+  width: 100%;
+}

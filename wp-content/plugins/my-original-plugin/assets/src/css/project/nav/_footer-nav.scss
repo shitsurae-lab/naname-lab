@@ -1,0 +1,69 @@
+@use '../../global' as *;
+
+.l-footer {
+  $this: &;
+  background-color: var(--color-success);
+  &__foot {
+    padding-top: 2rem;
+
+    #{$this}__nav {
+      margin-bottom: 0; //リセット
+      flex-direction: column;
+      align-content: flex-start;
+      align-items: flex-start;
+      @include mq(tablet) {
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+      }
+
+      .menu-item {
+        color: var(--color-primary);
+      }
+    }
+
+    #{$this}__nav__wrapper {
+      @include c-flex__column-row;
+      margin-bottom: 1rem;
+    }
+
+    #{$this}__logo {
+      width: 160px;
+      height: auto;
+    }
+
+    #{$this}__sns {
+      @include c-flex--row;
+
+      &__container {
+        @include c-flex__shorthand($grow: 1, $basis: calc((100% - 48px) / 5));
+      }
+      .l-footer__copyright {
+        @include c-flex__shorthand(
+          $grow: 4,
+          $basis: calc((100% - 48px) / 5 * 4)
+        );
+
+        .c-copyright {
+          text-align: center;
+          @include mq(tablet) {
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    .c-sns__list {
+      display: flex;
+      margin-left: calc(var(--space-sm) * -1);
+    }
+    .c-sns__item {
+      margin-left: var(--space-sm);
+      color: var(--color-primary);
+    }
+
+    .c-copyright {
+      color: var(--color-primary);
+    }
+  }
+}

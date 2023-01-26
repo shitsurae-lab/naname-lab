@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Arkhe CSS Editor\n"
+"POT-Creation-Date: 2021-08-07 13:47+0000\n"
+"PO-Revision-Date: 2021-08-07 13:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: arkhe-css-editor.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: build\n"
+"X-Poedit-SearchPathExcluded-3: inc/update\n"
+
+#: src/component/SettingMenu.js:24
+msgid "Color Theme"
+msgstr "カラーテーマ"
+
+#: src/component/SettingMenu.js:28
+msgid "Visual Studio Dark"
+msgstr "Visual Studio Dark"
+
+#: src/component/SettingMenu.js:36
+msgid "Font Family"
+msgstr "フォントファミリー"
+
+#: src/component/SettingMenu.js:45
+msgid "Font Size (px)"
+msgstr "フォントサイズ (px)"
+
+#: src/component/SettingMenu.js:52
+msgid "Line Height (px)"
+msgstr "行間 (px)"
+
+#: src/component/StyleEditor.js:67
+msgid "See Emmet Cheet Sheet"
+msgstr "Emmetチートシートを見る"
+
+#: src/index.js:68
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: src/index.js:75
+msgid "An error occurred."
+msgstr "エラーが発生しました。"
+
+#: src/index.js:110
+msgid "Common"
+msgstr "共通"
+
+#: src/index.js:114
+msgid "For Front"
+msgstr "フロント用"
+
+#: src/index.js:118
+msgid "For Editor"
+msgstr "エディタ用"
+
+#: src/index.js:122
+msgid "Setting"
+msgstr "設定"
+
+#: src/index.js:178
+msgid "Save"
+msgstr "保存"
+
+#: src/themes/index.js:7
+msgid "Dawn"
+msgstr "Dawn"
+
+#: src/themes/index.js:8
+msgid "Monokai"
+msgstr "Monokai"
+
+#: src/themes/index.js:9
+msgid "Tomorrow"
+msgstr "Tomorrow"
+
+#. Plugin Name of the plugin/theme
+msgid "Arkhe CSS Editor"
+msgstr "Arkhe CSS Editor"
+
+#. Plugin URI of the plugin/theme
+msgid "https://arkhe-theme.com/ja/plugins/arkhe-css-editor/"
+msgstr "https://arkhe-theme.com/ja/plugins/arkhe-css-editor/"
+
+#. Description of the plugin/theme
+msgid ""
+"You will be able to edit the CSS for the block editor and for the front page "
+"from the admin panel."
+msgstr ""
+"ブロックエディター用とフロント用のCSSを管理画面から編集できるようになります。"
+
+#. Author of the plugin/theme
+msgid "Ryo"
+msgstr "了"
+
+#. Author URI of the plugin/theme
+msgid "https://twitter.com/ddryo_loos"
+msgstr "https://twitter.com/ddryo_loos"
+
+#~ msgid "Editor CSS"
+#~ msgstr "エディタ用CSS"
+
+#~ msgid "Front CSS"
+#~ msgstr "フロント用CSS"

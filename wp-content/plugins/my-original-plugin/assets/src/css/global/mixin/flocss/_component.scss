@@ -1,0 +1,163 @@
+@use '../../setting' as *;
+@use '../breakpoint' as *;
+
+@mixin c-flex--row($margin-l: -24px) {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  @include mq(tablet) {
+    flex-direction: row;
+    margin-left: $margin-l;
+  }
+}
+@mixin c-flex__column-row() {
+  display: flex;
+  flex-direction: column;
+  @include mq(tablet) {
+    flex-direction: row;
+  }
+}
+
+@mixin c-flex__shorthand(
+  $grow: 1,
+  $width: 100%,
+  $basis: calc(100% / 4),
+  $margin-l: 24px
+) {
+  flex: $grow 0 auto;
+  width: $width;
+  @include mq(tablet) {
+    flex: $grow 0 $basis;
+    width: $basis;
+    margin-left: $margin-l;
+  }
+}
+
+@mixin gradient_headings(
+  $direction: row,
+  $line-height: 0.9,
+  $color-primary: #48c6ef,
+  $color-secondary: #6f86d6,
+  $w-mode: vertical-rl
+) {
+  display: flex;
+  flex-direction: column;
+  @include mq(tablet) {
+    flex-direction: $direction;
+  }
+  h2 {
+    font-size: var(--font-xxl);
+    //PC表示(verticla-lr)でfont-sizeが'Max 64px Min 40px'の場合、line-height: .9に設定
+    line-height: $line-height;
+    color: transparent;
+    // background-image: linear-gradient(0deg, $color-primary, $color-secondary);
+    // background-image: var(--color-linear-fly-high);
+    background-image: linear-gradient(
+      to top,
+      $color-primary 0%,
+      $color-secondary 100%
+    );
+    background-clip: text;
+    writing-mode: horizontal-tb;
+    @include mq(tablet) {
+      writing-mode: $w-mode;
+    }
+  }
+  .ark-block-heading__sub {
+    color: var(--color-bahama-blue);
+    font-weight: 500;
+    writing-mode: horizontal-tb;
+    @include mq(tablet) {
+      writing-mode: $w-mode;
+    }
+  }
+}
+
+//矢印とふわっと丸
+@mixin arrow_and_circle(
+  $bgi:
+    url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%228%22%20style%3D%22enable-background%3Anew%200%200%20300%208%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3Anone%3Bstroke%3A%23000%3Bstroke-width%3A2%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A10%22%20d%3D%22M36.509%207h262l-8.614-6%22%2F%3E%3C%2Fsvg%3E')
+) {
+  position: relative;
+  font-size: var(--font-sm);
+  padding: 24px 0 8px;
+  display: inline-block;
+  text-align: left;
+  width: 160px;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    left: auto;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: -1;
+    transform-origin: left center;
+    transform: translateX(0) scale(1);
+    // background: rgba(240, 240, 240, 0.8);
+    background: var(--color-linear-fly-high);
+    transition: all 1.2s;
+  }
+  &::after {
+    width: 160px;
+    height: 8px;
+    content: '';
+    display: block;
+    vertical-align: middle;
+    background: repeat-x left center/contain;
+    background-image: $bgi;
+    transition: all 0.3s cubic-bezier(0.1, 0.15, 0.45, 1);
+    // backface-visibility: hidden;
+    position: absolute;
+    bottom: 4px;
+    right: 24px;
+  }
+}
+
+@mixin m-more__arrow($position: absolute, $left: auto, $right: 0) {
+  display: block;
+  position: relative;
+  a {
+    position: $position;
+    left: $left;
+    right: $right;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-secondary);
+    @include mq(tablet) {
+    }
+    &:hover {
+      .c-more__arrow--text {
+        &::before {
+          transform: translateX(8px) scale(1.2);
+          // background: rgba(240, 240, 240, 1);
+          background: var(--color-linear-fly-high);
+        }
+        &::after {
+          animation: btn-arrow-animation 1.2s;
+        }
+      }
+
+      @keyframes btn-arrow-animation {
+        0% {
+          background-position: right center;
+        }
+        100% {
+          background-position: 160px center;
+        }
+      }
+    }
+    &.-textright {
+      text-align: right;
+    }
+  }
+
+  .c-more__arrow--text {
+    @include arrow_and_circle();
+  }
+  @content;
+}

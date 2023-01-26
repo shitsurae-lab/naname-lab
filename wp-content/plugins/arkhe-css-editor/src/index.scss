@@ -1,0 +1,169 @@
+@import "../node_modules/react-notifications-component/dist/scss/notification";
+
+.notification-container--top-left {
+	top: 16px;
+	left: 240px;
+
+	@media screen and (max-width: 782px) {
+		left: 16px;
+	}
+
+}
+
+
+.toplevel_page_arkhe_css_editor #wpcontent {
+	padding-left: 0;
+}
+
+// Loadingオーバーレイ
+.arkcss-savingLayer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: .2;
+
+	.components-spinner {
+		margin: 0;
+		transform: scale(1.5);
+	}
+}
+
+
+#arkhe_css_editor_setting {
+
+	.arkcss-header {
+		padding: 24px 24px 0;
+		background-color: #fff;
+	}
+
+	.arkcss-title {
+		margin: 0 0 16px;
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.arkcss-body {
+		padding: 24px;
+
+		@media screen and (max-width: 782px) {
+			padding: 16px;
+		}
+	}
+
+	.arkcss-editor-help {
+		margin: 0 0 8px;
+	}
+
+	// Monaco Editor
+	.arkcss-editor {
+		height: calc(100vh - 350px);
+		min-height: 40vh;
+
+		.monaco-editor {
+
+			.find-widget {
+
+				.button {
+					padding: 0;
+					color: inherit;
+					background: none;
+					border: none;
+
+					&:focus {
+						box-shadow: none;
+					}
+
+					&.disabled {
+						color: inherit !important;
+						background: none !important;
+					}
+				}
+
+				textarea:focus {
+					box-shadow: none;
+				}
+			}
+
+			.inputarea {
+				box-shadow: none;
+			}
+
+			.monaco-highlighted-label .highlight {
+				background: transparent;
+			}
+		}
+	}
+
+	// Tipsリンク
+	.arkcss-tips {
+		margin: 6px 0 0;
+		text-align: right;
+	}
+
+	// ボタンコントロール
+	.arkcss-controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 16px;
+
+		&__submit {
+			justify-content: center;
+			min-width: 100px;
+		}
+
+		&__setting {
+			padding-right: 16px !important;
+			padding-left: 12px !important;
+
+			svg {
+				margin-right: 4px !important;
+			}
+		}
+	}
+}
+
+
+// 設定モーダルウィンドウ
+.arkcss-modal {
+
+	.components-base-control {
+		margin-bottom: 20px;
+	}
+
+	.components-input-control__label {
+		padding-bottom: 8px !important;
+	}
+}
+
+@media screen and (min-width: 783px) {
+
+	.arkcss-overlay {
+		background-color: rgba(0, 0, 0, .2);
+	}
+
+	.arkcss-modal {
+		right: 40px;
+		left: auto;
+		transform: translateY(-50%);
+	}
+}
+
+@media screen and (max-width: 782px) {
+
+	.arkcss-modal {
+		top: 50%;
+		right: 30px;
+		bottom: auto;
+		left: 30px;
+		transform: translateY(-50%);
+	}
+}

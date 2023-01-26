@@ -1,0 +1,74 @@
+@use '../global' as *;
+
+//ul cardList
+.p-postList.-type-card {
+  //li.p-postList__itemの直下のaタグ
+  a.p-postList__link {
+    .p-postList__thumb {
+      &.c-postThumb {
+        box-shadow: 0px -1px 4px 0px rgb(0 0 0 / 12%),
+          0px -2px 24px -10px rgb(0 0 0 / 12%),
+          0px -4px 32px -16px rgb(0 0 0 / 8%);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        // @include pseudo_el--gradient--after($br: 8px);
+        //main.cssを上書き(.p-postList__thumb:before -> z-index: 1)
+        &::before {
+          z-index: 2;
+        }
+      }
+    }
+    .p-postList__body {
+      padding-top: 1.25rem;
+      box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 6%),
+        0px 2px 24px -10px rgb(0 0 0 / 6%), 0px 4px 32px -16px rgb(0 0 0 / 4%);
+      padding-left: 0.875rem;
+      padding-right: 0.875rem;
+      padding-bottom: 2.5rem;
+      background-color: var(--color-primary);
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      transition: all 0.4s;
+      h3.p-postList__title {
+        font-size: var(--font-sm);
+        text-align: left;
+      }
+    }
+    &:hover {
+      .p-postList__thumb {
+        &.c-postThumb {
+          box-shadow: 0px -4px 6px 0px rgb(0 0 0 / 10%),
+            0px -6px 30px -5px rgb(0 0 0 / 8%),
+            0px -6px 40px -10px rgb(0 0 0 / 6%);
+        }
+      }
+      .p-postList__body {
+        box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 10%),
+          0px 6px 30px -5px rgb(0 0 0 / 8%), 0px 6px 40px -10px rgb(0 0 0 / 6%);
+        // color: var(--color-ash);
+      }
+    }
+  }
+}
+.p-archive,
+.p-entry__related {
+  .p-postList.-type-card {
+    .p-postList__item {
+      .p-postList__thumb {
+      }
+      .p-postList__body {
+      }
+    }
+  }
+}
+
+a.p-postList__link {
+  .p-postList.-type-card .p-postList__body {
+  }
+  &:hover {
+    .p-postList.-type-card .p-postList__body {
+    }
+  }
+}

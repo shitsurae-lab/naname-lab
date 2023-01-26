@@ -1,0 +1,51 @@
+// フロントで読み込む
+
+// マージン
+.c-postContent {
+	margin: 0;
+	padding: 0;
+	line-height: var(--ark-line_height, 1.8);
+
+	> * {
+		margin-top: var(--ark-mt);
+		margin-bottom: 0; //コアのスタイルで margin-bottom の指定があったりするので打ち消しておく
+	}
+
+	.l-main__body > & {
+		margin-top: 4rem;
+	}
+
+	.c-pageTitle + & {
+		margin-top: 0;
+	}
+
+	@import "./post_content";
+
+}
+
+// 先頭要素は上側のマージンを打ち消す。@import "./post_content"; の後で指定。
+.c-postContent > :first-child {
+	margin-top: 0 !important;
+}
+
+
+// マージン小さく維持
+.wp-block-column,
+.wp-block-media-text__content,
+.wp-block-cover__inner-container,
+.wp-block-group__inner-container {
+
+	> * {
+		margin-top: var(--ark-mt--inner, var(--ark-mt--s));
+		margin-bottom: 0;
+	}
+
+	> :first-child {
+		--ark-mt--inner: 0;
+	}
+}
+
+// 全幅の場合はインナーマージンを通常コンテンツと同じにする
+.alignfull {
+	--ark-mt--inner: var(--ark-mt);
+}

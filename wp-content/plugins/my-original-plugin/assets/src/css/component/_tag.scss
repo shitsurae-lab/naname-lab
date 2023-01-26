@@ -1,0 +1,92 @@
+@use '../global' as *;
+.p-tag {
+  &__details {
+    color: var(--color-picton);
+    display: flex;
+    margin-bottom: 1.5rem;
+  }
+  &__summary {
+    font-size: var(--font-sm);
+    text-transform: uppercase;
+    justify-content: flex-end; // p-tag__detailsを親として右に寄せる
+    display: flex;
+    text-align: right;
+    cursor: pointer;
+    &::-webkit-details-marker {
+      /* Safariのみで表示されるデフォルトの三角形アイコンを消去 */
+      display: none;
+    }
+  }
+  &__icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s;
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 2px;
+
+      background: var(--color-picton);
+      transform: translate(-50%, -50%);
+      transition: translate, 0.4s;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &__content {
+    overflow: hidden;
+    padding-top: 16px;
+    position: relative;
+  }
+
+  &__content__inner {
+    padding: calc(var(--space-md) * 2) var(--space-md);
+    position: relative;
+    background: var(--color-picton);
+    overflow: visible;
+    border-radius: var(--space-xs);
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      top: -24px;
+      right: 24px;
+      border-style: solid;
+      border-color: transparent transparent var(--color-picton) transparent;
+      border-width: 12px 6px 12px 6px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: -8px;
+    // padding: 1rem 0.5rem 2rem;
+  }
+  &__item {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  &__item a {
+    text-decoration: none;
+    background: var(--color-primary);
+    padding: 0.4rem 0.6rem;
+    color: var(--color-picton);
+    border-radius: 100px;
+    font-size: 0.875rem;
+  }
+}
+details.p-tag__details[open] {
+  .p-tag__icon {
+    transform: rotate(180deg);
+  }
+}

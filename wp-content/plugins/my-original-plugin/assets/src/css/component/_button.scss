@@ -1,0 +1,137 @@
+@use '../global' as *;
+
+//右矢印&ふわっと丸
+.c-more__arrow {
+  // @include m-more__arrow();
+  display: block;
+
+  a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-bahama-blue);
+    font-size: var(--font-md);
+
+    &:hover {
+      .c-more__arrow--text {
+        &::before {
+          transform: translateX(8px) scale(1.2);
+          // background: rgba(240, 240, 240, 1);
+          background: var(--color-linear-fly-high);
+        }
+        &::after {
+          animation: btn-arrow-animation 1.2s;
+        }
+      }
+
+      @keyframes btn-arrow-animation {
+        0% {
+          background-position: right center;
+        }
+        100% {
+          background-position: 160px center;
+        }
+      }
+    }
+    &.-textright {
+      text-align: right;
+    }
+  }
+
+  .c-more__arrow--text {
+    @include arrow_and_circle();
+  }
+}
+
+//テキストと矢印を左右に配置
+.c-more__flex {
+  margin-top: 2.5rem;
+  &__container {
+    text-align: center;
+  }
+  .c-more__flex--link {
+    text-decoration: none;
+    color: var(--color-secondary);
+
+    .c-more__flex--item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      &::after {
+        content: '';
+        display: block;
+        width: 8rem;
+        height: 0.625rem;
+        background: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2296%22%20height%3D%2210%22%20style%3D%22enable-background%3Anew%200%200%2096%2010%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3Anone%3Bstroke%3A%23000%3Bstroke-width%3A2%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A10%22%20d%3D%22M17%209h78l-6.414-8%22%2F%3E%3C%2Fsvg%3E')
+          no-repeat right top 50% / 8rem 0.625rem;
+        position: absolute;
+        left: 86px;
+        transform: translateX(0);
+        transition: transform 1s;
+      }
+      &.-white {
+        color: var(--color-primary);
+        &::after {
+          content: '';
+          display: block;
+          width: 8rem;
+          height: 0.625rem;
+          background: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20268%208%22%20style%3D%22enable-background%3Anew%200%200%20268%208%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3Anone%3Bstroke%3A%23fff%3Bstroke-width%3A2%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A10%22%20d%3D%22M33%207h234l-7.693-6%22%2F%3E%3C%2Fsvg%3E')
+            no-repeat right top 50% / 8rem 0.625rem;
+          position: absolute;
+          left: 86px;
+          transform: translateX(0);
+          transition: transform 1s;
+        }
+      }
+    }
+    &:hover {
+      .c-more__flex--item::after {
+        transform: translateX(8px);
+      }
+    }
+    &:hover {
+      .c-more__flex--item.-white::after {
+        transform: translateX(8px);
+      }
+    }
+  }
+}
+
+//テキストとアイコン(丸矢印)
+.c-more__circle {
+  text-align: right;
+  &--link {
+    //テキストとアイコンを囲むリンク
+    text-decoration: none;
+    color: var(--color-secondary);
+    display: inline-flex;
+    margin-left: -24px;
+  }
+
+  &--item {
+    position: relative;
+    font-weight: 500;
+    font-size: var(--font-sm);
+    margin-left: 24px;
+    svg {
+      fill: var(--color-primary);
+    }
+  }
+
+  &--item:has(svg) {
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-linear-fly-high);
+      z-index: -1;
+    }
+  }
+}

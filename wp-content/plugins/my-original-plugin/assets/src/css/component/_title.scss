@@ -1,0 +1,11 @@
+@use '../global' as *;
+
+.c-pageTitle {
+  &__main {
+    text-align: left;
+  }
+  &__sub--custom {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,30 @@
+@font-face {
+    font-weight: 300;
+    font-family: "Anonymous Pro";
+    font-style: normal;
+    font-stretch: normal;
+    src: url(../fonts/AnonymousPro-Regular.woff2) format("woff2");
+}
+
+@font-face {
+    font-weight: 400;
+    font-family: "Fira Code";
+    font-style: normal;
+    src: url(../fonts/FiraCode-Regular.woff2) format("woff2");
+}
+
+@font-face {
+    font-weight: 400;
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-stretch: normal;
+    src: url(../fonts/SourceCodePro-Regular.woff2) format("woff2");
+}
+
+@font-face {
+    font-weight: 300;
+    font-family: "Ubuntu Mono";
+    font-style: normal;
+    font-stretch: normal;
+    src: url(../fonts/UbuntuMono-Regular.woff2) format("woff2");
+}

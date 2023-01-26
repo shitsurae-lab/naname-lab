@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/**
+ * .post_content, .editor-styles-wrapper でラップされる
+ */
+
+li {
+	--ark-list-padding--has_bg: .5em .5em .5em 2em;
+
+	// memo: 6.1からブロック側にも指定してる
+	margin: .25em 0;
+
+	li {
+		line-height: 1.6;
+	}
+
+	ul {
+		// padding-left: 1.25em;
+		list-style: circle;
+	}
+
+	// ol {
+	// 	padding-left: 1.25em;
+	// }
+}
+

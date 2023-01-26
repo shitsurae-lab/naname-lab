@@ -1,0 +1,61 @@
+@use '../../global' as *;
+
+//カスタム投稿タイプ記事一覧
+.l-sidebar {
+  .news-list {
+    // margin-top: 24px; //sidebarに投稿一覧を入れるときはactiveにしてもいいかも
+    &__heading {
+      position: relative;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    a {
+      text-decoration: none;
+    }
+    img {
+      vertical-align: bottom;
+      margin-bottom: 8px;
+    }
+    .news {
+      padding: 12px 8px;
+      border-bottom: 1px solid hsla(0, 0%, 78%, 0.5);
+      h3.ttl {
+        font-size: 14px;
+        line-height: 1.5;
+        padding-left: 24px;
+        color: var(--color-secondary);
+        position: relative;
+      }
+      &:nth-of-type(1) {
+        //.newsの一番目
+        h3.ttl {
+          &::before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            content: '\31';
+            display: block;
+          }
+        }
+      }
+      &:nth-of-type(2) {
+        //.newsの二番目
+        h3.ttl {
+          &::before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            content: '\32';
+            display: block;
+          }
+        }
+      }
+    } //END .news
+  }
+}

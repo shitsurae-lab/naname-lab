@@ -1,0 +1,21 @@
+@use '../global' as *;
+
+// グラデーション見出し
+.p-front__content {
+  h2.ark-block-heading__main {
+    font-size: var(--font-xxl);
+    //PC表示(verticla-lr)でfont-sizeが'Max 64px Min 40px'の場合、line-height: .9に設定
+    line-height: 1.2;
+    color: transparent;
+    // background-image: linear-gradient(0deg, $color-primary, $color-secondary);
+    background-image: var(--color-linear-fly-high);
+    -webkit-background-clip: text;
+    & + .ark-block-heading__sub {
+      color: var(--color-bahama-blue);
+      font-weight: 500;
+    }
+  }
+  h3 {
+    font-size: var(--font-lg);
+  }
+}

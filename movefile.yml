@@ -1,0 +1,104 @@
+global:
+  sql_adapter: wpcli
+
+local:
+  vhost: http://dev.naname-lab.net/
+  wordpress_path: /Users/tottyan/Local Sites/theme-arkhe-wpx/app/public #ローカル環境のWordPressルートパス
+
+  database:
+    name: local
+    user: root
+    password: 'root' # could be blank, so always use quotes around
+    host: localhost
+
+production:
+  vhost: http://naname-lab.net
+  wordpress_path: /home/naname/naname-lab.net/public_html # use an absolute path here
+  database:
+    name: naname_lab1
+    user: naname_admin1
+    password: yomelette614
+    host: localhost
+    # port: 3306 # Use just in case you have exotic server config
+    # mysqldump_options: '--max_allowed_packet=1G' # Only available if using SSH
+    # mysql_options: '--protocol=TCP' # mysql command is used to import db
+
+  exclude:
+    - '.git/'
+    - '.gitignore'
+    - '.gitmodules'
+    - '.env'
+    - 'node_modules/'
+    - 'bin/'
+    - 'tmp/*'
+    - 'Gemfile*'
+    - 'Movefile'
+    - 'movefile'
+    - 'movefile.yml'
+    - 'movefile.yaml'
+    - 'wp-config.php'
+    - 'wp-content/*.sql.gz'
+    - '*.orig'
+
+  # paths: # you can customize wordpress internal paths
+  #   wp_content: wp-content
+  #   uploads: wp-content/uploads
+  #   plugins: wp-content/plugins
+  #   mu_plugins: wp-content/mu-plugins
+  #   themes: wp-content/themes
+  #   languages: wp-content/languages
+
+  ssh:
+    host: naname.wpx.jp
+    user: naname
+    # password: /home/bitnami/.ssh/authorized_keys # password is optional, will use public keys if available.
+    port: 10022 # Port is optional
+  #   rsync_options: '--verbose --itemize-changes' # Additional rsync options, optional
+  #   gateway: # Gateway is optional
+  #     host: host
+  #     user: user
+  #     password: password # password is optional, will use public keys if available.
+
+  # ftp:
+  #   user: user
+  #   password: password
+  #   host: host
+  #   passive: true
+  #   port: 21 # Port is optional
+  #   scheme: ftps # default `ftp`. alternative `sftp`
+
+  # hooks: # Remote hooks won't work with FTP
+  #   push:
+  #     before:
+  #       - command: 'echo "do something"'
+  #         where: local
+  #         raise: false # raise is true by default
+  #     after:
+  #       - command: 'echo "do something"'
+  #         where: remote
+  #   pull:
+  #     before:
+  #       - command: 'echo "do something"'
+  #         where: local
+  #         raise: false
+  #     after:
+  #       - command: 'echo "do something"'
+  #         where: remote
+  #
+  # forbid:
+  #   push:
+  #     db: false
+  #     plugins: false
+  #     themes: false
+  #     languages: false
+  #     uploads: false
+  #     mu-plugins: false
+  #   pull:
+  #     db: false
+  #     plugins: false
+  #     themes: false
+  #     languages: false
+  #     uploads: false
+  #     mu-plugins: false
+# staging: # multiple environments can be specified
+#   [...]

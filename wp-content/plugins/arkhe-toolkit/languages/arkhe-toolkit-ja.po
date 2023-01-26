@@ -1,0 +1,642 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Arkhe Toolkit\n"
+"POT-Creation-Date: 2022-08-12 22:18+0900\n"
+"PO-Revision-Date: 2022-08-12 22:18+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: arkhe-toolkit.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: *__*\n"
+"X-Poedit-SearchPathExcluded-4: inc/update\n"
+"X-Poedit-SearchPathExcluded-5: src/js/prefetch.js\n"
+
+#: classes/Get.php:41
+msgid "Share on Facebook"
+msgstr "Facebookでシェア"
+
+#: classes/Get.php:47
+msgid "Share on Twitter"
+msgstr "Twitterでシェア"
+
+#: classes/Get.php:57
+msgid "Register in Hatena Bookmark"
+msgstr "はてなブックマークに登録"
+
+#: classes/Get.php:63
+msgid "Save to Pocket"
+msgstr "Pocketに保存"
+
+#: classes/Get.php:72
+msgid "Save pin"
+msgstr "ピンを保存"
+
+#: classes/Get.php:82
+msgid "Send to LINE"
+msgstr "LINEに送る"
+
+#: classes/Output_Meta_Field.php:18
+msgid "Show"
+msgstr "表示"
+
+#: classes/Output_Meta_Field.php:19 inc/meta_post.php:108
+msgid "Don't show"
+msgstr "非表示"
+
+#: classes/Output_Meta_Field.php:52
+msgid "Select image"
+msgstr "画像を選択"
+
+#: classes/Output_Meta_Field.php:53
+msgid "Delete image"
+msgstr "画像を削除"
+
+#: inc/admin_menu.php:34 inc/admin_menu.php:35
+msgid "Reusable Block"
+msgstr "再利用ブロック"
+
+#: inc/admin_menu.php:60
+msgid "Extensions"
+msgstr "拡張機能"
+
+#: inc/admin_menu.php:61
+msgid "Speed Up"
+msgstr "高速化"
+
+#: inc/admin_menu.php:62
+msgid "Cache settings"
+msgstr "キャッシュ設定"
+
+#: inc/admin_menu.php:63
+msgid "Stop functions"
+msgstr "停止させる機能"
+
+#: inc/admin_menu.php:64
+msgid "Add code"
+msgstr "コード追加"
+
+#: inc/admin_menu/menu_page.php:18
+msgid "Your settings have been saved."
+msgstr "設定を保存しました。"
+
+#: inc/admin_menu/menu_page.php:30
+msgid "Arkhe Toolkit Settings"
+msgstr "Arkhe Toolkit 設定"
+
+#: inc/admin_menu/tabs/cache.php:17
+msgid "Parts cache"
+msgstr "パーツキャッシュ"
+
+#: inc/admin_menu/tabs/cache.php:23
+msgid "Cache header"
+msgstr "ヘッダーをキャッシュする"
+
+#: inc/admin_menu/tabs/cache.php:24
+msgid "Cache sidebar"
+msgstr "サイドバーをキャッシュする"
+
+#: inc/admin_menu/tabs/cache.php:25
+msgid "Cache footer"
+msgstr "フッターをキャッシュする"
+
+#: inc/admin_menu/tabs/cache.php:37 inc/admin_toolbar.php:59
+msgid "Clear Cache"
+msgstr "キャッシュをクリア"
+
+#: inc/admin_menu/tabs/code.php:18 inc/meta_post.php:205
+msgid "Code to output in the &lt;head&gt; tag"
+msgstr "&lt;head&gt;タグ内に出力するコード"
+
+#: inc/admin_menu/tabs/code.php:28
+msgid ""
+"The code entered here will be output in the <code>&lt;head&gt;</code> tag."
+msgstr ""
+"ここに入力したコードは、<code>&lt;head&gt;</code>タグ内に出力されます。"
+
+#: inc/admin_menu/tabs/code.php:29
+msgid "It is output by the<code>wp_head</code>hook."
+msgstr "<code>wp_head</code>フックで出力されます。"
+
+#: inc/admin_menu/tabs/code.php:41
+msgid "Code to output after starting &lt;body&gt; tag"
+msgstr "&lt;body&gt;タグ開始後に出力するコード"
+
+#: inc/admin_menu/tabs/code.php:51
+msgid ""
+"The code entered here will be output after the <code>&lt;body&gt;</code> tag "
+"starts."
+msgstr ""
+"ここに入力したコードは、<code>&lt;body&gt;</code>タグ開始後に出力されます。"
+
+#: inc/admin_menu/tabs/code.php:52
+msgid "It is output by the<code>wp_body_open</code>hook."
+msgstr "<code>wp_body_open</code>フックで出力されます。"
+
+#: inc/admin_menu/tabs/code.php:64 inc/meta_post.php:209
+msgid "Code to output before the end of &lt;/body&gt; tag"
+msgstr "&lt;/body&gt;タグ終了前に出力するコード"
+
+#: inc/admin_menu/tabs/code.php:74
+msgid ""
+"The code entered here will be output before the end of the <code>&lt;/"
+"body&gt;</code> tag."
+msgstr ""
+"ここに入力したコードは、<code>&lt;/body&gt;</code>タグ終了前に出力されます。"
+
+#: inc/admin_menu/tabs/code.php:75
+msgid "It is output by the<code>wp_footer</code>hook."
+msgstr "<code>wp_footer</code>フックで出力されます。"
+
+#: inc/admin_menu/tabs/extension.php:18
+msgid "Extension of widget area"
+msgstr "ウィジェットエリアの拡張"
+
+#: inc/admin_menu/tabs/extension.php:29
+msgid "Additional processing to the content"
+msgstr "コンテンツへの追加処理"
+
+#: inc/admin_menu/tabs/extension.php:40
+msgid "Structured Data"
+msgstr "構造化データ"
+
+#: inc/admin_menu/tabs/extension.php:51
+msgid "Extension of user profile information"
+msgstr "ユーザープロフィール情報の拡張"
+
+#: inc/admin_menu/tabs/extension/content.php:7
+msgid "Allow the image to be enlarged by clicking"
+msgstr "画像をクリックで拡大表示できるようにする"
+
+#: inc/admin_menu/tabs/extension/content.php:8
+msgid "Automatically remove empty p tags"
+msgstr "空のpタグを自動除去する"
+
+#: inc/admin_menu/tabs/extension/json_ld.php:6
+msgid "Automatically generate JSON-LD"
+msgstr "JSON-LDを自動生成する"
+
+#: inc/admin_menu/tabs/extension/json_ld.php:8
+msgid "Include breadcrumbs structure in JSON-LD"
+msgstr "パンくずリストの構造をJSON-LDに含める"
+
+#: inc/admin_menu/tabs/extension/user_meta.php:6
+msgid "Add user position setting field"
+msgstr "役職の設定欄を追加"
+
+#: inc/admin_menu/tabs/extension/user_meta.php:7
+msgid "Add SNS URL information"
+msgstr "SNSのURL情報を追加"
+
+#: inc/admin_menu/tabs/extension/widget_area.php:6
+msgid "Add widget area for \"Page\""
+msgstr "「固定ページ」用のウィジェットエリアを追加"
+
+#: inc/admin_menu/tabs/extension/widget_area.php:7
+msgid "Add widget area for \"Post\""
+msgstr "「投稿」用のウィジェットエリアを追加"
+
+#: inc/admin_menu/tabs/extension/widget_area.php:8
+msgid "Add widget area for \"Home\""
+msgstr "「最新の投稿」用のウィジェットエリアを追加"
+
+#: inc/admin_menu/tabs/extension/widget_area.php:9
+msgid "Add widget area for \"Sticky sidebar\""
+msgstr "「追尾サイドバー」用のウィジェットエリアを追加"
+
+#: inc/admin_menu/tabs/extension/widget_area.php:10
+msgid "Add widget area for \"Before Footer\""
+msgstr "「フッター前」ウィジェットエリアを追加"
+
+#: inc/admin_menu/tabs/remove.php:18
+msgid "WordPress features"
+msgstr "WordPressの機能"
+
+#: inc/admin_menu/tabs/remove.php:24
+msgid "Stop outputting WordPress version"
+msgstr "WordPressバージョンの出力を停止"
+
+#: inc/admin_menu/tabs/remove.php:25
+msgid "Stop loading scripts for emoji"
+msgstr "絵文字用のスクリプトの読み込みを停止"
+
+#: inc/admin_menu/tabs/remove.php:26
+msgid "Stop linking with Windows Live Write"
+msgstr "Windows Live Writeとの連携を停止"
+
+#: inc/admin_menu/tabs/remove.php:27
+msgid "Stop EditURI (RSD Link)"
+msgstr "EditURI(RSD Link)の停止"
+
+#: inc/admin_menu/tabs/remove.php:28
+msgid "Stop self-pingback"
+msgstr "セルフピンバックを停止"
+
+#: inc/admin_menu/tabs/remove.php:29
+msgid "Stop core sitemap functionality"
+msgstr "コアのサイトマップ機能を停止"
+
+#: inc/admin_menu/tabs/remove.php:30
+msgid "Stop outputting link tags for REST API"
+msgstr "REST API用linkタグの出力を停止"
+
+#: inc/admin_menu/tabs/remove.php:31
+msgid "Stop outputting \"srcset\""
+msgstr "“srcset”の出力を停止"
+
+#: inc/admin_menu/tabs/remove.php:32
+msgid "Stop outputting  \"rel = prev / next\""
+msgstr "「rel=prev/next」の出力を停止"
+
+#: inc/admin_menu/tabs/remove.php:33
+msgid "Stop automatic conversion of symbols (disable wptexturize)"
+msgstr "記号の自動変換を停止(wptexturize無効化)"
+
+#: inc/admin_menu/tabs/remove.php:34
+msgid "Stop RSS feed"
+msgstr "RSSフィードを停止"
+
+#: inc/admin_menu/tabs/speed.php:13
+msgid "Multiple keywords should be separated by a \",\" or a line break."
+msgstr "複数キーワードは「,」で区切るか、改行してください。"
+
+#: inc/admin_menu/tabs/speed.php:19
+msgid "Prefetch"
+msgstr ""
+
+#: inc/admin_menu/tabs/speed.php:27
+msgid "Enable the Prefetch function"
+msgstr "Prefetch機能を有効化する"
+
+#: inc/admin_menu/tabs/speed.php:35
+msgid "Keywords for pages not to be prefetched"
+msgstr "Prefetchさせないページのキーワード"
+
+#: inc/admin_menu/tabs/speed.php:36
+msgid ""
+"All pages containing the specified character string will not be subject to "
+"Prefetch."
+msgstr "指定した文字列を含む全ページが Prefetch の対象外となります。"
+
+#: inc/admin_menu/tabs/speed.php:48
+msgid "Lazyload of content"
+msgstr "コンテンツの遅延読み込み"
+
+#: inc/admin_menu/tabs/speed.php:57
+msgid "How to lazy load images, videos, and embeds"
+msgstr "画像・動画・埋め込みの遅延読み込み方法"
+
+#: inc/admin_menu/tabs/speed.php:59
+msgid "Turn off lazyload"
+msgstr "遅延読み込みをオフにする"
+
+#: inc/admin_menu/tabs/speed.php:60
+msgid "Use loading=\"lazy\""
+msgstr "loading=“lazy” を使う"
+
+#: inc/admin_menu/tabs/speed.php:61
+msgid "Use the script (lazysizes.js)"
+msgstr "スクリプト(lazysizes.js)を使う"
+
+#: inc/admin_menu/tabs/speed.php:66
+msgid "This setting is currently disabled due to an older version of Arkhe."
+msgstr "Arkheのバージョンが古いため、現在この設定は無効になっています。"
+
+#: inc/admin_menu/tabs/speed.php:76
+msgid "Lazyload of scripts"
+msgstr "スクリプトの遅延読み込み"
+
+#: inc/admin_menu/tabs/speed.php:84
+msgid "Enable lazyload of scripts"
+msgstr "スクリプトの遅延読み込みを有効化する"
+
+#: inc/admin_menu/tabs/speed.php:94
+msgid "Keywords for the scripts to be delayed"
+msgstr "遅延対象にするスクリプトのキーワード"
+
+#: inc/admin_menu/tabs/speed.php:96
+msgid "Lazy loading of script tags that contain the specified keywords."
+msgstr "指定されたキーワードが含まれるscriptタグを遅延読み込みします。"
+
+#: inc/admin_menu/tabs/speed.php:103
+msgid "Page to turn off lazyload of scripts"
+msgstr "スクリプトの遅延読み込みをオフにするページ"
+
+#: inc/admin_menu/tabs/speed.php:105
+msgid ""
+"The lazyload of scripts will be turned off for pages that contain the "
+"specified keywords."
+msgstr ""
+"指定されたキーワードが含まれるページでは、スクリプトの遅延読み込み機能がオフ"
+"になります。"
+
+#: inc/admin_menu/tabs/speed.php:113
+msgid "Seconds to delay"
+msgstr "遅延秒数"
+
+#: inc/admin_menu/tabs/speed.php:115
+msgid "sec"
+msgstr "秒"
+
+#: inc/admin_toolbar.php:10
+msgid "Customize"
+msgstr ""
+
+#: inc/admin_toolbar.php:39
+msgid "To setting page"
+msgstr "設定ページへ"
+
+#: inc/admin_toolbar.php:48
+msgid "To theme page"
+msgstr "テーマページへ"
+
+#: inc/admin_toolbar.php:76
+msgid "License key registration"
+msgstr "ライセンスキー登録"
+
+#: inc/ajax.php:13
+msgid "The reset is complete."
+msgstr "リセット完了しました。"
+
+#: inc/ajax.php:29
+msgid "The cache clear is complete."
+msgstr "キャッシュクリアが完了しました。"
+
+#: inc/customizer/ex_header.php:13
+msgid "How to expand the drawer menu"
+msgstr "ドロワーメニューの展開方式"
+
+#: inc/customizer/ex_header.php:24
+msgid "Fade-in"
+msgstr "フェードイン"
+
+#: inc/customizer/ex_header.php:25
+msgid "Slide from left"
+msgstr "左からスライド"
+
+#: inc/customizer/ex_header.php:26
+msgid "Slide from right"
+msgstr "右からスライド"
+
+#: inc/customizer/ex_header.php:40
+msgid "Display below the header"
+msgstr "ヘッダーより下に表示する"
+
+#: inc/customizer/share_btns.php:13
+msgid "Share buttons"
+msgstr "シェアボタン"
+
+#: inc/customizer/share_btns.php:24
+msgid "Display on the article"
+msgstr "記事上に表示する"
+
+#: inc/customizer/share_btns.php:37
+msgid "Display below the article"
+msgstr "記事下に表示する"
+
+#: inc/customizer/share_btns.php:49
+msgid "Which button to display"
+msgstr "どのボタンを表示するか"
+
+#: inc/customizer/share_btns.php:85
+msgid "Hatebu"
+msgstr "はてブ"
+
+#: inc/customizer/share_btns.php:137
+msgid "URL copy button"
+msgstr "URLコピーボタン"
+
+#: inc/enqueue_scripts.php:86
+msgid "Will you really reset it?"
+msgstr "本当にリセットしますか？"
+
+#: inc/meta_post.php:23 inc/meta_term.php:28
+msgid "Arkhe Settings"
+msgstr "Arkhe設定"
+
+#: inc/meta_post.php:33
+msgid "Custom Codes"
+msgstr "カスタムコード"
+
+#: inc/meta_post.php:56
+msgid "This is valid only when the title position is \"Above the content\"."
+msgstr "タイトル位置が「コンテンツ上部」のページで、有効です。"
+
+#: inc/meta_post.php:64 inc/meta_term.php:91
+msgid "Background image for title"
+msgstr "タイトル背景画像"
+
+#: inc/meta_post.php:76
+msgid "Subtitle"
+msgstr "サブタイトル"
+
+#: inc/meta_post.php:92
+msgid "Display settings"
+msgstr "表示設定"
+
+#: inc/meta_post.php:96 inc/meta_term.php:69
+msgctxt "show"
+msgid "Show"
+msgstr "表示"
+
+#: inc/meta_post.php:97 inc/meta_term.php:70
+msgctxt "show"
+msgid "Hide"
+msgstr "非表示"
+
+#: inc/meta_post.php:104
+msgid "Title display"
+msgstr "タイトル表示"
+
+#: inc/meta_post.php:106 inc/meta_term.php:82
+msgid "Above the content"
+msgstr "コンテンツ上部"
+
+#: inc/meta_post.php:107 inc/meta_term.php:83
+msgid "Inside the content"
+msgstr "コンテンツ内部"
+
+#: inc/meta_post.php:113 inc/wp_posts_table.php:24
+msgid "Featured image"
+msgstr "アイキャッチ画像"
+
+#: inc/meta_post.php:117
+msgid "Author data"
+msgstr "著者情報"
+
+#: inc/meta_post.php:121
+msgid "Related posts"
+msgstr "関連記事"
+
+#: inc/meta_post.php:154
+msgid "Hide top-widget"
+msgstr "上部ウィジェットを非表示にする"
+
+#: inc/meta_post.php:157
+msgid "Hide bottom-widget"
+msgstr "下部ウィジェットを非表示にする"
+
+#: inc/meta_post.php:162
+msgid "Hide before-footer-widget"
+msgstr "フッター前ウィジェットを非表示にする"
+
+#: inc/meta_post.php:167
+msgid "Show page \"excerpt\""
+msgstr "ページの「抜粋」を表示する"
+
+#: inc/meta_post.php:172
+msgid "Hide share buttons"
+msgstr "シェアボタンを非表示にする"
+
+#: inc/meta_term.php:35
+msgid "Please update the version of \"Arkhe\"."
+msgstr "\"Arkhe\"のバージョンを更新してください。"
+
+#: inc/meta_term.php:42
+msgid "Show \"Description\""
+msgstr "「説明」を表示する"
+
+#: inc/meta_term.php:53
+msgid "List layout"
+msgstr "リストレイアウト"
+
+#: inc/meta_term.php:56
+msgid "Follow base settings"
+msgstr "ベース設定に従う"
+
+#: inc/meta_term.php:64
+msgid "Sidebar"
+msgstr "サイドバー"
+
+#: inc/meta_term.php:77
+msgid "Title position"
+msgstr "タイトル表示位置"
+
+#: inc/meta_user.php:10
+msgid "Job title / position"
+msgstr "役職・肩書き"
+
+#: inc/meta_user.php:19
+msgid "Amazon wish list"
+msgstr "Amazon欲しいものリスト"
+
+#: inc/widget.php:118
+#, php-format
+msgid "Widgets in this area will be displayed in the %s"
+msgstr "このエリアのウィジェットは%sに表示されます"
+
+#: inc/widget.php:122
+msgid "Before footer"
+msgstr "フッター前"
+
+#: inc/widget.php:138
+msgid "Top of \"Page\" content"
+msgstr "「固定ページ」のコンテンツ上部"
+
+#: inc/widget.php:150 inc/widget.php:153
+msgid "Bottom of \"Page\" content"
+msgstr "「固定ページ」のコンテンツ下部"
+
+#: inc/widget.php:166 inc/widget.php:169
+msgid "Top of \"Post\" content"
+msgstr "「投稿」のコンテンツ上部"
+
+#: inc/widget.php:178 inc/widget.php:181
+msgid "Bottom of \"Post\" content"
+msgstr "「投稿」のコンテンツ下部"
+
+#: inc/widget.php:194 inc/widget.php:197
+msgid "Top of \"Home\" content"
+msgstr "「最新の投稿」のコンテンツ上部"
+
+#: inc/widget.php:206 inc/widget.php:209
+msgid "Bottom of \"Home\" content"
+msgstr "「最新の投稿」のコンテンツ下部"
+
+#: inc/widget.php:222
+msgid "bottom of the sidebar"
+msgstr "サイドバー下部"
+
+#: inc/widget.php:225
+msgid "Sticky sidebar"
+msgstr "追尾サイドバー"
+
+#: inc/wp_posts_table.php:28
+msgid "shortcode"
+msgstr "ショートコード"
+
+#: template-parts/share_btns.php:38
+msgid "Copy the URL"
+msgstr "URLをコピー"
+
+#. Plugin Name of the plugin/theme
+msgid "Arkhe Toolkit"
+msgstr "Arkhe Toolkit"
+
+#. Plugin URI of the plugin/theme
+msgid "https://arkhe-theme.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A plugin that extends Arkhe more conveniently"
+msgstr "Arkheをより便利に拡張するプラグイン"
+
+#. Author of the plugin/theme
+msgid "LOOS,Inc."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://loos.co.jp/"
+msgstr ""
+
+#~ msgid "If there are multiple, separate them with \",\"."
+#~ msgstr "複数の場合は「,」で区切ってください。"
+
+#~ msgid "Get license"
+#~ msgstr "ライセンス取得"
+
+#~ msgid "Speed-up function"
+#~ msgstr "高速化機能"
+
+#~ msgid "Reset setting data"
+#~ msgstr "設定データをリセット"
+
+#~ msgid "Lazy loading of images / videos / iframes with scripts"
+#~ msgstr "画像・動画・iframeをスクリプトで遅延読み込みさせる"
+
+#~ msgid "Unregister all core block patterns"
+#~ msgstr "コアのブロックパターンの登録を全て解除"
+
+#~ msgid "Include global navigation structure in JSON-LD"
+#~ msgstr "グローバルナビの構造をJSON-LDに含める"
+
+#~ msgid "Button layout in the header"
+#~ msgstr "ヘッダーのボタン配置"
+
+#~ msgid "Only valid with the default template."
+#~ msgstr "デフォルトテンプレートでのみ有効です。"
+
+#, fuzzy
+#~| msgid "Show"
+#~ msgid "Show top"
+#~ msgstr "表示"
+
+#~ msgid "Add user position"
+#~ msgstr "ユーザーの役職を追加"
+
+#~ msgid "Reset"
+#~ msgstr "リセット"

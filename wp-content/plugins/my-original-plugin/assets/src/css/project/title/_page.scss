@@ -1,0 +1,13 @@
+@use '../../global' as *;
+
+.p-page {
+  &__title {
+    // width: min(640px, 100%);
+    // margin: 0 auto;
+  }
+
+  &__image {
+    width: min(960px, 100%);
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,104 @@
+@use '../../global' as *;
+.p-hero__particles {
+  position: relative;
+  width: 100vw;
+  z-index: -1;
+  aspect-ratio: 8 / 5;
+  height: min(584px, 46vh);
+  background: url('https://i.picsum.photos/id/681/1920/1080.jpg?hmac=qyb0NfTEkQw9QdsIYQbV0GhAEyKiPcAfetmIF_e8Kik')
+    var(--color-bahama-blue) no-repeat top center/cover;
+  background-blend-mode: screen;
+  @include mq(tablet) {
+    aspect-ratio: 12 / 5;
+    height: min(584px, 55vh);
+  }
+
+  // &::before{
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   background: rgba(255, 255, 255, .4);
+  //   width: 100%;
+  //   height: 100%;
+  //   backdrop-filter: blur(.5px)
+  // }
+
+  .p-hero__catch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    p {
+      color: var(--color-primary);
+    }
+  }
+  #particles-js {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.p-hero__blendParticles {
+  $this: &;
+  position: relative;
+
+  #particles-js {
+    width: 100%;
+    aspect-ratio: 12/5;
+    height: min(584px, 54vh);
+  }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    aspect-ratio: 12 / 5;
+    height: min(584px, 100%);
+    background: url('https://i.picsum.photos/id/681/1920/1080.jpg?hmac=qyb0NfTEkQw9QdsIYQbV0GhAEyKiPcAfetmIF_e8Kik')
+      var(--color-bahama-blue) no-repeat top center/cover;
+    background-blend-mode: screen;
+    z-index: -1;
+    .p-hero__catch {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 8px 16px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(16px);
+      p {
+        font-size: 32px;
+        span {
+          display: block;
+        }
+      }
+    }
+    &.normal {
+      background-color: var(--color-granite-gray);
+      clip-path: polygon(55% 0%, 100% 0%, 100% 100%, 45% 100%);
+      .p-hero__catch p {
+        color: var(--color-light-gray);
+      }
+    }
+    &.burn {
+      background-color: var(--color-secondary);
+      clip-path: polygon(0 0, 55% 0, 45% 100%, 0 100%);
+      .p-hero__catch {
+        mix-blend-mode: overlay;
+        p {
+          color: var(--color-taupe-gray);
+        }
+      }
+    }
+  }
+}
+
+//投稿ページ(投稿一覧)
+.l-main__body.p-home > .p-hero__blendParticles {
+  width: 100vw;
+  margin: 0 calc(50% - 50vw);
+}

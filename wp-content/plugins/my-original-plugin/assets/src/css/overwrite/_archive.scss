@@ -1,0 +1,12 @@
+@use '../global' as *;
+// アーカイブ: リスト型
+.p-postList.-type-list {
+  .p-postList__item {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--ark-color--border);
+
+    &:first-child {
+      border-top: 1px solid var(--ark-color--border);
+    }
+  }
+}

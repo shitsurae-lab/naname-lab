@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){const e=window.ClipboardJS;e&&new e(".c-urlcopy").on("success",(function(e){const n=e.trigger;n.classList.add("-done"),setTimeout((()=>{n.classList.remove("-done")}),3e3)}))}));

@@ -1,0 +1,167 @@
+@use '../../global' as *;
+.p-postHero {
+  $this: &;
+  //リセット padding: var(--arkb-padding) ←index.css
+  .ark-block-section__bodyInner {
+    padding: 0;
+    #{$this}__container {
+      position: relative;
+      #{$this}__bg {
+        width: calc(100vw - 20%);
+        margin-right: calc(50% - 50vw);
+        margin-left: auto;
+        aspect-ratio: 12 / 5;
+        max-height: 60vh;
+        background: var(--color-lapis-lazuli)
+          url('../media/picsum122-1920x1080.jpg') no-repeat right center / 100%
+          auto;
+        background-blend-mode: screen;
+      }
+
+      #{$this}__text {
+        position: absolute;
+        top: 0;
+        // bottom: 0;
+        // left: 0;
+        // right: 0;
+        // width: 100vw;
+        // margin: 0 calc(50% - 50vw);
+        // height: 100%;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: calc(100vw - 20%);
+        margin-right: calc(50% - 50vw);
+        margin-left: auto;
+        height: 100%;
+        // background: rgba(20, 20, 20, .5);
+        &--inner {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: grid;
+          align-items: center;
+          top: 0;
+          bottom: 0;
+          left: -12%;
+          right: 0;
+          #{$this}__text--catch {
+            width: 50%;
+            font-size: var(--font-hero);
+            line-height: 1.7;
+            font-weight: 700;
+            padding: 1rem 1rem 1rem 0;
+          }
+          #{$this}__text--bundle {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(24px);
+            padding: 1rem;
+          }
+          &.normal {
+            clip-path: polygon(
+              0 0,
+              12% 0,
+              12% 100%,
+              0 100%
+            ); //もともとは20% breakpoint1000pxで16%, 1200pxだと12%とおもったのだけど、いまのところ12%でレスポンシブ対応可能
+            color: darkcyan;
+          }
+          &.burn {
+            clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%);
+
+            color: teal;
+            mix-blend-mode: color-dodge;
+            mix-blend-mode: lighten;
+          }
+        }
+      }
+      //リセット padding-leftを修正
+      &.l-container {
+        padding-left: calc(var(--ark-padding--container) + 12%);
+      }
+    }
+  }
+  // &__container {
+  //   position: relative;
+  //   #{$this}__bg {
+  //     width: calc(100vw - 20%);
+  //     margin-right: calc(50% - 50vw);
+  //     margin-left: auto;
+  //     aspect-ratio: 12 / 5;
+  //     max-height: 60vh;
+  //     background: var(--color-lapis-lazuli)
+  //       url('../media/picsum122-1920x1080.jpg') no-repeat right center /
+  //       100% auto;
+  //     background-blend-mode: screen;
+  //   }
+
+  //   #{$this}__text {
+  //     position: absolute;
+  //     top: 0;
+  //     // bottom: 0;
+  //     // left: 0;
+  //     // right: 0;
+  //     // width: 100vw;
+  //     // margin: 0 calc(50% - 50vw);
+  //     // height: 100%;
+  //     bottom: auto;
+  //     left: auto;
+  //     right: auto;
+  //     width: calc(100vw - 20%);
+  //     margin-right: calc(50% - 50vw);
+  //     margin-left: auto;
+  //     height: 100%;
+  //     // background: rgba(20, 20, 20, .5);
+  //     &--inner {
+  //       position: absolute;
+  //       width: 100%;
+  //       height: 100%;
+  //       display: grid;
+  //       align-items: center;
+  //       top: 0;
+  //       bottom: 0;
+  //       left: -12%;
+  //       right: 0;
+  //       #{$this}__text--catch {
+  //         width: 50%;
+  //         font-size: 1.5rem;
+  //         line-height: 1.7;
+  //         font-weight: 700;
+  //         padding: 1rem 1rem 1rem 0;
+  //       }
+  //       #{$this}__text--bundle {
+  //         background: rgba(255, 255, 255, 0.5);
+  //         backdrop-filter: blur(24px);
+  //         padding: 1rem;
+  //       }
+  //       &.normal {
+  //         clip-path: polygon(
+  //           0 0,
+  //           12% 0,
+  //           12% 100%,
+  //           0 100%
+  //         ); //もともとは20% breakpoint1000pxで16%, 1200pxだと12%とおもったのだけど、いまのところ12%でレスポンシブ対応可能
+  //         color: darkcyan;
+  //       }
+  //       &.burn {
+  //         clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%);
+
+  //         color: teal;
+  //         mix-blend-mode: color-dodge;
+  //         mix-blend-mode: lighten;
+  //       }
+  //     }
+  //   }
+  //   //リセット padding-leftを修正
+  //   &.l-container {
+  //     padding-left: calc(var(--ark-padding--container) + 12%);
+  //   }
+  // }
+  .c-line {
+    display: block;
+    //2行目以降
+    & + .c-line {
+      margin-top: 8px;
+    }
+  }
+}
