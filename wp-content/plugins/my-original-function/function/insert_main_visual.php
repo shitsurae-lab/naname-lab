@@ -48,13 +48,27 @@ function custom_main_visual()
     $uc_cp_slug = strtoupper($cp_slug);
     // $uploads_baseurl = wp_upload_dir()['baseurl'];
 ?>
+    <section>
+      <div class="p-mv l-container">
+        <div class="p-mv__container">
+          <div id="particles-js"></div>
+        </div>
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
+      </div>
+    </section>
 
-    <div class="p-hero__particles">
+    <!-- <div class="p-mv l-container">
+      <div class="p-mv__container">
+        <div id="particles-js"></div>
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
+      </div>
+    </div> -->
+    <!-- <div class="p-hero__particles">
       <div id="particles-js"></div>
       <div class="p-hero__catch">
         <p><span><?php echo $uc_cp_slug; ?></span><span>naname design lab</span></p>
       </div>
-    </div>
+    </div> -->
     <!-- <section class="arkb-section--hero alignfull ark-block-section p-postHero" data-height="content">
       <div class="ark-block-section__color arkb-absLayer"></div>
       <div class="ark-block-section__body" data-content="center-left">

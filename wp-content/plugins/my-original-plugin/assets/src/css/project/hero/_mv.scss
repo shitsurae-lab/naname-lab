@@ -1,0 +1,40 @@
+.p-mv {
+  $this: &;
+  position: relative;
+  // background: red;
+  &__container {
+    // width: 100vw;
+    height: 50vh;
+    // margin-left: 12%;
+    // overflow: hidden;
+    margin-left: auto;
+    margin-right: calc(50% - 50vw);
+    clip-path: polygon(4% 0, 100% 0, 100% 100%, 4% 100%);
+    //  background-image: linear-gradient(45deg, rgba(15, 32, 39, 0.86), rgba(44, 83, 100, 0.86) 100%, rgba(32, 58, 67, 0.86) 50%)
+    // ,url('https://i.picsum.photos/id/681/1920/1080.jpg?hmac=qyb0NfTEkQw9QdsIYQbV0GhAEyKiPcAfetmIF_e8Kik');
+    // background-image: linear-gradient(
+    //   45deg,
+    //   rgba(15, 32, 39, 0.86),
+    //   rgba(44, 83, 100, 0.86) 100%,
+    //   rgba(32, 58, 67, 0.86) 50%
+    // );
+    background-image: var(--color-moonlit-asteroid());
+    // cf: https://uigradients.com/#MoonlitAsteroid
+  }
+  &__catch {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: transparent;
+    font-size: 72px;
+    font-weight: 700;
+    background-clip: text;
+    background-image: linear-gradient(90deg, black, lightgray);
+    mix-blend-mode: screen;
+    #{$this}__catch__span {
+      display: block;
+      margin-top: 24px;
+    }
+  }
+}
