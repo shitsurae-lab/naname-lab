@@ -239,6 +239,13 @@ a {
   --color-primary-translucent: rgba(255 255 255 / 40%);
   --color-charcoal-translucent: rgba(68 68 68 /50%);
   --color-spindle-translucent: rgba(182, 189, 199, 40%);
+  --color-moonlit-asteroid: linear-gradient($deg: 45deg)
+    (
+      $deg,
+      rgba(15, 32, 39, 0.86),
+      rgba(44, 83, 100, 0.86) 100%,
+      rgba(32, 58, 67, 0.86) 50%
+    );
   --color-linear-primary: linear-gradient(
     180deg,
     #f1f0eb 0%,
@@ -1446,6 +1453,35 @@ details.p-tag__details[open] .p-tag__icon {
 .l-main__body.p-home > .p-hero__blendParticles {
   width: 100vw;
   margin: 0 calc(50% - 50vw);
+}
+
+.p-mv {
+  position: relative;
+}
+.p-mv__container {
+  height: 50vh;
+  margin-left: auto;
+  margin-right: calc(50% - 50vw);
+  -webkit-clip-path: polygon(4% 0, 100% 0, 100% 100%, 4% 100%);
+          clip-path: polygon(4% 0, 100% 0, 100% 100%, 4% 100%);
+  background-image: var(--color-moonlit-asteroid());
+}
+.p-mv__catch {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  color: transparent;
+  font-size: 72px;
+  font-weight: 700;
+  -webkit-background-clip: text;
+          background-clip: text;
+  background-image: linear-gradient(90deg, black, lightgray);
+  mix-blend-mode: screen;
+}
+.p-mv__catch .p-mv__catch__span {
+  display: block;
+  margin-top: 24px;
 }
 
 .p-page__image {
