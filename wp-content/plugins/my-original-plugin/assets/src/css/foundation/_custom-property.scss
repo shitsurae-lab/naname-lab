@@ -64,13 +64,12 @@
   --color-charcoal-translucent: rgba(68 68 68 /50%);
   --color-spindle-translucent: rgba(182, 189, 199, 40%);
 
-  --color-moonlit-asteroid: linear-gradient($deg: 45deg)
-    (
-      $deg,
-      rgba(15, 32, 39, 0.86),
-      rgba(44, 83, 100, 0.86) 100%,
-      rgba(32, 58, 67, 0.86) 50%
-    );
+  --color-moonlit-asteroid: linear-gradient(
+    45deg,
+    rgba(15, 32, 39, 0.86),
+    rgba(44, 83, 100, 0.86) 100%,
+    rgba(32, 58, 67, 0.86) 50%
+  );
   // Linear Gradient
   --color-linear-primary: linear-gradient(
     180deg,
