@@ -54,61 +54,9 @@ function custom_main_visual()
         <div class="p-mv__container">
           <div id="particles-js"></div>
         </div>
-        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div> -->
         <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">カスタム投稿アーカイブ</span></div>
       </div>
     </section>
-
-    <!-- <div class="p-mv l-container">
-      <div class="p-mv__container">
-        <div id="particles-js"></div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
-      </div>
-    </div> -->
-    <!-- <div class="p-hero__particles">
-      <div id="particles-js"></div>
-      <div class="p-hero__catch">
-        <p><span><?php echo $uc_cp_slug; ?></span><span>naname design lab</span></p>
-      </div>
-    </div> -->
-    <!-- <section class="arkb-section--hero alignfull ark-block-section p-postHero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="p-postHero__container l-container">
-            <div class="p-postHero__bg"></div>
-            <div class="p-postHero__text">
-              <div class="p-postHero__text--inner normal">
-                <div class="p-postHero__text--catch">
-                  <div class="p-postHero__text--bundle">
-                    <p class="c-text">
-
-                      <span class="c-line"><?php echo $uc_term_name; ?></span>
-                      <span class="c-line">by nanme design labo...</span>
-
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="p-postHero__text--inner burn">
-                <div class="p-postHero__text--catch">
-                  <div class="p-postHero__text--bundle">
-                    <p class="c-text">
-
-                      <span class="c-line"><?php echo $uc_term_name; ?></span>
-                      <span class="c-line">by nanme design labo...</span>
-
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section> -->
 
 
   <?php
@@ -128,7 +76,6 @@ function custom_main_visual()
         <div class="p-mv__container">
           <div id="particles-js"></div>
         </div>
-        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">by naname lab....</span></div> -->
         <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">アーカイブページ</span></div>
         <!-- <?php //var_dump($term_name);
               ?> -->
@@ -180,8 +127,6 @@ function insert_before_breadcrumb()
         <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
       </div>
     </section>
-
-
 
 <?php
   endif;
