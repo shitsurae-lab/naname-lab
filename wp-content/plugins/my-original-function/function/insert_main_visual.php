@@ -38,6 +38,7 @@ function get_archive_title()
 function custom_main_visual()
 {
   if (is_post_type_archive(array('info', 'achievement'))) :
+    // ###カスタム投稿アーカイブ
     //カスタム投稿タイプの名前(slug)を取得
     //cf. WordPress でカスタム投稿タイプのラベルやスラッグを取得(https://hirashimatakumi.com/blog/5271.html)
     $term = get_queried_object();
@@ -48,12 +49,13 @@ function custom_main_visual()
     $uc_cp_slug = strtoupper($cp_slug);
     // $uploads_baseurl = wp_upload_dir()['baseurl'];
 ?>
-    <section>
+    <section class="l-mv">
       <div class="p-mv l-container">
         <div class="p-mv__container">
           <div id="particles-js"></div>
         </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
+        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div> -->
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">カスタム投稿アーカイブ</span></div>
       </div>
     </section>
 
@@ -108,8 +110,10 @@ function custom_main_visual()
       </div>
     </section> -->
 
+
   <?php
   elseif (is_archive()) :
+    // ### アーカイブページ
     $uploads_baseurl = wp_upload_dir()['baseurl'];
 
     //カテゴリ・タグ・タクソミーアーカイブでタームスラッグを取得する(カテゴリ・タグ・タクソミーアーカイブ共通)
@@ -117,48 +121,23 @@ function custom_main_visual()
     $term_slug = $term->slug; //①タームスラッグ
     $term_desc = $term->description; //②タームディスクリプション
     $uc_term_slug = strtoupper($term_slug);
+    $term_name = $term->name;
   ?>
-    <!-- <section class="arkb-section--hero00 alignfull ark-block-section index-hero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="index-hero__image lazyblock-broken-grid-Z1VVNps index-hero__image wp-block-lazyblock-broken-grid">
-            <figure class="index-hero__image__container">
-              <picture>
-                <source media="(max-width: 999px)" srcset="<?php //echo esc_url($uploads_baseurl);
-                                                            ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash360x640.jpg 360w,<?php //echo esc_url($uploads_baseurl);
-                                                                                                                        ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash720x1280.jpg 720w">
-                <source media="(min-width: 1000px)" srcset="<?php //echo esc_url($uploads_baseurl);
-                                                            ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg 1920w">
-                <img decoding="async" src="<?php //echo esc_url($uploads_baseurl);
-                                            ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" data-src="<?php //echo esc_url($uploads_baseurl);
-                                                                                                              ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" alt="" class=" ls-is-cached lazyloaded">
-              </picture>
-            </figure>
-          </div>
-          <div class="ark-block-container ark-keep-mt index-hero__container c-emphasis">
-            <h1><?php //echo $slug_name;
-                ?></h1>
-          </div>
+    <section class="l-mv">
+      <div class="p-mv l-container">
+        <div class="p-mv__container">
+          <div id="particles-js"></div>
         </div>
+        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">by naname lab....</span></div> -->
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">アーカイブページ</span></div>
+        <!-- <?php //var_dump($term_name);
+              ?> -->
       </div>
-    </section> -->
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $uc_term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $uc_term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
-  <?php elseif (is_page() && !is_front_page()) :
-    $uploads_baseurl = wp_upload_dir()['baseurl'];
+    </section>
 
+  <?php elseif (is_singular() && !is_front_page()) :
+    // ### 固定ページ
+    $uploads_baseurl = wp_upload_dir()['baseurl'];
     //カテゴリ・タグ・タクソミーアーカイブでタームスラッグを取得する(カテゴリ・タグ・タクソミーアーカイブ共通)
     $term = get_queried_object();
     $term_slug = $term->slug; //①タームスラッグ
@@ -167,189 +146,19 @@ function custom_main_visual()
     //固定ページや投稿ページのスラッグ(URL)を取得
     global $post;
     $slug = $post->post_name;
+    $uc_slug = strtoupper($slug);
+
+
   ?>
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $slug ?></span><span>naname design lab</span></p>
+    <section class="l-mv">
+      <div class="p-mv l-container">
+        <div class="p-mv__container">
+          <div id="particles-js"></div>
         </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $slug ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
-  <?php
-  elseif (is_tax('info_cat')) : //--カスタムタクソノミーアーカイブ(カテゴリー: infoを指定した場合のタクソノミーアーカイブ)
-    //タームタイトルの取得
-    //cf. WordPress のタームの取得と表示方法(https://hirashimatakumi.com/blog/164.html)
-    $term = get_queried_object();
-    $term_slug = strtoupper($term->slug);
-    $uploads_baseurl = wp_upload_dir()['baseurl'];
-  ?>
-    <!-- <section class="arkb-section--hero00 alignfull ark-block-section index-hero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="index-hero__image lazyblock-broken-grid-Z1VVNps index-hero__image wp-block-lazyblock-broken-grid">
-            <figure class="index-hero__image__container">
-              <picture>
-                <source media="(max-width: 999px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash360x640.jpg 360w,<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash720x1280.jpg 720w">
-                <source media="(min-width: 1000px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg 1920w">
-                <img decoding="async" src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" data-src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" alt="" class=" ls-is-cached lazyloaded">
-              </picture>
-            </figure>
-          </div>
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_slug; ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
 
-
-          <div class="ark-block-container ark-keep-mt index-hero__container c-emphasis">
-            <h1><?php echo $term_slug; ?></h1>
-          </div>
-        </div>
       </div>
-    </section> -->
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
-  <?php
-  elseif (is_tax('achievement_cat')) : ///カスタムタクソノミーアーカイブ(カテゴリー: 実績を指定した場合のタクソノミーアーカイブ)
-    //タームタイトルの取得
-    //cf. WordPress のタームの取得と表示方法(https://hirashimatakumi.com/blog/164.html)
-    $term = get_queried_object();
-    $term_slug = strtoupper($term->slug);
-    $uploads_baseurl = wp_upload_dir()['baseurl'];
-  ?>
-    <!-- <section class="arkb-section--hero00 alignfull ark-block-section index-hero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="index-hero__image lazyblock-broken-grid-Z1VVNps index-hero__image wp-block-lazyblock-broken-grid">
-            <figure class="index-hero__image__container">
-              <picture>
-                <source media="(max-width: 999px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash360x640.jpg 360w,<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash720x1280.jpg 720w">
-                <source media="(min-width: 1000px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg 1920w">
-                <img decoding="async" src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" data-src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" alt="" class=" ls-is-cached lazyloaded">
-              </picture>
-            </figure>
-          </div>
-
-
-          <div class="ark-block-container ark-keep-mt index-hero__container c-emphasis">
-            <h1><?php echo $term_slug; ?></h1>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
-  <?php
-
-  elseif (is_tax('info_tag')) : ///カスタムタクソノミーアーカイブ(タグ: お知らせを指定した場合のタクソノミーアーカイブ)
-    //タームタイトルの取得
-    //cf. WordPress のタームの取得と表示方法(https://hirashimatakumi.com/blog/164.html)
-    $term = get_queried_object();
-    $term_slug = strtoupper($term->slug);
-    $uploads_baseurl = wp_upload_dir()['baseurl'];
-  ?>
-    <!-- <section class="arkb-section--hero00 alignfull ark-block-section index-hero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="index-hero__image lazyblock-broken-grid-Z1VVNps index-hero__image wp-block-lazyblock-broken-grid">
-            <figure class="index-hero__image__container">
-              <picture>
-                <source media="(max-width: 999px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash360x640.jpg 360w,<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash720x1280.jpg 720w">
-                <source media="(min-width: 1000px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg 1920w">
-                <img decoding="async" src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" data-src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" alt="" class=" ls-is-cached lazyloaded">
-              </picture>
-            </figure>
-          </div>
-
-
-          <div class="ark-block-container ark-keep-mt index-hero__container c-emphasis">
-            <h1><?php echo $term_slug; ?></h1>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
-  <?php
-  elseif (is_tax('achievement_tag')) : ///カスタムタクソノミーアーカイブ(タグ: 実績を指定した場合のタクソノミーアーカイブ)
-    //タームタイトルの取得
-    //cf. WordPress のタームの取得と表示方法(https://hirashimatakumi.com/blog/164.html)
-    $term = get_queried_object();
-    $term_slug = strtoupper($term->slug);
-    $uploads_baseurl = wp_upload_dir()['baseurl'];
-  ?>
-    <!-- <section class="arkb-section--hero00 alignfull ark-block-section index-hero" data-height="content">
-      <div class="ark-block-section__color arkb-absLayer"></div>
-      <div class="ark-block-section__body" data-content="center-left">
-        <div class="ark-block-section__bodyInner ark-keep-mt">
-          <div class="index-hero__image lazyblock-broken-grid-Z1VVNps index-hero__image wp-block-lazyblock-broken-grid">
-            <figure class="index-hero__image__container">
-              <picture>
-                <source media="(max-width: 999px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash360x640.jpg 360w,<?php echo esc_url($uploads_baseurl); ?>/2022/12/el-salanzo-YuNl5xei5wA-unsplash720x1280.jpg 720w">
-                <source media="(min-width: 1000px)" srcset="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg 1920w">
-                <img decoding="async" src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" data-src="<?php echo esc_url($uploads_baseurl); ?>/2023/01/el-salanzo-YuNl5xei5wA-unsplash1920x800.jpg" alt="" class=" ls-is-cached lazyloaded">
-              </picture>
-            </figure>
-          </div>
-
-
-          <div class="ark-block-container ark-keep-mt index-hero__container c-emphasis">
-            <h1><?php echo $term_slug; ?></h1>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <div class="p-hero__blendParticles">
-      <div id="particles-js"></div>
-      <div class="p-hero__blendParticles__container normal">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-      <div class="p-hero__blendParticles__container burn">
-        <div class="p-hero__catch">
-          <p><span><?php echo $term_slug; ?></span><span>naname design lab</span></p>
-        </div>
-      </div>
-    </div>
+    </section>
   <?php
   endif;
 }
@@ -363,54 +172,17 @@ function insert_before_breadcrumb()
     $cp_slug = get_query_var('post_type');
     $uc_cp_slug = strtoupper($cp_slug);
   ?>
-    <div class="p-hero__particles">
-      <div id="particles-js"></div>
-      <div class="p-hero__catch">
-        <p><?php echo $uc_cp_slug; ?></p>
-      </div>
-    </div>
-    <!-- <div class="p-infinete__slider">
-      <div class="swiper infinite__slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <p>achievements by naname</p>
-          </div>
-          <div class="swiper-slide">
-            <p>achievements by naname</p>
-          </div>
-          <div class="swiper-slide">
-            <p>achievements by naname</p>
-          </div>
+    <section class="l-mv">
+      <div class="p-mv l-container">
+        <div class="p-mv__container">
+          <div id="particles-js"></div>
         </div>
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
       </div>
-    </div> -->
-  <?php
-  elseif (is_single()) :
-    //投稿からカテゴリーを取得
-    $category = get_the_category();
-    $slug = $category[0]->category_nicename;
-  ?>
-    <div class="p-hero__particles">
-      <div id="particles-js"></div>
-      <div class="p-hero__catch">
-        <p><?php echo $slug; ?></p>
-      </div>
-    </div>
-    <!-- <div class="p-infinete__slider">
-      <div class="swiper infinite__slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <p>post by naname</p>
-          </div>
-          <div class="swiper-slide">
-            <p>post by naname</p>
-          </div>
-          <div class="swiper-slide">
-            <p>post by naname</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    </section>
+
+
+
 <?php
   endif;
 }
