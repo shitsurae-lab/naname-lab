@@ -1454,6 +1454,10 @@ details.p-tag__details[open] .p-tag__icon {
   margin: 0 calc(50% - 50vw);
 }
 
+.l-mv + .l-content > .l-content__body {
+  margin-top: 2rem;
+}
+
 .p-mv {
   position: relative;
 }
@@ -1468,8 +1472,9 @@ details.p-tag__details[open] .p-tag__icon {
 .p-mv__catch {
   position: absolute;
   top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  transform: translateY(-50%);
+  padding: 0 var(--ark-padding--container);
   color: transparent;
   font-size: var(--font-hero--lg);
   font-weight: 700;
