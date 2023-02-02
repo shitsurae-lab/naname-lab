@@ -55,5 +55,8 @@ include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
 //記述したFont Awesome Scriptに crossorigin="anonymous"を付加する
 include_once(plugin_dir_path(__FILE__) . 'function/custom_script_loader_tag.php');
 
+//カスタム投稿タイプ等にメインビジュアルを挿入 フィルターフック
+// include_once(plugin_dir_path(__FILE__) . 'function/filter_main_visual.php');
+
 //固定ページ(home.phpを含む)のヘッド部分書き換え(特に見出し・キャプション箇所)
-include_once(plugin_dir_path(__FILE__) . 'function/over_write_top.php');
+// include_once(plugin_dir_path(__FILE__) . 'function/over_write_top.php');
