@@ -1,5 +1,5 @@
 <?php
-
+// 見出し戻り値の関数①
 function get_archive_title()
 {
   if (!is_archive()) return false;
@@ -34,6 +34,23 @@ function get_archive_title()
   }
 }
 // END function get_archive_title()
+
+//見出し戻り値の関数②: singular.phpに対しての見出し関数
+function get_title()
+{
+  //固定ページや投稿ページのスラッグ(URL)を取得
+  global $post;
+  $slug = $post->post_name;
+  $uc_slug = strtoupper($slug);
+  $post_title = get_the_title();
+
+  if (is_single()) {
+    return get_the_title();
+  }
+  if (is_page()) {
+    return $uc_slug;
+  }
+}
 
 function custom_main_visual()
 {
@@ -83,7 +100,7 @@ function custom_main_visual()
     </section>
 
   <?php elseif (is_singular() && !is_front_page()) :
-    // ### 固定ページ
+    // ### 投稿ページ / 固定ページ
     $uploads_baseurl = wp_upload_dir()['baseurl'];
     //カテゴリ・タグ・タクソミーアーカイブでタームスラッグを取得する(カテゴリ・タグ・タクソミーアーカイブ共通)
     $term = get_queried_object();
@@ -94,7 +111,7 @@ function custom_main_visual()
     global $post;
     $slug = $post->post_name;
     $uc_slug = strtoupper($slug);
-
+    $post_title = get_the_title();
 
   ?>
     <section class="l-mv">
@@ -102,8 +119,8 @@ function custom_main_visual()
         <div class="p-mv__container">
           <div id="particles-js"></div>
         </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_slug; ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
-
+        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo (esc_html(get_title())); ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
+        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_slug; ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div> -->
       </div>
     </section>
   <?php
