@@ -1,5 +1,5 @@
 <?php
-// 見出し戻り値の関数①
+//START: 見出し戻り値の関数①
 function get_archive_title()
 {
   if (!is_archive()) return false;
@@ -33,9 +33,9 @@ function get_archive_title()
     return single_term_title('', false);
   }
 }
-// END function get_archive_title()
+//END: 見出し戻り値の関数①
 
-//見出し戻り値の関数②: singular.phpに対しての見出し関数
+//START: 見出し戻り値の関数②: singular.phpに対しての見出し関数
 function get_title()
 {
   //固定ページや投稿ページのスラッグ(URL)を取得
@@ -51,6 +51,8 @@ function get_title()
     return $uc_slug;
   }
 }
+//END: 見出し戻り値の関数②: singular.phpに対しての見出し関数
+
 
 function custom_main_visual()
 {
@@ -120,7 +122,6 @@ function custom_main_visual()
           <div id="particles-js"></div>
         </div>
         <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo (esc_html(get_title())); ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
-        <!-- <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_slug; ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div> -->
       </div>
     </section>
   <?php
@@ -136,14 +137,14 @@ function insert_before_breadcrumb()
     $cp_slug = get_query_var('post_type');
     $uc_cp_slug = strtoupper($cp_slug);
   ?>
-    <section class="l-mv">
+    <!-- <section class="l-mv">
       <div class="p-mv l-container">
         <div class="p-mv__container">
           <div id="particles-js"></div>
         </div>
         <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
       </div>
-    </section>
+    </section> -->
 
 <?php
   endif;
