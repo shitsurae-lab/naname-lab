@@ -277,7 +277,6 @@ class Ai1wmue_Main_Controller {
 				),
 				'filters'     => array(
 					'ai1wm_archive_extension' => array( 'wpress' ),
-					'ai1wm_archive_size'      => apply_filters( 'ai1wm_max_file_size', AI1WM_MAX_FILE_SIZE ),
 				),
 			)
 		);
@@ -481,15 +480,6 @@ class Ai1wmue_Main_Controller {
 		}
 
 		return $links;
-	}
-
-	/**
-	 * Max file size callback
-	 *
-	 * @return integer
-	 */
-	public function max_file_size() {
-		return AI1WMUE_MAX_FILE_SIZE;
 	}
 
 	/**
