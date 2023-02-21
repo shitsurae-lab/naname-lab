@@ -35,7 +35,7 @@ if ( defined( 'WP_CLI' ) ) {
 				DIRECTORY_SEPARATOR .
 				'command' .
 				DIRECTORY_SEPARATOR .
-				'class-ai1wm-backup-wp-cli-command.php';
+				'ai1wm-wp-cli.php';
 }
 
 require_once AI1WMUE_CONTROLLER_PATH .
