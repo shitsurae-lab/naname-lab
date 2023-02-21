@@ -27,9 +27,16 @@ function insert_front_slider()
       'tax_query' => array( //カスタムタクソノミー
         array(
           'taxonomy' => 'achievement_cat',
-          'field' => 'slug',
-          'terms' => 'achievements'
+          'field' => 'id',
+          'terms' => array(280, 286),
+          'operator' => 'OR',
+          'include_children' => false
         )
+        // array(
+        //   'taxonomy' => 'achievement_cat',
+        //   'field' => 'slug',
+        //   'terms' => 'achievements'
+        // )
       ),
       // 'terms' => 'achievement-category',
       'no_found_rows' => true,
@@ -38,6 +45,25 @@ function insert_front_slider()
     );
     $the_query = new WP_Query($args);
     $post_classes = 'swiper-slide';
+
+    //--- START: タームリスト
+    $args0 = array(
+      'taxonomy' => 'achievement_cat',
+      'parent' => 0
+    );
+    $list_src = ""; //初期化
+
+    //--- END: タームリスト
+
+    /**
+     * トップエリア（タームアーカイブ用）
+     */
+    $term_obj         = get_queried_object();
+    $term_id          = $term_obj->term_id;
+    $term_description = apply_filters('arkhe_term_description', $term_obj->description, $term_id);
+    $show_description = apply_filters('arkhe_show_term_description', !empty($term_description), $term_id);
+    $bgimg_id         = apply_filters('arkhe_ttlbg_img_id', 0, $term_id);
+    $lazy_type        = apply_filters('arkhe_use_lazy_top_area', false) ? Arkhe::get_lazy_type() : '';
 
 ?>
     <section class="p-index__hero">
@@ -59,8 +85,23 @@ function insert_front_slider()
                             <span class="c-more__arrow--text">read more</span>
                           </a>
                         </p>
+                        <!-- START: タームリスト -->
 
-
+                        <?php
+                        //$the_query0 = new WP_Term_Query($args0);
+                        ?>
+                        <?php
+                        //foreach ($the_query0->get_terms() as $term0) :
+                        //$list_src .= '<li><a href="' . get_term_link($term0) . '">' . $term0->name . '</a></li>';
+                        //$posts = get_posts('post_type=attachment');
+                        //$image =  wp_get_attachment_image($posts);
+                        //endforeach;
+                        ?>
+                        <!-- END: タームリスト -->
+                        <?php //echo '<ul>' . $list_src . '</ul>';
+                        ?>
+                        <?php //var_dump($image);
+                        ?>
                       </div>
                       <!-- END //.swiper-slide__textarea -->
                     </div>

@@ -148,4 +148,4 @@ function insert_before_breadcrumb()
 <?php
   endif;
 }
-add_action('arkhe_start_content', 'insert_before_breadcrumb', 10);
+//add_action('arkhe_start_content', 'insert_before_breadcrumb', 10);
