@@ -228,7 +228,11 @@
 
 		textarea,
 		.CodeMirror {
-			height: 200px;
+			height: 320px;
+		}
+
+		.CodeMirror-wrap pre {
+			word-break: break-word;
 		}
 	}
 

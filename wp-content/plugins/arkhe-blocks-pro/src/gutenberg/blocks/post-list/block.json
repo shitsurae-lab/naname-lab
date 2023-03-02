@@ -68,11 +68,11 @@
         },
         "listCountPC": {
             "type": "number",
-            "default": 3
+            "default": 4
         },
         "listCountSP": {
             "type": "number",
-            "default": 3
+            "default": 4
         },
         "showCat": {
             "type": "boolean",
