@@ -259,7 +259,11 @@
       "full"
     ],
     "color": {
-      "__experimentalSkipSerialization": true,
+      "__experimentalSkipSerialization": [
+        "text",
+        "background",
+        "gradients"
+      ],
       "gradients": true,
       "link": true
     },
