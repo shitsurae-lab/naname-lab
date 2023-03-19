@@ -1,4 +1,4 @@
-<?php
+<?php //呼び出すときは echo do_shortcode('[]');
 function register_shortcode()
 {
   return '<div class="p-fluid c-fluid--right"></div>'; //ショートコードの基本だが詰まったので記述。return で値を保持

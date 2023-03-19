@@ -12,25 +12,30 @@ function insert_front_slider()
 
   if (is_front_page()) :
     $paged = (get_query_var('page')) ? get_query_var('paged') : 1;
-    $list_count = 3;
+    $list_count = 3; //スライダー数 当初は3
+
     // -- START: 先頭固定記事制御
     // $sticky = get_option('sticky_posts');
     // if (!empty($sticky))  $list_count -= count($sticky);
     // -- END: 先頭固定記事制御
     global $post;
+    $taxonomy_name = 'achievement_tag';
+    $post_type = 'achievement';
     $args = array(
       //参考にする https://www.webdesignleaves.com/pr/wp/wp_loops.html
       'posts_per_page' => $list_count,
       'paged' => $paged,
       // * 以下、post_type(カスタム投稿タイプ名)で絞るか、tax_query(カスタムタクソノミー)で絞るかにする
-      // 'post_type' => 'achievement', //カスタム投稿タイプ
+      'post_type' => $post_type, //カスタム投稿タイプ
       'tax_query' => array( //カスタムタクソノミー
         array(
-          'taxonomy' => 'achievement_cat',
-          'field' => 'id',
-          'terms' => array(280, 286),
-          'operator' => 'OR',
-          'include_children' => false
+          'taxonomy' => $taxonomy_name,
+          // 'field' => 'id',
+          // 'terms' => array(21),
+          'field' => 'slug',
+          'terms' => array('tag-wordpress', 'tag-e-commerce', 'tag-woocommerce'),
+          'operator' => 'IN',
+          'include_children' => false,
         )
         // array(
         //   'taxonomy' => 'achievement_cat',
@@ -47,12 +52,21 @@ function insert_front_slider()
     $post_classes = 'swiper-slide';
 
     //--- START: タームリスト
-    $args0 = array(
-      'taxonomy' => 'achievement_cat',
-      'parent' => 0
-    );
-    $list_src = ""; //初期化
-
+    $term_query = new WP_Term_Query([
+      'taxonomy' => 'achievement_cat'
+    ]);
+    $list_src = '';
+    foreach ($term_query->get_terms() as $term_data) :
+      $img = '';
+      $term_img = get_term_meta($term_data->term_id, 'ark_meta_ttlbg', true);
+      if ($term_img) {
+        $img = Arkhe::get_image($term_img, array(
+          'size' => 'medium',
+          'alt' => $term_data->name,
+        ));
+      }
+      $list_src .= '<a href="' . get_term_link($term_data) . '" class="p-postList__link"><figure class="p-clipper">' . $img . '</figure></a>';
+    endforeach;
     //--- END: タームリスト
 
     /**
@@ -88,19 +102,32 @@ function insert_front_slider()
                         <!-- START: タームリスト -->
 
                         <?php
-                        //$the_query0 = new WP_Term_Query($args0);
+                        //$term_query = new WP_Term_Query($args_term);
+                        //$tax_all = get_terms('achievement_cat');
+
+                        //foreach ($term_query->get_terms() as $tq) :
+
+                        //if (count($tax_all) > 0) :
+                        //foreach ($tax_all as $tax) :
+                        //$term_img = get_term_meta($tax->term_id, 'ark_meta_ttlbg', true);
+                        //$img_url = wp_get_attachment_image_src($term_img, 'full');
+                        //if ($img_url) :
                         ?>
+                        <!-- <img src="<?php //echo $img_url[0]
+                                        ?>" alt="<?php //echo $tax->name;
+                                                  ?>"> -->
                         <?php
-                        //foreach ($the_query0->get_terms() as $term0) :
-                        //$list_src .= '<li><a href="' . get_term_link($term0) . '">' . $term0->name . '</a></li>';
-                        //$posts = get_posts('post_type=attachment');
-                        //$image =  wp_get_attachment_image($posts);
+                        //endif;
+                        //endforeach;
+                        //endif;
+
+                        //結合代入演算子(.=)
+                        //$list_src .= '<li><a href="' . get_term_link($tq) . '">' . $tq->name . '</a></li>';
                         //endforeach;
                         ?>
                         <!-- END: タームリスト -->
                         <?php //echo '<ul>' . $list_src . '</ul>';
-                        ?>
-                        <?php //var_dump($image);
+                        //var_dump($term_img);
                         ?>
                       </div>
                       <!-- END //.swiper-slide__textarea -->

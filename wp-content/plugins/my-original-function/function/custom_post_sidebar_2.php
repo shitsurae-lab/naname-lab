@@ -71,16 +71,17 @@ function custom_post_sidebar()
       </div>
       </div>
       <!-- END //.p-sidebar__content -->
+      <?php echo 'ここにテキスト'; ?>
     <?php
     }
-  elseif (is_singular('info')) :
+  elseif (is_singular('skills')) :
     global $post;
-    $terms = get_the_terms($post->ID,  'info_cat');
+    $terms = get_the_terms($post->ID,  'skills_cat');
     foreach ($terms as $term) {
       //if ($term) :
       $term_name = $term->name;
       $term_slug = $term->slug;
-      $term_link = get_term_link($term_slug, 'info_cat');
+      $term_link = get_term_link($term_slug, 'skills_cat');
       $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg');
       $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg');
     ?>
@@ -108,8 +109,13 @@ function custom_post_sidebar()
       </div>
       </div>
       <!-- END //.p-sidebar__content -->
-<?php
+    <?php
     }
+  elseif (is_singular('about')) :
+    global $post;
+    ?>
+    <div>ここにスキルに関する見出しが入ります</div>
+<?php
   endif;
 }
 add_action('arkhe_start_sidebar', 'custom_post_sidebar', 10);

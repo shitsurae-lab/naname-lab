@@ -14,16 +14,16 @@
 include_once(plugin_dir_path(__FILE__) . 'function/custom_footer.php');
 
 //固定ページのコンテンツ前後(...「固定ページのコンテンツの前(後)です」)
-include_once(plugin_dir_path(__FILE__) . 'function/before_after_page.content.php');
+// include_once(plugin_dir_path(__FILE__) . 'function/before_after_page.content.php');
 
 //画像サイズの調整
 include_once(plugin_dir_path(__FILE__) . 'function/custom_image.php');
 
 //カスタム投稿タイプ-投稿詳細ページサイドバーカスタマイズ(追従)
-include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar.php');
+include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar_2.php');
 
 //アーカイブページサイドバーカスタマイズ(追従)
-include_once(plugin_dir_path(__FILE__) . 'function/custom_archive_sidebar.php');
+include_once(plugin_dir_path(__FILE__) . 'function/custom_archive_sidebar_2.php');
 
 //画像付きのページネーション
 include_once(plugin_dir_path(__FILE__) . 'function/custom_pagination.php');
@@ -41,7 +41,7 @@ include_once(plugin_dir_path(__FILE__) . 'function/add_opening_interaction.php')
 include_once(plugin_dir_path(__FILE__) . 'function/insert_front_slider_2.php');
 
 //カスタム投稿タイプ等にメインビジュアルを挿入
-include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
+// include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
 
 
 //details・summaryでアコーディオン
@@ -55,6 +55,14 @@ include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
 //記述したFont Awesome Scriptに crossorigin="anonymous"を付加する
 include_once(plugin_dir_path(__FILE__) . 'function/custom_script_loader_tag.php');
 
+include_once(plugin_dir_path(__FILE__) . 'function/overwrite_arkhe_term.php');
+
+include_once(plugin_dir_path(__FILE__) . 'function/overwrite_main_query.php');
+
+include_once(plugin_dir_path(__FILE__) . 'function/overwrite_normal.php');
+
+//パスワードで保護されたサイトの「保護中」の文字を消す
+include_once(plugin_dir_path(__FILE__) . 'function/removed_protected.php');
 //カスタム投稿タイプ等にメインビジュアルを挿入 フィルターフック
 // include_once(plugin_dir_path(__FILE__) . 'function/filter_main_visual.php');
 
