@@ -59,6 +59,7 @@ function cb( $attrs, $content ) {
 	if ( $attrs['postID'] ) {
 
 		// 投稿IDで直接指定されている場合
+		$query_args['orderby']  = 'post__in';
 		$query_args['post__in'] = array_map( 'intval', explode( ',', $attrs['postID'] ) );
 
 	} else {
