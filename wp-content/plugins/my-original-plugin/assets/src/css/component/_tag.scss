@@ -1,7 +1,8 @@
 @use '../global' as *;
 .p-tag {
   &__details {
-    color: var(--color-picton);
+    color: var(--color-moonlit-asteroid);
+    font-weight: 500;
     display: flex;
     margin-bottom: 1.5rem;
   }
@@ -32,7 +33,7 @@
       width: 12px;
       height: 2px;
 
-      background: var(--color-picton);
+      background: var(--color-moonlit-asteroid);
       transform: translate(-50%, -50%);
       transition: translate, 0.4s;
     }
@@ -49,20 +50,26 @@
   }
 
   &__content__inner {
-    padding: calc(var(--space-md) * 2) var(--space-md);
+    padding: var(--space-md);
     position: relative;
-    background: var(--color-picton);
+    background: var(--color-moonlit-asteroid);
     overflow: visible;
     border-radius: var(--space-xs);
+    aspect-ratio: 6/1;
     &::after {
       position: absolute;
       display: block;
       content: '';
-      top: -24px;
-      right: 24px;
+      top: -16px;
+      right: 16px;
       border-style: solid;
-      border-color: transparent transparent var(--color-picton) transparent;
-      border-width: 12px 6px 12px 6px;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: rgba(44, 83, 100, 0.86);
+      border-left-color: transparent;
+      // border-color: transparent transparent var(--color-moonlit-asteroid)
+      //   transparent;
+      border-width: 8px 6px 8px 6px;
     }
   }
 
@@ -80,7 +87,7 @@
     text-decoration: none;
     background: var(--color-primary);
     padding: 0.4rem 0.6rem;
-    color: var(--color-picton);
+    color: var(--color-moonlit-asteroid);
     border-radius: 100px;
     font-size: 0.875rem;
   }

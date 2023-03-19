@@ -6,9 +6,10 @@
 
     @include mq(pc) {
       position: sticky;
-      top: 160px;
-      padding-top: 48px;
-      padding-left: 48px;
+      top: 0;
+      // top: 160px;
+      // padding-top: 48px;
+      // padding-left: 48px;
     }
     ul {
       // margin-top: -32px;
@@ -28,19 +29,20 @@
     a {
       text-decoration: none;
       position: relative;
-      padding-left: 24px;
+      padding-left: 20px;
       color: var(--color-spindle);
       font-size: var(--font-sm);
+      font-weight: 500;
       color: transparent;
-      background: var(--color-linear-fly-high);
+      background: var(--color-moonlit-asteroid);
       background-clip: text;
       &::before {
         content: '';
         display: block;
-        width: 12px;
+        width: 8px;
         height: 2px;
         background: var(--color-spindle);
-        background: var(--color-linear-fly-high);
+        background: var(--color-moonlit-asteroid);
         position: absolute;
         top: 50%;
         left: 0;

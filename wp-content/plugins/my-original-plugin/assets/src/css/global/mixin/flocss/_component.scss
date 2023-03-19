@@ -80,7 +80,7 @@
 ) {
   position: relative;
   font-size: var(--font-sm);
-  padding: 24px 0 8px;
+  padding: 0 0 6px;
   display: inline-block;
   text-align: left;
   width: 160px;
@@ -88,12 +88,12 @@
     content: '';
     display: block;
     position: absolute;
-    bottom: -8px;
-    right: 0;
+    bottom: -4px;
+    right: 8px;
     left: auto;
     transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     z-index: -1;
     transform-origin: left center;
@@ -159,5 +159,107 @@
   .c-more__arrow--text {
     @include arrow_and_circle();
   }
-  @content;
+}
+
+/* 見出しデザイン */
+//左ボーダー
+@mixin heading-border--left(
+  $pl: 20px,
+  $width: 6px,
+  $bg: var(--color-moonlit-asteroid)
+) {
+  font-size: var(--font-xl);
+  padding-left: 20px;
+  &::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $bg;
+  }
+}
+// 下ボーダー(2カラー)#1
+@mixin heading-border--bottom(
+  $pb: 8px,
+  $bb: 4px,
+  $bbc: #ccc,
+  $ratio: 20%,
+  $height: 4px,
+  $bgc:
+    linear-gradient(
+      45deg,
+      rgba(15, 32, 39, 0.86),
+      rgba(44, 83, 100, 0.86) 100%,
+      rgba(32, 58, 67, 0.86) 50%
+    )
+) {
+  position: relative;
+  padding-bottom: $pb;
+  border-bottom: $bb solid $bbc;
+  &::after {
+    position: absolute;
+    bottom: calc($bb * -1);
+    left: 0;
+    z-index: 2;
+    content: '';
+    width: $ratio;
+    height: $height;
+    background: $bgc;
+  }
+}
+
+// 下ボーダー(2カラー)#2
+@mixin heading-borderBottom--light($pb: 8px) {
+  position: relative;
+  padding-bottom: $pb;
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #fff;
+  }
+}
+
+//縦線vertical-line
+@mixin heading-vertical(
+  $pb: 8px,
+  $bgi:
+    repeating-linear-gradient(
+      90deg,
+      $color-nordic 0,
+      $color-nordic 2px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 4px
+    ),
+  $bgx: 4px,
+  $bgy: 4px
+) {
+  padding-bottom: $pb;
+  background-image: $bgi;
+  background-size: $bgx $bgy;
+  background-repeat: repeat-x;
+  background-position: center bottom;
+}
+
+//左右に線を配置
+@mixin heading-line--leftright() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  text-align: center;
+  &::before,
+  &::after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    background-color: $color-nordic;
+  }
 }
