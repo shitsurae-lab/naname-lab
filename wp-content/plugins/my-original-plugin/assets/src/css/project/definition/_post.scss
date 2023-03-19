@@ -14,9 +14,9 @@
       flex: 1 1 auto;
       margin-right: 0; //リセット index.css(margin-right: 1em;)
       @include mq(tablet) {
-        width: 32%;
+        width: 24%;
         padding: 0.75em 0.5em;
-        border-bottom: 2px solid #5b8f8f;
+        border-bottom: 2px solid $color-half-baked;
       }
     }
   }
@@ -25,7 +25,7 @@
     //flex: 0 1 auto; //flex初期値
     flex: 1 1 auto;
     @include mq(tablet) {
-      width: calc(100% - 32%);
+      width: calc(100% - 24%);
       padding: 0.75em 0.5em;
       border-bottom: 2px solid #bbb;
     }

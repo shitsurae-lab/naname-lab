@@ -67,6 +67,7 @@
 
 	// 詳細度上げておく
 	.ark-block-columns & {
+		box-sizing: border-box;
 		// flex-basis だと redized画像がエディターではみ出るので、 width使う
 		width: calc(var(--arkb-clmn-width) - var(--arkb-gap--x));
 		max-width: unset;
@@ -92,6 +93,10 @@
 		&:hover {
 			opacity: .75;
 		}
+
+		.luminous {
+			pointer-events: none;
+		}
 	}
 
 	&[data-valign="top"] {
@@ -112,9 +117,12 @@
 
 	.is-style-shadow > &,
 	.is-style-shadow > .ark-block-columns__inner > & {
+		color: #000;
 		background-color: #fff;
 		box-shadow: var(--arkb-shadow);
 	}
+
+
 }
 
 

@@ -16,8 +16,8 @@ function cb( $attrs, $content ) {
 
 	$anchor        = $attrs['anchor'] ?? '';
 	$className     = $attrs['className'] ?? '';
-	$list_count_pc = $attrs['listCountPC'];
-	$list_count_sp = $attrs['listCountSP'];
+	$list_count_pc = $attrs['listCountPC'] ?: -1; // 0 → 全部表示
+	$list_count_sp = $attrs['listCountSP'] ?: -1; // 0 → 全部表示
 
 	// リスト表示用データ
 	$list_args = [
@@ -50,11 +50,16 @@ function cb( $attrs, $content ) {
 		$list_count_sp = $list_count_sp - $sticky_ct;
 	}
 
-	$query_args['posts_per_page'] = max( $list_count_pc, $list_count_sp );
+	if ( -1 === $list_count_pc || -1 === $list_count_sp ) {
+		$query_args['posts_per_page'] = -1;
+	} else {
+		$query_args['posts_per_page'] = max( $list_count_pc, $list_count_sp );
+	}
 
 	if ( $attrs['postID'] ) {
 
 		// 投稿IDで直接指定されている場合
+		$query_args['orderby']  = 'post__in';
 		$query_args['post__in'] = array_map( 'intval', explode( ',', $attrs['postID'] ) );
 
 	} else {

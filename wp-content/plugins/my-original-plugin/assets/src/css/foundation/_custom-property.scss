@@ -24,12 +24,18 @@
 
   // --font-hero-xxl: clamp(2.5rem, 0.5rem + 10vw, 12.5rem); //Min 40px Max 400px
 
+  // --font-hero: clamp(
+  //   1rem,
+  //   0rem + 2.666666666666667vw,
+  //   2rem
+  // ); //Min 16px Max 32px
   --font-hero: clamp(
-    1rem,
-    0rem + 2.666666666666667vw,
-    2rem
-  ); //Min 16px Max 32px
+    2rem,
+    1.6359rem + 1.5534vw,
+    3.5rem
+  ); //Min 32px(2rem) Max 56px(3.5rem);
   --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem); //Min 40px Max 72px
+  --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem); //Min 64px, Max 96px
 
   // Color
   --color-primary: #{$c-primary};
@@ -53,6 +59,9 @@
   --color-viking: #41afcd;
   --color-golden-yellow: #ffe600;
   --color-tangerine-yellow: #ffcd00;
+  --color-tarragon-tease: #b4a983;
+  --color-nordic: #093637;
+  --color-half-baked: #5b8f8f;
 
   //Text Color
   --color-text-primary: #333333;
@@ -71,12 +80,18 @@
     rgba(32, 58, 67, 0.86) 50%
   );
   // Linear Gradient
+  --color-linear-orca: linear-gradient(
+    to left,
+    rgba(68, 160, 141, 0.72),
+    rgba(9, 54, 55, 0.72)
+  );
   --color-linear-primary: linear-gradient(
     180deg,
     #f1f0eb 0%,
     #f1f0eb 77.08%,
     #ffffff 100%
   );
+
   --color-linear-premium-white: linear-gradient(
     120deg,
     #d5d4d0 0%,

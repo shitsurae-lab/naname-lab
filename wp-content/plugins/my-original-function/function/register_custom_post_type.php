@@ -53,7 +53,11 @@ function register_custom_post_type()
       'public' => true,  // 管理画面及びサイト上に公開
       'description' => '実績カテゴリーの説明文です。',  //説明文
       'hierarchical' => true,  //カテゴリー形式
-      'show_in_rest' => true  //Gutenberg で表示
+      'show_in_rest' => true,  //Gutenberg で表示
+      'rewrite' => array(
+        'slug' => 'achievement',
+        'hierarchical' => true
+      )
     )
   );
   //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
@@ -72,24 +76,29 @@ function register_custom_post_type()
       'public' => true,  // 管理画面及びサイト上に公開
       'description' => 'タグの説明文です。',  //説明文
       'hierarchical' => false,  //タグ形式
-      'show_in_rest' => true  //Gutenberg で表示
+      'show_in_rest' => true, //Gutenberg で表示
+      'rewrite' => array(
+        'slug' => 'achievement',
+        'hierarchical' => true
+      )
     )
   );
   register_taxonomy_for_object_type('achievement_cat', 'achievement');
   register_taxonomy_for_object_type('achievement_tag', 'achievement');
 
-  //カスタム投稿タイプ②(お知らせ)
+  //カスタム投稿タイプ②(スキル)
   register_post_type(
-    'info', //投稿タイプ名識別子
+    'skills', //投稿タイプ名識別子
     [
       //START: $args(第2パラメーター)
-      'label' => 'お知らせ', //カスタム投稿タイプ名称(管理画面に表示)
+      'label' => 'スキル', //カスタム投稿タイプ名称(管理画面に表示)
       'labels' => array(
-        'add_new' => 'お知らせの追加',
-        'edit_item' => 'お知らせの編集',
-        'view_item' => 'お知らせを表示',
-        'search_items' => 'お知らせを検索'
+        'add_new' => '新規追加',
+        'edit_item' => '編集',
+        'view_item' => '表示',
+        'search_items' => '検索'
       ),
+      'description' => 'カスタム投稿タイプ("skills")に関する説明',
       'public' => true,
       'show_ui' => true,
       'show_in_nav_menus' => true,
@@ -97,8 +106,7 @@ function register_custom_post_type()
       'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
       'has_archive' => true, //投稿した記事の一覧ページ作成
       'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
-      'menu_icon' => 'dashicons-welcome-write-blog
-',
+      'menu_icon' => 'dashicons-carrot',
       'supports' => array( //記事編集画面に表示する項目
         'title',
         'editor',
@@ -109,54 +117,59 @@ function register_custom_post_type()
         'page-attributes'
       ),
       'menu_position' => 5, //投稿の下に表示
-      'taxonomies' => array('info_cat', 'info_tag')
+      'taxonomies' => array('skills_cat', 'skills_tag')
       //END: $args(第2パラメーター)
     ],
   );
 
-
-  //カスタムタクソノミー(「お知らせ」カテゴリー: カテゴリー形式)の登録
+  //カスタムタクソノミー(「実績」カテゴリー: カテゴリー形式)の登録
   register_taxonomy(
-    'info_cat', //カスタム分類名(カスタムタクソノミースラッグ)(カスタムタクソノミースラッグ)
-    'info', //上記のカスタム分類名が使用される投稿タイプ名
+    'skills_cat', //カスタム分類名(カスタムタクソノミースラッグ)
+    'skills', //上記のカスタム分類名が使用される投稿タイプ名(ターム?)
     array(
-      'label' => 'お知らせカテゴリー', //カスタムタクソノミーラベル名
+      'label' => 'スキルカテゴリー', //カスタムタクソノミーラベル名
       'labels'
       => array(
-        'popular_items' => 'お知らせカテゴリー',
-        'edit_item' => 'カテゴリーを編集',
-        'add_new_item' => '新規カテゴリーを追加',
-        'search_items' => 'カテゴリーを検索',
-        'not_found' => 'カテゴリーが見つかりませんでした'
+        'popular_items' => 'スキルカテゴリー',
+        'edit_item' => 'スキルカテゴリーを編集',
+        'add_new_item' => '新規スキルカテゴリーを追加',
+        'search_items' => 'スキルカテゴリーを検索'
       ),
       'public' => true,  // 管理画面及びサイト上に公開
-      'description' => 'お知らせカテゴリーの説明文です。',  //説明文
+      'description' => 'スキルカテゴリーの説明文です。',  //説明文
       'hierarchical' => true,  //カテゴリー形式
-      'show_in_rest' => true  //Gutenberg で表示
+      'show_in_rest' => true,  //Gutenberg で表示
+      'rewrite' => array(
+        'slug' => 'skills',
+        'hierarchical' => true
+      )
     )
   );
-  //カスタムタクソノミー(「お知らせ」タグ: タグ形式)の登録
+  //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
   register_taxonomy(
-    'info_tag', //カスタム分類名(カスタムタクソノミースラッグ)
-    'info', //上記のカスタム分類名が使用される投稿タイプ名
+    'skills_tag', //カスタム分類名(カスタムタクソノミースラッグ)
+    'skills', //上記のカスタム分類名が使用される投稿タイプ名
     array(
-      'label' => 'お知らせタグ', //カスタムタクソノミーラベル名
+      'label' => 'スキルタグ', //カスタムタクソノミーラベル名
       'labels'
       => array(
-        'popular_items' => 'お知らせタグ',
+        'popular_items' => 'タグ',
         'edit_item' => 'タグを編集',
         'add_new_item' => 'タグを追加',
-        'search_items' => 'タグを検索',
-        'not_found' => 'タグが見つかりませんでした'
+        'search_items' => 'タグを検索'
       ),
       'public' => true,  // 管理画面及びサイト上に公開
       'description' => 'タグの説明文です。',  //説明文
       'hierarchical' => false,  //タグ形式
-      'show_in_rest' => true  //Gutenberg で表示
+      'show_in_rest' => true,  //Gutenberg で表示
+      'rewrite' => array(
+        'slug' => 'skills',
+        'hierarchical' => true
+      )
     )
   );
-  register_taxonomy_for_object_type('info_cat', 'info');
-  register_taxonomy_for_object_type('info_tag', 'info');
+  register_taxonomy_for_object_type('skills_cat', 'skills');
+  register_taxonomy_for_object_type('skills_tag', 'skills');
 }
 
 add_action('init', 'register_custom_post_type');

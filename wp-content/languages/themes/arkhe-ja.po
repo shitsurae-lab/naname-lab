@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Arkhe package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-11 12:40:10+0000\n"
+"PO-Revision-Date: 2023-03-12 14:24:45+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"X-Generator: GlotPress/4.0.0-alpha.4\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Themes - Arkhe\n"
 
@@ -22,28 +22,84 @@ msgstr "制作テンプレート用のとてもシンプルなテーマです。
 msgid "Arkhe"
 msgstr "Arkhe"
 
+#: inc/theme_menu/licence.php:127
+msgid "Deauthorize"
+msgstr "認証解除"
+
+#: inc/customizer/post_list.php:140
+msgid "Force display of current category"
+msgstr "現在のカテゴリーを強制的に表示する"
+
+#: inc/customizer/post_list.php:136
+msgid "Overriding priority on Category Pages"
+msgstr "カテゴリーページでの優先度の上書き"
+
+#: inc/customizer/post_list.php:128
+msgid "Display the top-level category even if it is not directly associated with the post"
+msgstr "投稿と直接紐付いてなくても、一番上層のカテゴリーを表示する"
+
+#: inc/customizer/post_list.php:120 inc/customizer/post_list.php:141
+msgid "Prefer child category"
+msgstr "子カテゴリーを優先する"
+
+#: inc/customizer/post_list.php:119
+msgid "Prefer parent category"
+msgstr "親カテゴリーを優先する"
+
+#: inc/customizer/post_list.php:118 inc/customizer/post_list.php:139
+msgid "Not set"
+msgstr "設定しない"
+
+#: inc/customizer/post_list.php:115
+msgid "Priority for retrieving category"
+msgstr "カテゴリーの取得優先度"
+
+#: inc/customizer/header.php:35
+msgid "Header text color"
+msgstr "ヘッダーの文字色"
+
+#: inc/customizer/header.php:27
+msgid "Header background color"
+msgstr "ヘッダーの背景色"
+
+#: inc/customizer/footer.php:33
+msgid "Footer text color"
+msgstr "フッターの文字色"
+
+#: inc/customizer/footer.php:25
+msgid "Footer background color"
+msgstr "フッターの背景色"
+
+#: inc/customizer/common.php:168
+msgid "Smooth scroll"
+msgstr "スムーススクロール"
+
+#: inc/customizer/common.php:144
+msgid "Others"
+msgstr "その他"
+
 #. translators: %s is link;
-#: inc/theme_menu/licence.php:96
+#: inc/theme_menu/licence.php:110
 msgid "Purchasing \"%s\" will allow you to update all Arkhe plugins to the latest version."
 msgstr "「%s」を購入すると、全てのArkheプラグインを最新版へアップデートできるようになります。"
 
 #. translators: %s is owner;
-#: inc/theme_menu/licence.php:80
+#: inc/theme_menu/licence.php:92
 msgid "Creator License"
 msgstr "制作ライセンス"
 
 #. translators: %s is email;
-#: inc/theme_menu/licence.php:67
+#: inc/theme_menu/licence.php:79
 msgid "Personal License"
 msgstr "個人ライセンス"
 
 #. translators: %s is email;
 #. translators: %s is owner;
-#: inc/theme_menu/licence.php:66 inc/theme_menu/licence.php:79
+#: inc/theme_menu/licence.php:78 inc/theme_menu/licence.php:91
 msgid "This is \"%1$s\" and is owned by %2$s."
 msgstr "これは「%1$s」で、所有者は %2$s です。"
 
-#: inc/theme_menu/licence.php:57
+#: inc/theme_menu/licence.php:69
 msgid "This license key is currently disabled."
 msgstr "このライセンスキーは現在無効になっています。"
 
@@ -59,11 +115,11 @@ msgstr "薄いグレーの色"
 msgid "Double extra large"
 msgstr "超特大"
 
-#: inc/customizer/header.php:209
+#: inc/customizer/header.php:253
 msgid "Logo image for Overlay Header"
 msgstr "オーバーレイヘッダー時のロゴ画像"
 
-#: inc/customizer/header.php:200
+#: inc/customizer/header.php:244
 msgid "Text color for Overlay Header"
 msgstr "オーバーレイヘッダー時のテキストカラー"
 
@@ -72,23 +128,23 @@ msgctxt "daily archives date format"
 msgid "j"
 msgstr "j日"
 
-#: classes/Utility/Get.php:118
+#: classes/Utility/Get.php:174
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "Y年n月j日"
 
-#: classes/Utility/Get.php:116
+#: classes/Utility/Get.php:172
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "Y年n月"
 
-#: classes/Utility/Get.php:114 template-parts/other/breadcrumb.php:241
+#: classes/Utility/Get.php:170 template-parts/other/breadcrumb.php:241
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y年"
 
 #. translators: %s is link;
-#: inc/theme_menu/licence.php:97
+#: inc/theme_menu/licence.php:111
 msgid "Arkhe License"
 msgstr "Arkheライセンス"
 
@@ -104,7 +160,7 @@ msgstr "更新日を表示"
 msgid "Show posted date"
 msgstr "公開日を表示"
 
-#: inc/customizer/header.php:112
+#: inc/customizer/header.php:136
 msgid "Buttons layout"
 msgstr "ボタン配置"
 
@@ -116,11 +172,11 @@ msgstr "テーマページへ"
 msgid "Thank you for using \"Arkhe\" !"
 msgstr "「Arkhe」をご利用いただき、ありがとうございます！"
 
-#: inc/customizer/header.php:80
+#: inc/customizer/header.php:104
 msgid "Show menu button on PC"
 msgstr "メニューボタンをPCで表示する"
 
-#: inc/customizer/header.php:72
+#: inc/customizer/header.php:96
 msgid "Show menu button on SP"
 msgstr "メニューボタンをSPで表示する"
 
@@ -160,7 +216,7 @@ msgstr "ターム情報を表示"
 msgid "Term information below the content"
 msgstr "本文下のターム情報"
 
-#: classes/Utility/Get.php:164 inc/theme_menu.php:54
+#: classes/Utility/Get.php:220 inc/theme_menu.php:54
 msgid "Licence registration"
 msgstr "ライセンス認証"
 
@@ -181,19 +237,19 @@ msgstr "マニュアルを見る"
 msgid "To Arkhe official website"
 msgstr "Arkhe 公式サイトへ"
 
-#: inc/theme_menu/licence.php:107
+#: inc/theme_menu/licence.php:121
 msgid "Check licence"
 msgstr "ライセンスを確認"
 
-#: inc/theme_menu/licence.php:88
+#: inc/theme_menu/licence.php:102
 msgid "License key"
 msgstr "ライセンスキー"
 
-#: inc/theme_menu/licence.php:63 inc/theme_menu/licence.php:76
+#: inc/theme_menu/licence.php:75 inc/theme_menu/licence.php:88
 msgid "Your license key is valid."
 msgstr "お使いのライセンスは有効です。"
 
-#: inc/theme_menu/licence.php:41
+#: inc/theme_menu/licence.php:53
 msgid "There are too many authentication requests. Please wait a while and try again."
 msgstr "認証要求が多すぎます。しばらく待ってから再度お試しください。"
 
@@ -205,11 +261,11 @@ msgstr "テーマに関する情報"
 msgid "Arkhe plugin"
 msgstr "Arkhe プラグイン"
 
-#: inc/customizer/header.php:127
+#: inc/customizer/header.php:176
 msgid "Global navigation"
 msgstr "グローバルナビゲーション"
 
-#: inc/customizer/header.php:21
+#: inc/customizer/header.php:45
 msgid "The logo image can be set from the \"Site Identity\" menu."
 msgstr "ロゴ画像は「サイト基本情報」メニューで設定できます。"
 
@@ -305,7 +361,7 @@ msgstr "「投稿ページ」が設定されている場合のみ有効です。
 msgid "Display \"Post page\""
 msgstr "「投稿ページ」を表示する"
 
-#: inc/customizer/common.php:144
+#: inc/customizer/common.php:161 inc/customizer/footer.php:42
 msgid "Other settings"
 msgstr "その他の設定"
 
@@ -349,7 +405,8 @@ msgstr "サイト幅"
 msgid "Content width"
 msgstr "コンテンツ幅"
 
-#: inc/customizer/common.php:49 inc/theme_support.php:114
+#: inc/customizer/common.php:49 inc/customizer/header.php:201
+#: inc/theme_support.php:114
 msgid "Background color"
 msgstr "背景色"
 
@@ -357,7 +414,8 @@ msgstr "背景色"
 msgid "Link color"
 msgstr "リンク色"
 
-#: inc/customizer/common.php:33 inc/theme_support.php:104
+#: inc/customizer/common.php:33 inc/customizer/header.php:210
+#: inc/theme_support.php:104
 msgid "Text color"
 msgstr "テキスト色"
 
@@ -365,7 +423,8 @@ msgstr "テキスト色"
 msgid "Main color"
 msgstr "メインカラー"
 
-#: inc/customizer/common.php:18
+#: inc/customizer/common.php:18 inc/customizer/footer.php:18
+#: inc/customizer/header.php:20
 msgid "Color settings"
 msgstr "色設定"
 
@@ -373,15 +432,15 @@ msgstr "色設定"
 msgid "Global settings"
 msgstr "全体設定"
 
-#: inc/customizer/footer.php:34
+#: inc/customizer/footer.php:65
 msgid "Copyright text"
 msgstr "著作権テキスト"
 
-#: inc/customizer/footer.php:26
+#: inc/customizer/footer.php:57
 msgid "Show button"
 msgstr "ボタンを表示する"
 
-#: inc/customizer/footer.php:19
+#: inc/customizer/footer.php:50
 msgid "\"To the top\" button"
 msgstr "「ページトップへ」ボタン"
 
@@ -438,51 +497,47 @@ msgstr "タイトル設定"
 msgid "Pages"
 msgstr "固定ページ"
 
-#: inc/customizer/header.php:192
+#: inc/customizer/header.php:236
 msgid "Enable on Pages"
 msgstr "固定ページでも有効化する"
 
-#: inc/customizer/header.php:175
+#: inc/customizer/header.php:219
 msgid "Overlay settings"
 msgstr "オーバーレイ設定"
 
-#: inc/customizer/header.php:167
-msgid "Only valid when below the header."
-msgstr "ヘッダーの下にある時のみ有効です。"
-
-#: inc/customizer/header.php:166
+#: inc/customizer/header.php:192
 msgid "Fixed global navigation at top of screen"
 msgstr "グローバルナビを画面上部に固定する"
 
-#: inc/customizer/header.php:150 inc/customizer/header.php:158
+#: inc/customizer/header.php:159 inc/customizer/header.php:167
 msgid "Fixed header at top of screen"
 msgstr "ヘッダーを画面上部に固定する"
 
-#: inc/customizer/header.php:143
+#: inc/customizer/header.php:152
 msgid "Fixed header setting"
 msgstr "ヘッダーの固定設定"
 
-#: inc/customizer/header.php:134
+#: inc/customizer/header.php:183
 msgid "Move global navigation down"
 msgstr "グローバルナビを下側に移動する"
 
-#: inc/customizer/header.php:104
+#: inc/customizer/header.php:128
 msgid "Show search btn on PC"
 msgstr "検索ボタンをPCで表示する"
 
-#: inc/customizer/header.php:96
+#: inc/customizer/header.php:120
 msgid "Show search btn on SP"
 msgstr "検索ボタンをSPで表示する"
 
-#: inc/customizer/header.php:58
+#: inc/customizer/header.php:82
 msgid "Layout setting"
 msgstr "レイアウト設定"
 
-#: inc/customizer/header.php:28 inc/customizer/header.php:43
+#: inc/customizer/header.php:52 inc/customizer/header.php:67
 msgid "Image size"
 msgstr "画像サイズ"
 
-#: inc/customizer/header.php:20
+#: inc/customizer/header.php:44
 msgid "Header logo settings"
 msgstr "ヘッダーロゴ設定"
 
@@ -554,31 +609,31 @@ msgstr "タイトルの下の情報"
 msgid "Posts"
 msgstr "投稿ページ"
 
-#: inc/customizer/post_list.php:100
+#: inc/customizer/post_list.php:46
 msgid "Thumbnail image ratio"
 msgstr "サムネイル画像の比率"
 
-#: inc/customizer/post_list.php:85
+#: inc/customizer/post_list.php:101
 msgid "Number of characters in excerpt"
 msgstr "抜粋の文字数"
 
-#: inc/customizer/post_list.php:77 inc/customizer/single.php:66
+#: inc/customizer/post_list.php:93 inc/customizer/single.php:66
 msgid "Show author"
 msgstr "投稿者情報を表示"
 
-#: inc/customizer/post_list.php:69 inc/customizer/single.php:42
+#: inc/customizer/post_list.php:85 inc/customizer/single.php:42
 msgid "Show categories"
 msgstr "カテゴリーを表示"
 
-#: inc/customizer/post_list.php:61
+#: inc/customizer/post_list.php:77
 msgid "Show update date"
 msgstr "更新日を表示"
 
-#: inc/customizer/post_list.php:53
+#: inc/customizer/post_list.php:69
 msgid "Show publication date"
 msgstr "公開日を表示"
 
-#: inc/customizer/post_list.php:46
+#: inc/customizer/post_list.php:62
 msgid "Post information"
 msgstr "投稿の情報"
 
@@ -615,11 +670,11 @@ msgstr "コンテンツへスキップ"
 msgid "Search results for %s"
 msgstr "%s の検索結果"
 
-#: inc/customizer/header.php:65 template-parts/header/btn/drawer.php:9
+#: inc/customizer/header.php:89 template-parts/header/btn/drawer.php:9
 msgid "Menu button"
 msgstr "メニューボタン"
 
-#: inc/customizer/header.php:89 searchform.php:3
+#: inc/customizer/header.php:113 searchform.php:3
 #: template-parts/header/btn/search.php:9
 msgid "Search button"
 msgstr "検索ボタン"
@@ -637,7 +692,7 @@ msgid "Related posts"
 msgstr "関連記事"
 
 #: template-parts/post_list/main_query.php:28
-#: template-parts/post_list/sub_query.php:52
+#: template-parts/post_list/sub_query.php:58
 msgid "No posts were found."
 msgstr "投稿が見つかりませんでした。"
 

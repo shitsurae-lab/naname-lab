@@ -24,10 +24,11 @@
       // width: 56%;
       // margin-left: calc(var(--arkb-gap) * 2);
     }
+
     #{$this}__heading {
       width: 100%;
       h2 {
-        font-size: var(--font-xxl);
+        font-size: var(--font-hero);
       }
     }
     #{$this}__image {
@@ -38,7 +39,7 @@
           border-radius: 8px;
           overflow: hidden;
           @include mq(tablet) {
-            border-radius: 16px;
+            border-radius: 8px;
           }
         }
       }

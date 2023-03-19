@@ -39,6 +39,7 @@ function custom_post_sidebar()
   elseif (is_singular('achievement')) :
     global $post;
     $terms = get_the_terms($post->ID,  'achievement_cat');
+
     foreach ($terms as $term) {
       $term_name = $term->name;
       $term_slug = $term->slug;

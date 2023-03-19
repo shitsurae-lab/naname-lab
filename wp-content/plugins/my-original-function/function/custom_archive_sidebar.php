@@ -96,7 +96,7 @@ function custom_archive_sidebar()
       echo '</ul></div>';
     endif; //タクソノミー有無の条件分岐終了
     ?>
-  <?php elseif (is_archive()) :
+  <?php elseif (is_archive(array('achievement_cat', 'skills_cat'))) :
     $arr = array(
       'hide_empty' => 0, // 投稿のないカテゴリーも含める
     );
@@ -104,15 +104,26 @@ function custom_archive_sidebar()
   ?>
     <div class="p-sidebar__content">
       <ul>
-        <?php foreach ($categories as $category) : ?>
-          <li class="p-sidebar__item">
-            <a href="<?php echo get_category_link($category->term_id); ?>">
-              <?php echo $category->name; ?>
-            </a>
-          </li>
-        <?php endforeach; ?>
+        <?php //foreach ($categories as $category) :
+        ?>
+        <li class="p-sidebar__item">
+          <a href="<?php //echo get_category_link($category->term_id);
+                    ?>">
+            <?php //echo $category->name;
+            ?>
+          </a>
+        </li>
+        <?php //endforeach;
+        ?>
       </ul>
     </div>
+    <div>ここにタームアーカイブに関する見出しが入ります</div>
+  <?php
+
+  elseif (is_page()) :
+    global $post;
+  ?>
+    <div>固定ページのサイドバーの内容です。ここに見出しが入ります</div>
 <?php endif;
 }
 add_action('arkhe_start_sidebar', 'custom_archive_sidebar', 10);
