@@ -24,7 +24,12 @@ trait Default_Data {
 			'breadcrumbs_home_text'     => __( 'Home', 'arkhe' ),
 			'breadcrumbs_set_home_page' => false,
 
+			// Smooth scroll
+			'smooth_scroll'             => 'on',
+
 			// Header
+			'header_color_bg'           => '#fff',
+			'header_color_txt'          => '#333',
 			// 'head_logo'              => 0,
 			'head_logo_overlay'         => 0,
 			'header_overlay_on_page'    => false,
@@ -35,6 +40,8 @@ trait Default_Data {
 			'fix_header_pc'             => true,
 			'fix_header_sp'             => true,
 			'fix_gnav'                  => false,
+			'under_gnav_color_bg'       => '',
+			'under_gnav_color_txt'      => '',
 			'show_search_sp'            => true,
 			'show_search_pc'            => false,
 			'show_drawer_sp'            => true,
@@ -43,6 +50,8 @@ trait Default_Data {
 			'move_gnav_under'           => false,
 
 			// Footer
+			'footer_color_bg'           => '#fff',
+			'footer_color_txt'          => '#333',
 			'show_pagetop'              => true,
 			'copyright'                 => '&copy; 2023 ' . esc_html( get_option( 'blogname' ) ) . '.',
 
@@ -61,6 +70,10 @@ trait Default_Data {
 			'show_list_mod'             => false,
 			'show_list_author'          => false,
 			'thumb_ratio'               => 'wide',
+
+			'cat_priority_on_list'      => '',
+			'force_get_top_cat'         => false,
+			'cat_priority_on_cat_page'  => '',
 
 			// 固定ページ設定
 			'page_title_pos'            => 'top',
