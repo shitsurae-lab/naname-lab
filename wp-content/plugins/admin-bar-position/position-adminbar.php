@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Admin Bar Position
-Version: 1.1.3
+Version: 1.1.4
 Author: Nakashima Masahiro
 Author URI: http://www.kigurumi.asia
 Plugin URI: http://www.kigurumi.asia
