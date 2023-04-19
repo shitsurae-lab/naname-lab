@@ -40,19 +40,6 @@ function render_rich_slider( $attrs, $content ) {
 	$mediaUrl        = $media['url'] ?? '';
 	$opacity         = $attrs['opacity'] ?? 50;
 
-	// <style>出力するもの
-	$the_styles = [];
-
-	// 余白
-	$paddingPC = $attrs['paddingPC'] ?? null;
-	if ( $paddingPC ) {
-		$the_styles['all']['--arkb-padding'] = Style::get_custom_padding( $paddingPC, '0', '2rem 2rem 2rem 2rem' );
-	}
-	$paddingSP = $attrs['paddingSP'] ?? null;
-	if ( $paddingSP ) {
-		$the_styles['sp']['--arkb-padding'] = Style::get_custom_padding( $paddingSP, '0' );
-	}
-
 	// colorLayer 属性
 	$color_layer_style = Arkb::convert_style_props( [
 		'background' => $attrs['bgGradient'] ?: $attrs['bgColor'],
@@ -92,12 +79,24 @@ function render_rich_slider( $attrs, $content ) {
 	}
 
 	// スライダーclass名
-	$slide_class = 'ark-block-slider__slide swiper-slide';
+	$slide_class      = 'ark-block-slider__slide swiper-slide';
+	$slide_body_class = 'ark-block-slider__body';
 
-	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-slide--', $the_styles );
+	// padding
+	$paddingStyles = [];
+	$paddingPC     = $attrs['paddingPC'] ?? null;
+	if ( $paddingPC ) {
+		$paddingStyles['all']['--arkb-padding'] = Style::get_custom_padding( $paddingPC, '0', '2rem 2rem 2rem 2rem' );
+	}
+	$paddingSP = $attrs['paddingSP'] ?? null;
+	if ( $paddingSP ) {
+		$paddingStyles['sp']['--arkb-padding'] = Style::get_custom_padding( $paddingSP, '0' );
+	}
+
+	// 動的スタイルの処理 (1枚目固定時に構造が変わるのでbodyにCSSを付与)
+	$unique_id = Style::generate_dynamic_block_styles( $paddingStyles, [ 'prefix' => 'arkb-slideBody--' ] );
 	if ( $unique_id ) {
-		$slide_class .= " $unique_id";
+		$slide_body_class .= " $unique_id";
 	};
 
 	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -114,7 +113,7 @@ function render_rich_slider( $attrs, $content ) {
 			<div class="c-filterLayer -filter-<?=esc_attr( $filter )?> arkb-absLayer"></div>
 		<?php endif; ?>
 		<!-- body-start -->
-		<div class="ark-block-slider__body" <?=Arkb::generate_html_attrs( $body_attrs )?>>
+		<div class="<?=esc_attr( $slide_body_class )?>" <?=Arkb::generate_html_attrs( $body_attrs )?>>
 			<div class="ark-block-slider__bodyInner ark-keep-mt--s">
 				<?=$content?>
 			</div>

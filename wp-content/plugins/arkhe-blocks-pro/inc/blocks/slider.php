@@ -62,7 +62,7 @@ function cb( $attrs, $content ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-slider--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-slider--' ] );
 	if ( $unique_id ) {
 		$block_class .= " $unique_id";
 	};
@@ -188,6 +188,6 @@ function render_first_content() {
 	if ( ! isset( $GLOBALS['arkb_slider_first_content'] ) ) return;
 
 	$first_content = $GLOBALS['arkb_slider_first_content'];
-	echo str_replace( 'class="ark-block-slider__body"', 'class="ark-block-slider__body -is-fixed"', $first_content );
+	echo preg_replace( '%class="ark-block-slider__body%', 'class="ark-block-slider__body -is-fixed', $first_content, 1 );
 	unset( $GLOBALS['arkb_slider_first_content'] );
 }
