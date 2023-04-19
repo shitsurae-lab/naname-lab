@@ -2,14 +2,22 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-27 05:20:37+0000\n"
+"PO-Revision-Date: 2023-03-24 04:06:48+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"X-Generator: GlotPress/4.0.0-alpha.4\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: includes/contact-form-functions.php:230
+msgid "Contact form not found."
+msgstr "コンタクトフォームが見つかりません。"
+
+#: includes/contact-form-functions.php:229
+msgid "Error:"
+msgstr "エラー:"
 
 #: includes/block-editor/block.json
 msgctxt "block keyword"
@@ -26,7 +34,7 @@ msgctxt "block title"
 msgid "Contact Form 7"
 msgstr "Contact Form 7"
 
-#: modules/select.php:84
+#: modules/select.php:88
 msgid "&#8212;Please choose an option&#8212;"
 msgstr "&#8212;以下から選択してください&#8212;"
 
@@ -70,27 +78,27 @@ msgstr "URL を入力してください。"
 msgid "Please enter an email address."
 msgstr "メールアドレスを入力してください。"
 
-#: modules/number.php:187
+#: modules/number.php:191
 msgid "This field has a too large number."
 msgstr "入力された数値が大きすぎます。"
 
-#: modules/number.php:182
+#: modules/number.php:186
 msgid "This field has a too small number."
 msgstr "入力された数値が小さすぎます。"
 
-#: modules/number.php:177
+#: modules/number.php:181
 msgid "Please enter a number."
 msgstr "数値を入力してください。"
 
-#: modules/date.php:168
+#: modules/date.php:172
 msgid "This field has a too late date."
 msgstr "入力された日付が遅すぎます。"
 
-#: modules/date.php:163
+#: modules/date.php:167
 msgid "This field has a too early date."
 msgstr "入力された日付が早すぎます。"
 
-#: modules/date.php:158
+#: modules/date.php:162
 msgid "Please enter a date in YYYY-MM-DD format."
 msgstr "YYYY-MM-DD の形式で日付を入力してください。"
 
@@ -99,7 +107,7 @@ msgid "The request payload format is not supported."
 msgstr "リクエストペイロードがサポートされるフォーマットではありません。"
 
 #. translators: 1: WordPress hook name, 2: version number
-#: includes/functions.php:619
+#: includes/functions.php:572
 msgid "Hook %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s with no alternative available."
 msgstr "フック %1$s の使用は Contact Form 7 バージョン %2$s から<strong>非推奨</strong>になりました。利用できる代替フックはありません。"
 
@@ -121,7 +129,7 @@ msgstr "入力してください。"
 
 #. translators: 1: PHP function name, 2: version number, 3: alternative
 #. function name
-#: includes/functions.php:570
+#: includes/functions.php:523
 msgid "Function %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s! Use %3$s instead."
 msgstr "関数 %1$s の使用は Contact Form 7 バージョン %2$s から<strong>非推奨</strong>になっています! 代わりに %3$s を使ってください。"
 
@@ -131,7 +139,7 @@ msgstr "スパム対策"
 
 #. translators: Developer debugging message. 1: PHP function name, 2:
 #. Explanatory message, 3: Contact Form 7 version number.
-#: includes/functions.php:654
+#: includes/functions.php:607
 msgid "Function %1$s was called incorrectly. %2$s %3$s"
 msgstr "関数 %1$s が不正に呼び出されました。%2$s %3$s"
 
@@ -379,17 +387,17 @@ msgstr "認証に失敗しました。正しい API キーが入力されてい�
 msgid "Sendinblue"
 msgstr "Sendinblue"
 
-#: includes/mail.php:180
+#: includes/mail.php:244
 msgid "Failed to attach a file. The total file size exceeds the limit of 25 megabytes."
 msgstr "ファイルの添付に失敗しました。合計のファイルサイズが25メガバイトの上限を超えています。"
 
 #. translators: %s: Attachment file path.
-#: includes/mail.php:159
+#: includes/mail.php:223
 msgid "Failed to attach a file. %s is not a readable file."
 msgstr "ファイルの添付に失敗しました。%s は読み込み可能なファイルではありません。"
 
 #. translators: %s: Attachment file path.
-#: includes/mail.php:144
+#: includes/mail.php:208
 msgid "Failed to attach a file. %s is not in the allowed directory."
 msgstr "ファイルの添付に失敗しました。%s は許可されたディレクトリにあるファイルではありません。"
 
@@ -413,18 +421,14 @@ msgstr "禁止用語 (%s) が使用された。"
 msgid "Disallowed words are used."
 msgstr "禁止用語が使用された。"
 
-#: includes/contact-form-functions.php:224
-msgid "Not Found"
-msgstr "Not Found"
-
 #. translators: %s: Contact Form 7 version number.
-#: includes/functions.php:646
+#: includes/functions.php:599
 msgid "(This message was added in Contact Form 7 version %s.)"
 msgstr "(このメッセージは Contact Form 7 バージョン %s で追加されました。)"
 
 #: includes/special-mail-tags.php:22 includes/special-mail-tags.php:97
 #: includes/special-mail-tags.php:164 includes/special-mail-tags.php:218
-#: modules/flamingo.php:292
+#: modules/flamingo.php:304
 msgid "The fourth parameter ($mail_tag) must be an instance of the WPCF7_MailTag class."
 msgstr "第4引数 ($mail_tag) に指定できるのは WPCF7_MailTag クラスのインスタンスに限られます。"
 
@@ -457,7 +461,7 @@ msgstr "その他の機能"
 msgid "Error"
 msgstr "エラー"
 
-#: includes/config-validator.php:825
+#: includes/config-validator.php:832
 msgid "The total size of attachment files is too large."
 msgstr "添付ファイルの合計容量が大きすぎる。"
 
@@ -473,11 +477,11 @@ msgstr "reCAPTCHA はこのサイト上で有効化されています。"
 msgid "reCAPTCHA response token is empty."
 msgstr "reCAPTCHA の応答トークンが空です。"
 
-#: includes/submission.php:719
+#: includes/submission.php:714
 msgid "Submitted nonce is invalid."
 msgstr "送信されたノンスが正しくありません。"
 
-#: includes/submission.php:710
+#: includes/submission.php:705
 msgid "User-Agent string is unnaturally short."
 msgstr "不自然に短いユーザーエージェント文字列が見られます。"
 
@@ -511,7 +515,7 @@ msgid "Connection established."
 msgstr "接続を確立しました。"
 
 #. translators: 1: response code, 2: message, 3: body, 4: URL
-#: includes/functions.php:693
+#: includes/functions.php:646
 msgid "HTTP Response: %1$s %2$s %3$s from %4$s"
 msgstr "HTTP レスポンス: %1$s %2$s %3$s from %4$s"
 
@@ -587,7 +591,7 @@ msgstr "Constant Contact"
 msgid "Email marketing"
 msgstr "メールマーケティング"
 
-#: includes/config-validator.php:911
+#: includes/config-validator.php:918
 msgid "It is not allowed to use files outside the wp-content directory."
 msgstr "wp-content ディレクトリの外部にあるファイルは指定できません。"
 
@@ -744,11 +748,11 @@ msgstr "既存のコンタクトフォームは作成できません。"
 msgid "You are not allowed to access contact forms."
 msgstr "コンタクトフォームにアクセスする権限がありません。"
 
-#: includes/config-validator.php:887
+#: includes/config-validator.php:894
 msgid "Attachment file does not exist at %path%."
 msgstr "添付するファイルが %path% に存在しません。"
 
-#: includes/config-validator.php:744
+#: includes/config-validator.php:751
 msgid "Invalid mailbox syntax is used in the %name% field."
 msgstr "%name% 項目に不正なメールボックス構文が見られます。"
 
@@ -805,7 +809,7 @@ msgstr "1件の設定エラーを検出しました"
 
 #. translators: 1: WordPress hook name, 2: version number, 3: alternative hook
 #. name
-#: includes/functions.php:608
+#: includes/functions.php:561
 msgid "Hook %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s! Use %3$s instead."
 msgstr "フック %1$s の使用は Contact Form 7 バージョン %2$s から<strong>非推奨</strong>になっています! 代わりに %3$s を使ってください。"
 
@@ -1081,19 +1085,19 @@ msgstr "送信ボタンのためのフォームタグを生成します。詳し
 msgid "submit"
 msgstr "送信ボタン"
 
-#: modules/select.php:199
+#: modules/select.php:203
 msgid "Insert a blank item as the first option"
 msgstr "空の項目を先頭に挿入する"
 
-#: modules/select.php:198
+#: modules/select.php:202
 msgid "Allow multiple selections"
 msgstr "複数選択を可能にする"
 
-#: modules/select.php:165
+#: modules/select.php:169
 msgid "Generate a form-tag for a drop-down menu. For more details, see %s."
 msgstr "ドロップダウンメニューのためのフォームタグを生成します。詳しくは%sを参照。"
 
-#: modules/select.php:158
+#: modules/select.php:162
 msgid "drop-down menu"
 msgstr "ドロップダウンメニュー"
 
@@ -1125,39 +1129,39 @@ msgstr "クイズ"
 msgid "Sender does not enter the correct answer to the quiz"
 msgstr "クイズに対する正しい答えが入力されなかった"
 
-#: modules/number.php:225
+#: modules/number.php:229
 msgid "Slider"
 msgstr "スライダー"
 
-#: modules/number.php:224
+#: modules/number.php:228
 msgid "Spinbox"
 msgstr "スピンボックス"
 
-#: modules/number.php:209
+#: modules/number.php:213
 msgid "Number fields"
 msgstr "数値入力項目"
 
-#: modules/number.php:209
+#: modules/number.php:213
 msgid "https://contactform7.com/number-fields/"
 msgstr "https://contactform7.com/number-fields/"
 
-#: modules/number.php:207
+#: modules/number.php:211
 msgid "Generate a form-tag for a field for numeric value input. For more details, see %s."
 msgstr "数値入力項目のためのフォームタグを生成します。詳しくは%sを参照。"
 
-#: modules/number.php:199
+#: modules/number.php:203
 msgid "number"
 msgstr "数値"
 
-#: modules/number.php:186
+#: modules/number.php:190
 msgid "Number is larger than maximum limit"
 msgstr "数値が最大制約値より大きい"
 
-#: modules/number.php:181
+#: modules/number.php:185
 msgid "Number is smaller than minimum limit"
 msgstr "数値が最小制約値より小さい"
 
-#: modules/number.php:176
+#: modules/number.php:180
 msgid "Number format that the sender entered is invalid"
 msgstr "入力された数値の形式が正しくない"
 
@@ -1210,113 +1214,113 @@ msgstr "アップロードされたファイルが許可されたファイル形
 msgid "Uploading a file fails for any reason"
 msgstr "ファイルのアップロードが何らかの理由により失敗している"
 
-#: modules/date.php:231 modules/number.php:255
+#: modules/date.php:235 modules/number.php:259
 msgid "Max"
 msgstr "上限"
 
-#: modules/date.php:226 modules/number.php:250
+#: modules/date.php:230 modules/number.php:254
 msgid "Min"
 msgstr "下限"
 
-#: modules/date.php:221 modules/date.php:224 modules/number.php:245
-#: modules/number.php:248
+#: modules/date.php:225 modules/date.php:228 modules/number.php:249
+#: modules/number.php:252
 msgid "Range"
 msgstr "範囲"
 
-#: modules/date.php:217 modules/number.php:241 modules/text.php:265
+#: modules/date.php:221 modules/number.php:245 modules/text.php:265
 #: modules/textarea.php:178
 msgid "Use this text as the placeholder of the field"
 msgstr "このテキストを項目のプレースホルダーとして使用する"
 
-#: modules/date.php:215 modules/number.php:239 modules/text.php:263
+#: modules/date.php:219 modules/number.php:243 modules/text.php:263
 #: modules/textarea.php:176
 msgid "Default value"
 msgstr "デフォルト値"
 
-#: modules/date.php:190
+#: modules/date.php:194
 msgid "Date field"
 msgstr "日付項目"
 
-#: modules/date.php:190
+#: modules/date.php:194
 msgid "https://contactform7.com/date-field/"
 msgstr "https://contactform7.com/date-field/"
 
-#: modules/date.php:188
+#: modules/date.php:192
 msgid "Generate a form-tag for a date input field. For more details, see %s."
 msgstr "日付入力項目のフォームタグを生成します。詳しくは%sを参照。"
 
-#: modules/date.php:180
+#: modules/date.php:184
 msgid "date"
 msgstr "日付"
 
-#: modules/date.php:167
+#: modules/date.php:171
 msgid "Date is later than maximum limit"
 msgstr "日付が最大制約日より大きい"
 
-#: modules/date.php:162
+#: modules/date.php:166
 msgid "Date is earlier than minimum limit"
 msgstr "日付が最小制約日より小さい"
 
-#: modules/date.php:157
+#: modules/date.php:161
 msgid "Date format that the sender entered is invalid"
 msgstr "入力された日付の形式が正しくない"
 
-#: modules/checkbox.php:304 modules/date.php:261 modules/number.php:285
-#: modules/select.php:228 modules/text.php:321 modules/textarea.php:205
+#: modules/checkbox.php:303 modules/date.php:265 modules/number.php:289
+#: modules/select.php:232 modules/text.php:321 modules/textarea.php:205
 msgid "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab."
 msgstr "この項目に入力された値をメールの項目で使用するには、対応するメールタグ (%s) をメールタブ上の項目に挿入する必要があります。"
 
-#: modules/checkbox.php:274
+#: modules/checkbox.php:273
 msgid "Make checkboxes exclusive"
 msgstr "チェックボックスを排他化する"
 
-#: modules/checkbox.php:272
+#: modules/checkbox.php:271
 msgid "Wrap each item with label element"
 msgstr "個々の項目を label 要素で囲む"
 
-#: modules/checkbox.php:271
+#: modules/checkbox.php:270
 msgid "Put a label first, a checkbox last"
 msgstr "ラベルを前に、チェックボックスを後に配置する"
 
-#: modules/checkbox.php:270 modules/select.php:197
+#: modules/checkbox.php:269 modules/select.php:201
 msgid "One option per line."
 msgstr "一行に一オプションを入力。"
 
-#: modules/checkbox.php:253 modules/date.php:204 modules/file.php:165
-#: modules/number.php:228 modules/select.php:181 modules/text.php:252
+#: modules/checkbox.php:252 modules/date.php:208 modules/file.php:165
+#: modules/number.php:232 modules/select.php:185 modules/text.php:252
 #: modules/textarea.php:165
 msgid "Required field"
 msgstr "必須項目"
 
-#: modules/checkbox.php:249 modules/checkbox.php:252 modules/date.php:200
-#: modules/date.php:203 modules/file.php:161 modules/file.php:164
-#: modules/number.php:219 modules/number.php:222 modules/select.php:177
-#: modules/select.php:180 modules/text.php:248 modules/text.php:251
+#: modules/checkbox.php:248 modules/checkbox.php:251 modules/date.php:204
+#: modules/date.php:207 modules/file.php:161 modules/file.php:164
+#: modules/number.php:223 modules/number.php:226 modules/select.php:181
+#: modules/select.php:184 modules/text.php:248 modules/text.php:251
 #: modules/textarea.php:161 modules/textarea.php:164
 msgid "Field type"
 msgstr "項目タイプ"
 
-#: modules/checkbox.php:238 modules/select.php:167
+#: modules/checkbox.php:237 modules/select.php:171
 msgid "Checkboxes, radio buttons and menus"
 msgstr "チェックボックス、ラジオボタン、メニュー"
 
-#: modules/checkbox.php:238 modules/select.php:167
+#: modules/checkbox.php:237 modules/select.php:171
 msgid "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 msgstr "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 
-#: modules/checkbox.php:235
+#: modules/checkbox.php:234
 msgid "Generate a form-tag for a group of radio buttons. For more details, see %s."
 msgstr "一連のラジオボタンのためのフォームタグを生成します。詳しくは%sを参照。"
 
-#: modules/checkbox.php:233
+#: modules/checkbox.php:232
 msgid "Generate a form-tag for a group of checkboxes. For more details, see %s."
 msgstr "一連のチェックボックスのためのフォームタグを生成します。詳しくは%sを参照。"
 
-#: modules/checkbox.php:220
+#: modules/checkbox.php:219
 msgid "radio buttons"
 msgstr "ラジオボタン"
 
-#: modules/checkbox.php:218
+#: modules/checkbox.php:217
 msgid "checkboxes"
 msgstr "チェックボックス"
 
@@ -1361,38 +1365,38 @@ msgstr "入力されたコードが正しくありません。"
 msgid "The code that sender entered does not match the CAPTCHA"
 msgstr "入力されたコードが CAPTCHA に適合していない"
 
-#: modules/acceptance.php:302 modules/checkbox.php:299 modules/date.php:256
-#: modules/file.php:204 modules/number.php:280 modules/quiz.php:269
-#: modules/really-simple-captcha.php:337 modules/select.php:223
+#: modules/acceptance.php:302 modules/checkbox.php:298 modules/date.php:260
+#: modules/file.php:204 modules/number.php:284 modules/quiz.php:269
+#: modules/really-simple-captcha.php:337 modules/select.php:227
 #: modules/submit.php:88 modules/text.php:316 modules/textarea.php:200
 msgid "Insert Tag"
 msgstr "タグを挿入"
 
-#: modules/acceptance.php:289 modules/checkbox.php:286 modules/date.php:244
-#: modules/file.php:191 modules/number.php:268 modules/quiz.php:256
+#: modules/acceptance.php:289 modules/checkbox.php:285 modules/date.php:248
+#: modules/file.php:191 modules/number.php:272 modules/quiz.php:256
 #: modules/really-simple-captcha.php:310 modules/really-simple-captcha.php:325
-#: modules/select.php:210 modules/submit.php:75 modules/text.php:303
+#: modules/select.php:214 modules/submit.php:75 modules/text.php:303
 #: modules/textarea.php:187
 msgid "Class attribute"
 msgstr "クラス属性"
 
-#: modules/acceptance.php:284 modules/checkbox.php:281 modules/date.php:239
-#: modules/file.php:186 modules/number.php:263 modules/quiz.php:251
+#: modules/acceptance.php:284 modules/checkbox.php:280 modules/date.php:243
+#: modules/file.php:186 modules/number.php:267 modules/quiz.php:251
 #: modules/really-simple-captcha.php:305 modules/really-simple-captcha.php:320
-#: modules/select.php:205 modules/submit.php:70 modules/text.php:298
+#: modules/select.php:209 modules/submit.php:70 modules/text.php:298
 #: modules/textarea.php:182
 msgid "Id attribute"
 msgstr "ID 属性"
 
 #: modules/acceptance.php:274 modules/acceptance.php:277
-#: modules/checkbox.php:265 modules/checkbox.php:268 modules/select.php:192
-#: modules/select.php:195
+#: modules/checkbox.php:264 modules/checkbox.php:267 modules/select.php:196
+#: modules/select.php:199
 msgid "Options"
 msgstr "オプション"
 
-#: modules/acceptance.php:264 modules/checkbox.php:260 modules/date.php:210
-#: modules/file.php:171 modules/number.php:234 modules/quiz.php:235
-#: modules/really-simple-captcha.php:295 modules/select.php:187
+#: modules/acceptance.php:264 modules/checkbox.php:259 modules/date.php:214
+#: modules/file.php:171 modules/number.php:238 modules/quiz.php:235
+#: modules/really-simple-captcha.php:295 modules/select.php:191
 #: modules/text.php:258 modules/textarea.php:171
 #: includes/block-editor/index.js:1
 msgid "Name"
@@ -1472,7 +1476,7 @@ msgstr "メッセージ本文:"
 msgid "Subject: %s"
 msgstr "題名: %s"
 
-#. translators: %s: [your-name] <[your-email]>
+#. translators: %s: [your-name] [your-email]
 #: includes/contact-form-template.php:64
 msgid "From: %s"
 msgstr "差出人: %s"
@@ -1868,6 +1872,6 @@ msgid "Contact"
 msgstr "お問い合わせ"
 
 #. Plugin Name of the plugin
-#: admin/admin.php:29 modules/flamingo.php:203
+#: admin/admin.php:29 modules/flamingo.php:215
 msgid "Contact Form 7"
 msgstr "Contact Form 7"
