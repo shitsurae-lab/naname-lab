@@ -700,12 +700,7 @@ class Permalink_Manager_URI_Functions_Post {
 		$autosave = ( ! empty( $new_title ) && empty( $new_slug ) ) ? true : false;
 
 		// Check if the post is excluded
-		if ( empty( $post->post_type ) || Permalink_Manager_Helper_Functions::is_post_excluded( $post ) ) {
-			return $html;
-		}
-
-		// Ignore drafts
-		if ( ! empty( $permalink_manager_options["general"]["ignore_drafts"] ) && ! empty( $post->post_status ) && $post->post_status == 'draft' ) {
+		if ( empty( $post->post_type ) || Permalink_Manager_Helper_Functions::is_post_excluded( $post, true ) ) {
 			return $html;
 		}
 

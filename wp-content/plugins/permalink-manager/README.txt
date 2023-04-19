@@ -7,7 +7,7 @@ Tags: permalinks, custom permalinks, permalink, woocommerce permalinks, url edit
 Requires at least: 4.4.0
 Requires PHP: 5.4
 Tested up to: 6.2.0
-Stable tag: 2.3.1.1
+Stable tag: 2.3.1.2
 
 Permalink Manager lets you customize the complete URL addresses of your posts, pages, custom post types, terms, and WooCommerce links with ease without touching any core files.
 
@@ -100,6 +100,16 @@ It is because Permalink Manager overwrites one of the core WordPress functionali
 8.	Permalink Manager settings.
 
 == Changelog ==
+
+= 2.4.0 (April 11, 2023) =
+* Dev - Improved custom permalink detection function
+* Dev - Minor code improvements for the breadcrumbs filter function
+* Dev - Minor CSS changes
+* Dev - New filter added - 'permalink_manager_excluded_element_id'
+* Dev - New filter added - 'permalink_manager_duplicate_uri_policy'
+* Dev - Now users may select in "WPML/Polylang fix language mismatch" settings field between loading translation or triggering the canonical redirect to the detected item
+* Fix - The RankMath redirection function is disabled if custom permalink is detected to prevent redirect loop
+* Fix - The "Exclude drafts & pending posts" setting field has been changed to allow for greater control in generating and editing custom permalinks for draft and pending posts
 
 = 2.3.1.1 (February 16, 2023) =
 * Dev - Hotfix for "Quick Edit" URI editor
