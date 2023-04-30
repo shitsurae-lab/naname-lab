@@ -1,8 +1,8 @@
 //各ページのモジュール管理
-@use 'nav';
-@use 'hero';
-@use 'title';
-@use 'front';
-@use 'sidebar';
-@use 'definition';
-@forward 'skills';
+@forward 'nav';
+@forward 'hero';
+@forward 'title';
+@forward 'front';
+@forward 'sidebar';
+@forward 'definition';
+@forward 'skill';
