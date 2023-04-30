@@ -14,7 +14,8 @@
           $this: &;
           .ark-block-heading {
             @include mq(tablet) {
-              writing-mode: vertical-lr;
+              // writing-mode: vertical-lr;
+              display: flex;
             }
           }
           //   &:has(h2) {

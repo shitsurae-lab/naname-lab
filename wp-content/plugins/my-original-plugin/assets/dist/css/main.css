@@ -1744,7 +1744,7 @@ details.p-tag__details[open] .p-tag__icon {
 
 @media (min-width: 600px) {
   .p-front .p-index__skill .p-index__skill__columns .ark-block-columns__inner .p-index__skill__column .ark-block-heading {
-    writing-mode: vertical-lr;
+    display: flex;
   }
 }
 @media (min-width: 600px) {
