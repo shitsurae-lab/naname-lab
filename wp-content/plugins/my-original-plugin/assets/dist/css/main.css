@@ -1743,8 +1743,14 @@ details.p-tag__details[open] .p-tag__icon {
 }
 
 @media (min-width: 600px) {
-  .p-front .p-index__skill .p-index__skill__columns .ark-block-columns__inner .p-index__skill__column .ark-block-heading {
+  .p-front .p-index__skill .p-index__skill__columns .ark-block-columns__inner .p-index__skill__column .ark-block-heading.p-index__skill {
     display: flex;
+  }
+  .p-front .p-index__skill .p-index__skill__columns .ark-block-columns__inner .p-index__skill__column .ark-block-heading.p-index__skill .ark-block-heading__main {
+    writing-mode: vertical-lr;
+  }
+  .p-front .p-index__skill .p-index__skill__columns .ark-block-columns__inner .p-index__skill__column .ark-block-heading.p-index__skill .ark-block-heading__sub {
+    writing-mode: vertical-lr;
   }
 }
 @media (min-width: 600px) {

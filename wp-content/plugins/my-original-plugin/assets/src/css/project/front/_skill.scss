@@ -12,10 +12,16 @@
 
         .p-index__skill__column {
           $this: &;
-          .ark-block-heading {
+          .ark-block-heading.p-index__skill {
             @include mq(tablet) {
               // writing-mode: vertical-lr;
               display: flex;
+              .ark-block-heading__main {
+                writing-mode: vertical-lr;
+              }
+              .ark-block-heading__sub {
+                writing-mode: vertical-lr;
+              }
             }
           }
           //   &:has(h2) {
