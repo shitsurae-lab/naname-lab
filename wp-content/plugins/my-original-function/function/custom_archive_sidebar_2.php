@@ -24,8 +24,8 @@ function custom_archive_sidebar()
       echo '</ul></div>';
     }
     ?>
-    <?php elseif (is_post_type_archive('skills')) :
-    $tax_name = 'skills_cat';
+    <?php elseif (is_post_type_archive('skill')) :
+    $tax_name = 'skill_cat';
     $taxonomy_terms = get_terms($tax_name);
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo ' <div class="p-sidebar__content"><h3>' . $cat_name . '</h3><ul>';
@@ -61,8 +61,8 @@ function custom_archive_sidebar()
       echo '</ul></div>';
     endif; //タクソノミー有無の条件分岐終了
     ?>
-    <?php elseif (is_tax('skills_cat')) :
-    $tax_name = 'skills_cat';
+    <?php elseif (is_tax('skill_cat')) :
+    $tax_name = 'skill_cat';
     $taxonomy_terms = get_terms($tax_name, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
       echo ' <div class="p-sidebar__content"><h3>' . $cat_name . '</h3><ul>';
@@ -95,8 +95,8 @@ function custom_archive_sidebar()
       echo '</ul></div>';
     endif; //タクソノミー有無の条件分岐終了
     ?>
-    <?php elseif (is_tax('skills_tag')) :
-    $tax_name = 'skills_cat';
+    <?php elseif (is_tax('skill_tag')) :
+    $tax_name = 'skill_cat';
     $taxonomy_terms = get_terms($tax_name, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
       echo ' <div class="p-sidebar__content"><ul>';
@@ -117,7 +117,7 @@ function custom_archive_sidebar()
   elseif (is_page()) :
     global $post;
   ?>
-    <div>固定ページのサイドバーの内容です。ここに見出しが入ります</div>
+    <div>固定ページのサイドバーの内容です。ここに見出しが入りますだす</div>
     <?php
     echo do_shortcode('[toc]');
     ?>

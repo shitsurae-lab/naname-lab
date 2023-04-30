@@ -74,14 +74,14 @@ function custom_post_sidebar()
       <?php echo 'ここにテキスト'; ?>
     <?php
     }
-  elseif (is_singular('skills')) :
+  elseif (is_singular('skill')) :
     global $post;
-    $terms = get_the_terms($post->ID,  'skills_cat');
+    $terms = get_the_terms($post->ID,  'skill_cat');
     foreach ($terms as $term) {
       //if ($term) :
       $term_name = $term->name;
       $term_slug = $term->slug;
-      $term_link = get_term_link($term_slug, 'skills_cat');
+      $term_link = get_term_link($term_slug, 'skill_cat');
       $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg');
       $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg');
     ?>
@@ -114,7 +114,7 @@ function custom_post_sidebar()
   elseif (is_singular('about')) :
     global $post;
     ?>
-    <div>ここにスキルに関する見出しが入ります</div>
+    <div>ここに'about'に関する見出しが入ります</div>
 <?php
   endif;
 }

@@ -86,9 +86,11 @@ function register_custom_post_type()
   register_taxonomy_for_object_type('achievement_cat', 'achievement');
   register_taxonomy_for_object_type('achievement_tag', 'achievement');
 
-  //カスタム投稿タイプ②(スキル)
+
+
+  //カスタム投稿タイプ③(スキル)
   register_post_type(
-    'skills', //投稿タイプ名識別子
+    'skill', //投稿タイプ名識別子
     [
       //START: $args(第2パラメーター)
       'label' => 'スキル', //カスタム投稿タイプ名称(管理画面に表示)
@@ -98,7 +100,7 @@ function register_custom_post_type()
         'view_item' => '表示',
         'search_items' => '検索'
       ),
-      'description' => 'カスタム投稿タイプ("skills")に関する説明',
+      'description' => 'カスタム投稿タイプ("skill")に関する説明',
       'public' => true,
       'show_ui' => true,
       'show_in_nav_menus' => true,
@@ -106,7 +108,7 @@ function register_custom_post_type()
       'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
       'has_archive' => true, //投稿した記事の一覧ページ作成
       'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
-      'menu_icon' => 'dashicons-carrot',
+      'menu_icon' => 'dashicons-art',
       'supports' => array( //記事編集画面に表示する項目
         'title',
         'editor',
@@ -117,15 +119,15 @@ function register_custom_post_type()
         'page-attributes'
       ),
       'menu_position' => 5, //投稿の下に表示
-      'taxonomies' => array('skills_cat', 'skills_tag')
+      'taxonomies' => array('skill_cat', 'skill_tag')
       //END: $args(第2パラメーター)
     ],
   );
 
   //カスタムタクソノミー(「実績」カテゴリー: カテゴリー形式)の登録
   register_taxonomy(
-    'skills_cat', //カスタム分類名(カスタムタクソノミースラッグ)
-    'skills', //上記のカスタム分類名が使用される投稿タイプ名(ターム?)
+    'skill_cat', //カスタム分類名(カスタムタクソノミースラッグ)
+    'skill', //上記のカスタム分類名が使用される投稿タイプ名(ターム?)
     array(
       'label' => 'スキルカテゴリー', //カスタムタクソノミーラベル名
       'labels'
@@ -140,15 +142,15 @@ function register_custom_post_type()
       'hierarchical' => true,  //カテゴリー形式
       'show_in_rest' => true,  //Gutenberg で表示
       'rewrite' => array(
-        'slug' => 'skills',
+        'slug' => 'skill',
         'hierarchical' => true
       )
     )
   );
   //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
   register_taxonomy(
-    'skills_tag', //カスタム分類名(カスタムタクソノミースラッグ)
-    'skills', //上記のカスタム分類名が使用される投稿タイプ名
+    'skill_tag', //カスタム分類名(カスタムタクソノミースラッグ)
+    'skill', //上記のカスタム分類名が使用される投稿タイプ名
     array(
       'label' => 'スキルタグ', //カスタムタクソノミーラベル名
       'labels'
@@ -163,13 +165,13 @@ function register_custom_post_type()
       'hierarchical' => false,  //タグ形式
       'show_in_rest' => true,  //Gutenberg で表示
       'rewrite' => array(
-        'slug' => 'skills',
+        'slug' => 'skill',
         'hierarchical' => true
       )
     )
   );
-  register_taxonomy_for_object_type('skills_cat', 'skills');
-  register_taxonomy_for_object_type('skills_tag', 'skills');
+  register_taxonomy_for_object_type('skill_cat', 'skill');
+  register_taxonomy_for_object_type('skill_tag', 'skill');
 }
 
 add_action('init', 'register_custom_post_type');
