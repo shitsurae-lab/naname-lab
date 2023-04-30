@@ -497,7 +497,7 @@ a {
 }
 .c-more__arrow.u-uppercase a:hover .c-more__arrow--text::before {
   transform: translateX(8px) scale(1.2);
-  background: var(--color-linear-fly-high);
+  background: var(--color-moonlit-asteroid);
 }
 .c-more__arrow.u-uppercase a:hover .c-more__arrow--text::after {
   animation: btn-arrow-animation 1.2s;
@@ -535,7 +535,7 @@ a {
   z-index: -1;
   transform-origin: left center;
   transform: translateX(0) scale(1);
-  background: var(--color-linear-fly-high);
+  background: var(--color-moonlit-asteroid);
   transition: all 1.2s;
 }
 .c-more__arrow.u-uppercase .c-more__arrow--text::after {

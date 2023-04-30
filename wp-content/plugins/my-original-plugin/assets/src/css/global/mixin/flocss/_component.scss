@@ -99,7 +99,8 @@
     transform-origin: left center;
     transform: translateX(0) scale(1);
     // background: rgba(240, 240, 240, 0.8);
-    background: var(--color-linear-fly-high);
+    // background: var(--color-linear-fly-high);
+    background: var(--color-moonlit-asteroid);
     transition: all 1.2s;
   }
   &::after {

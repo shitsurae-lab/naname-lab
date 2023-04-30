@@ -18,7 +18,8 @@
         &::before {
           transform: translateX(8px) scale(1.2);
           // background: rgba(240, 240, 240, 1);
-          background: var(--color-linear-fly-high);
+          // background: var(--color-linear-fly-high);
+          background: var(--color-moonlit-asteroid);
         }
         &::after {
           animation: btn-arrow-animation 1.2s;
