@@ -323,46 +323,8 @@ a {
   height: 50vh;
   text-align: left;
 }
-#top_title_area.p-topArea.c-filterLayer::before {
-  content: "";
-  display: block;
-  width: 80%;
-  height: 80%;
-  bottom: 0;
-  left: 0;
-  opacity: 1;
-  top: auto;
-  z-index: 0;
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20736%20574%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%22287%22%20x2%3D%22736%22%20y2%3D%22287%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23360033%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230b8793%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M1%20.02c57.94-1.09%2090.21%2037.9%20127.07%2056.9%2042.09%2021.7%2094.77%2031.65%20144.73%2032.84s138.04-13.73%20213%202.72c99.38%2021.8%20180.9%20126.29%20204.55%20172.94C712.1%20308.33%20736%20361.31%20736%20428.76c0%2056.42-42.72%20100.46-43.64%20145.24-230.43%200-461.93-1-692.36-1C1.37%20399.98%201%20191%201%20.02Z%22%20style%3D%22fill%3Aurl%28%23a%29%3Bfill-rule%3Aevenodd%22%2F%3E%3C%2Fsvg%3E");
-  background-color: transparent;
-  background-position: left bottom;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-@media (min-width: 600px) {
-  #top_title_area.p-topArea.c-filterLayer::before {
-    width: 50%;
-    height: 88%;
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20960%20574%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%22.04%22%20y1%3D%22287%22%20x2%3D%22959.96%22%20y2%3D%22287%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23360033%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230b8793%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M1.35.04c75.57-1.09%20133.48%2016.51%20165.74%2056.9%2061.97%2077.6%20299.55%20120.21%20455.77%2073.72%20196.32-58.43%20337.11%2074.39%20337.11%20302.67%200%2056.42-34.66%2072.26-56.84%20140.69-300.56%200-602.51-1-903.07-1C1.83%20399.99%201.35%20191.01%201.35.04Z%22%20style%3D%22fill%3Aurl%28%23a%29%3Bfill-rule%3Aevenodd%22%2F%3E%3C%2Fsvg%3E");
-  }
-}
-#top_title_area.p-topArea.c-filterLayer .c-filterLayer__img.u-obf-cover {
-  width: 80% !important;
-  height: 96% !important;
-  border-bottom-left-radius: 80px;
-  left: auto;
-  right: 0;
-}
 #top_title_area.p-topArea .p-topArea__title {
   text-align: left;
-}
-#top_title_area.p-topArea .p-topArea__title h1 {
-  font-size: var(--font-hero--xl);
-  color: transparent;
-  display: inline-block;
-  -webkit-background-clip: text;
-          background-clip: text;
-  background-image: linear-gradient(to right, #eeeeee 0%, #ffffff 80%);
 }
 
 .p-topArea__excerpt {
