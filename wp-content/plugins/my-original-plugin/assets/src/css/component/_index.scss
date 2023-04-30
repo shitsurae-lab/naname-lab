@@ -1,8 +1,8 @@
-@use 'title';
-@use 'typography';
-@use 'button';
-@use 'card';
-@use 'drawer';
-@use 'fluid';
-@use 'pagination';
-@use 'tag';
+@forward 'title';
+@forward 'typography';
+@forward 'button';
+@forward 'card';
+@forward 'drawer';
+@forward 'fluid';
+@forward 'pagination';
+@forward 'tag';
