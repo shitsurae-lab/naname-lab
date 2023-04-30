@@ -1,7 +1,7 @@
 @use '../../global' as *;
 .p-front {
-  .p-index__news {
-    .p-index__news__columns {
+  .p-index__skill {
+    .p-index__skill__columns {
       .ark-block-columns__inner {
         // margin-left: 0;
         // flex-direction: column;
@@ -10,7 +10,7 @@
         //   margin-left: calc(var(--arkb-gap--x) * -1);
         // }
 
-        .p-index__news__column {
+        .p-index__skill__column {
           $this: &;
           .ark-block-heading {
             @include mq(tablet) {
@@ -41,7 +41,7 @@
           //       margin: 0 0 0 var(--arkb-gap--x);
           //     }
 
-          //     .p-index__news__list {
+          //     .p-index__skill__list {
           //       // .p-postList {
           //       //.p-postListは'ul'の意
           //       // display: flex;
@@ -111,8 +111,8 @@
       }
     }
   }
-  .p-index__news-copy {
-    .p-index__news__columns {
+  .p-index__skill-copy {
+    .p-index__skill__columns {
       .ark-block-columns__inner {
         margin-left: 0;
         flex-direction: column;
@@ -121,7 +121,7 @@
           margin-left: calc(var(--arkb-gap--x) * -1);
         }
 
-        .p-index__news__column {
+        .p-index__skill__column {
           &:has(h2) {
             width: 100%;
             flex: 1 0 auto;
@@ -146,7 +146,7 @@
               margin: 0 0 0 var(--arkb-gap--x);
             }
 
-            .p-index__news__list {
+            .p-index__skill__list {
               // .p-postList {
               //.p-postListは'ul'の意
               // display: flex;

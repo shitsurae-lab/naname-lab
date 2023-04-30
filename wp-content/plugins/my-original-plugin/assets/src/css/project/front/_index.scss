@@ -1,5 +1,5 @@
-@use 'about';
+@forward 'about';
 // @use 'regarding';
-@use 'contact';
-@use 'news';
-@use 'piece';
+@forward 'contact';
+@forward 'skill';
+@forward 'piece';
