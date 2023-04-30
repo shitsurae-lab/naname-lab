@@ -492,7 +492,7 @@ a {
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: var(--color-bahama-blue);
+  color: var(--color-moonlit-asteroid);
   font-size: var(--font-md);
 }
 .c-more__arrow.u-uppercase a:hover .c-more__arrow--text::before {
