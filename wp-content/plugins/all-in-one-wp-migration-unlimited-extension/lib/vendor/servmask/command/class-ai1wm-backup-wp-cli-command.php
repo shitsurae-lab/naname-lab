@@ -36,7 +36,7 @@ if ( class_exists( 'Ai1wm_Backup_WP_CLI_Base' ) && ! class_exists( 'Ai1wm_Backup
 		 *
 		 * ## OPTIONS
 		 *
-		 * [--sites]
+		 * [--sites[=<comma_separated_ids>]]
 		 * : Export sites by id (To list sites use: wp site list --fields=blog_id,url)
 		 *
 		 * [--password[=<password>]]

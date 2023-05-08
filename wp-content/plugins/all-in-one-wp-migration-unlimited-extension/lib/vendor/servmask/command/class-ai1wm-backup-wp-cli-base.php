@@ -214,27 +214,36 @@ if ( defined( 'WP_CLI' ) && ! class_exists( 'Ai1wm_Backup_WP_CLI_Base' ) ) {
 			}
 
 			if ( is_multisite() && isset( $assoc_args['sites'] ) ) {
-				while ( ( $site_id = readline( 'Enter site ID (q=quit, l=list sites): ' ) ) ) {
-					switch ( $site_id ) {
-						case 'q':
-							exit;
+				$sites = array();
+				if ( ! is_bool( $assoc_args['sites'] ) ) {
+					$sites = array_filter( array_map( 'trim', explode( ',', $assoc_args['sites'] ) ) );
+				}
 
-						case 'l':
-							WP_CLI::runcommand( 'site list --fields=blog_id,url' );
-							break;
+				if ( ! empty( $sites ) ) {
+					$params['options']['sites'] = $sites;
+				} else {
+					while ( ( $site_id = readline( 'Enter site ID (q=quit, l=list sites): ' ) ) ) {
+						switch ( $site_id ) {
+							case 'q':
+								exit;
 
-						default:
-							if ( ! get_blog_details( $site_id ) ) {
-								WP_CLI::error_multi_line(
-									array(
-										__( 'A site with this ID does not exist.', AI1WM_PLUGIN_NAME ),
-										__( 'To list the sites type `l`.', AI1WM_PLUGIN_NAME ),
-									)
-								);
+							case 'l':
+								WP_CLI::runcommand( 'site list --fields=blog_id,url' );
 								break;
-							}
 
-							$params['options']['sites'][] = $site_id;
+							default:
+								if ( ! get_blog_details( $site_id ) ) {
+									WP_CLI::error_multi_line(
+										array(
+											__( 'A site with this ID does not exist.', AI1WM_PLUGIN_NAME ),
+											__( 'To list the sites type `l`.', AI1WM_PLUGIN_NAME ),
+										)
+									);
+									break;
+								}
+
+								$params['options']['sites'][] = $site_id;
+						}
 					}
 				}
 			}
