@@ -1,7 +1,7 @@
-@use 'front';
-@use 'front-slider';
-@use 'home';
-@use 'post-slider-loop';
-@use 'page-archive';
-@use 'particles';
-@use 'mv';
+@forward 'front';
+@forward 'front-slider';
+@forward 'home';
+@forward 'post-slider-loop';
+@forward 'page-archive';
+@forward 'particles';
+@forward 'mv';

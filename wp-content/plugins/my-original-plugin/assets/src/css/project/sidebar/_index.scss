@@ -1,3 +1,3 @@
-@use 'sidebar';
-@use 'sidebar-post';
-@use 'sidebar-sticky';
+@forward 'sidebar';
+@forward 'sidebar-post';
+@forward 'sidebar-sticky';

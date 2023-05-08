@@ -1,2 +1,2 @@
-@use 'global-nav';
-@use 'footer-nav';
+@forward 'global-nav';
+@forward 'footer-nav';
