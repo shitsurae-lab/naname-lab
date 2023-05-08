@@ -2048,6 +2048,17 @@ article.skills .p-entry__content {
   }
 }
 
+.p-about__heading .ark-block-heading__main {
+  color: transparent;
+  background-image: var(--color-moonlit-asteroid);
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+.p-about__inner--flex .p-about__inner--item:has(h3) .p-about__subheading--wrapper h3 {
+  writing-mode: vertical-rl;
+  margin-left: auto;
+  margin-right: auto;
+}
 .-textright {
   text-align: right;
 }

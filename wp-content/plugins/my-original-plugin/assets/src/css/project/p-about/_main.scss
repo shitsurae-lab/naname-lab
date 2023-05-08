@@ -1,0 +1,26 @@
+.p-about {
+  $this: &;
+  &__heading {
+    .ark-block-heading__main {
+      color: transparent;
+      background-image: var(--color-moonlit-asteroid);
+      background-clip: text;
+    }
+  }
+  &__inner--flex {
+    #{$this}__inner--item:has(h3) {
+      #{$this}__subheading--wrapper {
+        h3 {
+          writing-mode: vertical-rl;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    #{$this}__inner--item:has(p) {
+      #{$this}__text--wrapper {
+      }
+    }
+  }
+}
