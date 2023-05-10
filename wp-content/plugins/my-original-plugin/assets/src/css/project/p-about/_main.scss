@@ -23,7 +23,9 @@
       }
     }
   }
-  &__secondary--flow {
-    background: #fff;
+  &__secondary {
+    #{$this}__secondary--flow {
+      background: #fff;
+    }
   }
 }

@@ -2059,7 +2059,7 @@ article.skills .p-entry__content {
   margin-left: auto;
   margin-right: auto;
 }
-.p-about__secondary--flow {
+.p-about__secondary .p-about__secondary--flow {
   background: #fff;
 }
 
