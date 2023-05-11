@@ -2059,8 +2059,8 @@ article.skills .p-entry__content {
   margin-left: auto;
   margin-right: auto;
 }
-.p-about__secondary .p-about__secondary--flow {
-  background: #fff;
+.p-content__centerd__inner .p-content__centerd--dev {
+  background-color: #fff;
 }
 
 .-textright {
