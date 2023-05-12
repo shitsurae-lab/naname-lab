@@ -1,0 +1,11 @@
+.rtoc-mokuji-content ul li ul li a {
+  font-size: inherit;
+}
+.rtoc-mokuji-content ul li ul li a:before {
+  content: none;
+}
+
+.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+  padding: 4px 8px 0;
+}
+/*# sourceMappingURL=rtoc_for_cocoon.css.map */

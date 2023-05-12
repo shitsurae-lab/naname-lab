@@ -1,0 +1,1075 @@
+@charset "UTF-8";
+/* CSS Document */
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+body.toplevel_page_rtoc_settings {
+  background: #f3f3f3;
+}
+
+#wpbody-content {
+  margin-left: -20px;
+  width: calc(100% + 20px);
+}
+
+.rtoc_main_title {
+  padding: 24px 40px;
+  letter-spacing: 1px;
+  margin: 0;
+  color: #fff;
+  background: #3f9cff;
+  box-shadow: 0 1px 1px rgba(49, 85, 156, 0.5);
+}
+
+#rtoc-screen-wrapper {
+  font-family: "Montserrat", "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", "Meiryo", "ＭＳ ゴシック", sans-serif;
+  position: relative;
+}
+#rtoc-screen-wrapper::before {
+  transition: all 0.3s;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents {
+  padding: 32px 40px;
+  background-color: #fff;
+  border-bottom: 1px solid #c3c3c3;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents h1 {
+  font-size: 2em;
+  margin: 0 0 12px;
+  color: #3F9CFF;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents ul {
+  display: flex;
+  margin: 0 0 2.5em;
+}
+@media (max-width: 767px) {
+  #rtoc-screen-wrapper .rtoc_ad_contents ul {
+    flex-direction: column;
+  }
+}
+#rtoc-screen-wrapper .rtoc_ad_contents ul li {
+  width: 45%;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  #rtoc-screen-wrapper .rtoc_ad_contents ul li {
+    width: 100%;
+    margin: 0 0 16px;
+  }
+}
+#rtoc-screen-wrapper .rtoc_ad_contents ul li .rtoc_ad_link {
+  display: block;
+  text-decoration: none;
+  color: #444;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents ul li img {
+  width: 100%;
+  vertical-align: bottom;
+  margin-bottom: 8px;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents .rtoc_ad_ttl {
+  font-size: 16px;
+  margin: 0 0 0.65em;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents .rtoc_ad_ttl span {
+  position: relative;
+  padding-left: 16px;
+}
+#rtoc-screen-wrapper .rtoc_ad_contents .rtoc_ad_ttl span::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: -16px;
+  background-image: url("https://www.tech-first.mixh.jp/rtoc/wp-content/uploads/2020/01/plus.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#rtoc-screen-wrapper input[type=radio] {
+  display: none;
+}
+#rtoc-screen-wrapper .tab_item {
+  display: inline-block;
+  margin: -60px 0 0 48px;
+  background-color: #3F9CFF;
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #3F9CFF;
+  border-bottom: none;
+  transition: all 0.3s;
+}
+#rtoc-screen-wrapper .tab_item:not(:first-of-type) {
+  margin-left: 12px;
+}
+#rtoc-screen-wrapper input[type=radio]:checked + .tab_item {
+  background-color: #f3f3f3;
+  border-top-color: #c3c3c3;
+  border-left-color: #c3c3c3;
+  border-right-color: #c3c3c3;
+  color: #3F9CFF;
+}
+#rtoc-screen-wrapper .rtoc_admin {
+  display: none;
+}
+#rtoc-screen-wrapper #rtoc_settings:checked ~ #rtoc_first {
+  display: block;
+}
+#rtoc-screen-wrapper #rtoc_using:checked ~ #rtoc_secoud {
+  display: block;
+}
+#rtoc-screen-wrapper #rtoc_help:checked ~ #rtoc_third {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#rtoc-screen-wrapper #rtoc_first {
+  padding: 0px 48px 30px 48px;
+  font-family: Verdana, Geneva, "sans-serif";
+  display: block;
+}
+@media (min-width: 1200px) {
+  #rtoc-screen-wrapper #rtoc_first {
+    display: none;
+  }
+}
+#rtoc-screen-wrapper #rtoc_first form {
+  display: flex;
+  width: 100%;
+}
+#rtoc-screen-wrapper #rtoc_first form p.submit {
+  text-align: left;
+  padding: 0 !important;
+  padding-top: 0px !important;
+  margin: 0 !important;
+}
+#rtoc-screen-wrapper #rtoc_secoud {
+  padding: 0px 48px 0;
+}
+#rtoc-screen-wrapper #rtoc_secoud #rtoc_using {
+  padding: 24px 0px 0;
+}
+#rtoc-screen-wrapper #rtoc_third {
+  padding: 24px 48px 0;
+}
+#rtoc-screen-wrapper .rtoc-popup-box, #rtoc-screen-wrapper .rtoc-popup-content {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#rtoc-screen-wrapper .rtoc-popup-box {
+  position: fixed;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 8;
+}
+#rtoc-screen-wrapper .rtoc-popup-content {
+  position: fixed;
+  width: 50%;
+  background-color: #fff;
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 24px 32px;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-box {
+  display: block;
+  opacity: 1;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content {
+  display: block;
+  opacity: 1;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content h3 {
+  color: #649cff;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content p {
+  color: rgba(54, 84, 138, 0.8);
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content .rtoc-addon-button {
+  padding-top: 24px;
+  text-align: right;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content .rtoc-addon-button button, #rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content .rtoc-addon-button a {
+  height: 32px;
+  padding: 8px 16px;
+  margin: 0;
+  text-decoration: none;
+  color: #333333;
+  transition: all 0.3s;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content .rtoc-addon-button button:hover, #rtoc-screen-wrapper.rtoc-modal .rtoc-popup-content .rtoc-addon-button a:hover {
+  background-color: #e4e4e4;
+}
+
+#rtoc-config-area {
+  width: 60%;
+  padding-top: 24px;
+}
+@media screen and (max-width: 1080px) {
+  #rtoc-config-area {
+    width: 100%;
+  }
+}
+#rtoc-config-area table th,
+#rtoc-config-area table td {
+  text-align: left;
+}
+#rtoc-config-area table td {
+  padding-left: 20px;
+}
+#rtoc-config-area input[type=radio] {
+  display: none;
+}
+#rtoc-config-area input[type=radio] + label {
+  display: inline-block;
+  background-color: #fff;
+  color: rgba(7, 23, 16, 0.8);
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: 2px solid rgba(7, 23, 16, 0.1);
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label {
+  display: block;
+  transition: all 0.3s;
+  margin-bottom: 16px;
+  padding: 0;
+  width: 70%;
+  box-sizing: border-box;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 16px 0;
+  line-height: 1;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li {
+  margin: 0;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type {
+  width: 60%;
+  text-align: center;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type span {
+  padding-right: 8px;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type span.c-admin-decimal {
+  position: relative;
+  padding-right: 20px;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type span.c-admin-decimal::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  transition: all 0.3s;
+  height: 20px;
+  width: 2px;
+  background-color: rgba(7, 23, 16, 0.1);
+  right: 12px;
+  top: 0;
+  border-radius: 5px;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type span.c-admin-round {
+  padding-right: 0;
+  padding-left: 20px;
+  position: relative;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:first-of-type span.c-admin-round::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  transition: all 0.3s;
+  width: 16px;
+  height: 16px;
+  top: 1px;
+  left: -4px;
+  background-color: #071710;
+  border-radius: 50%;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:last-of-type {
+  width: 40%;
+  position: relative;
+  text-align: center;
+}
+#rtoc-config-area input[type=radio].rtoc_admin_list + label .c-list-style li:last-of-type::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  transition: all 0.3s;
+  height: 35px;
+  top: -11px;
+  left: 0;
+  border: 1px solid rgba(7, 23, 16, 0.1);
+}
+#rtoc-config-area input[type=radio].rtoc_admin_radio + label {
+  transition: all 0.3s;
+  margin: 0 12px 12px 0;
+}
+#rtoc-config-area .rtoc_admin_select {
+  width: 100%;
+}
+#rtoc-config-area .rtoc_admin_wrapper {
+  position: relative;
+  margin-bottom: 56px;
+}
+#rtoc-config-area .rtoc_admin_wrapper > ul, #rtoc-config-area .rtoc_admin_wrapper table {
+  background-color: #fff;
+  padding: 40px 48px;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 3px 3px 10px 1px #ddd;
+}
+#rtoc-config-area .rtoc_admin_wrapper h2 {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: relative;
+}
+#rtoc-config-area .rtoc_admin_wrapper h2::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 8px;
+}
+#rtoc-config-area .rtoc_admin_wrapper:first-of-type h2::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper:nth-child(2) h2::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper:nth-child(3) h2::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper:nth-child(4) h2::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper:nth-child(5) h2::before {
+  background-color: #ffd70f;
+}
+#rtoc-config-area .rtoc_admin_wrapper:nth-child(6) h2::before {
+  background-color: #ffd70f;
+}
+#rtoc-config-area .rtoc_admin_wrapper p {
+  margin: 0;
+  padding: 0 0.5rem 0.5rem;
+}
+#rtoc-config-area .rtoc_admin_wrapper #rtoc_back_button_vertical_position {
+  width: 48px;
+  margin: 0 8px;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup, #rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 8;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents {
+  position: absolute;
+  width: 65%;
+  background-color: #fff;
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 24px 32px;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents .jin-addon-button {
+  padding-top: 24px;
+  text-align: right;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents h3 {
+  color: #649cff;
+  line-height: 1.7;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents p {
+  color: rgba(54, 84, 138, 0.8);
+  line-height: 1.5;
+  padding: 0;
+}
+#rtoc-config-area .rtoc_admin_wrapper .jin_popup_contents p button {
+  padding-top: 0 !important;
+}
+#rtoc-config-area .rtoc_admin_wrapper.jin-block .jin_popup, #rtoc-config-area .rtoc_admin_wrapper.jin-block .jin_popup_contents {
+  display: block;
+  opacity: 1;
+}
+#rtoc-config-area .rtoc_admin_wrapper.preset_contents table tr {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#rtoc-config-area .rtoc_admin_wrapper.preset_contents table th, #rtoc-config-area .rtoc_admin_wrapper.preset_contents table td {
+  width: 100%;
+  display: block;
+}
+#rtoc-config-area .rtoc_admin_wrapper.preset_contents table th {
+  font-size: 1.2rem;
+  padding-bottom: 8px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+#rtoc-config-area .rtoc_admin_wrapper.preset_contents table th::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.preset_contents table td {
+  padding: 0;
+  padding-left: 0;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_addon_contents table th::before {
+  background-color: #f64e57;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_addon_contents table td {
+  padding-left: 0;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_radio:checked + label {
+  background-color: #3F9CFF;
+  color: #fff;
+  border-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_list:checked + label {
+  border-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_list:checked + label .c-list-style li:first-of-type span.c-admin-decimal::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_list:checked + label .c-list-style li:first-of-type span.c-admin-round::before {
+  background-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_list:checked + label .c-list-style li:last-of-type::before {
+  border-color: #3F9CFF;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_red input[type=radio].rtoc_admin_radio:checked + label {
+  border-color: #f64e57;
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_yellow input[type=radio].rtoc_admin_radio:checked + label {
+  background-color: #ffd70f;
+  color: #5d4d00;
+  border-color: #ffd70f;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li {
+  margin-bottom: 1.5em;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul {
+  display: flex;
+  align-items: center;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul li {
+  margin-bottom: 0;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul li:first-of-type {
+  width: 30%;
+  font-size: 14px;
+  font-weight: bold;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul li:last-of-type {
+  width: 70%;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul li:last-of-type .wp-picker-container button {
+  margin-bottom: 0;
+}
+#rtoc-config-area .rtoc_admin_wrapper .rtoc_admin_color li ul li button {
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+}
+#rtoc-config-area input[type=radio].visual + label {
+  border: none;
+  padding: 32px 24px;
+  margin: 0 24px 24px 0;
+  border: 2px solid rgba(7, 23, 16, 0.1);
+}
+#rtoc-config-area .rtoc_admin_wrapper.rtoc_admin_green input[type=radio].rtoc_admin_radio.visual:checked + label {
+  background-color: #fff;
+  border-color: #3F9CFF;
+  color: #3F9CFF;
+}
+#rtoc-config-area .visual_frame {
+  width: 80px;
+  margin: 0 auto;
+  height: 80px;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame1 + label .visual_frame {
+  border: 1px solid rgba(18, 18, 18, 0.7);
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame2 + label .visual_frame {
+  outline: 4px solid rgba(18, 18, 18, 0.2);
+  outline-offset: -2px;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame3 + label .visual_frame {
+  border-top: 1px solid rgba(18, 18, 18, 0.7);
+  border-bottom: 1px solid rgba(18, 18, 18, 0.7);
+  height: 78px;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame4 + label .visual_frame {
+  border-top: 3px solid rgba(18, 18, 18, 0.7);
+  box-shadow: 1px 1px 6px 1px #ddd;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame5 + label .visual_frame {
+  border-top: 1px solid rgba(18, 18, 18, 0.7);
+  border-bottom: 1px solid rgba(18, 18, 18, 0.7);
+  position: relative;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame5 + label .visual_frame::before, #rtoc-config-area input[type=radio].rtoc_frame_design-frame5 + label .visual_frame::after {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  border-left: 1px solid rgba(18, 18, 18, 0.7);
+  height: calc(100% + 16px);
+  top: -8px;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame5 + label .visual_frame::before {
+  left: 8px;
+}
+#rtoc-config-area input[type=radio].rtoc_frame_design-frame5 + label .visual_frame::after {
+  right: 8px;
+}
+#rtoc-config-area input[type=radio].visual_animation + label {
+  width: 80%;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+#rtoc-config-area input[type=radio].visual_animation + label ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+#rtoc-config-area input[type=radio].visual_animation + label ul li:first-of-type {
+  width: 60%;
+  height: 80px;
+}
+#rtoc-config-area input[type=radio].visual_animation + label ul li:first-of-type div {
+  width: 70px;
+  height: 80px;
+  margin: auto;
+  border: 1px solid rgba(17, 17, 17, 0.5);
+}
+#rtoc-config-area input[type=radio].visual_animation + label ul li:last-of-type {
+  position: relative;
+  width: 40%;
+  text-align: center;
+}
+#rtoc-config-area input[type=radio].visual_animation + label ul li:last-of-type::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  height: calc(100% + 108px);
+  border-left: 1px solid rgba(7, 23, 16, 0.1);
+  top: -52px;
+  left: 0;
+}
+#rtoc-config-area input[type=radio].visual_preset + label {
+  padding: 24px;
+  margin: 0 32px 48px 0;
+  position: relative;
+}
+#rtoc-config-area input[type=radio].visual_preset + label span {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  bottom: -56px;
+  margin: 0 auto;
+}
+#rtoc-config-area .preset_bg, #rtoc-config-area .addon_bg {
+  position: relative;
+  width: 100px;
+  height: 127px;
+  margin: 0 auto;
+}
+#rtoc-config-area .preset_bg img, #rtoc-config-area .addon_bg img {
+  width: 100%;
+}
+#rtoc-config-area input[type=radio].visual_addon + label {
+  padding: 32px 0px 24px;
+  width: 162px;
+}
+#rtoc-config-area input[type=radio].visual_addon + label span {
+  width: 100%;
+  display: inline-block;
+  padding-top: 8px;
+  text-align: center;
+}
+
+#live-preview-area {
+  width: 40%;
+  padding-left: 20px;
+  padding-top: 24px;
+  position: relative;
+  display: none;
+}
+@media (min-width: 1200px) {
+  #live-preview-area {
+    display: block;
+  }
+}
+#live-preview-area .preview-area-wrapper {
+  position: relative;
+  height: 100%;
+}
+#live-preview-area .preview-area-wrapper .rtoc-preview-box {
+  position: sticky;
+  top: 48px;
+}
+@media screen and (max-width: 1080px) {
+  #live-preview-area .preview-area-wrapper .rtoc-preview-box {
+    display: none;
+  }
+}
+#live-preview-area .preview-area-wrapper .rtoc-preview-box .rtoc-preview-innder-box {
+  padding: 40px 24px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 1px #ddd;
+}
+
+.rtoc-caption {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: relative;
+}
+.rtoc-caption::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #3F9CFF;
+}
+
+.rtoc_using_wrapper h2 {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: relative;
+}
+.rtoc_using_wrapper h2::before {
+  position: absolute;
+  content: "";
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #3F9CFF;
+}
+.rtoc_using_wrapper .rtoc_using_box {
+  margin-bottom: 3em;
+}
+.rtoc_using_wrapper .rtoc_using_box .rtoc_admin_code {
+  padding: 16px 0px 16px 24px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 12px;
+  width: 100%;
+  background: #091e3e;
+  color: #fff;
+}
+.rtoc_using_wrapper .rtoc_using_box p {
+  margin: 0;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+.rtoc_using_wrapper .rtoc_using_box p.shortcode_sample {
+  margin-bottom: 0.5em;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table {
+  margin-top: 24px;
+  border-spacing: 0px;
+  border-collapse: separate;
+  border-spacing: 16px;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table td {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 18px 12px;
+  font-size: 1.1em;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table th {
+  text-align: left;
+  font-size: 1.4em;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table th:first-of-type {
+  width: 10%;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table th:nth-child(2) {
+  width: 15%;
+}
+.rtoc_using_wrapper .rtoc_using_box .using_table th:last-of-type {
+  width: 70%;
+}
+
+.rtoc_qa_box {
+  width: 49%;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+.rtoc_qa_box .rtoc_acc_box label {
+  position: relative;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: block;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  border-bottom: 1px solid #c7c7c7;
+}
+.rtoc_qa_box .rtoc_acc_box label img {
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+.rtoc_qa_box .rtoc_acc_box img {
+  width: 32px;
+  vertical-align: middle;
+  padding-right: 8px;
+}
+.rtoc_qa_box input[type=checkbox].rtoc_acc_input {
+  display: none;
+}
+.rtoc_qa_box .rtoc_acc_show {
+  padding: 24px 0 0;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box:not(:last-of-type) {
+  margin-bottom: 32px;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box p {
+  margin: 0;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box p.qa_explanation {
+  padding-left: 40px;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box .qa_answer {
+  position: relative;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-bottom: 8px;
+  padding-left: 40px;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box .qa_answer img {
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+.rtoc_qa_box .rtoc_acc_show .rtoc_acc_show_box p.qa_answer {
+  font-size: 1.1em;
+}
+
+#rtoc-mokuji-wrapper {
+  padding: 56px 40px;
+  background: #fff;
+  color: #666;
+}
+#rtoc-mokuji-wrapper.rtoc_helvetica {
+  font-family: "Helvetica", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", YuGothic, "Yu Gothic", "メイリオ", Meiryo, sans-serif;
+}
+#rtoc-mokuji-wrapper.rtoc_notosans {
+  font-family: "Noto Sans Japanese", sans-serif;
+}
+#rtoc-mokuji-wrapper.rtoc_close {
+  padding: 56px 40px 40px;
+}
+#rtoc-mokuji-wrapper.rtoc_close .rtoc-mokuji {
+  display: none !important;
+}
+#rtoc-mokuji-wrapper.rtoc_open .rtoc-mokuji {
+  display: block;
+}
+#rtoc-mokuji-wrapper.display_h2 .rtoc-mokuji.level-2 {
+  display: none;
+}
+#rtoc-mokuji-wrapper.display_h3 .rtoc-mokuji.level-3 {
+  display: none;
+}
+#rtoc-mokuji-wrapper #rtoc-mokuji-title {
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0px;
+  font-size: 2em;
+  transition: all 0.3s;
+}
+#rtoc-mokuji-wrapper #rtoc-mokuji-title.align_left {
+  text-align: left;
+}
+#rtoc-mokuji-wrapper #rtoc-mokuji-title.align_center {
+  text-align: center;
+}
+#rtoc-mokuji-wrapper #rtoc-mokuji-title .rtoc_open_close {
+  position: absolute;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 10px;
+  color: #707070;
+  background-color: #F2F2F2;
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  padding: 8px 12px;
+  box-sizing: content-box;
+  text-decoration: none;
+}
+#rtoc-mokuji-wrapper.frame1 {
+  border: 1px solid #757575;
+}
+#rtoc-mokuji-wrapper.frame2 {
+  position: relative;
+  border-radius: 2px;
+}
+#rtoc-mokuji-wrapper.frame2::before {
+  position: absolute;
+  content: "";
+  border: 4px solid #111;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-color: #555555;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+}
+#rtoc-mokuji-wrapper.frame3 {
+  padding: 56px 32px;
+  border-top: 2px solid #757575;
+  border-bottom: 2px solid #757575;
+}
+#rtoc-mokuji-wrapper.frame4 {
+  border-top: 4px solid #757575;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+#rtoc-mokuji-wrapper.frame5 {
+  position: relative;
+  padding: 56px 48px;
+  border-top: 1px solid #757575;
+  border-bottom: 1px solid #757575;
+}
+#rtoc-mokuji-wrapper.frame5::before, #rtoc-mokuji-wrapper.frame5::after {
+  position: absolute;
+  content: "";
+  top: -16px;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  width: 1px;
+  height: calc(100% + 32px);
+  background-color: #757575;
+}
+#rtoc-mokuji-wrapper.frame5::before {
+  left: 16px;
+}
+#rtoc-mokuji-wrapper.frame5::after {
+  right: 16px;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji {
+  transition: all 0.3s;
+  margin-bottom: 8px;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1 {
+  font-size: 16px;
+  counter-reset: li chapter;
+  padding-left: 16px;
+  margin: 0;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ul > .rtoc-item {
+  position: relative;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ul > .rtoc-item::before {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: auto;
+  left: -1em;
+  bottom: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #757575;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ol > .rtoc-item {
+  position: relative;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ol > .rtoc-item::before {
+  counter-increment: li;
+  content: counter(li) ". ";
+  position: absolute;
+  left: -1em;
+  background-color: initial !important;
+  top: auto !important;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ol2 > .rtoc-item {
+  position: relative;
+  padding-left: 20px;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ol2 > .rtoc-item::before {
+  counter-increment: li;
+  content: counter(li, decimal-leading-zero) "";
+  position: absolute;
+  left: -1em;
+  background-color: initial !important;
+  top: auto !important;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_ol2 > .rtoc-item::after {
+  position: absolute;
+  content: "";
+  top: 12px;
+  right: auto;
+  left: 8px;
+  bottom: auto;
+  height: 18px;
+  width: 1.5px;
+  border-radius: 1px;
+  background-color: #757575;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-1.h2_none {
+  padding-left: 0;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2 {
+  font-size: 14px;
+  padding-left: 16px;
+  margin: 0 0 12px;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ul > .rtoc-item {
+  position: relative;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ul > .rtoc-item::before {
+  position: absolute;
+  content: "";
+  top: 16px;
+  right: auto;
+  left: -1em;
+  bottom: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #757575;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol {
+  counter-reset: item;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol > .rtoc-item {
+  position: relative;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol > .rtoc-item::before {
+  counter-increment: item;
+  content: counter(item) ". ";
+  position: absolute;
+  left: -1em;
+  background-color: initial !important;
+  top: auto !important;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol2 {
+  counter-reset: item;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol2 > .rtoc-item {
+  position: relative;
+  padding-left: 20px;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol2 > .rtoc-item::before {
+  counter-increment: item;
+  content: counter(item, decimal-leading-zero) "";
+  position: absolute;
+  left: -1em;
+  background-color: initial !important;
+  top: auto !important;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-2.h3_ol2 > .rtoc-item::after {
+  position: absolute;
+  content: "";
+  top: 12px;
+  right: auto;
+  left: 8px;
+  bottom: auto;
+  height: 18px;
+  width: 1.5px;
+  border-radius: 1px;
+  background-color: #757575;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji.level-3 {
+  font-size: 12px;
+  padding-left: 16px;
+  margin: 4px 0;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item {
+  position: relative;
+  margin-bottom: 0;
+  padding-top: 12px;
+  list-style: none;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item a {
+  text-decoration: none;
+  color: #555555;
+}
+#rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item a:hover {
+  text-decoration: underline;
+}
