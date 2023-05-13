@@ -1,6 +1,6 @@
 @use '../../global' as *;
 
-.p-content__centerd {
+.p-content__centered {
   $this: &;
   &__inner {
     #{$this }--dev {
