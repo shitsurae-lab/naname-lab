@@ -15,11 +15,11 @@ function register_custom_post_type()
       ),
       'description' => 'カスタム投稿タイプ("achievement")に関する説明',
       'public' => true,
-      'show_ui' => true,
+      //'show_ui' => true,
       'show_in_nav_menus' => true,
       'show_in_menu' => true,
       'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
-      'has_archive' => true, //投稿した記事の一覧ページ作成
+      //'has_archive' => true, //投稿した記事の一覧ページ作成
       'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
       'menu_icon' => 'dashicons-hammer',
       'supports' => array( //記事編集画面に表示する項目
@@ -54,10 +54,10 @@ function register_custom_post_type()
       'description' => '実績カテゴリーの説明文です。',  //説明文
       'hierarchical' => true,  //カテゴリー形式
       'show_in_rest' => true,  //Gutenberg で表示
-      'rewrite' => array(
-        'slug' => 'achievement',
-        'hierarchical' => true
-      )
+      // 'rewrite' => array(
+      //   'slug' => 'achievement',
+      //   'hierarchical' => true
+      // )
     )
   );
   //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
@@ -77,10 +77,10 @@ function register_custom_post_type()
       'description' => 'タグの説明文です。',  //説明文
       'hierarchical' => false,  //タグ形式
       'show_in_rest' => true, //Gutenberg で表示
-      'rewrite' => array(
-        'slug' => 'achievement',
-        'hierarchical' => true
-      )
+      // 'rewrite' => array(
+      //   'slug' => 'achievement',
+      //   'hierarchical' => true
+      // )
     )
   );
   register_taxonomy_for_object_type('achievement_cat', 'achievement');
@@ -141,10 +141,10 @@ function register_custom_post_type()
       'description' => 'スキルカテゴリーの説明文です。',  //説明文
       'hierarchical' => true,  //カテゴリー形式
       'show_in_rest' => true,  //Gutenberg で表示
-      'rewrite' => array(
-        'slug' => 'skill',
-        'hierarchical' => true
-      )
+      // 'rewrite' => array(
+      //   'slug' => 'skill',
+      //   'hierarchical' => true
+      // )
     )
   );
   //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
@@ -164,10 +164,10 @@ function register_custom_post_type()
       'description' => 'タグの説明文です。',  //説明文
       'hierarchical' => false,  //タグ形式
       'show_in_rest' => true,  //Gutenberg で表示
-      'rewrite' => array(
-        'slug' => 'skill',
-        'hierarchical' => true
-      )
+      // 'rewrite' => array(
+      //   'slug' => 'skill',
+      //   'hierarchical' => true
+      // )
     )
   );
   register_taxonomy_for_object_type('skill_cat', 'skill');
