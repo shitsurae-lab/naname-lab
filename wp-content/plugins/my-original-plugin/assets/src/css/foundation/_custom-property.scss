@@ -43,13 +43,22 @@
   --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem); //Min 40px Max 72px
   --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem); //Min 64px, Max 96px
 
-  //Global Font
-  --global-font-lg: clamp(
+  /*  Global Font */
+  //H2
+  --global-font-xl: clamp(
     1.875rem,
     1.2083rem + 1.3889vw,
     2.25rem
   ); //Min30px, Max36px
 
+  //H3(モバイルフォント>デスクトップフォント)
+  --global-font-lg: clamp(
+    1.75rem,
+    1.9722rem + -0.463vw,
+    1.625rem
+  ); //Min28px, Max26px
+
+  //Paragraph
   --global-font-regular: clamp(
     0.875rem,
     0.6528rem + 0.463vw,
