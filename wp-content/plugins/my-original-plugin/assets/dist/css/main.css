@@ -1719,8 +1719,8 @@ details.p-tag__details[open] .p-tag__icon {
 .p-sidebar__item a::before {
   content: "";
   display: block;
-  width: 8px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
   background: var(--color-spindle);
   background: var(--color-moonlit-asteroid);
   position: absolute;
