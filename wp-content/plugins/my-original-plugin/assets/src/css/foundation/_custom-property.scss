@@ -2,6 +2,12 @@
 :root,
 :before,
 :after {
+  //add arkhe-width
+  --ark-width--container--xl: 1200px;
+
+  --ark-width--article--md: 1000px;
+
+  //space
   --space-unit: 1rem; //root16px換算
   --space-xxs: calc(0.25 * var(--space-unit)); //4px
   --space-xs: calc(0.5 * var(--space-unit)); //8px
@@ -36,6 +42,19 @@
   ); //Min 32px(2rem) Max 56px(3.5rem);
   --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem); //Min 40px Max 72px
   --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem); //Min 64px, Max 96px
+
+  //Global Font
+  --global-font-lg: clamp(
+    1.875rem,
+    1.2083rem + 1.3889vw,
+    2.25rem
+  ); //Min30px, Max36px
+
+  --global-font-regular: clamp(
+    0.875rem,
+    0.6528rem + 0.463vw,
+    1rem
+  ); //Min14px Max16px
 
   // Color
   --color-primary: #{$c-primary};
