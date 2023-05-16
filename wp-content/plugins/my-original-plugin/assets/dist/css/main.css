@@ -987,7 +987,6 @@ a {
   background: var(--color-moonlit-asteroid);
   overflow: visible;
   border-radius: var(--space-xs);
-  aspect-ratio: 6/1;
 }
 .p-tag__content__inner::after {
   position: absolute;
@@ -1004,12 +1003,11 @@ a {
 }
 .p-tag__list {
   display: flex;
-  flex-wrap: nowrap;
-  margin-left: -8px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .p-tag__item {
   display: inline-block;
-  margin-right: 8px;
 }
 .p-tag__item a {
   text-decoration: none;
