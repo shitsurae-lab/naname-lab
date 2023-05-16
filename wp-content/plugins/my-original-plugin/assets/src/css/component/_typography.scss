@@ -1,28 +1,28 @@
 @use '../global' as *;
 
 .p-front__content {
-  h2.ark-block-heading__main {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.125em;
-    font-size: var(--global-font-lg);
-    line-height: 1;
-    // color: transparent;
-    // background-image: var(--color-moonlit-asteroid);
-    // -webkit-background-clip: text;
-    color: $color-weldon-blue;
-    & + .ark-block-heading__sub {
-      // color: var(--color-moonlit-asteroid);
-      color: $color-outer-space;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-  }
-  h3 {
-    font-size: var(--font-lg);
-  }
+  // h2.ark-block-heading__main {
+  //   font-family: 'Montserrat', sans-serif;
+  //   font-weight: 500;
+  //   letter-spacing: 0.125em;
+  //   font-size: var(--global-font-lg);
+  //   line-height: 1;
+  //   // color: transparent;
+  //   // background-image: var(--color-moonlit-asteroid);
+  //   // -webkit-background-clip: text;
+  //   color: $color-weldon-blue;
+  //   & + .ark-block-heading__sub {
+  //     // color: var(--color-moonlit-asteroid);
+  //     color: $color-outer-space;
+  //     font-weight: 500;
+  //     font-size: 1rem;
+  //   }
+  // }
+  // h3 {
+  //   font-size: var(--font-lg);
+  // }
 
-  p {
-    font-size: var(--global-font-regular);
-  }
+  // p {
+  //   font-size: var(--global-font-regular);
+  // }
 }
