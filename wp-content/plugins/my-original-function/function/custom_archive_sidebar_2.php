@@ -11,7 +11,7 @@ function custom_archive_sidebar()
     $taxonomy_terms = get_terms($tax_name); //ref. 関数リファレンス get_terms: 直近の子タームを返す。0の場合はトップレベルのタームのみを返す
     //URL: https://bit.ly/3IAt8JB
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
-      echo ' <div class="p-sidebar__content"><h3>' . $cat_name . '</h3><ul>';
+      echo ' <div class="p-sidebar__content"><ul>';
       foreach ($taxonomy_terms as $taxonomy_term) :
         if ($taxonomy_term) :
           $taxonomy_term_link = get_term_link($taxonomy_term);
@@ -28,7 +28,7 @@ function custom_archive_sidebar()
     $tax_name = 'skill_cat';
     $taxonomy_terms = get_terms($tax_name);
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
-      echo ' <div class="p-sidebar__content"><h3>' . $cat_name . '</h3><ul>';
+      echo ' <div class="p-sidebar__content"><ul>';
       foreach ($taxonomy_terms as $taxonomy_term) :
         if ($taxonomy_term) : //親タームがない(0が代入されるとき)条件
           $taxonomy_term_link = get_term_link($taxonomy_term);
@@ -47,7 +47,7 @@ function custom_archive_sidebar()
     $tax_name = 'achievement_cat';
     $taxonomy_terms = get_terms($tax_name, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
-      echo ' <div class="p-sidebar__content"><h3>' . $cat_name . '</h3><ul>';
+      echo ' <div class="p-sidebar__content"><ul>';
       foreach ($taxonomy_terms as $taxonomy_term) :
         if ($taxonomy_term) :
           $taxonomy_term_link = get_term_link($taxonomy_term);
