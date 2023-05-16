@@ -1,0 +1,25 @@
+@use '../global' as *;
+/**
+* COLOR
+**/
+body {
+  color: $color-outer-space;
+}
+
+/**
+* FONTS
+**/
+body {
+  letter-spacing: 0.1em;
+}
+
+/**
+* LETTER SPACING
+**/
+
+/**
+* HEADING
+**/
+.ark-block-heading:has(h2) {
+  margin-bottom: 60px;
+}
