@@ -76,3 +76,14 @@ add_action('wp_enqueue_scripts', function () {
 //   return str_replace('></script>', ' crossorigin="anonymous"></script>', $tag);
 // }
 // add_filter('script_loader_tag', 'custom_script_loader_tag', 10, 2);
+
+/*---- Google Web Fonts ----*/
+function add_google_fonts()
+{
+  wp_register_style(
+    'googleFonts',
+    'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,600&display=swap'
+  );
+  wp_enqueue_style('googleFonts');
+}
+add_action('wp_enqueue_scripts', 'add_google_fonts');
