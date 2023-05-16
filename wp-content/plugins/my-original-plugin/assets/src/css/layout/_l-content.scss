@@ -1,0 +1,13 @@
+@use '../global' as *;
+
+//ページ全体の幅を1200としたときのコンテンツセクションの幅(max-width: 1000pxに設定)
+.ark-block-section:where(.alignfull):not([data-inner='full'])
+  > .ark-block-section__body {
+  margin: 0 auto;
+  max-width: calc(
+    var(--ark-width--article--md, 1000px) + var(--ark-padding--container, 0px) *
+      2
+  );
+  padding-left: var(--ark-padding--container, 0);
+  padding-right: var(--ark-padding--container, 0);
+}
