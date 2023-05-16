@@ -311,6 +311,8 @@ a {
 :root,
 :before,
 :after {
+  --ark-width--container--xl: 1200px;
+  --ark-width--article--md: 1000px;
   --space-unit: 1rem;
   --space-xxs: calc(0.25 * var(--space-unit));
   --space-xs: calc(0.5 * var(--space-unit));
@@ -335,6 +337,16 @@ a {
   );
   --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem);
   --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem);
+  --global-font-lg: clamp(
+    1.875rem,
+    1.2083rem + 1.3889vw,
+    2.25rem
+  );
+  --global-font-regular: clamp(
+    0.875rem,
+    0.6528rem + 0.463vw,
+    1rem
+  );
   --color-primary: #ffffff;
   --color-secondary: #333333;
   --color-success: #062d6a;
@@ -415,6 +427,13 @@ a {
   --color-linear-royal-golden: linear-gradient(0deg, #ffe384 0%, #5570ce 100%);
 }
 
+.ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body {
+  margin: 0 auto;
+  max-width: calc(var(--ark-width--article--md, 1000px) + var(--ark-padding--container, 0px) * 2);
+  padding-left: var(--ark-padding--container, 0);
+  padding-right: var(--ark-padding--container, 0);
+}
+
 .c-pageTitle__main {
   text-align: left;
 }
@@ -424,19 +443,23 @@ a {
 }
 
 .p-front__content h2.ark-block-heading__main {
-  font-size: var(--font-hero);
-  line-height: 1.2;
-  color: transparent;
-  background-image: var(--color-moonlit-asteroid);
-  -webkit-background-clip: text;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.125em;
+  font-size: var(--global-font-lg);
+  line-height: 1;
+  color: #80999c;
 }
 .p-front__content h2.ark-block-heading__main + .ark-block-heading__sub {
-  color: var(--color-moonlit-asteroid);
+  color: #454545;
   font-weight: 500;
   font-size: 1rem;
 }
 .p-front__content h3 {
   font-size: var(--font-lg);
+}
+.p-front__content p {
+  font-size: var(--global-font-regular);
 }
 
 .c-more__arrow.u-uppercase {
@@ -1020,6 +1043,30 @@ a {
 
 details.p-tag__details[open] .p-tag__icon {
   transform: rotate(180deg);
+}
+
+/**
+* COLOR
+**/
+body {
+  color: #454545;
+}
+
+/**
+* FONTS
+**/
+body {
+  letter-spacing: 0.1em;
+}
+
+/**
+* LETTER SPACING
+**/
+/**
+* HEADING
+**/
+.ark-block-heading:has(h2) {
+  margin-bottom: 60px;
 }
 
 .c-gnav .menu-item .c-gnav__a {
