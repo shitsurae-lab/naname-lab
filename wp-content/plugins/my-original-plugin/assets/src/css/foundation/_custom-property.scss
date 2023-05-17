@@ -35,11 +35,13 @@
   //   0rem + 2.666666666666667vw,
   //   2rem
   // ); //Min 16px Max 32px
-  --font-hero: clamp(
-    2rem,
-    1.6359rem + 1.5534vw,
-    3.5rem
-  ); //Min 32px(2rem) Max 56px(3.5rem);
+  // --font-hero: clamp(
+  //   2rem,
+  //   1.6359rem + 1.5534vw,
+  //   3.5rem
+  // );
+  //Min 32px(2rem) Max 56px(3.5rem);
+  --font-hero: clamp(1.75rem, 0.4167rem + 2.7778vw, 2.5rem); //Min28px Max 40px
   --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem); //Min 40px Max 72px
   --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem); //Min 64px, Max 96px
 
@@ -106,6 +108,11 @@
     rgba(15, 32, 39, 0.86),
     rgba(44, 83, 100, 0.86) 100%,
     rgba(32, 58, 67, 0.86) 50%
+  );
+  --color-linear-weldon-blue: linear-gradient(
+    45deg,
+    rgba(128, 153, 156, 0.86) 0%,
+    rgba(128, 156, 145, 0.86) 100%
   );
   // Linear Gradient
   --color-linear-orca: linear-gradient(
