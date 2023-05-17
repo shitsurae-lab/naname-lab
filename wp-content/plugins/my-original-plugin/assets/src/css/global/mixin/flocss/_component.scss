@@ -76,7 +76,8 @@
 //矢印とふわっと丸
 @mixin arrow_and_circle(
   $bgi:
-    url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%228%22%20style%3D%22enable-background%3Anew%200%200%20300%208%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3Anone%3Bstroke%3A%23000%3Bstroke-width%3A2%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A10%22%20d%3D%22M36.509%207h262l-8.614-6%22%2F%3E%3C%2Fsvg%3E')
+    url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%228%22%20style%3D%22enable-background%3Anew%200%200%20300%208%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3Anone%3Bstroke%3A%23000%3Bstroke-width%3A2%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A10%22%20d%3D%22M36.509%207h262l-8.614-6%22%2F%3E%3C%2Fsvg%3E'),
+  $color-bg: $color-moonlit-asteroid
 ) {
   position: relative;
   font-size: var(--font-sm);
@@ -101,6 +102,7 @@
     // background: rgba(240, 240, 240, 0.8);
     // background: var(--color-linear-fly-high);
     background: var(--color-moonlit-asteroid);
+    background: $color-bg;
     transition: all 1.2s;
   }
   &::after {
