@@ -31,9 +31,12 @@
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
       transition: all 0.4s;
-      h3.p-postList__title {
+      aspect-ratio: 11 / 6;
+      h2.p-postList__title {
         font-size: var(--font-sm);
         text-align: left;
+        color: $color-weldon-blue;
+        font-weight: 500;
       }
     }
     &:hover {
