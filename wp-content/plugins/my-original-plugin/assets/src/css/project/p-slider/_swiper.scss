@@ -1,0 +1,179 @@
+@use '../../global' as *;
+:root {
+  --easing: cubic-bezier(0.2, 1, 0.2, 1);
+  --transition: 0.8s var(--easing);
+}
+
+.p-index__hero {
+  position: relative;
+  .swiper.hero-swiper.swiper-fade {
+    position: relative;
+    // max-width: 1920px;
+    //* hero-sliderで定義したmax-widthをコメントアウトし、.swiper.hero-sliderに.l-containerを付記した
+    margin: 0 auto;
+    .swiper-wrapper {
+      //スライダー高さ本来は数字指定のほうが良さそう...
+      // height: 720px;
+      height: auto;
+      //クリップパスを実行する際の記述
+      // clip-path: polygon(2% 2%, 98% 2%, 100% 100%, 50% 100%);
+      // animation: clipAnimation 32000ms linear infinite alternate;
+      .swiper-slide {
+        $this: &;
+
+        &__content {
+          //見出し、投稿日、カテゴリー名等
+          width: fit-content;
+          position: relative;
+          padding-left: 0px;
+          position: absolute;
+          bottom: 3rem;
+          left: 0;
+          z-index: 2;
+
+          @include mq(tablet) {
+            // width: 100%;
+            bottom: 5rem;
+          }
+        }
+
+        &__image {
+          //スライダー画像
+          grid-column: 1 / -1;
+          grid-area: 1 / -1;
+          width: 100%;
+
+          @include mq(tablet) {
+          }
+          figure {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            clip-path: url(#cp-top--mobile);
+            overflow: hidden;
+            @include mq(tablet) {
+              max-width: 1200px;
+              width: 100%;
+              margin: 0 auto;
+              aspect-ratio: 8 / 5;
+              clip-path: url(#cp-top);
+            }
+          }
+        }
+
+        &__mask {
+        }
+        .swiper-slide__textarea {
+          a {
+            color: var(--color-moonlit-asteroid);
+            text-decoration: none;
+          }
+          h2 {
+            font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+            font-size: var(--font-hero);
+            font-weight: 500;
+            color: $color-weldon-blue;
+            // color: transparent;
+            // background: var(--color-linear-weldon-blue);
+            // background-clip: text;
+          }
+          p {
+            font-size: var(--font-md);
+          }
+
+          .p-home__info {
+            display: flex;
+            margin-left: -16px;
+
+            //カスタム投稿タイプ - ターム
+            &--term {
+              margin-left: 16px;
+              display: inline-block;
+              padding: 6px 12px;
+              border-radius: 16px;
+              background: var(--color-secondary);
+              font-size: var(--font-xs);
+              color: var(--color-primary);
+            }
+
+            &--date {
+              margin-left: 16px;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-slide {
+    transition-property: opacity, transform !important;
+    pointer-events: none;
+    &-active {
+      pointer-events: auto;
+    }
+    .swiper-slide__image img {
+      transition: 7s 1s linear;
+
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      @include mq(tablet) {
+        aspect-ratio: auto;
+        object-fit: full;
+      }
+    }
+
+    &[class*='-active'] {
+      .swiper-slide__image img {
+        transition-delay: 0s;
+        // transform: scale(1.5);
+        // transform: translateX(1.5%) scale(1.05);
+        // transform: translateX(1.5%);
+      }
+    }
+    //Textarea
+    //見出し
+    .p-home__heading {
+    }
+    .p-home__info {
+      animation-delay: 0.2s;
+    }
+    .p-home__more {
+      animation-delay: 0.4s;
+    }
+
+    //見出し: アニメーションスタート
+    &.anm-started {
+      .swiper-slide__heading,
+      .p-home__info,
+      .p-home__more {
+        animation-name: hero-fadeIn;
+      }
+    }
+    //見出し: アニメーションフィニッシュ
+    &.anm-finished {
+      .swiper-slide__heading,
+      .p-home__info,
+      .p-home__more {
+        animation-name: hero-fadeOut;
+      }
+    }
+    @keyframes hero-fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes hero-fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+}
