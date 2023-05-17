@@ -1,8 +1,10 @@
 @use '../global' as *;
 
+//固定ページタイトル&サブタイトル
 .c-pageTitle {
   &__main {
     text-align: left;
+    letter-spacing: 0.1em;
   }
   &__sub--custom {
     font-size: 0.9rem;

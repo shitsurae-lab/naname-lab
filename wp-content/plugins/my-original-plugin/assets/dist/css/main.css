@@ -443,6 +443,7 @@ a {
 
 .c-pageTitle__main {
   text-align: left;
+  letter-spacing: 0.1em;
 }
 .c-pageTitle__sub--custom {
   font-size: 0.9rem;
