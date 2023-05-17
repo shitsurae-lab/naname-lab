@@ -1,48 +1,53 @@
 @use '../global' as *;
 
 //右矢印&ふわっと丸
-.c-more__arrow.u-uppercase {
-  // @include m-more__arrow();
-  display: block;
-  margin-top: 0;
+.c-more__arrow {
+  $this: &;
+  &.u-uppercase {
+    display: block;
+    margin-top: 0;
 
-  a {
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    // color: var(--color-bahama-blue);
-    color: var(--color-moonlit-asteroid);
-    font-size: var(--font-md);
-
-    &:hover {
-      .c-more__arrow--text {
-        &::before {
-          transform: translateX(8px) scale(1.2);
-          // background: rgba(240, 240, 240, 1);
-          // background: var(--color-linear-fly-high);
-          background: var(--color-moonlit-asteroid);
+    a {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      // color: var(--color-bahama-blue);
+      color: var(--color-moonlit-asteroid);
+      font-size: var(--font-md);
+      #{$this}--text {
+        @include arrow_and_circle($color-bg: var(--color-linear-weldon-blue));
+      }
+      &:hover {
+        #{$this}--text {
+          &::before {
+            transform: translateX(8px) scale(1.2);
+            // background: rgba(240, 240, 240, 1);
+            // background: var(--color-linear-fly-high);
+            background: var(--color-moonlit-asteroid);
+            background: $color-linear-weldon-blue;
+          }
+          &::after {
+            animation: btn-arrow-animation 1.2s;
+          }
         }
-        &::after {
-          animation: btn-arrow-animation 1.2s;
+
+        @keyframes btn-arrow-animation {
+          0% {
+            background-position: right center;
+          }
+          100% {
+            background-position: 160px center;
+          }
         }
       }
-
-      @keyframes btn-arrow-animation {
-        0% {
-          background-position: right center;
-        }
-        100% {
-          background-position: 160px center;
-        }
+      &.-textright {
+        text-align: right;
       }
     }
-    &.-textright {
-      text-align: right;
-    }
-  }
 
-  .c-more__arrow--text {
-    @include arrow_and_circle();
+    // .c-more__arrow--text {
+    //   @include arrow_and_circle($color-bg: var(--color-linear-weldon-blue));
+    // }
   }
 }
 
