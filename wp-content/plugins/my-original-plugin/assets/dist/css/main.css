@@ -1071,6 +1071,9 @@ body {
 }
 .p-front__content h3 {
   font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.125em;
+  color: #80999c;
 }
 
 .c-gnav .menu-item .c-gnav__a {
