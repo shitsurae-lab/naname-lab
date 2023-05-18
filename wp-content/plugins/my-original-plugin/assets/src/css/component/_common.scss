@@ -54,3 +54,27 @@ body {
     color: $color-weldon-blue;
   }
 }
+
+/* PAGE */
+.p-page__content {
+  .p-page__intro__heading,
+  .p-page__profile__heading {
+    .ark-block-heading__main {
+      font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.125em;
+      font-size: var(--global-font-xl);
+      line-height: 1;
+      // color: transparent;
+      // background-image: var(--color-moonlit-asteroid);
+      // -webkit-background-clip: text;
+      color: $color-weldon-blue;
+      & + .ark-block-heading__sub {
+        // color: var(--color-moonlit-asteroid);
+        color: $color-outer-space;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+    }
+  }
+}
