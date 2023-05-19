@@ -5,4 +5,5 @@
 @forward 'fluid';
 @forward 'pagination';
 @forward 'tag';
-@forward 'common';
+@forward 'common'; //common CSS(global DIRに移動するかも)
+@forward 'definition'; //定義リスト

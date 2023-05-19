@@ -1,0 +1,87 @@
+@use '../global' as *;
+.c-definition {
+  $this: &;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    #{$this}__dt {
+      border-top: 1px solid #cccccc;
+      background: orangered;
+    }
+    #{$this}__dd {
+      border-top: 1px solid #cccccc;
+    }
+    @include mq(tablet) {
+      flex-direction: row;
+      #{$this}__dt {
+        background: transparent;
+      }
+    }
+    @include mq(pc) {
+      #{$this}__dt {
+        width: min(240px, 33%);
+        flex: 1 1 min(240px, 33%);
+        position: relative;
+      }
+      #{$this}__dd {
+        width: min(calc(100% - 240px), calc(100% - 33%));
+        flex: 1 1 min(calc(100% - 240px), calc(100% - 33%));
+        border-left: 1px solid #cccccc;
+        position: relative;
+      }
+    }
+  }
+  &__list:first-child {
+    #{$this}__dt,
+    #{$this}__dd {
+      @include mq(tablet) {
+        border-top: none;
+      }
+    }
+  }
+  &__list:not(:first-child) {
+    @include mq(pc) {
+      #{$this}__dt {
+        &::before {
+          //dtの「上」罫線(border-top)「右」一部を消す
+          content: '';
+          display: inline-block;
+          width: 4px;
+          height: 2px;
+          background: var(--ark-color--gray);
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translateY(-50%);
+        }
+      }
+      #{$this}__dd {
+        &::before {
+          //ddの「上」罫線(border-top)「左」一部を消す
+          content: '';
+          display: inline-block;
+          width: 4px;
+          height: 2px;
+          background: var(--ark-color--gray);
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          //ddの「左」罫線(border-left)「上」一部を消す
+          content: '';
+          display: inline-block;
+          width: 2px;
+          height: 8px;
+          background: var(--ark-color--gray);
+          position: absolute;
+          top: -4px;
+          left: 0;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}
