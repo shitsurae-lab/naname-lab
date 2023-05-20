@@ -7,9 +7,11 @@
     #{$this}__dt {
       border-top: 1px solid #cccccc;
       background: orangered;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
     }
     #{$this}__dd {
       border-top: 1px solid #cccccc;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
     }
     @include mq(tablet) {
       flex-direction: row;
