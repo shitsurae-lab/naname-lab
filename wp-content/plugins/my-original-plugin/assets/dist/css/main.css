@@ -440,6 +440,19 @@ a {
   padding-left: var(--ark-padding--container, 0);
   padding-right: var(--ark-padding--container, 0);
 }
+.ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body .ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body {
+  margin: 0 auto;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 1000px) {
+  .ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body .ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body {
+    max-width: calc(var(--ark-width--article--md, 1000px) + var(--ark-padding--container, 0px) * 2);
+    padding-left: var(--ark-padding--container, 0);
+    padding-right: var(--ark-padding--container, 0);
+  }
+}
 
 .c-pageTitle__main {
   text-align: left;
@@ -1105,9 +1118,11 @@ body {
 .c-definition__list .c-definition__dt {
   border-top: 1px solid #cccccc;
   background: orangered;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
 }
 .c-definition__list .c-definition__dd {
   border-top: 1px solid #cccccc;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
 }
 @media (min-width: 600px) {
   .c-definition__list {
@@ -2064,6 +2079,40 @@ article.skills .p-entry__content {
   margin-right: auto;
 }
 /* 固定ページ 導入セクション */
+.p-page__profile__card .ark-block-section__body {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 600px) {
+  .p-page__profile__card .ark-block-section__body {
+    padding-left: var(--ark-padding--container, 0);
+    padding-right: var(--ark-padding--container, 0);
+  }
+}
+@media (min-width: 600px) {
+  .p-page__profile__card__inner.ark-block-columns .ark-block-column:first-child {
+    width: min(160px, 21.25%);
+  }
+}
+@media (min-width: 1000px) {
+  .p-page__profile__card__inner.ark-block-columns .ark-block-column:first-child {
+    width: min(160px, 24.75%);
+  }
+  .p-page__profile__card__inner.ark-block-columns .ark-block-column:first-child figure {
+    margin: 0.5em 0 0;
+  }
+}
+@media (min-width: 600px) {
+  .p-page__profile__card__inner.ark-block-columns .ark-block-column:nth-child(2) {
+    width: min(100% - var(--arkb-gap--x) - 160px, 72%);
+  }
+}
+@media (min-width: 1000px) {
+  .p-page__profile__card__inner.ark-block-columns .ark-block-column:nth-child(2) {
+    width: min(100% - var(--arkb-gap--x) - 160px, 74.75%);
+  }
+}
+
 :root {
   --easing: cubic-bezier(0.2, 1, 0.2, 1);
   --transition: 0.8s var(--easing);

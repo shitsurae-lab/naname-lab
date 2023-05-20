@@ -1,0 +1,35 @@
+@use '../../global' as *;
+.p-page__profile__card {
+  $this: &;
+  .ark-block-section__body {
+    padding-left: 0;
+    padding-right: 0;
+    @include mq(tablet) {
+      padding-left: var(--ark-padding--container, 0);
+      padding-right: var(--ark-padding--container, 0);
+    }
+  }
+  &__inner.ark-block-columns {
+    .ark-block-column {
+      &:first-child {
+        @include mq(tablet) {
+          width: min(160px, 21.25%);
+        }
+        @include mq(pc) {
+          width: min(160px, 24.75%);
+          figure {
+            margin: 0.5em 0 0;
+          }
+        }
+      }
+      &:nth-child(2) {
+        @include mq(tablet) {
+          width: min(100% - var(--arkb-gap--x) - 160px, 72%);
+        }
+        @include mq(pc) {
+          width: min(calc(100% - var(--arkb-gap--x) - 160px), 74.75%);
+        }
+      }
+    }
+  }
+}
