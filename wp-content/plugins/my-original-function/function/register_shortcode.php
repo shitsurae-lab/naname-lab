@@ -107,3 +107,13 @@ function register_more_arrow_right($atts)
 }
 add_shortcode('c-more__circle', 'register_more_arrow_right');
 //END: テキスト + 丸矢印
+
+function register_shortcode_fontawesome($atts)
+{
+  extract(shortcode_atts(array(
+    'icon' => 'fab fa-wordpress',
+  ), $atts));
+  $output = '<i class="' . $icon . '"></i>';
+  return $output;
+}
+add_shortcode('c-fontawesome', 'register_shortcode_fontawesome');
