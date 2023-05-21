@@ -1,34 +1,61 @@
 @use '../../global' as *;
-.p-page__profile__card {
-  $this: &;
-  .ark-block-section__body {
-    padding-left: 0;
-    padding-right: 0;
-    @include mq(tablet) {
-      padding-left: var(--ark-padding--container, 0);
-      padding-right: var(--ark-padding--container, 0);
+.p-page__profile {
+  &__card {
+    .ark-block-section__body {
+      padding-left: 0;
+      padding-right: 0;
+      @include mq(tablet) {
+        padding-left: var(--ark-padding--container, 0);
+        padding-right: var(--ark-padding--container, 0);
+      }
     }
-  }
-  &__inner.ark-block-columns {
-    .ark-block-column {
-      &:first-child {
-        @include mq(tablet) {
-          width: min(160px, 21.25%);
+    &__inner.ark-block-columns {
+      .ark-block-column {
+        &:first-child {
+          @include mq(tablet) {
+            width: min(160px, 21.25%);
+          }
+          @include mq(pc) {
+            width: min(160px, 24.75%);
+            figure {
+              margin: 0.5em 0 0;
+            }
+          }
         }
-        @include mq(pc) {
-          width: min(160px, 24.75%);
-          figure {
-            margin: 0.5em 0 0;
+        &:nth-child(2) {
+          @include mq(tablet) {
+            width: min(100% - var(--arkb-gap--x) - 160px, 72%);
+          }
+          @include mq(pc) {
+            width: min(calc(100% - var(--arkb-gap--x) - 160px), 74.75%);
           }
         }
       }
-      &:nth-child(2) {
-        @include mq(tablet) {
-          width: min(100% - var(--arkb-gap--x) - 160px, 72%);
-        }
-        @include mq(pc) {
-          width: min(calc(100% - var(--arkb-gap--x) - 160px), 74.75%);
-        }
+    }
+  }
+}
+
+.p-page__ability {
+  $this: &;
+  #{$this}__container {
+    width: min(960px, 100%);
+    margin: 0 auto;
+  }
+  #{$this}__columns {
+    &:nth-child(2n + 1) {
+      flex-direction: row-reverse;
+    }
+  }
+  .wp-block-columns:not(.is-not-stacked-on-mobile) {
+    & > #{$this}__column:has(p) {
+      width: calc((100% - var(--wp-column-gap)) * 0.6);
+      flex-basis: auto;
+    }
+    & > #{$this}__column:has(svg) {
+      width: calc((100% - var(--wp-column-gap)) * 0.4);
+      flex-basis: auto;
+      #{$this}__arc {
+        left: 120px;
       }
     }
   }

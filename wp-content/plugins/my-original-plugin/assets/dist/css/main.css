@@ -1187,6 +1187,31 @@ body {
   }
 }
 
+.c-arc {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #666666;
+  position: relative;
+}
+.c-arc::before {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: #444444;
+  position: absolute;
+  top: 50%;
+  right: 118px;
+}
+.c-arc svg {
+  width: 80px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .c-gnav .menu-item .c-gnav__a {
   flex-direction: column-reverse;
   position: relative;
@@ -2111,6 +2136,25 @@ article.skills .p-entry__content {
   .p-page__profile__card__inner.ark-block-columns .ark-block-column:nth-child(2) {
     width: min(100% - var(--arkb-gap--x) - 160px, 74.75%);
   }
+}
+
+.p-page__ability .p-page__ability__container {
+  width: min(960px, 100%);
+  margin: 0 auto;
+}
+.p-page__ability .p-page__ability__columns:nth-child(2n+1) {
+  flex-direction: row-reverse;
+}
+.p-page__ability .wp-block-columns:not(.is-not-stacked-on-mobile) > .p-page__ability__column:has(p) {
+  width: calc((100% - var(--wp-column-gap)) * 0.6);
+  flex-basis: auto;
+}
+.p-page__ability .wp-block-columns:not(.is-not-stacked-on-mobile) > .p-page__ability__column:has(svg) {
+  width: calc((100% - var(--wp-column-gap)) * 0.4);
+  flex-basis: auto;
+}
+.p-page__ability .wp-block-columns:not(.is-not-stacked-on-mobile) > .p-page__ability__column:has(svg) .p-page__ability__arc {
+  left: 120px;
 }
 
 :root {
