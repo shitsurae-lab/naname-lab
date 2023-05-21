@@ -1,0 +1,25 @@
+@use '../global' as *;
+.c-arc {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #666666;
+  position: relative;
+  &::before {
+    content: '';
+    width: 40px;
+    height: 2px;
+    background: #444444;
+    position: absolute;
+    top: 50%;
+    right: 118px;
+  }
+  svg {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
