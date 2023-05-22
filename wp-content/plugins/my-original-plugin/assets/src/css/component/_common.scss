@@ -74,4 +74,17 @@ body {
       font-size: 1rem;
     }
   }
+  .c-subheading--profile {
+    font-size: var(--font-lg);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: $color-weldon-blue;
+  }
+
+  .c-subheading--card {
+    font-size: var(--font-md);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: $color-weldon-blue;
+  }
 }
