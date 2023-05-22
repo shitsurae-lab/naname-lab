@@ -8,7 +8,10 @@ function custom_archive_sidebar()
   $tag_name = 'keyword';
   if (is_post_type_archive('achievement')) :
     $tax_name = 'achievement_cat';
-    $taxonomy_terms = get_terms($tax_name); //ref. 関数リファレンス get_terms: 直近の子タームを返す。0の場合はトップレベルのタームのみを返す
+    $args = [
+      'exclude' => []
+    ];
+    $taxonomy_terms = get_terms($tax_name, $args); //ref. 関数リファレンス get_terms: 直近の子タームを返す。0の場合はトップレベルのタームのみを返す
     //URL: https://bit.ly/3IAt8JB
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo ' <div class="p-sidebar__content"><ul>';
@@ -80,7 +83,10 @@ function custom_archive_sidebar()
     ?>
     <?php elseif (is_tax('achievement_tag')) :
     $tax_name = 'achievement_tag';
-    $taxonomy_terms = get_terms($tax_name, array('parent' => 0));
+    $args = [
+      'exclude' => [36, 37, 38, 39, 40, 43]
+    ];
+    $taxonomy_terms = get_terms($tax_name, $args, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
       echo ' <div class="p-sidebar__content"><ul>';
       foreach ($taxonomy_terms as $taxonomy_term) :
@@ -97,7 +103,10 @@ function custom_archive_sidebar()
     ?>
     <?php elseif (is_tax('skill_tag')) :
     $tax_name = 'skill_cat';
-    $taxonomy_terms = get_terms($tax_name, array('parent' => 0));
+    $args = [
+      'exclude' => []
+    ];
+    $taxonomy_terms = get_terms($tax_name, $args, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
       echo ' <div class="p-sidebar__content"><ul>';
       foreach ($taxonomy_terms as $taxonomy_term) :
