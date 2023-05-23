@@ -1,0 +1,75 @@
+@use '../../global' as *;
+.p-page__contact {
+  $this: &;
+  h1.wp-block-heading {
+    position: relative;
+    display: inline-block;
+    width: 640px;
+    height: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-weldon-blue);
+    font-weight: 500;
+    &::before {
+      position: absolute;
+      content: 'CONTACT';
+      display: block;
+      font-size: var(--font-hero--lg);
+      color: var(--ark-color--gray);
+      top: 25%;
+      right: 22%;
+      transform: translateY(-50%);
+      line-height: 1;
+      z-index: -1;
+    }
+  }
+  &__container {
+    width: min(640px, 100%);
+    margin: 0 auto;
+    form {
+      span {
+        &.haveto,
+        &.any {
+          background: var(--color-cinereous);
+          padding: 2px 6px;
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: text-bottom;
+        }
+      }
+      .wpcf7-list-item {
+        //スパム禁止テキストcheckbox横マージン 0にした
+        margin: 0;
+      }
+    }
+  }
+}
+.p-page__completed {
+  $this: &;
+  h1.wp-block-heading {
+    position: relative;
+    display: inline-block;
+    width: 640px;
+    height: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-weldon-blue);
+    font-weight: 500;
+    &::before {
+      position: absolute;
+      content: 'COMPLETED';
+      display: block;
+      font-size: var(--font-hero--lg);
+      color: var(--ark-color--gray);
+      top: 25%;
+      right: 22%;
+      transform: translateY(-50%);
+      line-height: 1;
+      z-index: -1;
+    }
+  }
+  &__container {
+    width: min(640px, 100%);
+    margin: 0 auto;
+  }
+}
