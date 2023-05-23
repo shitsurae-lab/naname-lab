@@ -2,9 +2,11 @@
 :root,
 :before,
 :after {
-  //add arkhe-width
+  /*add arkhe-width */
+  //ark-width-container
   --ark-width--container--xl: 1200px;
-
+  --ark-width--container--md: 1000px;
+  //ark-width-article
   --ark-width--article--md: 1000px;
 
   //space
@@ -100,6 +102,10 @@
   --color-tarragon-tease: #b4a983;
   --color-nordic: #093637;
   --color-half-baked: #5b8f8f;
+  --color-weldon-blue: #80999c;
+  --color-cinereous: #9c8380;
+  --color-antiflash: #f2f5f5;
+  --color-gainsboro: #dbdbde;
 
   //Text Color
   --color-text-primary: #333333;
