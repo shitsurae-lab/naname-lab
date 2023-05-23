@@ -96,7 +96,7 @@ function insert_front_slider()
                         <h2 class="swiper-slide__heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                         <p class="c-more__arrow u-uppercase">
                           <a href="<?php the_permalink(); ?>">
-                            <span class="c-more__arrow--text">read more</span>
+                            <span class="c-more__arrow--text u-uppercase">read more</span>
                           </a>
                         </p>
                         <!-- START: タームリスト -->
