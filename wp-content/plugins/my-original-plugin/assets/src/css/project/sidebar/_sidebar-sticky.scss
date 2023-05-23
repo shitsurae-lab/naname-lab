@@ -1,4 +1,5 @@
 @use '../../global' as *;
+$requirement: '.single';
 .p-sidebar {
   &__content {
     color: var(--color-spindle);
@@ -7,9 +8,6 @@
     @include mq(pc) {
       position: sticky;
       top: 0;
-      // top: 160px;
-      // padding-top: 48px;
-      // padding-left: 48px;
     }
     ul {
       // margin-top: -32px;
@@ -34,15 +32,15 @@
       font-size: var(--font-sm);
       font-weight: 500;
       color: transparent;
-      background: var(--color-moonlit-asteroid);
+      background: var(--color-gainsboro);
       background-clip: text;
       &::before {
         content: '';
         display: block;
-        width: 4px;
-        height: 4px;
-        background: var(--color-spindle);
-        background: var(--color-moonlit-asteroid);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--color-gainsboro);
         position: absolute;
         top: 50%;
         left: 0;
@@ -51,17 +49,17 @@
     }
   }
   &__share {
-    margin-top: var(--space-sm);
-    font-size: var(--font-md);
+    margin-top: 8px;
+    font-size: var(--font-sm);
     ul {
       padding-left: 0; //ユーザーエージェントスタイルシートのリセット
       display: flex;
-      margin-left: -16px;
-      margin-top: 24px;
+      margin-left: -12px;
+      margin-top: 4px;
     }
     li {
       list-style-type: none;
-      margin-left: 16px;
+      margin-left: 12px;
       a {
         display: block;
       }
