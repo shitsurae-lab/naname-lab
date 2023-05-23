@@ -49,6 +49,8 @@ include_once(plugin_dir_path(__FILE__) . 'function/insert_front_slider_2.php');
 //details・summaryでアコーディオン
 include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
 
+//contact form 7: お問い合わせ完了後に送信完了画面へ遷移
+include_once(plugin_dir_path(__FILE__) . 'function/insert_contact_form_7.php');
 
 /**
  *フィルターフック
@@ -65,6 +67,9 @@ include_once(plugin_dir_path(__FILE__) . 'function/overwrite_normal.php');
 
 //パスワードで保護されたサイトの「保護中」の文字を消す
 include_once(plugin_dir_path(__FILE__) . 'function/removed_protected.php');
+
+include_once(plugin_dir_path(__FILE__) . 'function/add_page_class.php');
+
 //カスタム投稿タイプ等にメインビジュアルを挿入 フィルターフック
 // include_once(plugin_dir_path(__FILE__) . 'function/filter_main_visual.php');
 
