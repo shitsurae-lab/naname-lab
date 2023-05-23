@@ -9,7 +9,7 @@
   &__summary {
     font-size: var(--font-sm);
     text-transform: uppercase;
-    justify-content: flex-end; // p-tag__detailsを親として右に寄せる
+    justify-content: flex-start; // p-tag__detailsを親として左に寄せる
     display: flex;
     text-align: right;
     cursor: pointer;
@@ -52,7 +52,7 @@
   &__content__inner {
     padding: var(--space-md);
     position: relative;
-    background: var(--color-moonlit-asteroid);
+    background: var(--color-linear-weldon-blue);
     overflow: visible;
     border-radius: var(--space-xs);
     // aspect-ratio: 6/1;
@@ -61,16 +61,18 @@
       display: block;
       content: '';
       top: -16px;
-      right: 16px;
+      // right: 16px;
+      left: 16px; //アコーディオンキー(KEYWORD)の位置を左に変更
+      //START Triangle アコーディオンキー(KEYWORD)の位置を左に変更
       border-style: solid;
       border-top-color: transparent;
       border-right-color: transparent;
-      border-bottom-color: rgba(44, 83, 100, 0.86);
+      // border-bottom-color: rgba(44, 83, 100, 0.86);
+      border-bottom-color: var(--color-weldon-blue);
       border-left-color: transparent;
-      // border-color: transparent transparent var(--color-moonlit-asteroid)
-      //   transparent;
       border-width: 8px 6px 8px 6px;
     }
+    //END Triangle
   }
 
   &__list {
@@ -88,7 +90,7 @@
     padding: 0.4rem 0.6rem;
     color: var(--color-moonlit-asteroid);
     border-radius: 100px;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
   }
 }
 details.p-tag__details[open] {
