@@ -1,0 +1,12 @@
+@use '../../global' as *;
+.p-archive {
+  &__content {
+    h2 {
+      @include heading-border--bottom($ratio: 16%);
+      font-size: var(--font-lg);
+    }
+    h3 {
+      @include heading-borderBottom--light();
+    }
+  }
+}
