@@ -1,0 +1,11 @@
+@use '../global' as *;
+$elemlist: 'tax-achievement_cat', 'tax-achievement_tag', 'single-achievement';
+@each $name in $elemlist {
+  .#{$name} {
+    .l-wrapper > .l-content > .l-container {
+      // max-width: calc(
+      //   var(--ark-width--container--md) + var(--ark-padding--container) * 2
+      // );
+    }
+  }
+}
