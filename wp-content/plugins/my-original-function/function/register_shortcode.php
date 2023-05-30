@@ -113,7 +113,7 @@ function register_shortcode_fontawesome($atts)
   extract(shortcode_atts(array(
     'icon' => 'fab fa-wordpress',
   ), $atts));
-  $output = '<i class="' . $icon . '"></i>';
+  $output = '<i class="' . $icon . '" style="color: #8aa5a8"></i>'; //カラー cadet grey
   return $output;
 }
 add_shortcode('c-fontawesome', 'register_shortcode_fontawesome');
