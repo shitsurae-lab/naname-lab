@@ -27,7 +27,8 @@
   --width-xxxs: calc(0.125 * var(--width-unit)); //2px
 
   //pseudo 疑似要素
-  --pseudo-arc-circle: 200px;
+  --arc-circle--md: 160px;
+  --arc-circle--lg: 200px;
   --pseudo-arc-line: 40px; //疑似要素 arc横のline
 
   /* font-size */
@@ -53,17 +54,16 @@
   //Min 32px Max 40px
   --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
 
+  --font-xxxl: clamp(2.5rem, 1rem + 4vw, 4rem); // Min 40px Max 64px
 
-  --font-xxxl:clamp(2.5rem, 1rem + 4vw, 4rem); // Min 40px Max 64px
-
-//Min28px Max 40px
-  --font-hero:clamp(1.75rem, 1rem + 2vw, 2.5rem);
+  //Min28px Max 40px
+  --font-hero: clamp(1.75rem, 1rem + 2vw, 2.5rem);
 
   //Min 40px Max 72px
   --font-hero--lg: clamp(2.5rem, 0.5rem + 5.3333vw, 4.5rem);
 
   //Min 64px, Max 96px
-  --font-hero--xl: font-size: clamp(4rem, 2rem + 5.3333vw, 6rem);
+  --font-hero--xl: clamp(4rem, 2rem + 5.3333vw, 6rem);
 
   /*  Global Font */
   //H2
@@ -116,7 +116,7 @@
   --color-cinereous: #9c8380;
   --color-antiflash: #f2f5f5;
   --color-gainsboro: #dbdbde;
-  --color-cadet-gray: #91a3b0;
+  --color-cadet-gray: #8aa5a8;
 
   //Text Color
   --color-text-primary: #333333;
