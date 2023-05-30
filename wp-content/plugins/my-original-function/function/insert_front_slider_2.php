@@ -19,7 +19,8 @@ function insert_front_slider()
     // if (!empty($sticky))  $list_count -= count($sticky);
     // -- END: 先頭固定記事制御
     global $post;
-    $taxonomy_name = 'achievement_tag';
+    // $taxonomy_name = 'achievement_tag';
+    $taxonomy_name = 'achievement_cat';
     $post_type = 'achievement';
     $args = array(
       //参考にする https://www.webdesignleaves.com/pr/wp/wp_loops.html
@@ -33,7 +34,7 @@ function insert_front_slider()
           // 'field' => 'id',
           // 'terms' => array(21),
           'field' => 'slug',
-          'terms' => array('containing-wordpress', 'containing-e-commerce', 'containing-woocommerce', 'containing-private'),
+          'terms' => array('containing-wordpress', 'containing-ecommerce', 'containing-woocommerce', 'containing-private'),
           'operator' => 'IN',
           'include_children' => false,
         )
@@ -99,43 +100,14 @@ function insert_front_slider()
                             <span class="c-more__arrow--text u-uppercase">read more</span>
                           </a>
                         </p>
-                        <!-- START: タームリスト -->
 
-                        <?php
-                        //$term_query = new WP_Term_Query($args_term);
-                        //$tax_all = get_terms('achievement_cat');
 
-                        //foreach ($term_query->get_terms() as $tq) :
-
-                        //if (count($tax_all) > 0) :
-                        //foreach ($tax_all as $tax) :
-                        //$term_img = get_term_meta($tax->term_id, 'ark_meta_ttlbg', true);
-                        //$img_url = wp_get_attachment_image_src($term_img, 'full');
-                        //if ($img_url) :
-                        ?>
-                        <!-- <img src="<?php //echo $img_url[0]
-                                        ?>" alt="<?php //echo $tax->name;
-                                                  ?>"> -->
-                        <?php
-                        //endif;
-                        //endforeach;
-                        //endif;
-
-                        //結合代入演算子(.=)
-                        //$list_src .= '<li><a href="' . get_term_link($tq) . '">' . $tq->name . '</a></li>';
-                        //endforeach;
-                        ?>
-                        <!-- END: タームリスト -->
-                        <?php //echo '<ul>' . $list_src . '</ul>';
-                        //var_dump($term_img);
-                        ?>
                       </div>
                       <!-- END //.swiper-slide__textarea -->
                     </div>
                     <!-- END //.swiper-slide__content: image以外のcontent-->
                     <div class="swiper-slide__image">
 
-                      <!-- <img src="https://source.unsplash.com/Z_BiURz2dFc/1200x736" alt="#"> -->
                       <?php if (has_post_thumbnail()) :
                       ?>
 
