@@ -56,6 +56,15 @@ body {
 }
 
 /* PAGE */
+//Headline at Mainvisual
+.p-topArea {
+  .c-pageTitle__main {
+    text-transform: uppercase;
+    font-size: var(--font-xxl);
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
 .p-page__content {
   .ark-block-heading__main {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
