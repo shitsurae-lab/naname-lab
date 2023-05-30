@@ -1,9 +1,13 @@
 @use '../global' as *;
 .c-arc {
-  width: 200px;
-  height: 200px;
+  width: var(--arc-circle--md);
+  height: var(--arc-circle--md);
+  @include mq(pc) {
+    width: var(--arc-circle--lg);
+    height: var(--arc-circle--lg);
+  }
   border-radius: 50%;
-  border: var(--width-xxxs) solid var(--color-cadet-grey);
+  border: var(--width-xxxs) solid var(--color-cadet-gray);
   position: relative;
 
   svg {
