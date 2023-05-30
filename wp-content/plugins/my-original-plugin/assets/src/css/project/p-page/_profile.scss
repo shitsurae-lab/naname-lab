@@ -1,15 +1,31 @@
 @use '../../global' as *;
-.p-page__profile {
-  &__card {
-    .ark-block-section__body {
-      padding-left: 0;
-      padding-right: 0;
+.p-page__profile__card {
+  $this: &;
+  &__inner {
+    width: min(800px, 100%);
+    margin: 0 auto;
+    .ark-block-columns__inner {
+      margin-left: 0;
       @include mq(tablet) {
-        padding-left: var(--ark-padding--container, 0);
-        padding-right: var(--ark-padding--container, 0);
+        margin-left: calc(var(--arkb-gap--x) * -1);
+      }
+      #{$this}--image {
+        width: 100%;
+        margin-left: 0;
+        @include mq(tablet) {
+          width: 38.25%;
+          margin: 0 0 0 var(--arkb-gap--x);
+        }
+      }
+      #{$this}--definition {
+        width: 100%;
+        @include mq(tablet) {
+          width: calc(100% - 38.25% - var(--arkb-gap--x) * 2);
+        }
       }
     }
-    &__inner.ark-block-columns {
+
+    .ark-block-columns {
       .ark-block-column {
         &:first-child {
           @include mq(tablet) {
@@ -42,45 +58,80 @@
     margin: 0 auto;
   }
   #{$this}__columns {
-    &:nth-child(2n + 1) {
-      flex-direction: row-reverse;
+    .ark-block-columns__inner {
+      display: flex;
+      margin-left: 0;
+      @include mq(tablet) {
+        margin-left: calc(var(--arkb-gap--x) * -1);
+      }
       .c-arc {
         &::before {
           content: '';
+          display: none;
           width: 40px;
           height: var(--width-xxxs);
-          background: #444444;
+          background: var(--color-cadet-gray);
           position: absolute;
           top: 50%;
-          right: calc(var(--pseudo-arc-circle) - var(--width-xxxs));
+          @include mq(tablet) {
+            display: block;
+          }
+        }
+      }
+    }
+    &:nth-child(2n + 1) {
+      .ark-block-columns__inner {
+        flex-direction: column;
+        @include mq(tablet) {
+          flex-direction: row-reverse;
+        }
+
+        .c-arc {
+          &::before {
+            right: calc(var(--arc-circle--md) - var(--width-xxxs));
+            @include mq(pc) {
+              right: calc(var(--arc-circle--lg) - var(--width-xxxs));
+            }
+          }
         }
       }
     }
     &:nth-child(2n) {
-      flex-direction: row;
-      .c-arc {
-        &::before {
-          content: '';
-          width: 40px;
-          height: var(--width-xxxs);
-          background: #444444;
-          position: absolute;
-          top: 50%;
-          left: calc(var(--pseudo-arc-circle) - var(--width-xxxs));
+      .ark-block-columns__inner {
+        flex-direction: column;
+        @include mq(tablet) {
+          flex-direction: row;
+        }
+
+        .c-arc {
+          &::before {
+            left: calc(var(--arc-circle--md) - var(--width-xxxs));
+            @include mq(pc) {
+              left: calc(var(--arc-circle--lg) - var(--width-xxxs));
+            }
+          }
         }
       }
     }
   }
-  .wp-block-columns:not(.is-not-stacked-on-mobile) {
-    & > #{$this}__column:has(p) {
-      width: calc((100% - var(--wp-column-gap)) * 0.6);
-      flex-basis: auto;
+  #{$this}__column {
+    margin-left: 0;
+    @include mq(tablet) {
+      margin: 0 0 0 var(--arkb-gap--x);
     }
-    & > #{$this}__column:has(svg) {
-      width: calc((100% - var(--wp-column-gap)) * 0.4);
-      flex-basis: auto;
-      #{$this}__arc {
-        left: var(--pseudo-arc-line);
+
+    &:has(.p-page__ability__arc) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      @include mq(tablet) {
+        width: 35%;
+      }
+    }
+    &:has(h3) {
+      width: 100%;
+      @include mq(tablet) {
+        width: calc(65% - var(--arkb-gap--x) * 2);
       }
     }
   }
