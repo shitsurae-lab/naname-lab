@@ -2,12 +2,14 @@
 :root,
 :before,
 :after {
-  /*add arkhe-width */
+  /*arkhe-width */
   //ark-width-container
   --ark-width--container--xl: 1200px;
   --ark-width--container--md: 1000px;
   //ark-width-article
   --ark-width--article--md: 1000px;
+
+  /*arkhe-margin */
 
   //space
   --space-unit: 1rem; //root16px換算
@@ -28,32 +30,40 @@
   --pseudo-arc-circle: 200px;
   --pseudo-arc-line: 40px; //疑似要素 arc横のline
 
-  //font-size
-  --font-xxs: clamp(0.625rem, 0.6rem + 0.125vw, 0.75rem); //Min 10px Max 12px
-  --font-xs: clamp(
-    0.75rem,
-    0.725rem + 0.125vw,
-    0.875rem
-  ); //Min 12px Max 14px (案)font-xxs
-  --font-sm: clamp(
-    0.875rem,
-    0.85rem + 0.125vw,
-    1rem
-  ); //Min 14px Max 16px (案)font-reg-sm
-  --font-md: clamp(
-    1rem,
-    0.95rem + 0.25vw,
-    1.25rem
-  ); //Min 16px Max 20px f(案)ont-reg-md
-  //-font-md: clamp()
-  --font-lg: clamp(1.25rem, 1.2rem + 0.25vw, 1.5rem); //Min 20px Max 24px
-  --font-xl: clamp(1.5rem, 1.4rem + 0.5vw, 2rem); //Min 24px Max 32px
-  --font-xxl: clamp(2rem, 1.9rem + 0.5vw, 2.5rem); //Min 32px Max 40px
-  --font-xxxl: clamp(2.5rem, 2.2rem + 1.5vw, 4rem); // Min 40px Max 64px
+  /* font-size */
+  //Min10px Max12px
+  --font-xxs: clamp(0.625rem, 0.5rem + 0.3333vw, 0.75rem);
 
-  --font-hero: clamp(1.75rem, 0.4167rem + 2.7778vw, 2.5rem); //Min28px Max 40px
-  --font-hero--lg: clamp(2.5rem, 0.5rem + 10vw, 4.5rem); //Min 40px Max 72px
-  --font-hero--xl: clamp(4rem, 3.5146rem + 2.0712vw, 6rem); //Min 64px, Max 96px
+  //Min 12px Max 14px (案)font-xxs
+  --font-xs: clamp(0.75rem, 0.625rem + 0.3333vw, 0.875rem);
+
+  //Min 14px Max 16px (案)font-reg-sm
+  --font-sm: clamp(0.875rem, 0.75rem + 0.3333vw, 1rem);
+
+  //Min 16px Max 20px (案)font-reg-md
+  --font-md: clamp(1rem, 0.75rem + 0.6667vw, 1.25rem);
+  //-font-md: clamp()
+
+  //Min 20px Max 24px
+  --font-lg: clamp(1.25rem, 1rem + 0.6667vw, 1.5rem);
+
+  //Min 24px Max 32px
+  --font-xl: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+
+  //Min 32px Max 40px
+  --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
+
+
+  --font-xxxl:clamp(2.5rem, 1rem + 4vw, 4rem); // Min 40px Max 64px
+
+//Min28px Max 40px
+  --font-hero:clamp(1.75rem, 1rem + 2vw, 2.5rem);
+
+  //Min 40px Max 72px
+  --font-hero--lg: clamp(2.5rem, 0.5rem + 5.3333vw, 4.5rem);
+
+  //Min 64px, Max 96px
+  --font-hero--xl: font-size: clamp(4rem, 2rem + 5.3333vw, 6rem);
 
   /*  Global Font */
   //H2
@@ -106,6 +116,7 @@
   --color-cinereous: #9c8380;
   --color-antiflash: #f2f5f5;
   --color-gainsboro: #dbdbde;
+  --color-cadet-gray: #91a3b0;
 
   //Text Color
   --color-text-primary: #333333;
