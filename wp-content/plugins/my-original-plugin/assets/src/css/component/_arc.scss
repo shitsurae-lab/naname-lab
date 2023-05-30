@@ -3,11 +3,11 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: var(--width-xxxs) solid #666666;
+  border: var(--width-xxxs) solid var(--color-cadet-grey);
   position: relative;
 
   svg {
-    width: 80px;
+    width: 64px;
     height: auto;
     position: absolute;
     top: 50%;
