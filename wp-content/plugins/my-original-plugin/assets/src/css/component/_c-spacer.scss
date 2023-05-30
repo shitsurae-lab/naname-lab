@@ -1,0 +1,6 @@
+@use '../global' as *;
+.ark-keep-mt > :not(:first-child) {
+  &.wp-block-fsb-flexible-spacer {
+    --ark-mt--inner: 0;
+  }
+}
