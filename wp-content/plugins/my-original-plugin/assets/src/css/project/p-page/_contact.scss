@@ -3,21 +3,22 @@
   $this: &;
   h1.wp-block-heading {
     position: relative;
-    display: inline-block;
-    width: 640px;
-    height: 80px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: fit-content;
+    height: auto;
+    transform: translateY(-50%);
     color: var(--color-weldon-blue);
     font-weight: 500;
+    display: block;
+    padding-bottom: 0;
+    margin: 0 auto 60px;
     &::before {
       position: absolute;
       content: 'CONTACT';
       display: block;
       font-size: var(--font-hero--lg);
       color: var(--ark-color--gray);
-      top: 25%;
-      right: 22%;
+      top: -10%;
+      left: 0;
       transform: translateY(-50%);
       line-height: 1;
       z-index: -1;
