@@ -1,17 +1,40 @@
 @use '../global' as *;
 .c-definition {
+  margin: var(--arkb-gap--y) 0 0 0;
+  font-size: var(--font-xs);
   $this: &;
   &__list {
     display: flex;
     flex-direction: column;
     #{$this}__dt {
       border-top: 1px solid #cccccc;
-      background: orangered;
+      color: var(--color-weldon-blue);
+      font-weight: 500;
       padding: 0.5rem 0.5rem 0.5rem 1rem;
     }
     #{$this}__dd {
       border-top: 1px solid #cccccc;
       padding: 0.5rem 0.5rem 0.5rem 1rem;
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      li {
+        width: min(110px, calc(100% / 3));
+        position: relative;
+        padding-left: 20px;
+        &::before {
+          content: '\f14a';
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 400;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
     }
     @include mq(tablet) {
       flex-direction: row;
@@ -21,15 +44,14 @@
     }
     @include mq(pc) {
       #{$this}__dt {
-        width: min(240px, 33%);
-        flex: 1 1 min(240px, 33%);
+        width: min(180px, 26%);
         position: relative;
+        flex: 1 0 auto;
       }
       #{$this}__dd {
-        width: min(calc(100% - 240px), calc(100% - 33%));
-        flex: 1 1 min(calc(100% - 240px), calc(100% - 33%));
-        border-left: 1px solid #cccccc;
+        width: min(100% - 180px, 74%);
         position: relative;
+        flex: 1 1 auto;
       }
     }
   }
@@ -44,45 +66,8 @@
   &__list:not(:first-child) {
     @include mq(pc) {
       #{$this}__dt {
-        &::before {
-          //dtの「上」罫線(border-top)「右」一部を消す
-          content: '';
-          display: inline-block;
-          width: 4px;
-          height: 2px;
-          background: var(--ark-color--gray);
-          position: absolute;
-          top: 0;
-          right: 0;
-          transform: translateY(-50%);
-        }
       }
       #{$this}__dd {
-        &::before {
-          //ddの「上」罫線(border-top)「左」一部を消す
-          content: '';
-          display: inline-block;
-          width: 4px;
-          height: 2px;
-          background: var(--ark-color--gray);
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: translateY(-50%);
-        }
-
-        &::after {
-          //ddの「左」罫線(border-left)「上」一部を消す
-          content: '';
-          display: inline-block;
-          width: 2px;
-          height: 8px;
-          background: var(--ark-color--gray);
-          position: absolute;
-          top: -4px;
-          left: 0;
-          transform: translateX(-50%);
-        }
       }
     }
   }
