@@ -1,8 +1,15 @@
 @use '../../global' as *;
+.p-page__profile {
+  $this: &;
+  #{$this}__heading {
+    margin-bottom: 60px;
+  }
+}
+
 .p-page__profile__card {
   $this: &;
   &__inner {
-    width: min(800px, 100%);
+    width: min(960px, 100%);
     margin: 0 auto;
     .ark-block-columns__inner {
       margin-left: 0;
@@ -13,14 +20,29 @@
         width: 100%;
         margin-left: 0;
         @include mq(tablet) {
-          width: 38.25%;
+          width: min(240px, 25%);
           margin: 0 0 0 var(--arkb-gap--x);
+          flex: 1 0 auto;
+          //START: 上下中央寄せ
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          //END: 上下中央寄せ
+          figure {
+            // margin-top: var(--arkb-gap--y);
+            margin: 0;
+          }
         }
       }
       #{$this}--definition {
         width: 100%;
+        margin: 0;
         @include mq(tablet) {
-          width: calc(100% - 38.25% - var(--arkb-gap--x) * 2);
+          margin: 0 0 0 var(--arkb-gap--x);
+          width: min(
+            calc(100% - 240px - var(--arkb-gap--x) * 2),
+            calc(75% - var(--arkb-gap--x) * 2)
+          );
         }
       }
     }
