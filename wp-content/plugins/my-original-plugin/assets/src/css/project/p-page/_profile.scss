@@ -60,78 +60,112 @@
   #{$this}__columns {
     .ark-block-columns__inner {
       display: flex;
+      flex-direction: column;
       margin-left: 0;
+      row-gap: 0; //①モバイルの際、要素間をmarginであける
       @include mq(tablet) {
+        flex-direction: row;
         margin-left: calc(var(--arkb-gap--x) * -1);
+        row-gap: var(--arkb-gap--y); //①のrow-gap: 0を解除
+      }
+      #{$this}__column {
+        margin: 0;
+        order: 0; //:nth-childで指定するorderのリセット
+        &:nth-child(odd) {
+          margin-top: 40px;
+          @include mq(tablet) {
+            margin-top: 0;
+          }
+        }
+        &:nth-child(odd):nth-child(1) {
+          margin-top: 0;
+        }
+        &:nth-child(even) {
+          margin-top: 20px;
+          @include mq(tablet) {
+            margin-top: 0;
+          }
+        }
+        @include mq(tablet) {
+          margin: 0 0 0 var(--arkb-gap--x);
+          //columnそれそれの順番を指定
+          &:nth-child(1) {
+            order: 2;
+          }
+          &:nth-child(2) {
+            order: 1;
+          }
+          &:nth-child(3) {
+            order: 3;
+          }
+          &:nth-child(4) {
+            order: 4;
+          }
+          &:nth-child(5) {
+            order: 6;
+          }
+          &:nth-child(6) {
+            order: 5;
+          }
+        }
+        &:nth-child(4n + 1) {
+          display: flex;
+          justify-content: center;
+          @include mq(tablet) {
+            justify-content: flex-end;
+            .c-arc {
+              &::before {
+                right: 100%;
+              }
+            }
+          }
+        } //END: #{$this}__column:nth-child(4n + 1)
+        &:nth-child(3) {
+          display: flex;
+          justify-content: center;
+          @include mq(tablet) {
+            justify-content: flex-start;
+            .c-arc {
+              &::before {
+                left: 100%;
+              }
+            }
+          }
+        } //END: #{$this}__column:nth-child(3)
+
+        &:has(.p-page__ability__arc) {
+          width: 100%;
+          // display: flex;
+          // justify-content: center;
+          @include mq(tablet) {
+            width: 35%;
+          }
+        }
+        &:has(h3) {
+          width: 100%;
+          @include mq(tablet) {
+            width: calc(65% - var(--arkb-gap--x) * 2);
+          }
+        }
       }
       .c-arc {
         &::before {
           content: '';
           display: none;
-          width: 40px;
+          width: 72px;
           height: var(--width-xxxs);
           background: var(--color-cadet-gray);
           position: absolute;
           top: 50%;
+          // right: calc(var(--arc-circle--md) - var(--width-xxxs));
           @include mq(tablet) {
+            width: 72px;
             display: block;
           }
-        }
-      }
-    }
-    &:nth-child(2n + 1) {
-      .ark-block-columns__inner {
-        flex-direction: column;
-        @include mq(tablet) {
-          flex-direction: row-reverse;
-        }
-
-        .c-arc {
-          &::before {
-            right: calc(var(--arc-circle--md) - var(--width-xxxs));
-            @include mq(pc) {
-              right: calc(var(--arc-circle--lg) - var(--width-xxxs));
-            }
+          @include mq(pc) {
+            width: 100px;
           }
-        }
-      }
-    }
-    &:nth-child(2n) {
-      .ark-block-columns__inner {
-        flex-direction: column;
-        @include mq(tablet) {
-          flex-direction: row;
-        }
-
-        .c-arc {
-          &::before {
-            left: calc(var(--arc-circle--md) - var(--width-xxxs));
-            @include mq(pc) {
-              left: calc(var(--arc-circle--lg) - var(--width-xxxs));
-            }
-          }
-        }
-      }
-    }
-  }
-  #{$this}__column {
-    margin-left: 0;
-    @include mq(tablet) {
-      margin: 0 0 0 var(--arkb-gap--x);
-    }
-
-    &:has(.p-page__ability__arc) {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      @include mq(tablet) {
-        width: 35%;
-      }
-    }
-    &:has(h3) {
-      width: 100%;
-      @include mq(tablet) {
-        width: calc(65% - var(--arkb-gap--x) * 2);
+        } //END .c-arc::before
       }
     }
   }
