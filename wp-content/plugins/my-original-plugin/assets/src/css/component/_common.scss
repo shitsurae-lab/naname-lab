@@ -72,15 +72,28 @@ body {
     letter-spacing: 0.125em;
     font-size: var(--global-font-xl);
     line-height: 1;
-    // color: transparent;
-    // background-image: var(--color-moonlit-asteroid);
-    // -webkit-background-clip: text;
     color: $color-weldon-blue;
+    width: fit-content;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 10%;
+      height: 2px;
+      background: var(--color-weldon-blue);
+    }
+    //サブ見出し
     & + .ark-block-heading__sub {
-      // color: var(--color-moonlit-asteroid);
-      color: $color-granite-gray;
+      color: var(--color-cadet-gray);
       font-weight: 500;
-      font-size: 0.875rem;
+      // font-size: 0.875rem;
+      font-size: var(--font-xs);
+      width: fit-content;
     }
   }
   .c-subheading--profile {
