@@ -13,7 +13,7 @@ body {
 * FONTS
 **/
 body {
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 /**
@@ -69,7 +69,8 @@ body {
   .ark-block-heading__main {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-weight: 500;
-    letter-spacing: 0.125em;
+    // letter-spacing: 0.125em;
+    letter-spacing: 0.1em;
     font-size: var(--global-font-xl);
     line-height: 1;
     color: $color-weldon-blue;
@@ -99,7 +100,7 @@ body {
   .c-subheading--profile {
     font-size: var(--font-lg);
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.075em;
     color: $color-weldon-blue;
     position: relative;
     display: inline-block;
