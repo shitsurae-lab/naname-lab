@@ -1,5 +1,5 @@
 @forward 'title';
-@forward 'button';
+@forward 'button'; //ボタン,CTAボタンなど
 @forward 'card';
 @forward 'drawer';
 @forward 'fluid';
@@ -8,5 +8,4 @@
 @forward 'common'; //common CSS(global DIRに移動するかも)
 @forward 'definition'; //定義リスト
 @forward 'c-arc'; //円弧 + SVG
-@forward 'c-button'; //固定ページ Skillカード内のサブ見出し
 @forward 'c-spacer'; //スペーサーブロック
