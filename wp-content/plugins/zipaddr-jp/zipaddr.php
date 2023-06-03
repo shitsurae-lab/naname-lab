@@ -20,6 +20,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$sysid[10]="MailformPro, mailformpro";
 	$sysid[11]="SnowMonkeyForm,snowmonkeyform";
 	$sysid[12]="TieredWorks, tieredworks";
+	$sysid[13]="Forminator,  forminator";
 	$sysid[99]="###other###, tricks";
 //
 	$contf7= strpos($output, 'wpcf7-form');       //Contact Form 7
@@ -36,6 +37,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$mailfor=strpos($output, "mfpc('mailform'");  //Mailform
 	$snowmon=strpos($output, 'snow-monkey-form'); //SnowMonkeyForm
 	$tieredw=strpos($output, 'SF-contact');       //TieredWorks
+	$formina=strpos($output, 'forminator-label'); //Forminator
 	$yubin=  strpos($output, '郵便番号');
 //フォームの自動判定
 	$sid= "";
@@ -51,6 +53,7 @@ function zipaddr_jp_change($output, $opt=""){
 	else if( $mailpro!==false || $mailfor!==false) $sid= 10;
 	else if( $snowmon!==false ) $sid= 11;
 	else if( $tieredw!==false ) $sid= 12;
+	else if( $formina!==false ) $sid= 13;
 	else if( empty($sys_syid))  $sid= 99;
 //
 	if( $sid < 99 ){;}                            //自動判定

@@ -3,11 +3,11 @@
 Plugin Name: zipaddr-jp
 Plugin URI: https://zipaddr2.com/wordpress/
 Description: The input convert an address from a zip code automatically.
-Version: 1.36
+Version: 1.37
 Author: Tatsuro, Terunuma
 Author URI: https://pierre-soft.com/
 */
-define('zipaddr_VERS', '1.36');
+define('zipaddr_VERS', '1.37');
 define('zipaddr_KEYS', 'zipaddr-config');
 define('zipaddr_SYS',  'sys_');
 define('zipaddr_COM',  'https://zipaddr.com/');
