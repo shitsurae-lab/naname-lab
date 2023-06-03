@@ -49,7 +49,10 @@
   --font-lg: clamp(1.25rem, 1rem + 0.6667vw, 1.5rem);
 
   //Min 24px Max 32px
-  --font-xl: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+  // --font-xl: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+
+  //Min 28px Max 32px
+  --font-xl: clamp(1.75rem, 1.5rem + 0.6667vw, 2rem);
 
   //Min 32px Max 40px
   --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
