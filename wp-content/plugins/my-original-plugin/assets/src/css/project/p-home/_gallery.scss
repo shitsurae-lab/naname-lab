@@ -1,0 +1,10 @@
+@use '../../global' as *;
+.p-index--gallery {
+  figure {
+    border-radius: 10px;
+  }
+  /// コンテナーに付随するvar(--ark-mt,2rem)をリセット;
+  .ark-keep-mt > :not(:first-child) {
+    --ark-mt--inner: 0;
+  }
+}
