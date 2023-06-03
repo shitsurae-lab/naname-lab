@@ -5,7 +5,7 @@
 @forward 'fluid';
 @forward 'pagination';
 @forward 'tag';
-@forward 'common'; //common CSS(global DIRに移動するかも)
+@forward 'c-common';
 @forward 'definition'; //定義リスト
 @forward 'c-arc'; //円弧 + SVG
 @forward 'c-spacer'; //スペーサーブロック
