@@ -43,6 +43,14 @@
       text-transform: uppercase;
     }
   }
+  figure {
+    border-radius: 10px;
+  }
+  .ark-keep-mt > :not(:first-child) {
+    &.p-cta__arrow {
+      margin-top: 60px;
+    }
+  }
 }
 
 /* - END CTA SECTION - */
