@@ -34,7 +34,7 @@ function insert_front_slider()
           // 'field' => 'id',
           // 'terms' => array(21),
           'field' => 'slug',
-          'terms' => array('containing-wordpress', 'containing-ecommerce', 'containing-woocommerce', 'containing-private'),
+          'terms' => array('containing-wordpress', 'containing-ecommerce', 'containing-woocommerce', 'containing-secret'),
           'operator' => 'IN',
           'include_children' => false,
         )
