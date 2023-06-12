@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-24 04:06:48+0000\n"
+"PO-Revision-Date: 2023-05-31 08:29:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,29 @@ msgstr ""
 "X-Generator: GlotPress/4.0.0-alpha.4\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: modules/sendinblue/service.php:163
+msgid "Brevo is active on this site."
+msgstr "Brevo はこのサイト上で有効化されています。"
+
+#: modules/sendinblue/contact-form-properties.php:109
+#: modules/sendinblue/service.php:30
+msgid "Brevo (formerly Sendinblue)"
+msgstr "Brevo (旧 Sendinblue)"
+
+#: modules/sendinblue/contact-form-properties.php:101
+#: modules/sendinblue/service.php:156
+msgid "Brevo (formerly Sendinblue) integration"
+msgstr "Brevo (旧 Sendinblue) インテグレーション"
+
+#: admin/includes/welcome-panel.php:153
+#: modules/sendinblue/contact-form-properties.php:297
+msgid "Brevo"
+msgstr "Brevo"
+
+#: admin/admin.php:689
+msgid "The next major release of Contact Form 7 will discontinue support for outdated PHP versions. If you don't upgrade PHP, you will not be able to upgrade the plugin."
+msgstr "古い PHP バージョンのサポートは Contact Form 7 の次のメジャーリリースにて廃止されます。PHP をアップグレードしましょう。そうしなければプラグインをアップグレードすることができなくなります。"
 
 #: includes/contact-form-functions.php:230
 msgid "Contact form not found."
@@ -54,7 +77,7 @@ msgstr "データの処理方法の詳細はこちらをご覧ください。"
 msgid "This form uses Akismet to reduce spam."
 msgstr "このフォームはスパムを低減するために Akismet を使っています。"
 
-#: includes/contact-form.php:616
+#: includes/contact-form.php:622
 msgid "Contact form"
 msgstr "コンタクトフォーム"
 
@@ -251,8 +274,7 @@ msgstr "https://contactform7.com/ja/stripe-integration/"
 msgid "With help from cloud-based machine learning, anti-spam services will protect your forms (%1$s). Even payment services are natively supported (%2$s)."
 msgstr "クラウドベースの機械学習の助けを借りて、アンチスパムサービスはあなたのフォームを守ります (%1$s)。支払いサービスまでもネイティブでサポートされています (%2$s)。"
 
-#. translators: 1: link labeled 'Sendinblue', 2: link labeled 'Constant
-#. Contact'
+#. translators: 1: link labeled 'Brevo', 2: link labeled 'Constant Contact'
 #: admin/includes/welcome-panel.php:150
 msgid "Your contact forms will become more powerful and versatile by integrating them with external APIs. With CRM and email marketing services, you can build your own contact lists (%1$s and %2$s)."
 msgstr "外部の API との連携があなたのコンタクトフォームをもっと強力で多機能なものにします。CRM とメールマーケティングのサービスと連携すれば独自の連絡先リストの構築が可能になります (%1$s と %2$s)。"
@@ -337,8 +359,8 @@ msgid "Contact lists"
 msgstr "連絡先リスト"
 
 #: modules/sendinblue/contact-form-properties.php:97
-msgid "You can set up the Sendinblue integration here. For details, see %s."
-msgstr "ここで Sendinblue インテグレーションを設定できます。詳しくは %s を参照。"
+msgid "You can set up the Brevo integration here. For details, see %s."
+msgstr "ここで Brevo インテグレーションを設定できます。詳しくは %s を参照。"
 
 #: modules/sendinblue/service.php:212
 msgid "Save changes"
@@ -357,15 +379,6 @@ msgstr "API キー"
 msgid "Setup integration"
 msgstr "インテグレーションのセットアップ"
 
-#: modules/sendinblue/service.php:163
-msgid "Sendinblue is active on this site."
-msgstr "Sendinblue はこのサイト上で有効化されています。"
-
-#: modules/sendinblue/contact-form-properties.php:101
-#: modules/sendinblue/service.php:156
-msgid "Sendinblue integration"
-msgstr "Sendinblue インテグレーション"
-
 #: admin/includes/welcome-panel.php:152
 #: modules/sendinblue/contact-form-properties.php:100
 #: modules/sendinblue/service.php:155
@@ -373,19 +386,12 @@ msgid "https://contactform7.com/sendinblue-integration/"
 msgstr "https://contactform7.com/ja/sendinblue-integration/"
 
 #: modules/sendinblue/service.php:149
-msgid "Store and organize your contacts while protecting user privacy on Sendinblue, the leading CRM & email marketing platform in Europe. Sendinblue offers unlimited contacts and advanced marketing features."
-msgstr "欧州で人気の CRM とメールマーケティングのプラットフォーム、Sendinblue を使えば連絡先データの保存・整理とユーザープライバシー保護の両立が可能です。Sendinblue は無制限の連絡先件数と先進的マーケティング機能を提供します。"
+msgid "Store and organize your contacts while protecting user privacy on Brevo, the leading CRM & email marketing platform in Europe. Brevo offers unlimited contacts and advanced marketing features."
+msgstr "欧州で人気の CRM とメールマーケティングのプラットフォーム、Brevo を使えば連絡先データの保存・整理とユーザープライバシー保護の両立が可能です。Brevo は無制限の連絡先件数と先進的マーケティング機能を提供します。"
 
 #: modules/sendinblue/service.php:126
 msgid "You have not been authenticated. Make sure the provided API key is correct."
 msgstr "認証に失敗しました。正しい API キーが入力されているか確認してください。"
-
-#: admin/includes/welcome-panel.php:153
-#: modules/sendinblue/contact-form-properties.php:109
-#: modules/sendinblue/contact-form-properties.php:297
-#: modules/sendinblue/service.php:30
-msgid "Sendinblue"
-msgstr "Sendinblue"
 
 #: includes/mail.php:244
 msgid "Failed to attach a file. The total file size exceeds the limit of 25 megabytes."
@@ -709,7 +715,7 @@ msgstr "もし Contact Form 7 を使って便利だと思われたなら、ぜ�
 msgid "It is hard to continue development and support for this plugin without contributions from users like you."
 msgstr "このプラグインの開発とサポートには多大な労力が費やされており、ユーザーのみなさんからの支援なしには継続不可能です。"
 
-#: includes/contact-form.php:523 includes/contact-form.php:1033
+#: includes/contact-form.php:529 includes/contact-form.php:1039
 msgid "This contact form is available only for logged in users."
 msgstr "このコンタクトフォームはログインしたユーザーにのみ利用可能です。"
 
@@ -1418,11 +1424,11 @@ msgstr "承諾確認チェックボックスのフォームタグを生成しま
 msgid "acceptance"
 msgstr "承諾確認"
 
-#: includes/contact-form.php:224
+#: includes/contact-form.php:230
 msgid "<code>%1$s</code> property of a <code>WPCF7_ContactForm</code> object is <strong>no longer accessible</strong>. Use <code>%2$s</code> method instead."
 msgstr "<code>WPCF7_ContactForm</code> オブジェクトの <code>%1$s</code> プロパティは<strong>もうアクセスできません</strong>。代わりに <code>%2$s</code> メソッドを使ってください。"
 
-#: includes/contact-form.php:112 includes/contact-form.php:431
+#: includes/contact-form.php:112 includes/contact-form.php:437
 msgid "Untitled"
 msgstr "無題"
 
