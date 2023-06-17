@@ -1,0 +1,15 @@
+@use '../../global' as *;
+.p-index {
+  $this: &;
+  &--intro,
+  &--gallery,
+  &--works,
+  &--cta {
+    > .ark-block-section__body {
+      .ark-block-section__bodyInner {
+        width: min(calc(var(--ark-width--article--slim, 960px)), 100%);
+        margin: 0 auto;
+      }
+    }
+  }
+}
