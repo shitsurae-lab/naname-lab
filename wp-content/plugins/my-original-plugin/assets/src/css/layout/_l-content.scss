@@ -1,18 +1,77 @@
 @use '../global' as *;
 
-//ページ全体の幅を1200としたときのコンテンツセクションの幅(max-width: 1000pxに設定)
-.ark-block-section:where(.alignfull):not([data-inner='full'])
-  > .ark-block-section__body {
+/* conf-ark-block-section__underを適用するときの注意*/
+//セレクタに &.ark-block-section:where(.alignfull):not([data-inner='full']) > .ark-block-section__body を付記すること(詳細度で負けてしまうため)
+
+@mixin conf-ark-block-section__under(
+  $size: var(--ark-width--article--md, 1000px)
+) {
   margin: 0 auto;
-  max-width: calc(
-    var(--ark-width--article--md, 1000px) + var(--ark-padding--container, 0px) *
-      2
-  );
+  max-width: calc($size + var(--ark-padding--container, 0px) * 2);
   padding-left: var(--ark-padding--container, 0);
   padding-right: var(--ark-padding--container, 0);
+}
 
-  //sectionに入れ子になったsection直下
-  .ark-block-section:where(.alignfull):not([data-inner='full'])
+.single-achievement {
+  .l-content > .l-content__body {
+    .l-main {
+      @include mq(pc) {
+        max-width: 90%;
+        width: calc(
+          90% - var(--ark-width--sidebar) - var(--ark-gap--container)
+        );
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+/* 固定ページ(about) */
+//プロフィールsection
+.p-page__intro {
+  $this: &;
+  &.ark-block-section:where(.alignfull):not([data-inner='full'])
+    > .ark-block-section__body {
+    @include conf-ark-block-section__under(
+      $size: var(--ark-width--article--sm, 800px)
+    );
+  }
+}
+.p-page__profile {
+  $this: &;
+  &.ark-block-section:where(.alignfull):not([data-inner='full'])
+    > .ark-block-section__body {
+    @include conf-ark-block-section__under(
+      $size: var(--ark-width--article--sm, 800px)
+    );
+    // margin: 0 auto;
+    // max-width: 100%;
+    // padding-left: 0;
+    // padding-right: 0;
+    // @include mq(pc) {
+    //   max-width: calc(
+    //     var(--ark-width--article--sm, 800px) +
+    //       var(--ark-padding--container, 0px) * 2
+    //   );
+    //   padding-left: var(--ark-padding--container, 0);
+    //   padding-right: var(--ark-padding--container, 0);
+    // }
+  }
+  #{$this}__card {
+    &.ark-block-section:where(.alignfull):not([data-inner='full'])
+      > .ark-block-section__body {
+      @include conf-ark-block-section__under(
+        $size: var(--ark-width--article--sm, 800px)
+      );
+    }
+  }
+}
+
+.p-page__profile__card {
+  $this: &;
+  //sectionに入れ子になったsectionの直下
+  &.ark-block-section:where(.alignfull):not([data-inner='full'])
     > .ark-block-section__body {
     margin: 0 auto;
     max-width: 100%;
@@ -20,7 +79,35 @@
     padding-right: 0;
     @include mq(pc) {
       max-width: calc(
-        var(--ark-width--article--md, 1000px) +
+        var(--ark-width--article--sm, 800px) +
+          var(--ark-padding--container, 0px) * 2
+      );
+      padding-left: var(--ark-padding--container, 0);
+      padding-right: var(--ark-padding--container, 0);
+    }
+    #{$this}__card {
+      &.ark-block-section:where(.alignfull):not([data-inner='full'])
+        > .ark-block-section__body
+        .ark-block-section:where(.alignfull):not([data-inner='full'])
+        > .ark-block-section__body {
+        color: green;
+        @include conf-ark-block-section__under(
+          $size: var(--ark-width--article--sm, 800px)
+        );
+      }
+    }
+  }
+}
+
+.p-page__ability {
+  $this: &;
+  &.ark-block-section:where(.alignfull):not([data-inner='full'])
+    > .ark-block-section__body {
+    margin: 0 auto;
+    max-width: 100%;
+    @include mq(pc) {
+      max-width: calc(
+        var(--ark-width--article--sm, 800px) +
           var(--ark-padding--container, 0px) * 2
       );
       padding-left: var(--ark-padding--container, 0);
