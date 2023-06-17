@@ -1,0 +1,70 @@
+@use '../setting' as *;
+@use './breakpoint' as *;
+
+@mixin general__heading--cursive(
+  $font-size: var(--font-hero),
+  $class-name: 'p-general__cursive-heading__inner',
+  $u-position--lg: 12%
+) {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  margin-top: -16%;
+  @include mq(tablet) {
+    width: 70%;
+    left: -2%;
+    margin-top: 0;
+  }
+  @include mq(pc) {
+    left: calc($u-position--lg * -1);
+  }
+
+  .#{$class-name} {
+    $this: &;
+    position: relative;
+    padding-bottom: 24px;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 32px;
+      height: 1px;
+      background: var(--color-weldon-blue);
+      left: 0;
+      bottom: 0;
+    }
+    p {
+      font-size: $font-size;
+      font-family: 'Allura', cursive;
+      text-transform: capitalize;
+      color: var(--color-weldon-blue);
+      line-height: 1;
+    }
+    h2 {
+      font-weight: 400;
+      color: var(--color-weldon-blue);
+      font-size: var(--font-xs);
+      line-height: 1;
+      margin-right: auto;
+    }
+  }
+}
+
+@mixin general__content--left($u-position--lg: 12%, $position: relative) {
+  color: var(--color-philippine-gray);
+  --ark-mt--inner: var(--ark-mt--l, 3.75rem);
+  position: $position;
+  left: 0;
+  top: auto;
+  transform: none; //transform: translateY(-50%)
+  width: 88%;
+  @include mq(tablet) {
+    left: 0;
+    top: auto;
+    width: 50%;
+  }
+  @include mq(pc) {
+    left: calc($u-position--lg * -1);
+  }
+}
