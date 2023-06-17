@@ -6,30 +6,29 @@ $category: 'cat';
     $this: &;
     &__title {
       .c-pageTitle__main {
-        padding-left: 96px;
+        padding-left: 100px;
+        letter-spacing: 0.05em;
+        font-weight: 400;
+        font-size: var(--font-lg);
         &::before {
-          content: '';
+          content: 'category';
           display: block;
-          width: 88px;
-          height: 36px;
-          border: 2px solid #454545;
+          font-size: var(--font-xxs);
+          font-family: 'Montserrat', sans-serif;
           position: absolute;
           top: 50%;
           left: 0;
           transform: translateY(-50%);
-        }
-        &::after {
-          content: 'category';
-          display: block;
-          font-size: 12px;
-          font-family: 'Montserrat', sans-serif;
-          position: absolute;
-          top: 50%;
-          left: 8px;
-          transform: translateY(-50%);
-          letter-spacing: 0.15em;
+          letter-spacing: 0.125em;
+          color: #ffffff;
+          text-transform: uppercase;
+          padding: 0.8em 0.6em;
+          background: var(--color-weldon-blue);
         }
       }
+    }
+    &__desc {
+      line-height: 1.8;
     }
   }
 }
@@ -38,30 +37,29 @@ $category: 'cat';
     $this: &;
     &__title {
       .c-pageTitle__main {
-        padding-left: 72px;
+        padding-left: 60px;
+        letter-spacing: 0.05em;
+        font-weight: 400;
+        font-size: var(--font-lg);
         &::before {
-          content: '';
+          content: 'tag';
           display: block;
-          width: 56px;
-          height: 36px;
-          border: 2px solid #454545;
+          font-size: var(--font-xs);
+          font-family: 'Montserrat', sans-serif;
           position: absolute;
           top: 50%;
           left: 0;
           transform: translateY(-50%);
-        }
-        &::after {
-          content: 'Tag';
-          display: block;
-          font-size: 14px;
-          font-family: 'Montserrat', sans-serif;
-          position: absolute;
-          top: 50%;
-          left: 14px;
-          transform: translateY(-50%);
-          letter-spacing: 0.15em;
+          letter-spacing: 0.25em;
+          color: #ffffff;
+          text-transform: uppercase;
+          padding: 0.6em 0.4em;
+          background: var(--color-weldon-blue);
         }
       }
+    }
+    &__desc {
+      line-height: 1.8;
     }
   }
 }

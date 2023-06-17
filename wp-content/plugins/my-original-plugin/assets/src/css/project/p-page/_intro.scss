@@ -1,0 +1,28 @@
+@use '../../global' as *;
+
+.p-page__intro {
+  $this: &;
+  &__heading {
+    .ark-block-heading__main {
+      // color: transparent;
+      // background-image: var(--color-moonlit-asteroid);
+      // background-clip: text;
+    }
+  }
+  &__columns {
+    #{$this}__catch {
+      writing-mode: vertical-rl;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 2;
+      font-size: var(--font-md);
+      font-weight: 600;
+      letter-spacing: 0.075em;
+    }
+
+    #{$this}__inner--item:has(p) {
+      #{$this}__text--wrapper {
+      }
+    }
+  }
+}

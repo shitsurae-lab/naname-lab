@@ -4,8 +4,9 @@ $requirement: '.single';
   &__content {
     color: var(--color-spindle);
     font-size: var(--font-md);
-
     @include mq(pc) {
+      width: calc(100% - 20px);
+      margin-left: 20px;
       position: sticky;
       top: 0;
     }
@@ -27,7 +28,7 @@ $requirement: '.single';
     a {
       text-decoration: none;
       position: relative;
-      padding-left: 20px;
+      padding-left: 12px;
       color: var(--color-spindle);
       font-size: var(--font-sm);
       font-weight: 500;

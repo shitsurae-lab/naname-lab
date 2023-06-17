@@ -2,18 +2,26 @@
 
 .l-sidebar {
   .p-sidebar__heading {
+    margin-bottom: 40px;
     .p-sidebar__date {
-      color: var(--color-gainsboro);
-      font-size: var(--font-xs);
+      //color: var(--color-gainsboro);
+      //font-size: var(--font-xs);
+      font-size: var(--font-xl);
+      color: var(--color-weldon-blue);
+      font-family: 'Hind', sans-serif;
+      letter-spacing: 0.05em;
+      line-height: 1;
     }
     .p-newsList__heading {
       a {
         text-decoration: none;
-        color: transparent;
-        background: var(--color-weldon-blue);
-        background-clip: text;
-        font-size: var(--font-md);
-        font-weight: 500;
+        font-size: var(--font-xs);
+        color: var(--color-granite-gray);
+        font-weight: 400;
+        letter-spacing: 0.05em;
+      }
+      [data-icon='folder'] {
+        padding-right: 4px;
       }
     }
   }

@@ -1,0 +1,24 @@
+@use '../../global' as *;
+
+.p-entry {
+  $this: &;
+  &__content {
+    #{$this}__heading {
+      font-size: var(--font-md);
+      color: var(--color-granite-gray);
+      font-weight: 500;
+      position: relative;
+      padding-left: 16px;
+    }
+    #{$this}__heading::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--color-weldon-blue);
+    }
+  }
+}

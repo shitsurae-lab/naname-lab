@@ -1,0 +1,191 @@
+@use '../../global' as *;
+@mixin m-shift__card(
+  $tab-primary: 64px,
+  $tab-secondary: 32px,
+  $tab-tertiary: 0,
+  $pc-primary: 80px,
+  $pc-secondary: 40px,
+  $pc-tertiary: 0
+) {
+  @include mq(tablet) {
+    &:nth-child(3n + 1) {
+      transform: translateY($tab-primary);
+    }
+    &:nth-child(3n + 2) {
+      transform: translateY($tab-secondary);
+    }
+    &:nth-child(3n + 3) {
+      transform: translateY($tab-tertiary);
+    }
+  }
+  @include mq(pc) {
+    &:nth-child(3n + 1) {
+      transform: translateY($pc-primary);
+    }
+    &:nth-child(3n + 2) {
+      transform: translateY($pc-secondary);
+    }
+    &:nth-child(3n + 3) {
+      transform: translateY($pc-tertiary);
+    }
+  }
+  @content;
+}
+/* page-strengths.phpのみデフォルトのmargin: 3rem autoをリセット */
+.service .l-content__top + .l-content__body {
+  margin: 0 auto;
+}
+.p-page__strengths--intro {
+  $this: &;
+  &__container {
+    width: min(960px, 100%);
+    margin: 0 auto;
+    position: relative;
+    .p-general__cursive-heading {
+      @include general__heading--cursive($font-size: var(--font-hero--md));
+    }
+
+    #{$this}__content {
+      @include general__content--left();
+    }
+
+    //疑似要素
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 40px;
+      right: -20%;
+      width: 100%;
+      height: 100%;
+      background: var(--color-antiflash);
+      z-index: -1;
+      @include mq(tablet) {
+        top: 120px;
+        right: -24%;
+        height: 96%;
+      }
+      @include mq(pc) {
+        top: 100px;
+        right: -4%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__columns {
+    #{$this}__column {
+      @include m-shift__card();
+    }
+  }
+}
+.p-card {
+  $this: &;
+  &.ark-block-container:not(.has-inner) {
+    display: flex;
+    flex-direction: row;
+    margin-left: calc(12px * -1);
+    @include mq(tablet) {
+      margin-left: 0;
+      flex-direction: column;
+    }
+    #{$this}__media {
+      width: min(125px, 33%);
+      margin-left: 12px;
+      flex: 1 0 auto;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      @include mq(tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+    #{$this}__body {
+      margin-top: 0;
+      width: min(calc(100% - 24px - 125px), 66%);
+      margin-left: 12px;
+      flex: 1 1 auto;
+      @include mq(tablet) {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px 14px;
+        aspect-ratio: 5/3;
+        background: var(--ark-color_bg);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.06),
+          0px 2px 24px -10px rgba(0, 0, 0, 0.06),
+          0px 4px 32px -16px rgba(0, 0, 0, 0.04);
+      }
+      //p-card__body直下のparagraph
+      &.ark-keep-mt > :not(:first-child) {
+        font-size: var(--font-xxs);
+        margin-top: 0.5em;
+      }
+    }
+
+    #{$this}__heading {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &--main {
+        font-size: var(--font-sm);
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: #80999c;
+      }
+      &--sub {
+        display: inline-block;
+        padding: 0.4em 0.8em;
+        border: 1px solid var(--color-weldon-blue);
+        color: var(--color-weldon-blue);
+        border-radius: 2px;
+        font-size: 10px;
+        line-height: 1;
+        @include mq(tablet) {
+          padding: 0.4em 0.8em;
+        }
+      }
+    }
+  }
+}
+
+// .p-page__skills {
+//   $this: &;
+//   &__container {
+//     /* ダッシュボードで「スリム幅にすれば」解決したので、以下、p-page__slills__containerをコメントアウト*/
+//     //     max-width: calc(var(--ark-width--article--slim, 960px));
+//     //     width: 100%;
+//     //     margin: 0 auto;
+//     position: relative;
+//     .p-general__cursive-heading {
+//       @include general__heading--cursive();
+//     }
+//   }
+// }
+
+.p-profile--skills {
+  $this: &;
+  &__container {
+    position: relative;
+    .p-general__cursive-heading {
+      @include general__heading--cursive();
+    }
+    #{$this}__content {
+      @include general__content--left();
+    }
+    #{$this}__columns {
+      .p-postList__item {
+        @include m-shift__card(
+          $tab-primary: 0,
+          $tab-secondary: 32px,
+          $tab-tertiary: 64px,
+          $pc-primary: 0,
+          $pc-secondary: 40px,
+          $pc-tertiary: 80px
+        );
+      }
+    }
+  }
+}
