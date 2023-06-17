@@ -1,0 +1,19 @@
+@use '../../global' as *;
+.p-index--works {
+  $this: &;
+  &__columns {
+    & > .ark-block-columns__inner {
+      flex-direction: column;
+      @include mq(tablet) {
+        flex-direction: row-reverse;
+      }
+      #{$this}__column {
+        #{$this}__image {
+          img {
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,5 +2,7 @@
 // @forward 'contact';
 // @forward 'skill';
 // @forward 'piece';
+@forward 'common'; //indexページの共通箇所
 @forward 'intro'; //topカルーセルスライダー下,introセクション
-@forward 'gallery'; //strengths　& skillsのセクション
+@forward 'gallery'; //strengths& skillsのセクション
+@forward 'works'; //
