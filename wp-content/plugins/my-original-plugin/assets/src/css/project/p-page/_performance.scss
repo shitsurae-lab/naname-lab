@@ -1,0 +1,214 @@
+@use '../../global' as *;
+/*- 変数 -*/
+//absoluteで定義する位置(ex: left, right等に使用)
+$u-position--sm: 2%;
+$u-position--lg: 12%;
+//margin,paddingなどの定義
+$u-space--md: 40px;
+$u-space--lg: 60px;
+
+/*- mixin -*/
+@mixin p-performance--cursive__heading(
+  $font-size: var(--font-hero),
+  $class-name: 'p-performance--catalogue__heading'
+) {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  margin-top: -16%;
+  @include mq(tablet) {
+    width: 70%;
+    left: -2%;
+    margin-top: 0;
+  }
+  @include mq(pc) {
+    left: calc($u-position--lg * -1);
+  }
+
+  .#{$class-name} {
+    $this: &;
+    position: relative;
+    padding-bottom: 24px;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 32px;
+      height: 1px;
+      background: var(--color-weldon-blue);
+      left: 0;
+      bottom: 0;
+    }
+    p {
+      font-size: $font-size;
+      font-family: 'Allura', cursive;
+      text-transform: capitalize;
+      color: var(--color-weldon-blue);
+      line-height: 1;
+    }
+    h2 {
+      font-weight: 400;
+      color: var(--color-weldon-blue);
+      font-size: var(--font-xs);
+      line-height: 1;
+      margin-right: auto;
+    }
+  }
+}
+
+.p-performance--intro {
+  $this: &;
+
+  .ark-block-section__bodyInner {
+    position: relative;
+  }
+  #{$this}__container {
+    //- START: __container内、2番めの要素のmargin-topをリセット
+    &.ark-keep-mt > :not(:first-child)#{$this}__img {
+      margin-top: var(--ark-mt--zero, 0);
+    }
+    //- END
+  }
+  #{$this}__container {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 100vw;
+      height: 110%;
+      background: var(--color-antiflash);
+      position: absolute;
+      left: calc($u-position--lg * 2);
+      top: -4%;
+      margin-right: calc(50% - 50vw);
+      margin-left: auto;
+      @include mq(tablet) {
+        top: 0;
+        left: calc($u-position--lg * 2);
+      }
+    }
+    #{$this}__body {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      left: 0;
+      margin-top: -16%;
+      @include mq(tablet) {
+        width: 70%;
+        left: -2%;
+        margin-top: 0;
+      }
+      @include mq(pc) {
+        left: calc($u-position--lg * -1);
+      }
+
+      #{$this}__heading {
+        position: relative;
+        padding-bottom: 24px;
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 32px;
+          height: 1px;
+          background: var(--color-weldon-blue);
+          left: 0;
+          bottom: 0;
+        }
+        #{$this}__heading--sub {
+          font-size: var(--font-hero--md);
+          font-family: 'Allura', cursive;
+          text-transform: capitalize;
+          color: var(--color-weldon-blue);
+          line-height: 1;
+        }
+        #{$this}__heading--main {
+          font-weight: 400;
+          color: var(--color-weldon-blue);
+          font-size: var(--font-xs);
+          line-height: 1;
+          margin-right: auto;
+        }
+      }
+    }
+
+    //簡単な説明
+    #{$this}__desc {
+      color: var(--color-philippine-gray);
+      margin-top: 0;
+      position: absolute;
+      left: 0;
+      top: 60%;
+      transform: translateY(-50%);
+      width: 88%;
+      @include mq(tablet) {
+        left: -2%;
+        top: 50%;
+        width: 50%;
+      }
+      @include mq(pc) {
+        left: calc($u-position--lg * -1);
+      }
+    }
+
+    //背景イメージ画像
+    &.ark-keep-mt > :not(:first-child)#{$this}__img {
+      position: relative;
+      box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
+      width: 92%;
+      margin-left: auto;
+      right: -8px;
+      margin-top: $u-space--md;
+      @include mq(tablet) {
+        width: 100%;
+        right: calc($u-position--lg * -1);
+        margin-top: $u-space--lg;
+      }
+      @include mq(pc) {
+        margin-top: $u-space--lg;
+      }
+      img {
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        object-position: right center;
+        @include mq(tablet) {
+          aspect-ratio: auto;
+          object-fit: auto;
+          object-fit: center center;
+        }
+      }
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba(255 255 255 / 80%);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.p-performance--catalogue {
+  $this: &;
+  #{$this}__container {
+    position: relative;
+    &.ark-keep-mt > :not(:first-child) {
+      &#{$this}__list {
+        --ark-mt--inner: var(--ark-mt--l, 3.75rem);
+      }
+    }
+  }
+  #{$this}__heading-wrapper {
+    @include p-performance--cursive__heading();
+  }
+}
+
+.p-performance--catalogue {
+  $this: &;
+  &__heading-wrapper {
+  }
+}

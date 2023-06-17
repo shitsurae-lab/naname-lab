@@ -1,0 +1,50 @@
+@use '../../global' as *;
+.p-performance--intro {
+  $this: &;
+  &:where(.alignfull):not([data-inner='full']) > .ark-block-section__body {
+    max-width: calc(
+      var(--ark-width--article--sm, 800px) + var(--ark-padding--container, 0px) *
+        2
+    );
+  }
+  .ark-block-section__bodyInner {
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 72%;
+      background: var(--color-antiflash);
+      position: absolute;
+      left: 16%;
+      top: 20%;
+      //widthを100vwにして、疑似要素を右寄せ
+      width: 100vw;
+      margin-right: calc(50% - 50vw);
+      margin-left: auto;
+    }
+  }
+  #{$this}__container {
+    //- START: __container内、2番めの要素のmargin-topをリセット
+    &.ark-keep-mt > :not(:first-child)#{$this}__img {
+      margin-top: var(--ark-mt--zero, 0);
+    }
+    //- END
+  }
+  #{$this}__container {
+    position: relative;
+    padding-top: 80px;
+    #{$this}__body {
+      position: relative;
+      z-index: 2;
+      top: 0;
+    }
+    &.ark-keep-mt > :not(:first-child)#{$this}__img {
+      position: relative;
+      @include mq(tablet) {
+        margin-top: calc(var(--ark-mt--l, 60px) * -1);
+        right: -10%;
+      }
+    }
+  }
+}
