@@ -138,6 +138,65 @@ body {
     font-family: 'Montserrat', sans-serif;
   }
 }
+//- タームアーカイブメインビジュアル
+@mixin term_archive_mv($sub-heading: 'design') {
+  .p-topArea {
+    &__body {
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 92%;
+        padding-top: 45vh;
+        border: 2px solid #ffffff;
+        border-radius: 4px;
+        @include mq(tablet) {
+          width: min(740px, 100%);
+        }
+        @include mq(pc) {
+          width: min(1200px, 100%);
+        }
+      }
+      // END: p-topArea__body::before
+      .p-topArea__title {
+        position: relative;
+        padding-left: 20px;
+        padding-top: 40px;
+        margin-left: 16px;
+        @include mq(pc) {
+          padding-left: 20px;
+          padding-top: 80px;
+          margin-left: 40px;
+        }
+        &::before {
+          content: $sub-heading;
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-family: 'Allura', cursive;
+          font-weight: 400;
+          font-size: var(--font-hero--lg);
+          text-transform: capitalize;
+          line-height: 1;
+        }
+        .c-pageTitle__main {
+          text-transform: inherit;
+          font-size: var(--font-xl);
+          font-weight: 400;
+          font-family: 'Noto Sans JP', sans-serif;
+        }
+      }
+    }
+  }
+}
+.term-design {
+  @include term_archive_mv();
+}
+
 .p-page__content {
   // .ark-block-heading__main {
   //   font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
@@ -201,7 +260,8 @@ body {
   .p-page {
     $this: &;
     &__profile,
-    &__ability {
+    &__ability,
+    &__skills {
       .ark-block-heading {
         position: relative;
         padding-top: 20px;
@@ -244,12 +304,18 @@ body {
         }
       }
     }
+    /* START: p-page__ability__column*/
     &__ability__column {
       h3 {
         font-size: var(--font-md);
         font-weight: 400;
         color: var(--color-weldon-blue);
       }
+    }
+    /* END: p-page__ability__column*/
+
+    &__strengths__heading {
+      /*p-page/__strengthsに記載 */
     }
   }
 
@@ -258,5 +324,20 @@ body {
     font-weight: 400;
     letter-spacing: 0.1em;
     color: $color-weldon-blue;
+  }
+}
+
+/* SINGLE */
+.single {
+  &.single-achievement {
+    .p-entry__title {
+      .c-pageTitle__main {
+        font-size: var(--font-xl);
+        letter-spacing: 0.05em;
+        font-weight: 400;
+        color: var(--color-granite-gray);
+        width: fit-content;
+      }
+    }
   }
 }

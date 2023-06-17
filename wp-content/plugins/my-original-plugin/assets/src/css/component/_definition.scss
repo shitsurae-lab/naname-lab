@@ -1,5 +1,9 @@
 @use '../global' as *;
-.c-definition {
+//*conf: configuration(設定)の略
+
+/* conf-definition */
+//①$thisを使用している
+@mixin conf-definition($width--pc: 160px, $calc--pc: 3) {
   margin: var(--arkb-gap--y) 0 0 0;
   font-size: var(--font-xs);
   $this: &;
@@ -7,14 +11,26 @@
     display: flex;
     flex-direction: column;
     #{$this}__dt {
-      border-top: 1px solid #cccccc;
-      color: var(--color-weldon-blue);
-      font-weight: 500;
-      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      background: rgb(128 153 156 / 80%);
+      border-top: none;
+      color: var(--color-granite-gray);
+      // padding: 0.5rem 0.5rem 0.5rem 1rem;
+      padding: 0.75rem 0.75rem 0.75rem 0.875rem;
+      @include mq(tablet) {
+        background: transparent;
+        border-top: 1px solid #cccccc;
+        color: var(--color-weldon-blue);
+        font-weight: 500;
+      }
     }
     #{$this}__dd {
-      border-top: 1px solid #cccccc;
-      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      border-top: none;
+      // padding: 0.5rem 0.5rem 0.5rem 1rem;
+      padding: 0.75rem 0.75rem 0.75rem 0.875rem;
+      @include mq(tablet) {
+        border-top: 1px solid #cccccc;
+      }
+
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -24,6 +40,13 @@
         width: min(110px, calc(100% / 3));
         position: relative;
         padding-left: 20px;
+        @include mq(tablet) {
+          width: min(140px, calc(100% / 2));
+        }
+        @include mq(pc) {
+          width: min($width--pc, calc(100% / $calc--pc));
+        }
+
         &::before {
           content: '\f14a';
           font-family: 'Font Awesome 5 Free';
@@ -42,11 +65,22 @@
         background: transparent;
       }
     }
-    @include mq(pc) {
+    @include mq(tablet) {
       #{$this}__dt {
         width: min(180px, 26%);
         position: relative;
         flex: 1 0 auto;
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--color-weldon-blue);
+          z-index: 2;
+        }
       }
       #{$this}__dd {
         width: min(100% - 180px, 74%);
@@ -58,17 +92,132 @@
   &__list:first-child {
     #{$this}__dt,
     #{$this}__dd {
-      @include mq(tablet) {
-        border-top: none;
+      border-top: none;
+    }
+  }
+  &__list:last-child {
+    @include mq(tablet) {
+      #{$this}__dt {
+        &::before {
+          content: '';
+          display: none;
+        }
       }
     }
   }
-  &__list:not(:first-child) {
-    @include mq(pc) {
-      #{$this}__dt {
-      }
-      #{$this}__dd {
+}
+
+//②$thisを使用している
+@mixin conf-definition--no-var($width--pc: 160px, $calc--pc: 3) {
+  margin: var(--arkb-gap--y) 0 0 0;
+  font-size: var(--font-xs);
+  $this: &;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    .c-definition__dt {
+      background: rgb(128 153 156 / 80%);
+      border-top: none;
+      color: var(--color-granite-gray);
+      // padding: 0.5rem 0.5rem 0.5rem 1rem;
+      padding: 0.75rem 0.75rem 0.75rem 0.875rem;
+      @include mq(tablet) {
+        background: transparent;
+        border-top: 1px solid #cccccc;
+        color: var(--color-weldon-blue);
+        font-weight: 500;
       }
     }
+    .c-definition__dd {
+      border-top: none;
+      // padding: 0.5rem 0.5rem 0.5rem 1rem;
+      padding: 0.75rem 0.75rem 0.75rem 0.875rem;
+      @include mq(tablet) {
+        border-top: 1px solid #cccccc;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      li {
+        width: min(110px, calc(100% / 3));
+        position: relative;
+        padding-left: 20px;
+        @include mq(tablet) {
+          width: min(140px, calc(100% / 2));
+        }
+        @include mq(pc) {
+          width: min($width--pc, calc(100% / $calc--pc));
+        }
+
+        &::before {
+          content: '\f14a';
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 400;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    @include mq(tablet) {
+      flex-direction: row;
+      .c-definition__dt {
+        background: transparent;
+      }
+    }
+    @include mq(tablet) {
+      .c-definition__dt {
+        width: min(180px, 26%);
+        position: relative;
+        flex: 1 0 auto;
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--color-weldon-blue);
+          z-index: 2;
+        }
+      }
+      .c-definition__dd {
+        width: min(100% - 180px, 74%);
+        position: relative;
+        flex: 1 1 auto;
+      }
+    }
+  }
+  &__list:first-child {
+    .c-definition__dt,
+    .c-definition__dd {
+      border-top: none;
+    }
+  }
+  &__list:last-child {
+    @include mq(tablet) {
+      .c-definition__dt {
+        &::before {
+          content: '';
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.c-definition {
+  @include conf-definition();
+}
+
+.p-page__profile__card__inner {
+  .c-definition {
+    @include conf-definition--no-var($width--pc: 168px, $calc--pc: 2);
   }
 }
