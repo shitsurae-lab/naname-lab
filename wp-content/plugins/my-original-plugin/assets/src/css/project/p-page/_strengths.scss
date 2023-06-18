@@ -59,7 +59,7 @@
       width: 100%;
       height: 100%;
       background: var(--color-antiflash);
-      z-index: -1;
+      z-index: -2;
       @include mq(tablet) {
         top: 120px;
         right: -24%;
@@ -71,6 +71,20 @@
         height: 100%;
       }
     }
+    /* 一旦コメントアウト*/
+    // &::after {
+    //   content: '';
+    //   display: block;
+    //   width: 40%;
+    //   height: auto;
+    //   aspect-ratio: 1 / 1;
+    //   background: red;
+    //   position: absolute;
+    //   top: 0;
+    //   right: -12%;
+    //   z-index: -1;
+    //   margin-top: 40px;
+    // }
   }
 
   &__columns {
@@ -93,11 +107,22 @@
       width: min(125px, 33%);
       margin-left: 12px;
       flex: 1 0 auto;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      position: relative;
       @include mq(tablet) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         width: 100%;
         margin-left: 0;
+        &::before {
+          position: absolute;
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: rgba(255 255 255 / 64%);
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
       }
     }
     #{$this}__body {
@@ -139,7 +164,9 @@
         display: inline-block;
         padding: 0.4em 0.8em;
         border: 1px solid var(--color-weldon-blue);
-        color: var(--color-weldon-blue);
+        // color: var(--color-weldon-blue);
+        background-color: var(--color-weldon-blue);
+        color: #ffffff;
         border-radius: 2px;
         font-size: 10px;
         line-height: 1;
