@@ -1,6 +1,6 @@
 @use '../../global' as *;
-/*- 変数 -*/
-//absoluteで定義する位置(ex: left, right等に使用)
+// /*- 変数 -*/
+// //absoluteで定義する位置(ex: left, right等に使用)
 $u-position--sm: 2%;
 $u-position--lg: 12%;
 //margin,paddingなどの定義
@@ -161,12 +161,13 @@ $u-space--lg: 60px;
       right: -8px;
       margin-top: $u-space--md;
       @include mq(tablet) {
-        width: 100%;
-        right: calc($u-position--lg * -1);
+        width: 80%;
+        // right: calc($u-position--lg * -1);
+        right: 0;
         margin-top: $u-space--lg;
       }
       @include mq(pc) {
-        margin-top: $u-space--lg;
+        margin-top: 0;
       }
       img {
         aspect-ratio: 1/1;
@@ -203,7 +204,13 @@ $u-space--lg: 60px;
     }
   }
   #{$this}__heading-wrapper {
-    @include p-performance--cursive__heading();
+    // @include p-performance--cursive__heading();
+    @include general__heading--cursive(
+      $class-name: 'p-performance--catalogue__heading',
+      $u-position--sm: 0,
+      $u-position--lg: 0,
+      $ratio--tablet: 70%
+    );
   }
 }
 
