@@ -8,10 +8,8 @@
         flex-direction: row-reverse;
       }
       #{$this}__column {
-        #{$this}__image {
-          img {
-            border-radius: 10px;
-          }
+        figure#{$this}__media {
+          border-radius: 10px;
         }
       }
     }
