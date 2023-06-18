@@ -5,7 +5,8 @@
   $font-size: var(--font-hero),
   $class-name: 'p-general__cursive-heading__inner',
   $u-position--sm: 2%,
-  $u-position--lg: 12%
+  $u-position--lg: 12%,
+  $ratio--tablet: 70%
 ) {
   position: relative;
   z-index: 2;
@@ -13,7 +14,7 @@
   left: 0;
   margin-top: -16%;
   @include mq(tablet) {
-    width: 70%;
+    width: $ratio--tablet;
     left: calc($u-position--sm * -1);
     margin-top: 0;
   }
