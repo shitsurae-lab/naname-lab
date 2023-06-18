@@ -1,0 +1,8 @@
+@use '../global' as *;
+
+.u-media--rounded {
+  border-radius: 10px;
+}
+.u-media--drop-shadow {
+  filter: drop-shadow(2px 4px 4px rgba(0 0 0 / 40%));
+}
