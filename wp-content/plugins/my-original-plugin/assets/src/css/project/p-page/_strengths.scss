@@ -170,10 +170,13 @@
   &__container {
     position: relative;
     .p-general__cursive-heading {
-      @include general__heading--cursive();
+      @include general__heading--cursive(
+        $u-position--lg: 0,
+        $u-position--sm: 0
+      );
     }
     #{$this}__content {
-      @include general__content--left();
+      // @include general__content--left();
     }
     #{$this}__columns {
       .p-postList__item {
