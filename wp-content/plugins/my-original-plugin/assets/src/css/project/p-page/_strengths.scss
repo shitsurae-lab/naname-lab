@@ -182,11 +182,14 @@
       .p-postList__item {
         @include m-shift__card(
           $tab-primary: 0,
-          $tab-secondary: 32px,
-          $tab-tertiary: 64px,
+          $tab-secondary: 0,
+          //32px
+          $tab-tertiary: 0,
+          //64px
           $pc-primary: 0,
-          $pc-secondary: 40px,
-          $pc-tertiary: 80px
+          $pc-secondary: 0,
+          //40px
+          $pc-tertiary: 0 //80px
         );
       }
     }

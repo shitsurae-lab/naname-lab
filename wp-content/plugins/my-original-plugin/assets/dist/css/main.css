@@ -2605,10 +2605,10 @@ article.skills .p-entry__content {
     transform: translateY(0);
   }
   .p-profile--skills__container .p-profile--skills__columns .p-postList__item:nth-child(3n+2) {
-    transform: translateY(32px);
+    transform: translateY(0);
   }
   .p-profile--skills__container .p-profile--skills__columns .p-postList__item:nth-child(3n+3) {
-    transform: translateY(64px);
+    transform: translateY(0);
   }
 }
 @media (min-width: 1000px) {
@@ -2616,10 +2616,10 @@ article.skills .p-entry__content {
     transform: translateY(0);
   }
   .p-profile--skills__container .p-profile--skills__columns .p-postList__item:nth-child(3n+2) {
-    transform: translateY(40px);
+    transform: translateY(0);
   }
   .p-profile--skills__container .p-profile--skills__columns .p-postList__item:nth-child(3n+3) {
-    transform: translateY(80px);
+    transform: translateY(0);
   }
 }
 
