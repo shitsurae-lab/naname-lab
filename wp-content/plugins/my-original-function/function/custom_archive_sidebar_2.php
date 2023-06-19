@@ -48,7 +48,7 @@ function custom_archive_sidebar()
     <?php elseif (is_tax('achievement_cat')) :
     $tax_name = 'achievement_cat';
     $args = [
-      'exclude' => [56, 57, 58, 59, 60, 61, 64, 68, 71, 72]
+      'exclude' => [26, 52, 56, 57, 58, 59, 60, 61, 64, 68, 71, 72]
     ];
     $taxonomy_terms = get_terms($tax_name, $args, array('parent' => 0));
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) :
