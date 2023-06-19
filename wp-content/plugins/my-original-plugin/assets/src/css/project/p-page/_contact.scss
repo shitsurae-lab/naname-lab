@@ -1,33 +1,52 @@
 @use '../../global' as *;
 .p-page__contact {
   $this: &;
-  h1.wp-block-heading {
-    position: relative;
-    width: fit-content;
-    height: auto;
-    transform: translateY(-50%);
-    color: var(--color-weldon-blue);
-    font-weight: 500;
-    display: block;
-    padding-bottom: 0;
-    margin: 0 auto 60px;
-    &::before {
-      position: absolute;
-      content: 'CONTACT';
-      display: block;
-      font-size: var(--font-hero--lg);
-      color: var(--ark-color--gray);
-      top: -10%;
-      left: 0;
-      transform: translateY(-50%);
-      line-height: 1;
-      z-index: -1;
-    }
-  }
+  $form-width--lg: 72%;
+
   &__container {
+    .p-general__cursive-heading {
+      @include general__heading--cursive(
+        $heading: h1,
+        $u-position--sm: 0,
+        $u-position--md: 0,
+        $u-position--lg: 0,
+        $mt: 0
+      );
+    }
     width: min(640px, 100%);
     margin: 0 auto;
     form {
+      dl {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .c-inquiry--detail {
+        & + p {
+          width: 100%;
+          @include mq(tablet) {
+            width: 70%;
+          }
+          & > input.has-spinner {
+            margin-top: 20px;
+          }
+        }
+      }
+      input.form-control,
+      textarea.form-control {
+        width: 100%;
+        @include mq(tablet) {
+          width: $form-width--lg;
+          margin-right: auto;
+        }
+      }
+      hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+        @include mq(tablet) {
+          width: $form-width--lg;
+        }
+      }
       span {
         &.haveto,
         &.any {
@@ -47,29 +66,22 @@
 }
 .p-page__completed {
   $this: &;
-  h1.wp-block-heading {
-    position: relative;
-    display: inline-block;
-    width: 640px;
-    height: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--color-weldon-blue);
-    font-weight: 500;
-    &::before {
-      position: absolute;
-      content: 'COMPLETED';
-      display: block;
-      font-size: var(--font-hero--lg);
-      color: var(--ark-color--gray);
-      top: 25%;
-      right: 22%;
-      transform: translateY(-50%);
-      line-height: 1;
-      z-index: -1;
-    }
-  }
   &__container {
+    .p-general__cursive-heading {
+      @include general__heading--cursive(
+        $heading: h1,
+        $u-position--sm: 0,
+        $u-position--md: 0,
+        $u-position--lg: 0,
+        $mt: 0
+      );
+    }
+    p {
+      width: 100%;
+      @include mq(tablet) {
+        width: 72%;
+      }
+    }
     width: min(640px, 100%);
     margin: 0 auto;
   }
