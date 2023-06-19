@@ -75,7 +75,22 @@
           flex-direction: column;
           justify-content: center;
           //END: 上下中央寄せ
-          figure {
+        }
+        figure {
+          position: relative;
+          border-radius: 10px;
+
+          &::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            mix-blend-mode: color-dodge;
+            border-radius: 10px;
+          }
+          @include mq(tablet) {
             // margin-top: var(--arkb-gap--y);
             margin: 0;
           }
