@@ -2227,6 +2227,10 @@ article.skills .p-entry__content {
     margin: 0;
   }
 }
+.p-page__profile__card__inner .ark-block-columns__inner .p-page__profile__card--image.u-personal-informaion figure {
+  content: "";
+  display: none;
+}
 .p-page__profile__card__inner .ark-block-columns__inner .p-page__profile__card--definition {
   width: 100%;
   margin: 0;

@@ -95,6 +95,12 @@
             margin: 0;
           }
         }
+        &.u-personal-informaion {
+          figure {
+            content: '';
+            display: none;
+          }
+        }
       }
       #{$this}--definition {
         width: 100%;
