@@ -2227,7 +2227,7 @@ article.skills .p-entry__content {
     margin: 0;
   }
 }
-.p-page__profile__card__inner .ark-block-columns__inner .p-page__profile__card--image.u-personal-informaion figure {
+.p-page__profile__card__inner .ark-block-columns__inner .p-page__profile__card--image.u-personal-information figure::before {
   content: "";
   display: none;
 }

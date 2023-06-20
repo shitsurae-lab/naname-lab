@@ -95,10 +95,12 @@
             margin: 0;
           }
         }
-        &.u-personal-informaion {
+        &.u-personal-information {
           figure {
-            content: '';
-            display: none;
+            &::before {
+              content: '';
+              display: none;
+            }
           }
         }
       }
