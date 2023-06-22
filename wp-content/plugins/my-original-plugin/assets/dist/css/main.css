@@ -349,7 +349,17 @@ img {
   --color-linear-royal-golden: linear-gradient(0deg, #ffe384 0%, #5570ce 100%);
 }
 
+.l-header[data-btns=rl-rr] .l-header__body {
+  grid-template-columns: none 75% auto var(--ark-drawerW) var(--ark-searchW);
+}
+@media (min-width: 1000px) {
+  .l-header[data-btns=rl-rr] .l-header__body {
+    grid-template-columns: auto 1fr auto min-content min-content;
+  }
+}
+
 /* conf-ark-block-section__underを適用するときの注意*/
+/* 投稿ページ */
 @media (min-width: 1000px) {
   .single-achievement .l-content > .l-content__body .l-main {
     max-width: 90%;
@@ -359,7 +369,11 @@ img {
   }
 }
 
-/* 固定ページ(about) */
+/* 固定ページ */
+.page .l-content__body {
+  margin: 0 auto;
+}
+
 .p-page__intro.ark-block-section:where(.alignfull):not([data-inner=full]) > .ark-block-section__body {
   margin: 0 auto;
   max-width: calc(var(--ark-width--article--sm, 800px) + var(--ark-padding--container, 0px) * 2);
@@ -1529,51 +1543,95 @@ body {
     flex-direction: row;
   }
 }
-.p-footer li:first-child {
+.p-footer .p-footer__summary {
   width: 100%;
 }
 @media (min-width: 600px) {
-  .p-footer li:first-child {
+  .p-footer .p-footer__summary {
     width: 60%;
   }
 }
-.p-footer li:first-child > ul {
+.p-footer .p-footer__summary > ul {
   display: flex;
   flex-direction: column;
 }
 @media (min-width: 600px) {
-  .p-footer li:first-child > ul {
+  .p-footer .p-footer__summary > ul {
     flex-direction: row;
   }
 }
-.p-footer li:nth-child(2) {
+.p-footer .p-footer__nav {
   width: 100%;
 }
 @media (min-width: 600px) {
-  .p-footer li:nth-child(2) {
+  .p-footer .p-footer__nav {
     width: 40%;
   }
 }
-.p-footer .p-footer__logo figure img {
-  width: min(240px, 100%);
+
+/* START: variable */
+/* END */
+.p-footer__inner--list {
+  margin-left: 0;
+}
+@media (min-width: 600px) {
+  .p-footer__inner--list {
+    margin-left: -12px;
+  }
+}
+.p-footer__inner--list .p-footer__inner--logo {
+  width: 100%;
+}
+.p-footer__inner--list .p-footer__inner--logo figure {
+  width: min(224px, 100%);
+  margin: 0 auto;
   height: auto;
 }
-.p-footer .p-footer__text {
-  color: #ffffff;
-  position: relative;
+.p-footer__inner--list .p-footer__inner--logo figure img {
+  width: 100%;
+  height: auto;
 }
-.p-footer .p-footer__text h2 {
+@media (min-width: 600px) {
+  .p-footer__inner--list .p-footer__inner--logo {
+    width: min(240px, 33.3333333333%);
+    margin-left: 12px;
+  }
+  .p-footer__inner--list .p-footer__inner--logo figure {
+    width: min(240px, 100%);
+    margin-left: 0;
+    margin-right: auto;
+    height: auto;
+  }
+  .p-footer__inner--list .p-footer__inner--logo figure img {
+    width: 100%;
+    height: auto;
+  }
+}
+.p-footer__inner--list .p-footer__inner--text {
+  width: 100%;
+  margin-left: 0;
+  color: #ffffff;
+}
+.p-footer__inner--list .p-footer__inner--text h2 {
   font-size: var(--font-xs);
   font-weight: 400;
   text-align: center;
   margin-bottom: 1em;
 }
 @media (min-width: 600px) {
-  .p-footer .p-footer__text h2 {
+  .p-footer__inner--list .p-footer__inner--text h2 {
     text-align: left;
   }
 }
-.p-footer .p-footer__text--list {
+@media (min-width: 600px) {
+  .p-footer__inner--list .p-footer__inner--text {
+    width: min(468px, (100% - 12px) / 3 * 2);
+    margin-left: 12px;
+    position: relative;
+  }
+}
+
+.p-footer__sns {
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
@@ -1581,20 +1639,27 @@ body {
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 1em;
+  margin-left: -12px;
 }
 @media (min-width: 600px) {
-  .p-footer .p-footer__text--list {
+  .p-footer__sns {
     justify-content: flex-start;
     left: auto;
     transform: none;
     margin-bottom: 0;
   }
 }
-.p-footer .p-footer__text--list .p-footer__text--ttl {
+.p-footer__sns .p-footer__sns--ttl {
   font-size: var(--font-xs);
+  width: 40%;
+  margin-left: 12px;
 }
-.p-footer .p-footer__text--list .icon--primary {
-  color: #ffffff;
+.p-footer__sns img {
+  width: 24px;
+}
+.p-footer__sns .p-footer__sns--icon {
+  width: calc(30% - 12px);
+  margin-left: 12px;
 }
 
 .index-hero .ark-block-section__body {
