@@ -350,7 +350,7 @@ img {
 }
 
 .l-header[data-btns=rl-rr] .l-header__body {
-  grid-template-columns: none 75% auto var(--ark-drawerW) var(--ark-searchW);
+  grid-template-columns: 0% 75% auto var(--ark-drawerW) var(--ark-searchW);
 }
 @media (min-width: 1000px) {
   .l-header[data-btns=rl-rr] .l-header__body {

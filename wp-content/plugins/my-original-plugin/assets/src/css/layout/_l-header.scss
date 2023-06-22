@@ -3,7 +3,7 @@
   $this: &;
   &[data-btns='rl-rr'] {
     #{$this}__body {
-      grid-template-columns: none 75% auto var(--ark-drawerW) var(--ark-searchW);
+      grid-template-columns: 0% 75% auto var(--ark-drawerW) var(--ark-searchW);
       @include mq(pc) {
         grid-template-columns: auto 1fr auto min-content min-content;
       }
