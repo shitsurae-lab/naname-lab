@@ -42,77 +42,122 @@
   $this: &;
   @include c-flex__column-row;
   margin-bottom: 1rem;
-  li {
-    &:first-child {
-      width: 100%;
+
+  #{$this}__summary {
+    width: 100%;
+    @include mq(tablet) {
+      width: 60%;
+    }
+    & > ul {
+      display: flex;
+      flex-direction: column;
       @include mq(tablet) {
-        width: 60%;
+        flex-direction: row;
       }
-      & > ul {
-        display: flex;
-        flex-direction: column;
-        @include mq(tablet) {
-          flex-direction: row;
+    }
+  }
+  #{$this}__nav {
+    width: 100%;
+    @include mq(tablet) {
+      width: 40%;
+    }
+  }
+}
+/* START: variable */
+$flex-margin: 12px;
+/* END */
+.p-footer__inner {
+  $this: &;
+  &--list {
+    //p-footer__inner--list →　「ul」にあたる
+    margin-left: 0;
+    @include mq(tablet) {
+      margin-left: calc($flex-margin * -1);
+      //p-footer__inner--logoのmargin-left分はp-footer__inner(ul)のネガティブマージンで打ち消しする
+    }
+
+    #{$this}--logo {
+      width: 100%;
+      figure {
+        width: min(224px, 100%);
+        margin: 0 auto;
+        height: auto;
+        img {
+          width: 100%;
+          height: auto;
         }
       }
+      @include mq(tablet) {
+        width: min(240px, calc(100% / 3));
+        figure {
+          width: min(240px, 100%);
+          margin-left: 0;
+          margin-right: auto;
+          height: auto;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        margin-left: $flex-margin;
+      }
     }
-    &:nth-child(2) {
+    //p-footer__inner--textのmargin-leftは打ち消すところがないので、この子要素(p-footer__inner--text)内の要素からmargin-left分をマイナスする
+    #{$this}--text {
       width: 100%;
-      @include mq(tablet) {
-        width: 40%;
-      }
-    }
-  }
-  #{$this}__logo {
-    figure {
-      img {
-        width: min(240px, 100%);
-        height: auto;
-      }
-    }
-  }
-  #{$this}__text {
-    color: #ffffff;
-    position: relative;
-    h2 {
-      font-size: var(--font-xs);
-      font-weight: 400;
-      text-align: center;
-      margin-bottom: 1em;
-      @include mq(tablet) {
-        text-align: left;
-      }
-    }
-    &--list {
-      display: inline-flex;
-      flex-direction: row;
-      justify-content: center;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-bottom: 1em;
-      @include mq(tablet) {
-        justify-content: flex-start;
-        left: auto;
-        transform: none;
-        margin-bottom: 0;
-      }
-
-      #{$this}__text--ttl {
+      margin-left: 0;
+      color: #ffffff;
+      h2 {
         font-size: var(--font-xs);
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 1em;
+        @include mq(tablet) {
+          text-align: left;
+        }
       }
-      .icon--primary {
-        color: #ffffff;
+      @include mq(tablet) {
+        width: min(
+          calc(480px - $flex-margin),
+          calc(100% - $flex-margin) / 3 * 2
+        );
+        margin-left: $flex-margin;
+        position: relative;
       }
     }
   }
 }
 
-// .c-sns__list {
-//   display: flex;
-//   margin-left: calc(var(--space-sm) * -1);
-// }
-// .c-sns__item {
-//   margin-left: var(--space-sm);
-//   color: var(--color-primary);
-// }
+.p-footer__sns {
+  $this: &;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1em;
+  margin-left: calc($flex-margin * -1);
+  @include mq(tablet) {
+    justify-content: flex-start;
+    left: auto;
+    transform: none;
+    margin-bottom: 0;
+  }
+
+  #{$this}--ttl {
+    font-size: var(--font-xs);
+    width: 40%;
+    margin-left: 12px;
+  }
+  img {
+    width: 24px;
+  }
+  #{$this}--icon {
+    width: calc(30% - 12px);
+    margin-left: 12px;
+  }
+  // .icon--primary {
+  //   color: #ffffff;
+  // }
+}

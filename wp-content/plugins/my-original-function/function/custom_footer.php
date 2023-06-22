@@ -2,7 +2,7 @@
 function start_footer_foot()
 {
   $upload_dir = wp_upload_dir();
-  echo '<ul class="p-footer"><li><ul><li class="p-footer__logo"><a href="' . home_url() . '"><figure><img src="' . esc_url($upload_dir['baseurl'] . '/2022/12/logo_name_type_white.svg') . '" alt="ななめラボ"></figure></a></li><!-- END p-footer__logo--><li class="p-footer__text"><h2>ななめラボ</h2><ul class="p-footer__text--list"><li class="p-footer__text--ttl">follow</li><li><i class="fab fa-twitter fa-fw icon--primary"></i></li><li><i class="fab fa-facebook-f fa-fw icon--primary"></i></li></ul></li><!-- END //.p-footer__text__inner --></ul></li><!-- END //.p-footer__text --><li>';
+  echo '<ul class="p-footer"><li class="p-footer__summary"><ul class="p-footer__inner--list"><li class="p-footer__inner--logo"><a href="' . home_url() . '"><figure><img src="' . esc_url($upload_dir['baseurl'] . '/2022/12/logo_name_type_white.svg') . '" alt="ななめラボ"></figure></a></li><!-- END p-footer__logo--><li class="p-footer__inner--text"><h2>ななめラボ</h2><ul class="p-footer__sns"><li class="p-footer__sns--ttl">follow</li><li class="p-footer__sns--icon"><img src="' . esc_url($upload_dir['baseurl']) . '/2023/06/icon-twitter.svg' . '" alt=""></li><li class="p-footer__sns--icon"><img src="' . esc_url($upload_dir['baseurl']) . '/2023/06/icon-github.svg' . '" alt=""></li></ul></li><!-- END //.p-footer__text__inner --></ul></li><!-- END //p-footer__summary --><li class="p-footer__nav">';
 }
 add_action('arkhe_start_footer_foot_content', 'start_footer_foot');
 
