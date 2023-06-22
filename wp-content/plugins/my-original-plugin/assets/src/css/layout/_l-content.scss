@@ -11,7 +11,7 @@
   padding-left: var(--ark-padding--container, 0);
   padding-right: var(--ark-padding--container, 0);
 }
-
+/* 投稿ページ */
 .single-achievement {
   .l-content > .l-content__body {
     .l-main {
@@ -26,9 +26,15 @@
     }
   }
 }
+/* 固定ページ */
+//固定ページ一般
+.page {
+  .l-content__body {
+    margin: 0 auto;
+  }
+}
 
-/* 固定ページ(about) */
-//プロフィールsection
+//about.php プロフィールsection
 .p-page__intro {
   $this: &;
   &.ark-block-section:where(.alignfull):not([data-inner='full'])
