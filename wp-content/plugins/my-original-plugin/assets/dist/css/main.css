@@ -357,7 +357,9 @@ img {
     grid-template-columns: auto 1fr auto min-content min-content;
   }
 }
-
+.l-header__logo {
+  justify-content: flex-start;
+}
 /* conf-ark-block-section__underを適用するときの注意*/
 /* 投稿ページ */
 @media (min-width: 1000px) {

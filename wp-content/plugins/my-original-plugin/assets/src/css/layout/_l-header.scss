@@ -9,4 +9,12 @@
       }
     }
   }
+
+  &__logo {
+    justify-content: flex-start;
+    @include mq(pc) {
+      &[data-logo='left'] {
+      }
+    }
+  }
 }
