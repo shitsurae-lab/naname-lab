@@ -17,20 +17,31 @@ const mycurtain = () => {
   //③ ①で配置されたloaderの後ろにカーテン要素
   loader.after(curtainElement);
 
-  //START: カーテンをdisplay:none; & Bodyに"pageOn"を付加(***関数に入れない***)
-  setTimeout(() => {
-    setTimeout(() => {
-      //カーテン要素をdisplay:noneに
+  //START: カーテンをdisplay:none; & Bodyに"pageOn"を付加(関数に入れない)
+  function js_secondary() {
       curtainElement.style.display = 'none';
       console.log('②番目だよ');
       console.log('カーテン要素をnoneに');
-    }, 1500);
-    //bodyにclass'pageOn'を付加
+  }
+
+  function js_primary() {
     document.body.classList.add('pageOn');
     console.log('①番目だよ');
     console.log('bodyにpageOn');
-  });
-  //END: カーテンをdisplay:none; & Bodyに"pageOn"を付加(***関数に入れない***)
+  }
+  // setTimeout(() => {
+  //   setTimeout(() => {
+  //     //カーテン要素をdisplay:noneに
+  //     curtainElement.style.display = 'none';
+  //     console.log('②番目だよ');
+  //     console.log('カーテン要素をnoneに');
+  //   }, 1500);
+  //   //bodyにclass'pageOn'を付加
+  //   document.body.classList.add('pageOn');
+  //   console.log('①番目だよ');
+  //   console.log('bodyにpageOn');
+  // });
+  //END: カーテンをdisplay:none; & Bodyに"pageOn"を付加(関数に入れない)
 
   /*コールバック関数 */
 
