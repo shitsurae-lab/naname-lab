@@ -1,27 +1,31 @@
 const mycurtain = () => {
-  // bodyタグを取得
+  //① bodyタグを取得
   const bodyElement = document.querySelector('body');
-  // body直下にオーバーレイの要素を作成
+
+  //②body直下にオーバーレイの要素を作成
   const curtainElement = document.createElement('div');
   curtainElement.setAttribute('class', 'leftCurtainbg');
-  //loaderを作成
+
+  //③loaderを作成
   const loader = document.createElement('div');
   loader.setAttribute('class', 'p-loader');
-  //spinnerを作成
+
+  //④spinnerを作成
   const spinner = document.createElement('div');
   spinner.setAttribute('class', 'p-spinner');
-  //①body要素内の先頭にloader
+
+  //①body要素内の先頭にp-loader
   bodyElement.prepend(loader);
-  //②loader要素内の先頭にspinner
+  //②p-loader要素内の先頭にp-spinner
   loader.prepend(spinner);
-  //③ ①で配置されたloaderの後ろにカーテン要素
+  //③ p-loaderの後ろにカーテン要素
   loader.after(curtainElement);
 
   //START: カーテンをdisplay:none; & Bodyに"pageOn"を付加(関数に入れない)
   function js_secondary() {
-      curtainElement.style.display = 'none';
-      console.log('②番目だよ');
-      console.log('カーテン要素をnoneに');
+    curtainElement.style.display = 'none';
+    console.log('②番目だよ');
+    console.log('カーテン要素をnoneに');
   }
 
   function js_primary() {
@@ -46,6 +50,7 @@ const mycurtain = () => {
   /*コールバック関数 */
 
   //カーテンフェードイン & フェードアウト
+  //-- 下記functionは記述に誤りあり。一旦コメントアウト
   function curtainFadeInOut() {
     setTimeout(() => {
       setTimeout(() => {
@@ -85,18 +90,30 @@ const mycurtain = () => {
       //START: ローディング
       setTimeout(() => {
         setTimeout(() => {
-          curtainFadeInOut;
-          console.log('if 2番めの処理です');
+          // curtainFadeInOut();
+          js_secondary();
+          console.log('1回目のアクセスの際の「2番めの処理です」');
         }, 2000);
         loader.classList.add('loaded');
-        console.log('if 1番めの処理です');
+        js_primary();
+        console.log('1回目のアクセスの際の「1番めの処理です」');
       }, 0);
     } else {
       // 2回目アクセスの処理
-      loader.remove();
-      console.log('else 1番目の処理です');
-      curtainFadeInOut;
-      console.log('else 2番めの処理です');
+      setTimeout(() => {
+        setTimeout(() => {
+          // curtainFadeInOut();
+          js_secondary();
+          console.log('2回目以降のアクセスの際の「2番めの処理です」');
+        }, 2000);
+        loader.remove();
+        js_primary();
+        console.log('2回目以降のアクセスの際の「1番目の処理です」');
+      }, 0);
+      // loader.remove();
+      // console.log('2回目以降のアクセスの際の「1番目の処理です」');
+      // curtainFadeInOut;
+      // console.log('2回目以降のアクセスの際の「2番めの処理です」');
     }
   });
 };
