@@ -68,6 +68,9 @@
          "Layout": [
             ""
          ],
+         "Deprecated": [
+            ""
+         ],
          "Lazy Blocks and Lazy Blocks Pro should not be active at the same time. We've automatically deactivated Lazy Blocks.": [
             ""
          ],
@@ -262,7 +265,7 @@
          "Search Icon": [
             ""
          ],
-         "Type to Search...": [
+         "Type to Search…": [
             ""
          ],
          "No icons found.": [
@@ -272,6 +275,9 @@
             ""
          ],
          "Error loading block preview: %s": [
+            ""
+         ],
+         "Only a single <InnerBlocks /> component can be used per block. Multiple <InnerBlocks /> found inside block \"%s\".": [
             ""
          ],
          "Lazy Blocks Pro": [
@@ -295,13 +301,19 @@
          "SEO Enhancements": [
             ""
          ],
-         "And much more...": [
+         "And much more…": [
             ""
          ],
          "This field is required": [
             ""
          ],
+         "Styles": [
+            ""
+         ],
          "Supports": [
+            ""
+         ],
+         "Supports Ghost Kit": [
             ""
          ],
          "Condition": [
@@ -385,7 +397,7 @@
          "In all posts by default": [
             ""
          ],
-         "Loading...": [
+         "Loading…": [
             ""
          ],
          "(no label)": [
@@ -511,46 +523,19 @@
          "Width": [
             ""
          ],
-         "Multiple": [
+         "+ Add Style": [
             ""
          ],
-         "Allow use block multiple times on the page.": [
+         "Add the style name, which will be used as class name on your block. For example, if you add the style with name `outline`, when user select this style, on the block will be added class name `is-style-outline`": [
             ""
          ],
-         "Class Name": [
+         "To see these settings in your block, you have to install Ghost Kit plugin.": [
             ""
          ],
-         "Additional field to add custom class name.": [
+         "Read More": [
             ""
          ],
-         "Anchor": [
-            ""
-         ],
-         "Additional field to add block ID attribute.": [
-            ""
-         ],
-         "Inserter": [
-            ""
-         ],
-         "Show block in blocks inserter.": [
-            ""
-         ],
-         "Align": [
-            ""
-         ],
-         "Select align options": [
-            ""
-         ],
-         "Ghost Kit Extensions": [
-            ""
-         ],
-         "Install Ghost Kit plugin to use the following settings.": [
-            ""
-         ],
-         "Install": [
-            ""
-         ],
-         "To use these extensions required \"Class Name\" support.": [
+         "\"Class Name\" support is required to use the following settings.": [
             ""
          ],
          "Spacings": [
@@ -583,6 +568,48 @@
          "Write custom CSS on each inserted blocks.": [
             ""
          ],
+         "Multiple": [
+            ""
+         ],
+         "Allow use block multiple times on the page.": [
+            ""
+         ],
+         "Class Name": [
+            ""
+         ],
+         "Additional field to add custom class name.": [
+            ""
+         ],
+         "Anchor": [
+            ""
+         ],
+         "Additional field to add block ID attribute.": [
+            ""
+         ],
+         "Inserter": [
+            ""
+         ],
+         "Show block in blocks inserter.": [
+            ""
+         ],
+         "Reusable": [
+            ""
+         ],
+         "Allow converting block into reusable block.": [
+            ""
+         ],
+         "Lock": [
+            ""
+         ],
+         "Allow block locking/unlocking by a user.": [
+            ""
+         ],
+         "Align": [
+            ""
+         ],
+         "Select align options": [
+            ""
+         ],
          "Block Name": [
             ""
          ],
@@ -590,9 +617,6 @@
             ""
          ],
          "Block used for adding blocks inside it in cases when template locked from adding blocks.": [
-            ""
-         ],
-         "Edit Block": [
             ""
          ],
          "Alongside Text": [
@@ -607,10 +631,19 @@
          "Classic": [
             ""
          ],
+         "Displays text alongside the color indicator": [
+            ""
+         ],
          "Alpha Channel": [
             ""
          ],
-         "Will be added option that allow you to set semi-transparent colors with rgba": [
+         "Allow set semi-transparent colors": [
+            ""
+         ],
+         "Color Palette": [
+            ""
+         ],
+         "Display color palette with predefined colors": [
             ""
          ],
          "Output Format": [
@@ -679,6 +712,15 @@
          "Remove Image": [
             ""
          ],
+         "Allow insert from URL": [
+            ""
+         ],
+         "Will be added option that allow you to use custom URL to insert image": [
+            ""
+         ],
+         "The Inner Blocks control deprecated since v3.4.0, you should migrate to the <InnerBlocks /> component as this control will be removed in future plugin updates.": [
+            ""
+         ],
          "Minimum Value": [
             ""
          ],
@@ -706,7 +748,7 @@
          "+ Add Row": [
             ""
          ],
-         "Toggle all rows": [
+         "Toggle all": [
             ""
          ],
          "Show Child Controls": [

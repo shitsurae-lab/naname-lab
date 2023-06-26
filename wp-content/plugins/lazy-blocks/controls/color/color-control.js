@@ -1,55 +1,67 @@
-/* eslint-disable react/jsx-wrap-multilines */
+/**
+ * External dependencies.
+ */
+import classnames from 'classnames/dedupe';
 
-const { BaseControl, ColorPalette } = wp.components;
+/**
+ * WordPress dependencies.
+ */
+import { Dropdown, Button } from '@wordpress/components';
 
-const { __experimentalUseMultipleOriginColorsAndGradients: useMultipleOriginColorsAndGradients } =
-  wp.blockEditor;
-
-const { useSelect } = wp.data;
-
-function useColors() {
-  // New way to get colors and gradients.
-  if (useMultipleOriginColorsAndGradients && useMultipleOriginColorsAndGradients()) {
-    return useMultipleOriginColorsAndGradients().colors;
-  }
-
-  // Old way.
-  const { themeColors } = useSelect((select) => {
-    const settings = select('core/block-editor').getSettings();
-
-    return {
-      themeColors: settings.colors,
-    };
-  });
-
-  const colors = [];
-
-  if (themeColors && themeColors.length) {
-    colors.push({ name: 'Theme', colors: themeColors });
-  }
-
-  return colors;
-}
+/**
+ * Internal dependencies.
+ */
+import ColorPalette from './color-palette';
 
 function ColorControl(props) {
-  const { label, value, help, alpha = false, onChange = () => {} } = props;
+	const {
+		value,
+		label = '',
+		alpha = false,
+		palette = true,
+		onChange = () => {},
+	} = props;
 
-  const colors = useColors();
-
-  return (
-    <BaseControl label={label} help={help} className="lzb-gutenberg-color">
-      <ColorPalette
-        colors={colors}
-        value={value}
-        enableAlpha={alpha}
-        onChange={(val) => {
-          onChange(val);
-        }}
-        __experimentalHasMultipleOrigins
-        __experimentalIsRenderedInSidebar
-      />
-    </BaseControl>
-  );
+	return (
+		<Dropdown
+			className="lazyblocks-control-color-picker__dropdown"
+			contentClassName="lazyblocks-control-color-picker__dropdown-content"
+			popoverProps={{
+				placement: 'left-start',
+				offset: 36,
+				shift: true,
+			}}
+			renderToggle={({ isOpen, onToggle }) => (
+				<Button
+					className={classnames(
+						'lazyblocks-control-color-toggle',
+						isOpen ? 'lazyblocks-control-color-toggle-active' : ''
+					)}
+					onClick={onToggle}
+				>
+					<span
+						className="lazyblocks-control-color-toggle-indicator"
+						style={{ background: value || '' }}
+					/>
+					<span className="lazyblocks-control-color-toggle-label">
+						{label}
+					</span>
+				</Button>
+			)}
+			renderContent={() => (
+				<div className="lazyblocks-control-color-picker">
+					<ColorPalette
+						value={value}
+						alpha={alpha}
+						palette={palette}
+						onChange={(val) => {
+							onChange(val);
+						}}
+					/>
+				</div>
+			)}
+		/>
+	);
 }
 
 export default ColorControl;

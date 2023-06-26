@@ -1,285 +1,347 @@
+/**
+ * WordPress dependencies.
+ */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { cloneDeep } from 'lodash';
+import { __ } from '@wordpress/i18n';
+import { Component, Fragment, RawHTML } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
+import { PanelBody, Notice } from '@wordpress/components';
+
+/**
+ * Internal dependencies.
+ */
 import getControlTypeData from '../../utils/get-control-type-data';
 import getControlValue from '../../utils/get-control-value';
 import isControlValueValid from '../../utils/is-control-value-valid';
 
-const { cloneDeep } = window.lodash;
-
-const { __ } = wp.i18n;
-
-const { Component, Fragment, RawHTML } = wp.element;
-
-const { applyFilters } = wp.hooks;
-
-const { PanelBody, Notice } = wp.components;
-
 let options = window.lazyblocksGutenberg;
 if (!options || !options.blocks || !options.blocks.length) {
-  options = {
-    post_type: 'post',
-    blocks: [],
-    controls: {},
-  };
+	options = {
+		post_type: 'post',
+		blocks: [],
+		controls: {},
+	};
 }
 
 /**
  * We created the class Component because the functional one is not working correctly for some reason.
- * @link https://shot.nkdev.info/AkJ2naU7MazVtAnv5F2A
+ * {@link https://shot.nkdev.info/AkJ2naU7MazVtAnv5F2A}
  *
  * @param {Object} props component data.
  *
- * @returns {JSX}
+ * @return {JSX} - render component.
  */
 export default class RenderControls extends Component {
-  constructor(...args) {
-    super(...args);
+	constructor(...args) {
+		super(...args);
 
-    this.onControlChange = this.onControlChange.bind(this);
-    this.getControls = this.getControls.bind(this);
-    this.renderControl = this.renderControl.bind(this);
-    this.renderControls = this.renderControls.bind(this);
-  }
+		this.onControlChange = this.onControlChange.bind(this);
+		this.getControls = this.getControls.bind(this);
+		this.renderControl = this.renderControl.bind(this);
+		this.renderControls = this.renderControls.bind(this);
+	}
 
-  onControlChange(val, control, childIndex) {
-    const { lazyBlockData, attributes, setAttributes } = this.props;
-    let { name } = control;
+	onControlChange(val, control, childIndex) {
+		const { lazyBlockData, attributes, setAttributes, meta, setMeta } =
+			this.props;
+		let { name } = control;
 
-    // prepare child items.
-    if (control.child_of && lazyBlockData.controls[control.child_of] && childIndex > -1) {
-      const childs = getControlValue(
-        attributes,
-        lazyBlockData,
-        lazyBlockData.controls[control.child_of]
-      );
+		// prepare child items.
+		if (
+			control.child_of &&
+			lazyBlockData.controls[control.child_of] &&
+			childIndex > -1
+		) {
+			const childs = getControlValue(
+				attributes,
+				meta,
+				lazyBlockData,
+				lazyBlockData.controls[control.child_of]
+			);
 
-      if (childs && typeof childs[childIndex] !== 'undefined') {
-        childs[childIndex][control.name] = val;
-        val = childs;
-      }
+			if (childs && typeof childs[childIndex] !== 'undefined') {
+				childs[childIndex][control.name] = val;
+				val = childs;
+			}
 
-      control = lazyBlockData.controls[control.child_of];
-      name = control.name;
-    }
+			control = lazyBlockData.controls[control.child_of];
+			name = control.name;
+		}
 
-    // filter control value.
-    val = applyFilters(`lzb.editor.control.${control.type}.updateValue`, val, control, childIndex);
-    val = applyFilters('lzb.editor.control.updateValue', val, control, childIndex);
+		// filter control value.
+		val = applyFilters(
+			`lzb.editor.control.${control.type}.updateValue`,
+			val,
+			control,
+			childIndex
+		);
+		val = applyFilters(
+			'lzb.editor.control.updateValue',
+			val,
+			control,
+			childIndex
+		);
 
-    setAttributes({ [name]: val });
-  }
+		// Save post Meta.
+		if (control.save_in_meta === 'true') {
+			setMeta({ ...meta, [control.save_in_meta_name || name]: val });
 
-  /**
-   * Get controls
-   *
-   * @param {String|Boolean} childOf - parent control name.
-   *
-   * @return {Object} controls list.
-   */
-  getControls(childOf = '') {
-    const { lazyBlockData } = this.props;
-    const result = {};
+			// Save block attribute.
+		} else {
+			setAttributes({ [name]: val });
+		}
+	}
 
-    Object.keys(lazyBlockData.controls).forEach((k) => {
-      let control = lazyBlockData.controls[k];
-      const controlTypeData = getControlTypeData(control.type);
+	/**
+	 * Get controls
+	 *
+	 * @param {string|boolean} childOf - parent control name.
+	 *
+	 * @return {Object} controls list.
+	 */
+	getControls(childOf = '') {
+		const { lazyBlockData } = this.props;
+		const result = {};
 
-      if (controlTypeData && controlTypeData.attributes) {
-        control = {
-          ...cloneDeep(controlTypeData.attributes),
-          ...control,
-        };
-      }
+		Object.keys(lazyBlockData.controls).forEach((k) => {
+			let control = lazyBlockData.controls[k];
+			const controlTypeData = getControlTypeData(control.type);
 
-      if ((!childOf && !control.child_of) || (childOf && control.child_of === childOf)) {
-        result[k] = control;
-      }
-    });
+			if (controlTypeData && controlTypeData.attributes) {
+				control = {
+					...cloneDeep(controlTypeData.attributes),
+					...control,
+				};
+			}
 
-    return result;
-  }
+			if (
+				(!childOf && !control.child_of) ||
+				(childOf && control.child_of === childOf)
+			) {
+				result[k] = control;
+			}
+		});
 
-  /**
-   * Render controls
-   *
-   * @param {String} placement - controls placement [inspector, content]
-   * @param {String|Boolean} childOf - parent control name.
-   * @param {Number|Boolean} childIndex - child index in parent.
-   *
-   * @return {Array} react blocks with controls.
-   */
-  renderControls(placement, childOf = '', childIndex = false) {
-    let result = [];
-    const controls = this.getControls(childOf);
+		return result;
+	}
 
-    // prepare attributes.
-    Object.keys(controls).forEach((k) => {
-      const control = controls[k];
+	/**
+	 * Render controls
+	 *
+	 * @param {string}         placement  - controls placement [inspector, content]
+	 * @param {string|boolean} childOf    - parent control name.
+	 * @param {number|boolean} childIndex - child index in parent.
+	 *
+	 * @return {Array} react blocks with controls.
+	 */
+	renderControls(placement, childOf = '', childIndex = false) {
+		let result = [];
+		const controls = this.getControls(childOf);
 
-      const renderedControl = this.renderControl(control, placement, k, childIndex);
+		// prepare attributes.
+		Object.keys(controls).forEach((k) => {
+			const control = controls[k];
 
-      if (renderedControl) {
-        result.push(renderedControl);
-      }
-    });
+			const renderedControl = this.renderControl(
+				control,
+				placement,
+				k,
+				childIndex
+			);
 
-    // additional element for better formatting in inspector.
-    if (placement === 'inspector' && result.length) {
-      result = <PanelBody>{result}</PanelBody>;
-    }
+			if (renderedControl) {
+				result.push(renderedControl);
+			}
+		});
 
-    // filter render result.
-    result = applyFilters('lzb.editor.controls.render', result, {
-      placement,
-      childOf,
-      childIndex,
-      getControls: this.getControls,
-      renderControl: this.renderControl,
-    });
+		// additional element for better formatting in inspector.
+		if (placement === 'inspector' && result.length) {
+			result = <PanelBody>{result}</PanelBody>;
+		}
 
-    return result;
-  }
+		// filter render result.
+		result = applyFilters('lzb.editor.controls.render', result, {
+			placement,
+			childOf,
+			childIndex,
+			getControls: this.getControls,
+			renderControl: this.renderControl,
+		});
 
-  /**
-   * Render single control.
-   *
-   * @param {Object} controlData - control data
-   * @param {String} placement - placement
-   * @param {String} uniqueId - unique control ID
-   * @param {Number|Boolean} childIndex - child index in parent.
-   *
-   * @return {Object|Boolean} react control.
-   */
-  renderControl(controlData, placement, uniqueId, childIndex = false) {
-    const { lazyBlockData, isLazyBlockSelected, attributes } = this.props;
-    let result = false;
+		return result;
+	}
 
-    let placementCheck =
-      controlData.type &&
-      controlData.placement !== 'nowhere' &&
-      (controlData.placement === 'both' || controlData.placement === placement);
-    let { label } = controlData;
+	/**
+	 * Render single control.
+	 *
+	 * @param {Object}         controlData - control data
+	 * @param {string}         placement   - placement
+	 * @param {string}         uniqueId    - unique control ID
+	 * @param {number|boolean} childIndex  - child index in parent.
+	 *
+	 * @return {object|boolean} react control.
+	 */
+	renderControl(controlData, placement, uniqueId, childIndex = false) {
+		const { lazyBlockData, isLazyBlockSelected, attributes, meta } =
+			this.props;
+		let result = false;
 
-    const controlTypeData = getControlTypeData(controlData.type);
+		let placementCheck =
+			controlData.type &&
+			controlData.placement !== 'nowhere' &&
+			(controlData.placement === 'both' ||
+				controlData.placement === placement);
+		let { label } = controlData;
 
-    // restrictions.
-    if (controlTypeData && controlTypeData.restrictions) {
-      // Restrict placement.
-      if (placementCheck && controlTypeData.restrictions.placement_settings) {
-        placementCheck = controlTypeData.restrictions.placement_settings.indexOf(placement) > -1;
-      }
+		const controlTypeData = getControlTypeData(controlData.type);
 
-      // Restrict hide if not selected.
-      if (
-        placementCheck &&
-        placement === 'content' &&
-        (controlData.placement === 'content' || controlData.placement === 'both') &&
-        controlTypeData.restrictions.hide_if_not_selected_settings &&
-        controlData.hide_if_not_selected &&
-        controlData.hide_if_not_selected === 'true'
-      ) {
-        placementCheck = isLazyBlockSelected;
-      }
+		// restrictions.
+		if (controlTypeData && controlTypeData.restrictions) {
+			// Restrict placement.
+			if (
+				placementCheck &&
+				controlTypeData.restrictions.placement_settings
+			) {
+				placementCheck =
+					controlTypeData.restrictions.placement_settings.indexOf(
+						placement
+					) > -1;
+			}
 
-      // Restrict required mark
-      if (
-        controlTypeData.restrictions.required_settings &&
-        controlData.required &&
-        controlData.required === 'true'
-      ) {
-        label = `${label || ''} <span class="required">*</span>`;
-      }
-    }
+			// Restrict hide if not selected.
+			if (
+				placementCheck &&
+				placement === 'content' &&
+				(controlData.placement === 'content' ||
+					controlData.placement === 'both') &&
+				controlTypeData.restrictions.hide_if_not_selected_settings &&
+				controlData.hide_if_not_selected &&
+				controlData.hide_if_not_selected === 'true'
+			) {
+				placementCheck = isLazyBlockSelected;
+			}
 
-    // prepare control output
-    if (controlData.child_of || placementCheck) {
-      // prepare data for filter.
-      const controlRenderData = {
-        data: {
-          ...controlData,
-          help: controlData.help ? <RawHTML>{controlData.help}</RawHTML> : false,
-          // eslint-disable-next-line react/no-danger
-          label: label ? <span dangerouslySetInnerHTML={{ __html: label }} /> : false,
-        },
-        placement,
-        childIndex,
-        uniqueId,
-        getValue: (optionalControl = controlData, optionalChildIndex = childIndex) =>
-          getControlValue(attributes, lazyBlockData, optionalControl, optionalChildIndex),
-        onChange: (val) => {
-          this.onControlChange(val, controlData, childIndex);
-        },
-        getControls: this.getControls,
-        renderControls: this.renderControls,
-      };
+			// Restrict required mark
+			if (
+				controlTypeData.restrictions.required_settings &&
+				controlData.required &&
+				controlData.required === 'true'
+			) {
+				label = `${label || ''} <span class="required">*</span>`;
+			}
+		}
 
-      // get control data from filter.
-      let controlResult = applyFilters(
-        `lzb.editor.control.${controlData.type}.render`,
-        '',
-        controlRenderData,
-        this.props
-      );
-      if (controlResult) {
-        controlResult = applyFilters(
-          'lzb.editor.control.render',
-          controlResult,
-          controlRenderData,
-          this.props
-        );
-      }
+		// prepare control output
+		if (controlData.child_of || placementCheck) {
+			// prepare data for filter.
+			const controlRenderData = {
+				data: {
+					...controlData,
+					help: controlData.help ? (
+						<RawHTML>{controlData.help}</RawHTML>
+					) : (
+						false
+					),
+					// eslint-disable-next-line react/no-danger
+					label: label ? (
+						<span dangerouslySetInnerHTML={{ __html: label }} />
+					) : (
+						false
+					),
+				},
+				placement,
+				childIndex,
+				uniqueId,
+				getValue: (
+					optionalControl = controlData,
+					optionalChildIndex = childIndex
+				) =>
+					getControlValue(
+						attributes,
+						meta,
+						lazyBlockData,
+						optionalControl,
+						optionalChildIndex
+					),
+				onChange: (val) => {
+					this.onControlChange(val, controlData, childIndex);
+				},
+				getControls: this.getControls,
+				renderControls: this.renderControls,
+			};
 
-      if (controlResult) {
-        let controlNotice = '';
+			// get control data from filter.
+			let controlResult = applyFilters(
+				`lzb.editor.control.${controlData.type}.render`,
+				'',
+				controlRenderData,
+				this.props
+			);
+			if (controlResult) {
+				controlResult = applyFilters(
+					'lzb.editor.control.render',
+					controlResult,
+					controlRenderData,
+					this.props
+				);
+			}
 
-        // show error for required fields
-        if (
-          controlTypeData &&
-          controlTypeData.restrictions.required_settings &&
-          controlData.required &&
-          controlData.required === 'true'
-        ) {
-          const val = controlRenderData.getValue();
+			if (controlResult) {
+				let controlNotice = '';
 
-          if (!isControlValueValid(val, controlData)) {
-            controlNotice = (
-              <Notice
-                key={`notice-${controlData.name}`}
-                status="warning"
-                isDismissible={false}
-                className="lzb-constructor-notice"
-              >
-                {__('This field is required', 'lazy-blocks')}
-              </Notice>
-            );
-          }
-        }
+				// show error for required fields
+				if (
+					controlTypeData &&
+					controlTypeData.restrictions.required_settings &&
+					controlData.required &&
+					controlData.required === 'true'
+				) {
+					const val = controlRenderData.getValue();
 
-        if (placement === 'inspector') {
-          result = (
-            <Fragment key={`control-${uniqueId}`}>
-              {controlResult}
-              {controlNotice}
-            </Fragment>
-          );
-        } else {
-          result = (
-            <div
-              key={`control-${uniqueId}`}
-              style={{
-                width: controlData.width ? `${controlData.width}%` : '',
-              }}
-            >
-              {controlResult}
-              {controlNotice}
-            </div>
-          );
-        }
-      }
-    }
+					if (!isControlValueValid(val, controlData)) {
+						controlNotice = (
+							<Notice
+								key={`notice-${controlData.name}`}
+								status="warning"
+								isDismissible={false}
+								className="lzb-constructor-notice"
+							>
+								{__('This field is required', 'lazy-blocks')}
+							</Notice>
+						);
+					}
+				}
 
-    return result;
-  }
+				if (placement === 'inspector') {
+					result = (
+						<Fragment key={`control-${uniqueId}`}>
+							{controlResult}
+							{controlNotice}
+						</Fragment>
+					);
+				} else {
+					result = (
+						<div
+							key={`control-${uniqueId}`}
+							style={{
+								width: controlData.width
+									? `${controlData.width}%`
+									: '',
+							}}
+						>
+							{controlResult}
+							{controlNotice}
+						</div>
+					);
+				}
+			}
+		}
 
-  render() {
-    return this.renderControls(this.props.placement);
-  }
+		return result;
+	}
+
+	render() {
+		return this.renderControls(this.props.placement);
+	}
 }
