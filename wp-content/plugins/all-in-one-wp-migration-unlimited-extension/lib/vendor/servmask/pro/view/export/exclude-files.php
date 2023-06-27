@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,10 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<li>
-	<label for="ai1wm-no-inactive-plugins">
-		<input type="checkbox" id="ai1wm-no-inactive-plugins" name="options[no_inactive_plugins]" />
-		<?php _e( 'Do <strong>not</strong> export inactive plugins (files)', AI1WM_PLUGIN_NAME ); ?>
+<li id="ai1wmve-file-excluder">
+	<label for="ai1wmve-exclude_files">
+		<input type="checkbox" id="ai1wmve-exclude_files" name="options[exclude_files]"/>
+		<?php _e( 'Do <strong>not</strong> include the selected files', AI1WM_PLUGIN_NAME ); ?>
 		<small style="color: red;"><?php _e( 'new', AI1WM_PLUGIN_NAME ); ?></small>
 	</label>
+	<file-browser></file-browser>
 </li>

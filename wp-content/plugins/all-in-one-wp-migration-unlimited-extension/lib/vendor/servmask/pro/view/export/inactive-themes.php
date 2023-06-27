@@ -1,16 +1,6 @@
 <?php
 /**
- * Plugin Name: All-in-One WP Migration
- * Plugin URI: https://servmask.com/
- * Description: Migration tool for all your blog data. Import or Export your blog content with a single click.
- * Author: ServMask
- * Author URI: https://servmask.com/
- * Version: 7.76
- * Text Domain: all-in-one-wp-migration
- * Domain Path: /languages
- * Network: True
- *
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,40 +26,11 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
+?>
 
-// Check SSL Mode
-if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && ( $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
-	$_SERVER['HTTPS'] = 'on';
-}
-
-// Plugin Basename
-define( 'AI1WM_PLUGIN_BASENAME', basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
-
-// Plugin Path
-define( 'AI1WM_PATH', dirname( __FILE__ ) );
-
-// Plugin URL
-define( 'AI1WM_URL', plugins_url( '', AI1WM_PLUGIN_BASENAME ) );
-
-// Plugin Storage URL
-define( 'AI1WM_STORAGE_URL', plugins_url( 'storage', AI1WM_PLUGIN_BASENAME ) );
-
-// Include constants
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'constants.php';
-
-// Include deprecated
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'deprecated.php';
-
-// Include functions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'functions.php';
-
-// Include exceptions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'exceptions.php';
-
-// Include loader
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'loader.php';
-
-// =========================================================================
-// = All app initialization is done in Ai1wm_Main_Controller __constructor =
-// =========================================================================
-$main_controller = new Ai1wm_Main_Controller();
+<li>
+	<label for="ai1wm-no-inactive-themes">
+		<input type="checkbox" id="ai1wm-no-inactive-themes" name="options[no_inactive_themes]" />
+		<?php _e( 'Do <strong>not</strong> export inactive themes (files)', AI1WM_PLUGIN_NAME ); ?>
+	</label>
+</li>

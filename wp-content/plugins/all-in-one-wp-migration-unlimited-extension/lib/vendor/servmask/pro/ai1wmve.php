@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,9 +27,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-class Ai1wmue_Import_Controller {
+// Include constants
+require_once dirname( __FILE__ ) .
+	DIRECTORY_SEPARATOR .
+	'constants.php';
 
-	public static function pro() {
-		return Ai1wm_Template::get_content( 'import/pro', array(), AI1WMUE_TEMPLATES_PATH );
-	}
-}
+// Include exceptions
+require_once dirname( __FILE__ ) .
+	DIRECTORY_SEPARATOR .
+	'exceptions.php';
+
+require_once AI1WMVE_CONTROLLER_PATH .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-main-controller.php';
+
+require_once AI1WMVE_CONTROLLER_PATH .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-export-controller.php';
+
+require_once AI1WMVE_CONTROLLER_PATH .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-schedules-controller.php';
+
+require_once AI1WMVE_MODEL_PATH .
+	DIRECTORY_SEPARATOR .
+	'schedule' .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-schedule-events.php';
+
+require_once AI1WMVE_MODEL_PATH .
+	DIRECTORY_SEPARATOR .
+	'schedule' .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-schedule-event.php';
+
+require_once AI1WMVE_MODEL_PATH .
+	DIRECTORY_SEPARATOR .
+	'schedule' .
+	DIRECTORY_SEPARATOR .
+	'class-ai1wmve-schedule-event-log.php';

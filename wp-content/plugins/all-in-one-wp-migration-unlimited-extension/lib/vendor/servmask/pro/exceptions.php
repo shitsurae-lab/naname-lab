@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2022 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,58 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-class Ai1wmue_Stats_Controller {
+if ( ! class_exists( 'Ai1wmve_Error_Exception' ) ) {
+	class Ai1wmve_Error_Exception extends Exception {}
+}
 
-	public static function export( $params ) {
-		if ( ! isset( $params['file'] ) ) {
-			return;
-		}
-
-		if ( isset( $params['ai1wm_manual_export'] ) ) {
-			self::send( 'export' );
-		}
-	}
-
-	public static function import( $params ) {
-		if ( ! isset( $params['file'] ) ) {
-			return;
-		}
-
-		if ( isset( $params['ai1wm_manual_restore'] ) ) {
-			self::send( 'restore' );
-		}
-
-		if ( isset( $params['ai1wm_manual_import'] ) ) {
-			self::send( 'import' );
-		}
-	}
-
-	protected static function send( $action ) {
-		if ( constant( 'AI1WMUE_PURCHASE_ID' ) ) {
-			global $wpdb;
-
-			$url = implode(
-				'/',
-				array(
-					AI1WMUE_STATS_URL,
-					AI1WMUE_PURCHASE_ID,
-					$action,
-				)
-			);
-
-			wp_remote_post(
-				$url,
-				array(
-					'timeout' => 5,
-					'body'    => array(
-						'url'           => get_site_url(),
-						'email'         => get_option( 'admin_email' ),
-						'wp_version'    => get_bloginfo( 'version' ),
-						'php_version'   => PHP_VERSION,
-						'mysql_version' => $wpdb->db_version(),
-					),
-				)
-			);
-		}
-	}
+if ( ! class_exists( 'Ai1wmve_Schedules_Exception' ) ) {
+	class Ai1wmve_Schedules_Exception extends Ai1wmve_Error_Exception {}
 }

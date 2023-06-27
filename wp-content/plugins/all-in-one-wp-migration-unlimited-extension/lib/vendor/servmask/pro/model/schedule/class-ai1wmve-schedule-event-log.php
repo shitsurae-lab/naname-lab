@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,12 +26,47 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
-?>
 
-<li>
-	<label for="ai1wm-no-inactive-themes">
-		<input type="checkbox" id="ai1wm-no-inactive-themes" name="options[no_inactive_themes]" />
-		<?php _e( 'Do <strong>not</strong> export inactive themes (files)', AI1WM_PLUGIN_NAME ); ?>
-		<small style="color: red;"><?php _e( 'new', AI1WM_PLUGIN_NAME ); ?></small>
-	</label>
-</li>
+if ( ! class_exists( 'Ai1wmve_Schedule_Event_Log' ) ) {
+	class Ai1wmve_Schedule_Event_Log {
+
+
+
+		const MAX_RECORDS = 30;
+
+		protected $event_id;
+
+		protected $records = array();
+
+		public function __construct( $event_id ) {
+			$this->event_id = $event_id;
+			$this->load();
+		}
+
+		public function load() {
+			$this->records = get_option( Ai1wmve_Schedule_Event::option_key( 'log', $this->event_id ), array() );
+		}
+
+		public function save() {
+			if ( count( $this->records ) > self::MAX_RECORDS ) {
+				array_pop( $this->records );
+			}
+			update_option( Ai1wmve_Schedule_Event::option_key( 'log', $this->event_id ), $this->records );
+		}
+
+		public function add( $status, $message = null ) {
+			$data = array(
+				'time'    => (int) get_date_from_gmt( 'now', 'U' ),
+				'status'  => $status,
+				'message' => $message,
+			);
+			array_unshift( $this->records, $data );
+
+			$this->save();
+		}
+
+		public function records() {
+			return $this->records;
+		}
+	}
+}

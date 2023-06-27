@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,11 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<li id="file-excluder">
-	<label for="ai1wmue-exclude_files">
-		<input type="checkbox" id="ai1wmue-exclude_files" name="options[exclude_files]"/>
-		<?php _e( 'Do <strong>not</strong> include the selected files', AI1WMUE_PLUGIN_NAME ); ?>
-		<small style="color: red;"><?php _e( 'new', AI1WMUE_PLUGIN_NAME ); ?></small>
+<li id="ai1wmve-db-table-excluder">
+	<label for="ai1wmve-exclude_db_tables" v-show="showDbExcluder">
+		<input type="checkbox" id="ai1wmve-exclude_db_tables" name="options[exclude_db_tables]"/>
+		<?php _e( 'Do <strong>not</strong> include the selected database tables', AI1WM_PLUGIN_NAME ); ?>
+		<small style="color: red;"><?php _e( 'new', AI1WM_PLUGIN_NAME ); ?></small>
 	</label>
-	<file-browser></file-browser>
+	<db-tables v-show="showDbExcluder" :db-tables='<?php echo json_encode( $tables, JSON_HEX_APOS ); ?>'></db-tables>
 </li>

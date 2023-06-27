@@ -1,16 +1,6 @@
 <?php
 /**
- * Plugin Name: All-in-One WP Migration
- * Plugin URI: https://servmask.com/
- * Description: Migration tool for all your blog data. Import or Export your blog content with a single click.
- * Author: ServMask
- * Author URI: https://servmask.com/
- * Version: 7.76
- * Text Domain: all-in-one-wp-migration
- * Domain Path: /languages
- * Network: True
- *
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,40 +26,40 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
+?>
 
-// Check SSL Mode
-if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && ( $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
-	$_SERVER['HTTPS'] = 'on';
-}
+<div class="ai1wm-container">
+	<div class="ai1wm-row">
+		<div class="ai1wm-left">
+			<div class="ai1wm-holder">
 
-// Plugin Basename
-define( 'AI1WM_PLUGIN_BASENAME', basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
+				<?php if ( Ai1wm_Message::has( 'schedules' ) ) : ?>
+					<div class="ai1wm-message ai1wm-success-message">
+						<p><?php echo Ai1wm_Message::get( 'schedules' ); ?></p>
+					</div>
+				<?php endif; ?>
 
-// Plugin Path
-define( 'AI1WM_PATH', dirname( __FILE__ ) );
+				<h1 class="ai1wmve-schedule-title">
+					<i class="ai1wm-icon-calendar"></i>
+					<?php _e( 'List Created Events', AI1WM_PLUGIN_NAME ); ?>
+					<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'create-event' ), network_admin_url( 'admin.php?page=ai1wmve_schedules' ) ) ); ?>" class="ai1wm-button-green">
+						<i class="ai1wm-icon-plus2"></i>
+						<?php _e( 'New event', AI1WM_PLUGIN_NAME ); ?>
+					</a>
+				</h1>
 
-// Plugin URL
-define( 'AI1WM_URL', plugins_url( '', AI1WM_PLUGIN_BASENAME ) );
+				<div id="ai1wmve-schedules-list">
+					<?php include AI1WMVE_TEMPLATES_PATH . '/schedules/schedules-list.php'; ?>
+				</div>
 
-// Plugin Storage URL
-define( 'AI1WM_STORAGE_URL', plugins_url( 'storage', AI1WM_PLUGIN_BASENAME ) );
+				<div id="ai1wmve-schedules-event-log">
+					<event-log></event-log>
+				</div>
+			</div>
 
-// Include constants
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'constants.php';
+		</div>
 
-// Include deprecated
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'deprecated.php';
+		<?php include AI1WM_TEMPLATES_PATH . '/common/sidebar-right.php'; ?>
 
-// Include functions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'functions.php';
-
-// Include exceptions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'exceptions.php';
-
-// Include loader
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'loader.php';
-
-// =========================================================================
-// = All app initialization is done in Ai1wm_Main_Controller __constructor =
-// =========================================================================
-$main_controller = new Ai1wm_Main_Controller();
+	</div>
+</div>

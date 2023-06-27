@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,12 +26,59 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
-?>
 
-<li>
-	<label for="ai1wm-no-cache">
-		<input type="checkbox" id="ai1wm-no-cache" name="options[no_cache]" />
-		<?php _e( 'Do <strong>not</strong> export cache (files)', AI1WM_PLUGIN_NAME ); ?>
-		<small style="color: red;"><?php _e( 'new', AI1WM_PLUGIN_NAME ); ?></small>
-	</label>
-</li>
+// ================
+// = Package path =
+// ================
+if ( ! defined( 'AI1WMVE_PATH' ) ) {
+	define( 'AI1WMVE_PATH', dirname( __FILE__ ) );
+}
+
+// ===================
+// = Controller Path =
+// ===================
+if ( ! defined( 'AI1WMVE_CONTROLLER_PATH' ) ) {
+	define( 'AI1WMVE_CONTROLLER_PATH', AI1WMVE_PATH . DIRECTORY_SEPARATOR . 'controller' );
+}
+
+// ==============
+// = Model Path =
+// ==============
+if ( ! defined( 'AI1WMVE_MODEL_PATH' ) ) {
+	define( 'AI1WMVE_MODEL_PATH', AI1WMVE_PATH . DIRECTORY_SEPARATOR . 'model' );
+}
+
+// =============
+// = View Path =
+// =============
+if ( ! defined( 'AI1WMVE_TEMPLATES_PATH' ) ) {
+	define( 'AI1WMVE_TEMPLATES_PATH', AI1WMVE_PATH . DIRECTORY_SEPARATOR . 'view' );
+}
+
+// ===========================
+// = Purchase Activation URL =
+// ===========================
+if ( ! defined( 'AI1WMVE_PURCHASE_ACTIVATION_URL' ) ) {
+	define( 'AI1WMVE_PURCHASE_ACTIVATION_URL', 'https://servmask.com/purchase/activations' );
+}
+
+// ======================
+// = ServMask Stats URL =
+// ======================
+if ( ! defined( 'AI1WMVE_STATS_URL' ) ) {
+	define( 'AI1WMVE_STATS_URL', 'https://servmask.com/api/stats' );
+}
+
+// =================
+// = Max File Size =
+// =================
+if ( ! defined( 'AI1WMVE_MAX_FILE_SIZE' ) ) {
+	define( 'AI1WMVE_MAX_FILE_SIZE', 0 );
+}
+
+// ============================
+// = Schedules Events Options =
+// ============================
+if ( ! defined( 'AI1WMVE_SCHEDULES_OPTIONS' ) ) {
+	define( 'AI1WMVE_SCHEDULES_OPTIONS', 'ai1wmve_schedule_events' );
+}

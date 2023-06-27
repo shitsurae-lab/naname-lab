@@ -28,11 +28,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<li id="ai1wmue-db-table-excluder">
-	<label for="ai1wmue-exclude_db_tables" v-show="showDbExcluder">
-		<input type="checkbox" id="ai1wmue-exclude_db_tables" name="options[exclude_db_tables]"/>
-		<?php _e( 'Do <strong>not</strong> include the selected database tables', AI1WMUE_PLUGIN_NAME ); ?>
-		<small style="color: red;"><?php _e( 'new', AI1WMUE_PLUGIN_NAME ); ?></small>
+<li>
+	<label for="ai1wm-no-inactive-plugins">
+		<input type="checkbox" id="ai1wm-no-inactive-plugins" name="options[no_inactive_plugins]" />
+		<?php _e( 'Do <strong>not</strong> export inactive plugins (files)', AI1WM_PLUGIN_NAME ); ?>
 	</label>
-	<db-tables v-show="showDbExcluder" :db-tables='<?php echo json_encode( $tables, JSON_HEX_APOS ); ?>'></db-tables>
 </li>
