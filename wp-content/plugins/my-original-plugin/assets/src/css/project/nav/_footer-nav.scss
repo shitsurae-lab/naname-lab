@@ -5,7 +5,10 @@
   // background-image: var(--color-moonlit-asteroid);
   background: var(--color-light-slate-gray);
   &__foot {
-    padding-top: 2rem;
+    padding-top: calc(3.75rem + 10px);
+    @include mq(tablet) {
+      padding-top: 6rem;
+    }
   }
   #{$this}__nav {
     margin-bottom: 0; //リセット
