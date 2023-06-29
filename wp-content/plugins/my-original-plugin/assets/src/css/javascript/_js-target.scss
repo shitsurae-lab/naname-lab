@@ -1,0 +1,23 @@
+@use '../global' as *;
+.js-target {
+  $this: &;
+  transition: 1.4s ease-out;
+  transform: translateY(4rem);
+  opacity: 0;
+  &.on {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.js-target__image {
+  $this: &;
+  &:before {
+    transition: 1.4s ease-out;
+  }
+  &.on {
+    #{$this}.on::before {
+      opacity: 0.4;
+    }
+  }
+}
