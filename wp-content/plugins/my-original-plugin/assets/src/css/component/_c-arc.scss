@@ -5,6 +5,8 @@
   border-radius: 50%;
   border: var(--width-xxxs) solid var(--color-cadet-gray);
   position: relative;
+  display: grid;
+  place-items: center;
 
   svg {
     width: 64px;
@@ -13,5 +15,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  figure {
+    width: min(64px, 100%);
+    height: auto;
   }
 }
