@@ -2,7 +2,8 @@
 
 .l-footer {
   $this: &;
-  background-image: var(--color-moonlit-asteroid);
+  // background-image: var(--color-moonlit-asteroid);
+  background: var(--color-light-slate-gray);
   &__foot {
     padding-top: 2rem;
   }
