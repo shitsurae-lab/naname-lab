@@ -1,6 +1,47 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./assets/src/js/CreateWave.js":
+/*!*************************************!*\
+  !*** ./assets/src/js/CreateWave.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const CreateWave = () => {
+  const [...elements] = document.querySelectorAll(
+    '.p-front .ark-block-section__color, .p-page .ark-block-section__color'
+  );
+  // const wave = document.createElement('div');
+  // wave.setAttribute('class', 'p-wave');
+  elements.forEach((elem) => {
+    elem.insertAdjacentHTML(
+      'afterend',
+      '<div class="p-wave"><div class="p-wave__container"></div></div>'
+    );
+  });
+
+  const footerContainer = document.querySelector(
+    '.l-footer__foot > .l-container'
+  );
+  const div = document.createElement('div');
+  div.setAttribute('class', 'p-wave');
+  const container = document.createElement('div');
+  container.setAttribute('class', 'p-wave__container');
+  div.appendChild(container);
+  footerContainer.before(div);
+  console.log(footerContainer);
+  console.log('CreateWave.jsが読み込まれています');
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateWave);
+
+
+/***/ }),
+
 /***/ "./assets/src/js/accordion.js":
 /*!************************************!*\
   !*** ./assets/src/js/accordion.js ***!
@@ -117,6 +158,78 @@ const accordionAnim = () => {
 
 /***/ }),
 
+/***/ "./assets/src/js/addSelector.js":
+/*!**************************************!*\
+  !*** ./assets/src/js/addSelector.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function addSelector() {
+  const targets = document.querySelectorAll(
+    '.p-front__content .ark-block-section__bodyInner'
+  );
+
+  targets.forEach((target) => target.classList.add('js-target'));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addSelector);
+
+
+/***/ }),
+
+/***/ "./assets/src/js/createSVG.js":
+/*!************************************!*\
+  !*** ./assets/src/js/createSVG.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const CreateSVG = () => {
+  const name = 'http://www.w3.org/2000/svg';
+  const elemSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  elemSVG.setAttribute('id', 'layer01');
+  elemSVG.setAttribute('viewBox', '0 0 1920 1080');
+  const elemDefs = document.createElementNS(name, 'defs');
+  elemSVG.appendChild(elemDefs);
+  const elemStyle = document.createElementNS(name, 'style');
+  elemDefs.appendChild(elemStyle);
+
+  const styleText = `cls-1{stroke:#000;stroke-miterlimit:10;stroke-width:2px;}`;
+  elemStyle.innerHTML = styleText;
+
+  const cls = 'cls-1';
+  const elemDoc = document.createElementNS(name, 'path');
+  const pt01 = elemDoc;
+  const pt02 = elemDoc;
+  pt01.setAttribute('class', cls);
+  pt02.setAttribute('class', cls);
+  pt01.setAttribute(
+    'd',
+    'm797.21,382.6c3.2-.64,7.2-1.44,10.88-1.44,12.32,0,16.32,4.48,16.32,9.28,0,2.72-1.92,6.24-5.6,6.24-2.08,0-3.84-2.08-3.84-4.16,0-2.88-3.68-4.96-6.88-4.96-4.48,0-9.6,1.6-15.04,3.36-15.52,13.76-36,60.16-36,78.72,0,1.6.8,3.04.8,4.96,0,2.24-1.76,4.96-4.8,4.96-2.08,0-4.8-1.28-4.8-5.76,0-22.88,17.92-59.2,30.56-78.88-7.2,2.24-15.68,4.64-24,4.64-4.48,0-15.68-1.92-15.68-8.8,0-2.56,2.08-4.48,4.64-4.48,1.44,0,3.04.8,3.84,1.92,1.76,2.24,4,3.84,7.36,3.84,11.04,0,20.96-3.36,31.36-6.88,2.72-2.88,5.44-4.8,7.04-4.8,2.24,0,3.04,1.44,3.84,2.24Z'
+  );
+  pt02.setAttribute(
+    'd',
+    'm809.05,435.4c0,1.12.48,4.8,2.08,4.8,4,0,6.72-1.12,9.6-2.4,1.44-.64,3.68-2.08,4.64-2.08,1.92,0,3.04.8,3.04,2.88,0,1.92-2.4,4-7.68,6.56-5.12,2.4-11.68,2.72-13.28,2.72-3.68,9.44-10.88,21.76-22.24,21.76-4.8,0-9.44-3.68-9.44-10.88,0-15.04,13.44-29.12,24.16-29.12,6.24,0,9.12,3.04,9.12,5.76Zm-10.88,5.76c0-.96.32-2.24.64-3.2-6.4.32-15.2,11.36-15.2,21.12,0,2.4,1.76,4.16,3.36,4.16,5.92,0,13.76-14.24,13.76-18.24-.96-.16-2.56-2.08-2.56-3.84Z'
+  );
+  elemSVG.appendChild(pt01);
+  elemSVG.appendChild(pt02);
+
+  console.log(elemSVG);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateSVG);
+
+
+/***/ }),
+
 /***/ "./assets/src/js/custom_gsap.js":
 /*!**************************************!*\
   !*** ./assets/src/js/custom_gsap.js ***!
@@ -192,26 +305,30 @@ const setObserver = () => {
   const callback = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('inView');
+        entry.target.classList.add('on');
+        console.log('監視範囲に入りました');
       } else {
-        entry.target.classList.remove('inView');
+        entry.target.classList.remove('on');
+        console.log('監視範囲を出ました');
       }
     });
   };
   //②オプション
   const options = {
-    threshold: [0, 1],
+    root: null,
+    rootMargin: '-10% 0px',
+    threshold: 0.1,
   };
 
   //③引数にコールバック関数とオプションを指定してオブザーバーを生成
   const observer = new IntersectionObserver(callback, options);
 
   //④監視対象の要素をすべて取得
-  const imageTargets = [...document.querySelectorAll('.js-target__image')];
-  console.log(imageTargets);
+  const [...monitorElements] = document.querySelectorAll('.js-target');
+  console.log(monitorElements);
 
   //⑤すべての監視対象要素をobserve()メソッドに指定
-  imageTargets.forEach((elem) => {
+  monitorElements.forEach((elem) => {
     //observe()に監視対象の要素を指定
     observer.observe(elem);
   });
@@ -237,7 +354,7 @@ const mycurtain = () => {
   //① bodyタグを取得
   const bodyElement = document.querySelector('body');
 
-  //②body直下にオーバーレイの要素を作成
+  //②カーテン要素の作成
   const curtainElement = document.createElement('div');
   curtainElement.setAttribute('class', 'leftCurtainbg');
 
@@ -249,14 +366,26 @@ const mycurtain = () => {
   const spinner = document.createElement('div');
   spinner.setAttribute('class', 'p-spinner');
 
+  //⑤オープニングアニメーションの作成
+  const opening = document.createElement('div');
+  opening.setAttribute('class', 'p-opening');
+  const openingElement = document.querySelector('.p-opening');
+
   //①body要素内の先頭にp-loader
   bodyElement.prepend(loader);
   //②p-loader要素内の先頭にp-spinner
   loader.prepend(spinner);
-  //③ p-loaderの後ろにカーテン要素
-  loader.after(curtainElement);
+  //③ p-loaderの後ろにp-opening
+  loader.after(opening);
+  //④ p-loaderの後ろにカーテン要素
+  opening.after(curtainElement);
 
   //START: カーテンをdisplay:none; & Bodyに"pageOn"を付加(関数に入れない)
+  function js_opening() {
+    const opening_inner_elem = '<p>テストだよ</p>';
+    console.log(opening_inner_elem);
+  }
+
   function js_secondary() {
     curtainElement.style.display = 'none';
     console.log('②番目だよ');
@@ -321,12 +450,16 @@ const mycurtain = () => {
     let $i = check_access();
     if ($i == 0) {
       //1回目アクセスの処理
-      const loader = document.querySelector('.p-loader');
+      // const loader = document.querySelector('.p-loader');
       //START: ローディング
       setTimeout(() => {
         setTimeout(() => {
-          // curtainFadeInOut();
-          js_secondary();
+          setTimeout(() => {
+            js_secondary();
+            console.log('1回目のアクセスの際の「3番めの処理です」');
+          }, 1000);
+          opening.classList.add('loaded');
+          js_opening();
           console.log('1回目のアクセスの際の「2番めの処理です」');
         }, 2000);
         loader.classList.add('loaded');
@@ -28313,17 +28446,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_style_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _gnav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gnav */ "./assets/src/js/gnav.js");
 /* harmony import */ var _mycurtain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mycurtain */ "./assets/src/js/mycurtain.js");
-/* harmony import */ var _intersection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./intersection */ "./assets/src/js/intersection.js");
-/* harmony import */ var _custom_gsap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./custom_gsap */ "./assets/src/js/custom_gsap.js");
-/* harmony import */ var _myswiper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./myswiper */ "./assets/src/js/myswiper.js");
-/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./accordion */ "./assets/src/js/accordion.js");
-/* harmony import */ var _particles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./particles */ "./assets/src/js/particles.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ "./node_modules/@fortawesome/fontawesome-free/js/solid.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ "./node_modules/@fortawesome/fontawesome-free/js/regular.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _addSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addSelector */ "./assets/src/js/addSelector.js");
+/* harmony import */ var _intersection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./intersection */ "./assets/src/js/intersection.js");
+/* harmony import */ var _custom_gsap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./custom_gsap */ "./assets/src/js/custom_gsap.js");
+/* harmony import */ var _createSVG__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createSVG */ "./assets/src/js/createSVG.js");
+/* harmony import */ var _CreateWave__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CreateWave */ "./assets/src/js/CreateWave.js");
+/* harmony import */ var _myswiper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./myswiper */ "./assets/src/js/myswiper.js");
+/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./accordion */ "./assets/src/js/accordion.js");
+/* harmony import */ var _particles__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./particles */ "./assets/src/js/particles.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ "./node_modules/@fortawesome/fontawesome-free/js/solid.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ "./node_modules/@fortawesome/fontawesome-free/js/regular.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13__);
 
 
 
@@ -28333,16 +28469,26 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_mycurtain__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
+//-- addSelector
+
+(0,_addSelector__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
 //Intersection Observer
 
-(0,_intersection__WEBPACK_IMPORTED_MODULE_3__["default"])();
+(0,_intersection__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
 //-- START GSAP & ScrollTrigger
 // import gsap from 'gsap';
 // import ScrollTrigger from 'gsap/ScrollTrigger';
 // gsap.registerPlugin(ScrollTrigger);
 
-(0,_custom_gsap__WEBPACK_IMPORTED_MODULE_4__["default"])();
+(0,_custom_gsap__WEBPACK_IMPORTED_MODULE_5__["default"])();
+
+
+(0,_createSVG__WEBPACK_IMPORTED_MODULE_6__["default"])();
+
+
+(0,_CreateWave__WEBPACK_IMPORTED_MODULE_7__["default"])();
 
 //--- START: Swiper ---
 
@@ -28351,11 +28497,11 @@ __webpack_require__.r(__webpack_exports__);
 
 //-- START summary・detailアニメーション
 
-(0,_accordion__WEBPACK_IMPORTED_MODULE_6__["default"])();
+(0,_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])();
 //--accordionAnimの中にクリックイベントが記載されているので、accordionAnim();(->関数実行)を行う
 
 
-(0,_particles__WEBPACK_IMPORTED_MODULE_7__["default"])();
+(0,_particles__WEBPACK_IMPORTED_MODULE_10__["default"])();
 
 //--Font awesome
 
