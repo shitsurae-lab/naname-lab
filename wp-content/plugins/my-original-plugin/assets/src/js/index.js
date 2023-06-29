@@ -19,8 +19,8 @@ setObserver();
 // import gsap from 'gsap';
 // import ScrollTrigger from 'gsap/ScrollTrigger';
 // gsap.registerPlugin(ScrollTrigger);
-import custom_gsap from './custom_gsap';
-custom_gsap();
+// import custom_gsap from './custom_gsap';
+// custom_gsap();
 
 import CreateSVG from './createSVG';
 CreateSVG();

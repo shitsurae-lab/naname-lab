@@ -3836,7 +3836,7 @@ article.skills .p-entry__content {
   opacity: 0.4;
 }
 
-.leftCurtainbg {
+.p-curtain {
   display: block;
   content: "";
   position: fixed;
@@ -3910,7 +3910,7 @@ body.pageOn .l-wrapper {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-moonlit-asteroid);
+  background-image: var(--color-moonlit-asteroid);
   position: fixed;
   top: 0;
   left: 0;
