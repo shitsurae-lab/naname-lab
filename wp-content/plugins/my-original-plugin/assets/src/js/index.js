@@ -7,6 +7,10 @@ gnav();
 import mycurtain from './mycurtain';
 mycurtain();
 
+//-- addSelector
+import addSelector from './addSelector';
+addSelector();
+
 //Intersection Observer
 import setObserver from './intersection';
 setObserver();
@@ -17,6 +21,12 @@ setObserver();
 // gsap.registerPlugin(ScrollTrigger);
 import custom_gsap from './custom_gsap';
 custom_gsap();
+
+import CreateSVG from './createSVG';
+CreateSVG();
+
+import CreateWave from './CreateWave';
+CreateWave();
 
 //--- START: Swiper ---
 import {
