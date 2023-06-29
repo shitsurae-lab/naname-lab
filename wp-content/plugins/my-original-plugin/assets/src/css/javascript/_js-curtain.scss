@@ -1,6 +1,6 @@
 @use '../global' as *;
 
-.leftCurtainbg {
+.p-curtain {
   display: block;
   content: '';
   position: fixed;
@@ -57,7 +57,7 @@
 body.pageOn .l-wrapper {
   animation-name: PageAnimeOn;
   animation-duration: 1s;
-  animation-delay: 0.8s; //おそらく　bodyと比べて遅延を0.8sに設定という意味
+  animation-delay: 0.8s; //おそらくbodyと比べて遅延を0.8sに設定という意味
   animation-fill-mode: forwards;
   opacity: 0;
 }
@@ -78,7 +78,7 @@ body.pageOn .l-wrapper {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-moonlit-asteroid);
+  background-image: var(--color-moonlit-asteroid);
   position: fixed;
   top: 0;
   left: 0;
