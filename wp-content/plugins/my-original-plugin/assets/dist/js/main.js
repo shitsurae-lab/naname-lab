@@ -329,48 +329,55 @@ const mycurtain = () => {
   //① bodyタグを取得
   const bodyElement = document.querySelector('body');
 
-  //②カーテン要素の作成
+  //②spinnnerエリア
+  const opening = document.createElement('div');
+  opening.setAttribute('class', 'p-spinner__wrapper');
+  //②-1 spinnerを作成
+  const spinner = document.createElement('div');
+  spinner.setAttribute('class', 'p-spinner');
+  //③loadingアニメーション
+  const loader = document.createElement('div');
+  loader.setAttribute('class', 'p-loader');
+  const loaderContent = document.createElement('div');
+  loaderContent.setAttribute('class', 'p-loader__container');
+  loader.prepend(loaderContent);
+  const loaderText = document.createElement('p');
+  loaderText.setAttribute('class', 'p-loader__text u-uppercase');
+  loaderContent.prepend(loaderText);
+  loaderText.textContent = 'my portfolio';
+
+  //④カーテン要素の作成
   const curtainElement = document.createElement('div');
   curtainElement.setAttribute('class', 'p-curtain');
 
-  //③loaderを作成
-  const loader = document.createElement('div');
-  loader.setAttribute('class', 'p-loader');
-
-  //④spinnerを作成
-  const spinner = document.createElement('div');
-  spinner.setAttribute('class', 'p-spinner');
-
-  //⑤オープニングアニメーションの作成
-  const opening = document.createElement('div');
-  opening.setAttribute('class', 'p-opening');
-
   //①body要素内の先頭にp-loader
-  bodyElement.prepend(loader);
-  //②p-loader要素内の先頭にp-spinner
-  loader.prepend(spinner);
-  //③ p-loaderの後ろにp-opening
-  loader.after(opening);
+  bodyElement.prepend(opening);
+  //②p-opening要素内の先頭にp-spinner
+  opening.prepend(spinner);
+  //③ p-openingの後ろにp-loader
+  opening.after(loader);
   //④ p-loaderの後ろにカーテン要素
-  opening.after(curtainElement);
+  loader.after(curtainElement);
 
-  //START: カーテンをdisplay:none; & Bodyに"pageOn"を付加(関数に入れない)
-  function js_opening() {
-    const opening_inner_elem = '<p>js_openingが読み込まれたよ</p>';
-    console.log(opening_inner_elem);
-  }
+  const js_opening = () => {
+    opening.classList.add('loaded');
+    console.log('①js_openingが読み込まれたよ!');
+  };
 
-  function js_curtain() {
-    curtainElement.style.display = 'none';
-    console.log('②番目だよ');
-    console.log('カーテン要素をnoneに');
-  }
+  const js_loader = () => {
+    loader.classList.add('loaded');
+    console.log('②js_loaderが読み込まれたよ!');
+  };
 
-  function js_pageOn() {
+  const js_curtain = () => {
+    curtainElement.classList.add('loaded');
+    console.log('③js_curtainが読み込まれたのよ!');
+  };
+
+  const js_pageOn = () => {
     document.body.classList.add('pageOn');
-    console.log('①番目だよ');
-    console.log('bodyにpageOn');
-  }
+    console.log('④ js_pageOnが読み込まれたぜ');
+  };
 
   /*コールバック関数 */
 
@@ -397,34 +404,29 @@ const mycurtain = () => {
       setTimeout(() => {
         setTimeout(() => {
           setTimeout(() => {
-            // js_curtain();
-            console.log('1回目のアクセスの際の「3番めの処理です」');
-          }, 1000);
-          opening.classList.add('loaded');
-          js_opening();
-          console.log('1回目のアクセスの際の「2番めの処理です」');
-        }, 2000);
-        loader.classList.add('loaded');
-        js_pageOn();
-        console.log('1回目のアクセスの際の「1番めの処理です」');
+            setTimeout(() => {
+              js_pageOn();
+            }, 1000); //curtaniAnime 800ms(duration)の少しあとにjs_pageOnが動くようにする
+            js_curtain();
+          }, 2000); //loaderAnime 2000ms(duration)にあわせてずらした
+          js_loader();
+        }, 1200); //spinnerAnime 1200ms(duration)にあわせてずらした
+        js_opening();
       }, 0);
     } else {
       // 2回目アクセスの処理
-      loader.remove();
       setTimeout(() => {
         setTimeout(() => {
-          // curtainFadeInOut();
-          // js_curtain();
-          opening.classList.add('loaded');
-          console.log('2回目以降のアクセスの際の「2番めの処理です」');
-        }, 2000);
-        js_pageOn();
-        console.log('2回目以降のアクセスの際の「1番目の処理です」');
+          setTimeout(() => {
+            setTimeout(() => {
+              js_pageOn();
+            }, 1000); //curtaniAnime 800ms(duration)の少しあとにjs_pageOnが動くようにする
+            js_curtain();
+          }, 2000); //loaderAnime 2000ms(duration)にあわせてずらした
+          js_loader();
+        }, 0);
+        opening.remove();
       }, 0);
-      // loader.remove();
-      // console.log('2回目以降のアクセスの際の「1番目の処理です」');
-      // curtainFadeInOut;
-      // console.log('2回目以降のアクセスの際の「2番めの処理です」');
     }
   });
 };
