@@ -50,8 +50,8 @@ $requirement: '.single';
     }
   }
   &__share {
-    margin-top: 8px;
-    font-size: var(--font-sm);
+    margin-top: 24px;
+
     ul {
       padding-left: 0; //ユーザーエージェントスタイルシートのリセット
       display: flex;

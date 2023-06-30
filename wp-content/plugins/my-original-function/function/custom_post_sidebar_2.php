@@ -11,8 +11,8 @@ function custom_post_sidebar()
     $cat = $cat[0];
     $cat_name = $cat->name;
 
-    $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg');
-    $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg');
+    $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg');
+    $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg');
 ?>
     <div class="p-sidebar__content">
       <div class="p-sidebar__heading">
@@ -62,8 +62,8 @@ function custom_post_sidebar()
         </ul>
       </div>
       <div class="p-sidebar__share">
-        <?php $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg'); ?>
-        <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg'); ?>
+        <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
+        <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
         <!-- <p class="u-en u-uppercase">share</p> -->
         <ul>
           <li>
@@ -106,8 +106,8 @@ function custom_post_sidebar()
           <?php endforeach; ?>
         </ul>
         <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg'); ?>
+          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
+          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
           <!-- <p class="u-en u-uppercase">share</p> -->
           <ul>
             <li>
@@ -150,8 +150,8 @@ function custom_post_sidebar()
         </div>
 
         <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg'); ?>
+          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
+          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
           <!-- <p class="u-en u-uppercase">share</p> -->
           <ul>
             <li>
@@ -190,8 +190,8 @@ function custom_post_sidebar()
           </ul>
         </div>
         <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/my-twitter-spindle-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/my-facebook-min.svg'); ?>
+          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
+          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
           <!-- <p class="u-en u-uppercase">share</p> -->
           <ul>
             <li>
