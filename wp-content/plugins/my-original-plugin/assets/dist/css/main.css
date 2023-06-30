@@ -280,6 +280,7 @@ img {
   --color-tarragon-tease: #b4a983;
   --color-nordic: #093637;
   --color-half-baked: #5b8f8f;
+  --color-desaturated-cyan: #64969c;
   --color-weldon-blue: #80999c;
   --color-light-slate-gray: #758c8f;
   --color-cadet: #5a6b6d;
@@ -3846,10 +3847,10 @@ article.skills .p-entry__content {
   top: 0;
   left: 0;
   transform: scaleX(0);
-  background-color: #313131;
+  background-color: var(--color-desaturated-cyan);
   animation-name: curtainAnime;
-  animation-duration: 0.8s;
-  animation-timing-function: ease-in-out;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
@@ -3864,6 +3865,7 @@ article.skills .p-entry__content {
   }
   50.001% {
     transform-origin: right;
+    transform: scaleX(1);
   }
   100% {
     transform-origin: right;
