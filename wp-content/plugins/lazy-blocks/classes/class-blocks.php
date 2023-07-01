@@ -633,7 +633,7 @@ class LazyBlocks_Blocks {
 	 *
 	 * @return array
 	 */
-	private function get_block_defaults() {
+	public function get_block_defaults() {
 		return apply_filters( 'lzb/block_defaults', $this->block_defaults );
 	}
 
@@ -849,6 +849,21 @@ class LazyBlocks_Blocks {
 	}
 
 	/**
+	 * Remove block.
+	 *
+	 * @param string $block_slug - block slug.
+	 */
+	public function remove_block( $block_slug ) {
+		if ( is_array( $this->user_blocks ) ) {
+			foreach ( $this->user_blocks as $k => $val ) {
+				if ( isset( $val['slug'] ) && $val['slug'] === $block_slug ) {
+					unset( $this->user_blocks[ $k ] );
+				}
+			}
+		}
+	}
+
+	/**
 	 * Prepare block controls by adding defaults.
 	 *
 	 * @param array $controls - block controls.
@@ -891,10 +906,17 @@ class LazyBlocks_Blocks {
 	 */
 	public function marshal_block_data_with_controls( $id = null, $post_title = null, $block_data = null, $all_controls = null ) {
 		$get_meta_value = function( $name ) use ( $id, $block_data ) {
+			// Get post meta data.
 			if ( $id ) {
 				return $this->get_meta_value_by_id( $name, $id );
-			} else {
+
+				// Get provided block data.
+			} elseif ( $block_data ) {
 				return $this->get_meta_value_by_block( $name, $block_data );
+
+				// Get defaults.
+			} else {
+				return $this->get_meta_value( $name, '' );
 			}
 		};
 
@@ -1022,9 +1044,11 @@ class LazyBlocks_Blocks {
 			$all_controls    = lazyblocks()->controls()->get_controls();
 
 			foreach ( $all_user_blocks as $block ) {
-				$block['controls'] = $this->prepare_block_controls( $block['controls'], $all_controls );
+				$user_block = array_merge( $this->marshal_block_data_with_controls(), $block );
 
-				$result[] = $block;
+				$user_block['controls'] = $this->prepare_block_controls( $user_block['controls'], $all_controls );
+
+				$result[] = $user_block;
 			}
 		}
 
@@ -1439,8 +1463,6 @@ class LazyBlocks_Blocks {
 		$context = 'editor' === $context ? 'editor' : 'frontend';
 		$result  = null;
 
-		// phpcs:disable
-
 		if ( isset( $block['controls'] ) && ! empty( $block['controls'] ) ) {
 			foreach ( $block['controls'] as $control ) {
 				if ( ! isset( $control['child_of'] ) || ! $control['child_of'] ) {
@@ -1455,6 +1477,8 @@ class LazyBlocks_Blocks {
 				}
 			}
 		}
+
+		// phpcs:disable
 
 		// apply filter for block attributes.
 		$attributes = apply_filters( 'lzb/block_render/attributes', $attributes, $content, $block, $context );
@@ -1527,7 +1551,25 @@ class LazyBlocks_Blocks {
 
 		// Replace the <InnerBlocks /> with the block content.
 		if ( 'frontend' === $context ) {
-			$result = preg_replace( '/<InnerBlocks([\S\s]*?)\/>/', '<div class="lazyblock-inner-blocks">' . $content . '</div>', $result );
+			// Add inner-blocks wrapper with class lazyblock-inner-blocks.
+			$allow_inner_blocks_wrapper = apply_filters( 'lzb/block_render/allow_inner_blocks_wrapper', true, $attributes );
+			// phpcs:ignore
+			$allow_inner_blocks_wrapper = apply_filters( $block['slug'] . '/allow_inner_blocks_wrapper', $allow_inner_blocks_wrapper, $attributes );
+
+			if ( $allow_inner_blocks_wrapper ) {
+				// Check for a class/className attribute provided in the template to become the InnerBlocks wrapper class.
+				$matches = array();
+
+				if ( preg_match( '/<InnerBlocks(?:[^<]+?)(?:class|className)=(?:["\']\W+\s*(?:\w+)\()?["\']([^\'"]+)[\'"]/', $result, $matches ) ) {
+					$class = isset( $matches[1] ) ? $matches[1] : 'lazyblock-inner-blocks';
+				} else {
+					$class = 'lazyblock-inner-blocks';
+				}
+
+				$content = '<div class="' . $class . '">' . $content . '</div>';
+			}
+
+			$result = preg_replace( '/<InnerBlocks([\S\s]*?)\/>/', $content, $result );
 		}
 
 		// add wrapper.
@@ -1548,6 +1590,14 @@ class LazyBlocks_Blocks {
 
 			if ( $attributes['align'] ) {
 				$array_atts['class'] .= ' align' . $attributes['align'];
+			}
+
+			// The anchor rendering was removed in v3.4.0 because of Gutenberg added support for automatic anchor render.
+			// Then they are removed this option and we reverted this anchor render back
+			//
+			// @link https://github.com/WordPress/gutenberg/pull/51288.
+			if ( isset( $attributes['anchor'] ) && $attributes['anchor'] ) {
+				$array_atts['id'] = esc_attr( $attributes['anchor'] );
 			}
 
 			if ( isset( $attributes['ghostkitSR'] ) && $attributes['ghostkitSR'] ) {
