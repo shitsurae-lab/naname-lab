@@ -1,4 +1,5 @@
-const mycurtain = () => {
+//document.addEventListener('DOMContentLoaded'..がフックになるJS
+const openingAnime = () => {
   //① bodyタグを取得
   const bodyElement = document.querySelector('body');
 
@@ -104,4 +105,4 @@ const mycurtain = () => {
   });
 };
 
-export default mycurtain;
+export default openingAnime;
