@@ -4,16 +4,16 @@ import gnav from './gnav';
 gnav();
 
 //オープニングアニメーション
-import mycurtain from './mycurtain';
-mycurtain();
+import openingAnime from './openingAnime';
+openingAnime();
 
 //-- addSelector
 import addSelector from './addSelector';
 addSelector();
 
-//Intersection Observer
-import setObserver from './intersection';
-setObserver();
+//Intersection Observe
+import intersection from './intersection';
+intersection();
 
 //-- START GSAP & ScrollTrigger
 // import gsap from 'gsap';

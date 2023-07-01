@@ -1,4 +1,4 @@
-const setObserver = () => {
+const intersection = () => {
   //①コールバック関数
   const callback = (entries) => {
     entries.forEach((entry) => {
@@ -13,7 +13,7 @@ const setObserver = () => {
   };
   //②オプション
   const options = {
-    root: null,
+    root: null, //ルート
     rootMargin: '-10% 0px',
     threshold: 0.1,
   };
@@ -23,7 +23,6 @@ const setObserver = () => {
 
   //④監視対象の要素をすべて取得
   const [...monitorElements] = document.querySelectorAll('.js-target');
-  console.log(monitorElements);
 
   //⑤すべての監視対象要素をobserve()メソッドに指定
   monitorElements.forEach((elem) => {
@@ -32,4 +31,4 @@ const setObserver = () => {
   });
   console.log('Intersection Observer APIを読み込んでます');
 };
-export default setObserver;
+export default intersection;
