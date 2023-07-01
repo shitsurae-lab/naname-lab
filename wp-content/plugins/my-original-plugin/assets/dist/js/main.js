@@ -344,7 +344,7 @@ const mycurtain = () => {
   const loaderText = document.createElement('p');
   loaderText.setAttribute('class', 'p-loader__text u-uppercase');
   loaderContent.prepend(loaderText);
-  loaderText.textContent = 'my portfolio';
+  loaderText.innerText = 'Let me introduce\nmyself';
 
   //④カーテン要素の作成
   const curtainElement = document.createElement('div');
