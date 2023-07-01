@@ -1,4 +1,4 @@
-//document.addEventListener('DOMContentLoaded'..がフックになるJS
+//document.addEventListener('DOMContentLoaded'..がフックになるJS-----
 const openingAnime = () => {
   //① bodyタグを取得
   const bodyElement = document.querySelector('body');
