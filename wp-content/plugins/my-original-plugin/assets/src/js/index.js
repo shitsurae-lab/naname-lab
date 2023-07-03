@@ -16,11 +16,9 @@ import intersection from './intersection';
 intersection();
 
 //-- START GSAP & ScrollTrigger
-// import gsap from 'gsap';
-// import ScrollTrigger from 'gsap/ScrollTrigger';
-// gsap.registerPlugin(ScrollTrigger);
-// import custom_gsap from './custom_gsap';
-// custom_gsap();
+
+import myScrollTrigger from './myScrollTrigger';
+myScrollTrigger();
 
 import CreateSVG from './createSVG';
 CreateSVG();
