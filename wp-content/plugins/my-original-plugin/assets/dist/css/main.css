@@ -2593,6 +2593,40 @@ article.skills .p-entry__content {
     z-index: 2;
   }
 }
+.p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text {
+  color: var(--color-philippine-gray);
+  --ark-mt--inner: var(--ark-mt--l, 3.75rem);
+  position: relative;
+  left: 0;
+  top: auto;
+  transform: none;
+  width: 88%;
+}
+@media (min-width: 600px) {
+  .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text {
+    left: 0;
+    top: auto;
+    width: 50%;
+  }
+}
+@media (min-width: 1000px) {
+  .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text {
+    left: -6%;
+  }
+}
+@media (min-width: 1200px) {
+  .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text {
+    left: -12%;
+  }
+}
+@media (min-width: 600px) {
+  .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text {
+    z-index: 2;
+  }
+  .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-broken__text__container {
+    aspect-ratio: 3/2;
+  }
+}
 .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] .p-page__strengths--intro__media {
   position: relative;
   top: auto;

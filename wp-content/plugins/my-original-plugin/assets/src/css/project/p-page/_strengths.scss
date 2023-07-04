@@ -69,6 +69,15 @@
           z-index: 2;
         }
       }
+      .p-broken__text {
+        @include general__content--left();
+        @include mq(tablet) {
+          z-index: 2;
+          &__container {
+            aspect-ratio: 3/2;
+          }
+        }
+      }
       #{$this}__media {
         position: relative;
         top: auto;
