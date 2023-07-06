@@ -2043,7 +2043,7 @@ body {
 }
 .l-sidebar .p-sidebar__heading .p-newsList__heading a {
   text-decoration: none;
-  font-size: var(--font-xs);
+  font-size: var(--font-xxs);
   color: var(--color-granite-gray);
   font-weight: 400;
   letter-spacing: 0.05em;
