@@ -5,6 +5,8 @@ const intersection = () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('on');
         console.log('監視範囲に入りました');
+        //第２引数の observer の unobserve() メソッドで監視を停止
+        observer.unobserve(entry.target);
       } else {
         entry.target.classList.remove('on');
         console.log('監視範囲を出ました');
