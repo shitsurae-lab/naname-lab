@@ -3175,10 +3175,11 @@ article.skills .p-entry__content {
   mix-blend-mode: lighten;
   border-radius: 10px;
 }
-.p-page__works--intro .p-works--lists__container {
+
+.p-works--lists__container {
   position: relative;
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading {
+.p-works--lists__container .p-general__cursive-heading {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -3186,30 +3187,30 @@ article.skills .p-entry__content {
   margin-top: -16%;
 }
 @media (min-width: 600px) {
-  .p-page__works--intro .p-works--lists__container .p-general__cursive-heading {
+  .p-works--lists__container .p-general__cursive-heading {
     width: 70%;
     left: 0;
     margin-top: 0;
   }
 }
 @media (min-width: 1000px) {
-  .p-page__works--intro .p-works--lists__container .p-general__cursive-heading {
+  .p-works--lists__container .p-general__cursive-heading {
     left: -6%;
   }
 }
 @media (min-width: 1200px) {
-  .p-page__works--intro .p-works--lists__container .p-general__cursive-heading {
+  .p-works--lists__container .p-general__cursive-heading {
     left: 0;
   }
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner {
+.p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner {
   position: relative;
   padding-bottom: 24px;
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner:where(.is-layout-flex) {
+.p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner:where(.is-layout-flex) {
   gap: 0;
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner::before {
+.p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner::before {
   content: "";
   display: block;
   position: absolute;
@@ -3219,27 +3220,27 @@ article.skills .p-entry__content {
   left: 0;
   bottom: 0;
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner p {
+.p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner p {
   font-size: var(--font-hero);
   font-family: "Allura", cursive;
   text-transform: capitalize;
   color: var(--color-weldon-blue);
   line-height: 1;
 }
-.p-page__works--intro .p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner h2 {
+.p-works--lists__container .p-general__cursive-heading .p-general__cursive-heading__inner h2 {
   font-weight: 400;
   color: var(--color-weldon-blue);
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__heading__inner {
+.p-works--lists__container .p-works--lists__heading__inner {
   position: relative;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__heading__inner:where(.is-layout-flex) {
+.p-works--lists__container .p-works--lists__heading__inner:where(.is-layout-flex) {
   gap: 0;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__heading__inner .p-page__works--intro .p-works--lists__heading--main {
+.p-works--lists__container .p-works--lists__heading__inner .p-works--lists__heading--main {
   position: relative;
   line-height: 1.5;
   margin-bottom: 0;
@@ -3252,7 +3253,7 @@ article.skills .p-entry__content {
   font-size: var(--font-lg);
   padding-bottom: 0.5em;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__heading__inner .p-page__works--intro .p-works--lists__heading--sub {
+.p-works--lists__container .p-works--lists__heading__inner .p-works--lists__heading--sub {
   position: relative;
   top: 0;
   left: 0;
@@ -3264,10 +3265,10 @@ article.skills .p-entry__content {
   color: var(--color-weldon-blue);
   text-transform: uppercase;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__content [class*=ark-keep-mt] {
+.p-works--lists__container .p-works--lists__content [class*=ark-keep-mt] {
   position: relative;
 }
-.p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__content [class*=ark-keep-mt]::before {
+.p-works--lists__container .p-works--lists__content [class*=ark-keep-mt]::before {
   content: "";
   display: block;
   position: absolute;
@@ -3279,7 +3280,7 @@ article.skills .p-entry__content {
   z-index: -2;
 }
 @media (min-width: 600px) {
-  .p-page__works--intro .p-works--lists__container .p-page__works--intro .p-works--lists__content [class*=ark-keep-mt]::before {
+  .p-works--lists__container .p-works--lists__content [class*=ark-keep-mt]::before {
     top: 8%;
     aspect-ratio: 3/2;
   }

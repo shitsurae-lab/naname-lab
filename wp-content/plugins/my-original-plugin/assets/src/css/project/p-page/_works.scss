@@ -77,89 +77,78 @@
       }
     }
   }
+}
 
-  .p-works--lists {
-    @mixin main() {
-      position: relative;
-      line-height: 1.5;
-      margin-bottom: 0;
-      margin-top: 0;
-      color: var(--color-granite-gray);
-      font-weight: 400;
-      z-index: 2;
-      width: -moz-fit-content;
-      width: fit-content;
-      font-size: var(--font-lg);
-      padding-bottom: 0.5em;
+.p-works--lists {
+  @mixin main() {
+    position: relative;
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: var(--color-granite-gray);
+    font-weight: 400;
+    z-index: 2;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: var(--font-lg);
+    padding-bottom: 0.5em;
+  }
+  @mixin sub($position: relative, $line-height: 1) {
+    position: $position;
+    top: 0;
+    left: 0;
+    line-height: $line-height;
+    z-index: -1;
+    font-size: var(--font-sm);
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    color: var(--color-weldon-blue);
+    text-transform: uppercase;
+  }
+  $this: &;
+  &__container {
+    position: relative;
+    .p-general__cursive-heading {
+      @include general__heading--cursive(
+        $u-position--lg: 0,
+        $u-position--sm: 0
+      );
     }
-    @mixin sub($position: relative, $line-height: 1) {
-      position: $position;
-      top: 0;
-      left: 0;
-      line-height: $line-height;
-      z-index: -1;
-      font-size: var(--font-sm);
-      font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-      font-weight: 500;
-      color: var(--color-weldon-blue);
-      text-transform: uppercase;
-    }
-    $this: &;
-    &__container {
-      position: relative;
-      .p-general__cursive-heading {
-        @include general__heading--cursive(
-          $u-position--lg: 0,
-          $u-position--sm: 0
-        );
-      }
-      #{$this}__heading {
-        &__inner {
-          position: relative;
-          &:where(.is-layout-flex) {
-            gap: 0;
-          }
-          #{$this}__heading--main {
-            @include main();
-          }
-          #{$this}__heading--sub {
-            @include sub();
-          }
-        }
-      }
-      #{$this}__content [class*='ark-keep-mt'] {
+    #{$this}__heading {
+      &__inner {
         position: relative;
-        &::before {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0%;
-          right: -10%;
-          width: 100%;
-          // height: 96%;
-          aspect-ratio: 3/5;
-          background-image: var(--color-linear-antifish);
-          z-index: -2;
-          @include mq(tablet) {
-            top: 8%;
-            aspect-ratio: 3/2;
-          }
+        &:where(.is-layout-flex) {
+          gap: 0;
+        }
+        #{$this}__heading--main {
+          @include main();
+        }
+        #{$this}__heading--sub {
+          @include sub();
         }
       }
-      #{$this}__columns {
-        .p-postList__item {
-          // @include m-shift__card(
-          //   $tab-primary: 0,
-          //   $tab-secondary: 0,
-          //   //32px
-          //   $tab-tertiary: 0,
-          //   //64px
-          //   $pc-primary: 0,
-          //   $pc-secondary: 0,
-          //   //40px
-          //   $pc-tertiary: 0 //80px
-          // );
+    }
+    #{$this}__content [class*='ark-keep-mt'] {
+      position: relative;
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0%;
+        right: -10%;
+        width: 100%;
+        // height: 96%;
+        aspect-ratio: 3/5;
+        background-image: var(--color-linear-antifish);
+        z-index: -2;
+        @include mq(tablet) {
+          top: 8%;
+          aspect-ratio: 3/2;
         }
+      }
+    }
+    #{$this}__columns {
+      .p-postList__item {
       }
     }
   }
