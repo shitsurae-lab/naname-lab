@@ -9,27 +9,26 @@
 ) {
   @include mq(tablet) {
     &:nth-child(3n + 1) {
-      transform: translateY($tab-primary);
+      //transform: translateY($tab-primary);
     }
     &:nth-child(3n + 2) {
-      transform: translateY($tab-secondary);
+      //transform: translateY($tab-secondary);
     }
     &:nth-child(3n + 3) {
-      transform: translateY($tab-tertiary);
+      //transform: translateY($tab-tertiary);
     }
   }
   @include mq(pc) {
     &:nth-child(3n + 1) {
-      transform: translateY($pc-primary);
+      //transform: translateY($pc-primary);
     }
     &:nth-child(3n + 2) {
-      transform: translateY($pc-secondary);
+      // transform: translateY($pc-secondary);
     }
     &:nth-child(3n + 3) {
-      transform: translateY($pc-tertiary);
+      // transform: translateY($pc-tertiary);
     }
   }
-  @content;
 }
 /* page-strengths.phpのみデフォルトのmargin: 3rem autoをリセット */
 .service .l-content__top + .l-content__body {
@@ -55,12 +54,17 @@
         content: '';
         display: block;
         position: absolute;
-        top: 0;
+        top: 0%;
         right: -10%;
         width: 100%;
-        height: 96%;
+        // height: 96%;
+        aspect-ratio: 3/5;
         background-image: var(--color-linear-antifish);
         z-index: -2;
+        @include mq(tablet) {
+          top: 8%;
+          aspect-ratio: 3/2;
+        }
       }
 
       #{$this}__desc {
@@ -86,7 +90,7 @@
 
         @include mq(tablet) {
           position: absolute;
-          top: -8%;
+          top: 0;
           right: -12%;
           width: 80%;
           margin-top: 0;
@@ -153,6 +157,8 @@
 }
 .p-card {
   $this: &;
+  $pseudo-elem-bg: rgba(0 0 0/ 100%);
+  $transition-duration: 0.25s;
   &.ark-block-container:not(.has-inner) {
     display: flex;
     flex-direction: row;
@@ -171,18 +177,36 @@
         border-top-right-radius: 10px;
         width: 100%;
         margin-left: 0;
+        overflow: hidden;
         &::before {
           position: absolute;
           content: '';
           display: block;
           width: 100%;
           height: 100%;
-          background: rgba(255 255 255 / 64%);
+          background: $pseudo-elem-bg;
+          opacity: 0;
+          transition: opacity $transition-duration;
+          z-index: 1;
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
         }
       }
+      img {
+        transition: transform $transition-duration;
+      }
     }
+    &:hover {
+      #{$this}__media {
+        img {
+          transform: scale(1.15);
+        }
+        &::before {
+          opacity: 0.1;
+        }
+      }
+    }
+
     #{$this}__body {
       margin-top: 0;
       width: min(calc(100% - 24px - 125px), 66%);
@@ -192,7 +216,7 @@
         margin-left: 0;
         width: 100%;
         padding: 20px 14px;
-        aspect-ratio: 5/3;
+        aspect-ratio: 3/2;
         background: var(--ark-color_bg);
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
@@ -215,21 +239,21 @@
       &--main {
         font-size: var(--font-sm);
         font-weight: 400;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.075em;
         color: #80999c;
       }
       &--sub {
         display: inline-block;
-        padding: 0.4em 0.8em;
+        padding: 0.3em 0.6em;
         border: 1px solid var(--color-weldon-blue);
         // color: var(--color-weldon-blue);
         background-color: var(--color-weldon-blue);
         color: #ffffff;
         border-radius: 2px;
-        font-size: 10px;
+        font-size: var(--font-xxs);
         line-height: 1;
         @include mq(tablet) {
-          padding: 0.4em 0.8em;
+          padding: 0.3em 0.6em;
         }
       }
     }
@@ -251,16 +275,50 @@
 // }
 
 .p-profile--skills {
+  @mixin main() {
+    position: relative;
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: var(--color-granite-gray);
+    font-weight: 400;
+    z-index: 2;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: var(--font-lg);
+    padding-bottom: 0.5em;
+  }
+  @mixin sub($position: relative, $line-height: 1) {
+    position: $position;
+    top: 0;
+    left: 0;
+    line-height: $line-height;
+    z-index: -1;
+    font-size: var(--font-sm);
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    color: var(--color-weldon-blue);
+    text-transform: uppercase;
+  }
   $this: &;
   &__container {
     position: relative;
-    .p-general__cursive-heading {
-      @include general__heading--cursive(
-        $u-position--lg: 0,
-        $u-position--sm: 0,
-        $mt: 0
-      );
+
+    #{$this}__heading {
+      &__inner {
+        position: relative;
+        &:where(.is-layout-flex) {
+          gap: 0;
+        }
+        #{$this}__heading--main {
+          @include main();
+        }
+        #{$this}__heading--sub {
+          @include sub();
+        }
+      }
     }
+
     #{$this}__content {
       // @include general__content--left();
     }
