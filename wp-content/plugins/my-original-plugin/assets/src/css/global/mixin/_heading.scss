@@ -32,6 +32,9 @@
     $this: &;
     position: relative;
     padding-bottom: 24px;
+    &:where(.is-layout-flex) {
+      gap: 0;
+    }
     &::before {
       content: '';
       display: block;
@@ -62,22 +65,27 @@
 @mixin general__content--left(
   $u-position--md: 6%,
   $u-position--lg: 12%,
-  $position: relative
+  $position: relative,
+  $transform-sp: 4%,
+  $transform-tab: 4%,
+  $transform-pc: 24%
 ) {
   color: var(--color-philippine-gray);
   --ark-mt--inner: var(--ark-mt--l, 3.75rem);
   position: $position;
   left: 0;
   top: auto;
-  transform: none; //transform: translateY(-50%)
+  transform: translateY($transform-sp);
   width: 88%;
   @include mq(tablet) {
     left: 0;
     top: auto;
     width: 50%;
+    transform: translateY($transform-tab);
   }
   @include mq(pc) {
     left: calc($u-position--lg / 2 * -1);
+    transform: translateY($transform-pc);
   }
   @include mq(wide) {
     left: calc($u-position--lg * -1);
