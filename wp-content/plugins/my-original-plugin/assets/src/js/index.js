@@ -17,8 +17,9 @@ intersection();
 
 //-- START GSAP & ScrollTrigger
 
-import myScrollTrigger from './myScrollTrigger';
-myScrollTrigger();
+// import  myTimeline from './myScrollTrigger';
+
+// myTimeline();
 
 import CreateSVG from './createSVG';
 CreateSVG();
