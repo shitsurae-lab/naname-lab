@@ -3,7 +3,7 @@
 Plugin Name: Rich Table of Contents
 Plugin URI: https://croover.co.jp/rtoc
 Description: "RTOC -Rich Table of Contents-" is a table of contents generation plugin from Japan that allows anyone to easily create a table of contents.
-Version: 1.3.95
+Version: 1.3.96
 Author: CROOVER.inc
 Text Domain: rich-table-of-content
 Domain Path: /languages/
@@ -51,14 +51,16 @@ function rtoc_admin_color_picker()
 
 
 // 目次を生成する関数
-function rtoc_get_index()
+function rtoc_get_index($content)
 {
 	if (get_option('rtoc_display_top') == 1 && is_front_page()) {
 		return;
 	}
-	$post_data = get_post();
-	$content = $post_data->post_content;
-	$content = strip_shortcodes($content);
+	if(empty($content)){
+		$post_data = get_post();
+		$content = $post_data->post_content;
+		$content = strip_shortcodes($content);
+	}
 	$contentCheck = mb_strstr($content, 'jinr-blocks/paidpost');
 	if ($contentCheck !== false) {
 		$template = get_template();
@@ -125,6 +127,7 @@ function rtoc_get_index()
 	$currentlevel = 0;
 	$idcount = 1;
 	$rtoc = '';
+	$previous_level = null;
 
 	// 設定項目を取得して変数化
 	$rtoc_title            = get_option('rtoc_title');
@@ -294,6 +297,7 @@ function rtoc_get_index()
 				} elseif (strpos($h4_list[0][$i], '<h4') !== false) {
 					$level = 3;
 				}
+				$previous_level = $level;
 				// 同じ level の見出しが続いた場合.
 				if ($currentlevel === $level) {
 					$number_h4 = '</li>' . $number_h4_li;
@@ -329,9 +333,6 @@ function rtoc_get_index()
 				}
 
 				if ($currentlevel > $level) {
-					// $currentlevel =3, $level =2（Previous =h4, Now =h3) .
-					// $currentlevel =3, $level =1（Previous =h4, Now =h2) .
-					// $currentlevel =2, $level =1（Previous =h3, Now =h2).
 					if ($currentlevel === 3) {
 						$rtoc .= '</li></ul></li>';
 						$currentlevel--;
@@ -426,7 +427,6 @@ function rtoc_unnecessary_tags_delete($heading_list_text)
 	$heading_list_text = preg_replace($italic_patterns, '', $heading_list_text);
 	$image_patterns   = '/<\/*img.*?>/';
 	$heading_list_text = preg_replace($image_patterns, '', $heading_list_text);
-
 	return $heading_list_text;
 }
 
@@ -541,91 +541,93 @@ function rtoc_switch_mokuji($the_content)
 
 			foreach ($page_ids as $page_id) {
 				$jinr_category = get_post_meta($page_id, '_jinr_category', true);
-
 				//現在のカテゴリーページID
 				$cat_id = get_query_var('cat');
 				$edit_category_ids[] = $jinr_category;
-
 				$pair_ids += array(
 					$page_ids[$counter] => $edit_category_ids[$counter],
 				);
 				$counter++;
 			}
-
 			$target_page_id = array_search($cat_id, $pair_ids);
 			$content = get_post($target_page_id);
 			$content = $content->post_content;
-			
-			if (strpos($content, 'heading=\"h2\"') !== false) {
-				$rtoc_sc_h2 = '/<h2.*?>(.+?)<\/h2>/ims';
-				preg_match_all($rtoc_sc_h2, $the_content, $tags);
+			if (get_option('rtoc_headline_display') == 'h2') {
+				$rtoc_h2 = '/<h2.*?>(.+?)<\/h2>/ims';
+				preg_match_all($rtoc_h2, $the_content, $tags);
 				$idnum = 1;
 				for ($i = 0; $i < count($tags[0]); $i++) {
-					$idstr[1][0] = 'rtoc-' . $idnum++;
+					$idmidashi = $idnum++;
 					if (strpos($tags[0][$i], 'id=') === false) {
-						$search = '{' . preg_quote($tags[0][$i], '') . '}';
-						$the_content = preg_replace($search, preg_replace('/(^<h2)/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
+						$idstr[1][0] = 'rtoc-' . $idmidashi;
+						$subject     = $content;
+						$search      = '{' . preg_quote($tags[0][$i], '') . '}';
+						$content = preg_replace($search, preg_replace('/(^<h[2])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
 					}
 				}
-			} elseif (strpos($content, 'heading=\"h3\"') !== false) {
-				$rtoc_sc_h3 = '/<h[2-3].*?>(.+?)<\/h[2-3]>/ims';
-				preg_match_all($rtoc_sc_h3, $the_content, $tags);
+				if (preg_match('/<h2.*>/', $content, $matches, PREG_OFFSET_CAPTURE)) {
+					if (strpos($matches[0][0], 'a--h2rich-maincopy') !== false) {
+						$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
+						preg_match($pattern, $content, $matches, PREG_OFFSET_CAPTURE);
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
+					} else {
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
+					}
+				}
+				return $content;
+			} elseif (get_option('rtoc_headline_display') == 'h3') {
+				$rtoc_h3 = '/<h[2-3].*?>(.+?)<\/h[2-3]>/ims';
+				preg_match_all($rtoc_h3, $the_content, $tags);
 				$idnum = 1;
 				for ($i = 0; $i < count($tags[0]); $i++) {
-					$idstr[1][0] = 'rtoc-' . $idnum++;
+					$idmidashi = $idnum++;
 					if (strpos($tags[0][$i], 'id=') === false) {
-						$search = '{' . preg_quote($tags[0][$i], '') . '}';
-						$the_content = preg_replace($search, preg_replace('/(^<h[2-3])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
+						$idstr[1][0] = 'rtoc-' . $idmidashi;
+						$subject     = $content;
+						$search      = '{' . preg_quote($tags[0][$i], '') . '}';
+						$content = preg_replace($search, preg_replace('/(^<h[2-3])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
 					}
 				}
-			} elseif (strpos($content, 'heading=\"h4\"') !== false) {
-				$rtoc_sc_h4 = '/<h[2-4].*?>(.+?)<\/h[2-4]>/ims';
-				preg_match_all($rtoc_sc_h4, $the_content, $tags);
+				if (preg_match('/<h2.*>/', $content, $matches, PREG_OFFSET_CAPTURE)) {
+					if (strpos($matches[0][0], 'a--h2rich-maincopy') !== false) {
+						$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
+						preg_match($pattern, $content, $matches, PREG_OFFSET_CAPTURE);
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
+					} else {
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
+					}
+
+				}
+				return $content;
+			} elseif (get_option('rtoc_headline_display') == 'h4') {
+				$rtoc_h4 = '/<h[2-4].*?>(.+?)<\/h[2-4]>/ims';
+				preg_match_all($rtoc_h4, $content, $tags);
 				$idnum = 1;
 				for ($i = 0; $i < count($tags[0]); $i++) {
-					$idstr[1][0] = 'rtoc-' . $idnum++;
+					$idmidashi = $idnum++;
 					if (strpos($tags[0][$i], 'id=') === false) {
-						$search = '{' . preg_quote($tags[0][$i], '') . '}';
-						$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
+						$idstr[1][0] = 'rtoc-' . $idmidashi;
+						$subject     = $content;
+						$search      = '{' . preg_quote($tags[0][$i], '') . '}';
+						$content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
 					}
 				}
-			} else {
-				
-				if (get_option('rtoc_headline_display') == 'h2') {
-					$rtoc_sc_h2 = '/<h2.*?>(.+?)<\/h2>/ims';
-					preg_match_all($rtoc_sc_h2, $the_content, $tags);
-					$idnum = 1;
-					for ($i = 0; $i < count($tags[0]); $i++) {
-						$idstr[1][0] = 'rtoc-' . $idnum++;
-						if (strpos($tags[0][$i], 'id=') === false) {
-							$search = '{' . preg_quote($tags[0][$i], '') . '}';
-							$the_content = preg_replace($search, preg_replace('/(^<h2)/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
-						}
-					}
-				} elseif (get_option('rtoc_headline_display') == 'h3') {
-					$rtoc_sc_h3 = '/<h[2-3].*?>(.+?)<\/h[2-3]>/ims';
-					preg_match_all($rtoc_sc_h3, $the_content, $tags);
-					$idnum = 1;
-					for ($i = 0; $i < count($tags[0]); $i++) {
-						$idstr[1][0] = 'rtoc-' . $idnum++;
-						if (strpos($tags[0][$i], 'id=') === false) {
-							$search = '{' . preg_quote($tags[0][$i], '') . '}';
-							$the_content = preg_replace($search, preg_replace('/(^<h[2-3])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
-						}
-					}
-				} elseif (get_option('rtoc_headline_display') == 'h4') {
-					$rtoc_sc_h4 = '/<h[2-4].*?>(.+?)<\/h[2-4]>/ims';
-					preg_match_all($rtoc_sc_h4, $the_content, $tags);
-					$idnum = 1;
-					for ($i = 0; $i < count($tags[0]); $i++) {
-						$idstr[1][0] = 'rtoc-' . $idnum++;
-						if (strpos($tags[0][$i], 'id=') === false) {
-							$search = '{' . preg_quote($tags[0][$i], '') . '}';
-							$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $the_content, 1);
-						}
+				if (preg_match('/<h2.*>/', $content, $matches, PREG_OFFSET_CAPTURE)) {
+					if (strpos($matches[0][0], 'a--h2rich-maincopy') !== false) {
+						$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
+						preg_match($pattern, $content, $matches, PREG_OFFSET_CAPTURE);
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
+					} else {
+						$pos = $matches[0][1];
+						$content = substr($content, 0, $pos) . rtoc_get_index($content) . substr($content, $pos);
 					}
 				}
-				return $the_content;
+				return $content;
 			}
 		}
 		if (get_option('rtoc_headline_display') == 'h2') {
@@ -650,10 +652,10 @@ function rtoc_switch_mokuji($the_content)
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -678,10 +680,10 @@ function rtoc_switch_mokuji($the_content)
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -707,10 +709,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;
@@ -736,10 +738,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;
@@ -773,10 +775,10 @@ function rtoc_switch_mokuji($the_content)
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -801,10 +803,10 @@ function rtoc_switch_mokuji($the_content)
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -831,10 +833,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;
@@ -860,10 +862,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;
@@ -876,32 +878,31 @@ function rtoc_switch_mokuji($the_content)
 				}
 			}
 		} elseif (get_option('rtoc_headline_display') == 'h4') {
-			$rtoc_h4 = '/<h[2-4].*?>(.+?)<\/h[2-4]>/ims';
-			preg_match_all($rtoc_h4, $the_content, $tags);
+			$rtoc_h4 = '/<h[2-4](.*?)>(.+?)<\/h[2-4]>/ims';
+			preg_match_all($rtoc_h4, $the_content, $matches);
+			
 			$idnum = 1;
-
 			if (!empty($RtocDisplay['post']) && !empty($RtocDisplay['page'])) {
 				if (is_single()) {
 					if (!is_single($RtocPostId)) {
-						for ($i = 0; $i < count($tags[0]); $i++) {
+						for ($i = 0; $i < count($matches[0]); $i++) {
 							$idmidashi = $idnum++;
-							if (strpos($tags[0][$i], 'id=') === false) {
+							if (strpos($matches[0][$i], 'id=') === false) {
 								$idstr[1][0] = 'rtoc-' . $idmidashi;
 								$subject     = $the_content;
-								$search      = '{' . preg_quote($tags[0][$i], '') . '}';
-								$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
+								$search      = '{' . preg_quote($matches[0][$i], '') . '}';
+								$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $matches[0][$i]), $subject, 1);
 							}
 						}
 						if (preg_match('/<h2.*>/', $the_content, $matches, PREG_OFFSET_CAPTURE)) {
 							if (strpos($matches[0][0], 'a--h2rich-maincopy') !== false) {
-								
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -911,13 +912,13 @@ function rtoc_switch_mokuji($the_content)
 				}
 				if (is_page()) {
 					if (!is_page($RtocPageId)) {
-						for ($i = 0; $i < count($tags[0]); $i++) {
+						for ($i = 0; $i < count($matches[0]); $i++) {
 							$idmidashi = $idnum++;
-							if (strpos($tags[0][$i], 'id=') === false) {
+							if (strpos($matches[0][$i], 'id=') === false) {
 								$idstr[1][0] = 'rtoc-' . $idmidashi;
 								$subject     = $the_content;
-								$search      = '{' . preg_quote($tags[0][$i], '') . '}';
-								$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
+								$search      = '{' . preg_quote($matches[0][$i], '') . '}';
+								$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $matches[0][$i]), $subject, 1);
 							}
 						}
 						if (preg_match('/<h2.*>/', $the_content, $matches, PREG_OFFSET_CAPTURE)) {
@@ -926,10 +927,10 @@ function rtoc_switch_mokuji($the_content)
 								$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 								preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							} else {
 								$pos = $matches[0][1];
-								$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+								$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 							}
 						}
 						return $the_content;
@@ -941,13 +942,13 @@ function rtoc_switch_mokuji($the_content)
 				if (is_page()) {
 					return $the_content;
 				} elseif (!is_single($RtocPostId)) {
-					for ($i = 0; $i < count($tags[0]); $i++) {
+					for ($i = 0; $i < count($matches[0]); $i++) {
 						$idmidashi = $idnum++;
-						if (strpos($tags[0][$i], 'id=') === false) {
+						if (strpos($matches[0][$i], 'id=') === false) {
 							$idstr[1][0] = 'rtoc-' . $idmidashi;
 							$subject     = $the_content;
-							$search      = '{' . preg_quote($tags[0][$i], '') . '}';
-							$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $tags[0][$i]), $subject, 1);
+							$search      = '{' . preg_quote($matches[0][$i], '') . '}';
+							$the_content = preg_replace($search, preg_replace('/(^<h[2-4])/i', '${1} id="' . $idstr[1][0] . '" ', $matches[0][$i]), $subject, 1);
 						}
 					}
 					if (preg_match('/<h2.*>/', $the_content, $matches, PREG_OFFSET_CAPTURE)) {
@@ -956,10 +957,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;
@@ -985,10 +986,10 @@ function rtoc_switch_mokuji($the_content)
 							$pattern = '/<section class="wp-block-jinr-blocks-designtitle/';
 							preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						} else {
 							$pos = $matches[0][1];
-							$the_content = substr($the_content, 0, $pos) . rtoc_get_index() . substr($the_content, $pos);
+							$the_content = substr($the_content, 0, $pos) . rtoc_get_index($the_content) . substr($the_content, $pos);
 						}
 					}
 					return $the_content;

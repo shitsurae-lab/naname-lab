@@ -127,6 +127,132 @@ jQuery(function($) {
 			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset7_button).change();
 		});
 
+	} else if (rtocThemeName.rtocThemeName == 'JIN:R' || rtocThemeName.rtocThemeName == 'JIN:R child'){
+		const preset1_title = rtocThemeColor.rtocThemeColor;
+		const preset1_text = '#112375';
+		const preset1_back = '#ffffff';
+		const preset1_border = rtocThemeColor.rtocThemeColor;
+		const preset1_h2 = rtocThemeColor.rtocThemeColor;
+		const preset1_h3 = rtocThemeColor.rtocThemeColor;
+		const preset1_button = rtocThemeColor.rtocThemeColor;
+
+		const preset2_title = '#3f9cff';
+		const preset2_text = '#555555';
+		const preset2_back = '#ffffff';
+		const preset2_border = '#3f9cff';
+		const preset2_h2 = '#3f9cff';
+		const preset2_h3 = '#3f9cff';
+		const preset2_button = '#3f9cff';
+
+		const preset3_title = '#333333';
+		const preset3_text = '#333333';
+		const preset3_back = '#ffffff';
+		const preset3_border = '#555555';
+		const preset3_h2 = '#333333';
+		const preset3_h3 = '#bfbfbf';
+		const preset3_button = '#333333';
+
+		const preset4_title = '#ff7fa1';
+		const preset4_text = '#877179';
+		const preset4_back = '#ffffff';
+		const preset4_border = '#ff7fa1';
+		const preset4_h2 = '#68d6cb';
+		const preset4_h3 = '#68d6cb';
+		const preset4_button = '#ff7fa1';
+
+		const preset5_title = '#71dcf2';
+		const preset5_text = '#6b5c61';
+		const preset5_back = '#ffffff';
+		const preset5_border = '#9be3f2';
+		const preset5_h2 = '#9be3f2';
+		const preset5_h3 = '#9be3f2';
+		const preset5_button = '#9be3f2';
+
+		const preset6_title = '#405796';
+		const preset6_text = '#5c5f6b';
+		const preset6_back = '#ffffff';
+		const preset6_border = '#405796';
+		const preset6_h2 = '#6A91C1';
+		const preset6_h3 = '#6A91C1';
+		const preset6_button = '#6a91c1';
+
+		const preset7_title = '#79BD9A';
+		const preset7_text = '#757575';
+		const preset7_back = '#ffffff';
+		const preset7_border = '#79BD9A';
+		const preset7_h2 = '#FCAA00';
+		const preset7_h3 = '#FCAA00';
+		const preset7_button = '#FCAA00';
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset1 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset1_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset1_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset1_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset1_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset1_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset1_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset1_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset2 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset2_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset2_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset2_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset2_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset2_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset2_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset2_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset3 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset3_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset3_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset3_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset3_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset3_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset3_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset3_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset4 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset4_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset4_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset4_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset4_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset4_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset4_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset4_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset5 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset5_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset5_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset5_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset5_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset5_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset5_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset5_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset6 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset6_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset6_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset6_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset6_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset6_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset6_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset6_button).change();
+		});
+
+		$('#rtoc-config-area input[type="radio"]#rtoc_color_preset7 + label').click(function(){
+			$('.rtoc_colorpicker-1 .wp-picker-container input[type=text].wp-color-picker').val(preset7_title).change();
+			$('.rtoc_colorpicker-2 .wp-picker-container input[type=text].wp-color-picker').val(preset7_text).change();
+			$('.rtoc_colorpicker-3 .wp-picker-container input[type=text].wp-color-picker').val(preset7_back).change();
+			$('.rtoc_colorpicker-4 .wp-picker-container input[type=text].wp-color-picker').val(preset7_border).change();
+			$('.rtoc_colorpicker-5 .wp-picker-container input[type=text].wp-color-picker').val(preset7_h2).change();
+			$('.rtoc_colorpicker-6 .wp-picker-container input[type=text].wp-color-picker').val(preset7_h3).change();
+			$('.rtoc_colorpicker-7 .wp-picker-container input[type=text].wp-color-picker').val(preset7_button).change();
+		});
+
 	} else {
 		const preset1_title = '#3f9cff';
 		const preset1_text = '#555555';
@@ -482,20 +608,8 @@ jQuery(function($) {
 		// カラー設定の初期値をプレビューに反映する
 		mokujiBack.style.backgroundColor = targetBack.style.backgroundColor;
 		mokujiBack.style.borderColor = targetBorder.style.backgroundColor;
-
-		// 目次タイトルのみ, Addonの状況によって分岐が必要（RTOC ver1.2〜）
-		if (rtocAddonActive.isPluginActive === 'off') {
-			mokujiTitle.style.color = targetTitle.style.backgroundColor;
-		} else if (rtocAddonActive.isPluginActive === 'on') {
-			if ($('#rtoc_frame_design_frame6').prop('checked') == false) {
-				mokujiTitle.style.color = targetTitle.style.backgroundColor;
-			} else {
-				// frame6の場合のみタイトルを白にする
-				mokujiTitle.style.color = '#ffffff';
-			}
-		}
+		mokujiTitle.style.color = targetTitle.style.backgroundColor;
 		psuedoBorder();
-
 		function psuedoH2(){
 			var styleH2 = document.createElement('style');
 			styleH2.type = 'text/css';
@@ -543,33 +657,10 @@ jQuery(function($) {
 			mokujiH3[c].style.color = targetH3.style.backgroundColor;
 			psuedoH3()
 		}
-
-		// frame6のみタイトル色が白の為, 別で監視する(Addonの有効時, RTOC ver1.2〜）
-		if (rtocAddonActive.isPluginActive === 'on') {
-			$('input[name="rtoc_frame_design"]').change(function () {
-				const val = $(this).val();
-				if (val === 'frame6') {
-					mokujiTitle.style.color = '#ffffff';
-				} else {
-					mokujiTitle.style.color = targetTitle.style.backgroundColor;
-				}
-			});
-		}
-
 		// MutationObserverを使って動的に（初期値以外）プレビューの色を変更する
 		const observer = new MutationObserver(records => {
-			// タイトル色のみ, Addonの状況によって分岐が必要（RTOC ver1.2〜）
 			let titleColor;
-			if (rtocAddonActive.isPluginActive === 'off') {
-				titleColor = targetTitle.style.backgroundColor;
-			} else if (rtocAddonActive.isPluginActive === 'on') {
-				if ($('#rtoc_frame_design_frame6').prop('checked') == false) {
-					titleColor = targetTitle.style.backgroundColor;
-				} else {
-					// frame6の場合のみタイトルを白にする
-					titleColor = '#ffffff';
-				}
-			}
+			titleColor = targetTitle.style.backgroundColor;
 
 			const textColor = targetText.style.backgroundColor;
 			const backColor = targetBack.style.backgroundColor;

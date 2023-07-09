@@ -18,34 +18,27 @@ add_action('admin_menu', 'rtoc_admin_screen', 10);
 
 
 // 目次設定画面に独自のCSSとJSを読み込む (original script output in Mokuji admin screen)
-$my_theme    = wp_get_theme();
-$theme_name  = $my_theme->get('Name');
-$theme_color = get_theme_mod('theme_color', '#3b4675');
-
 function rtoc_admin_enqueue($hook_suffix)
 {
 	if ('toplevel_page_rtoc_settings' === $hook_suffix) {
 		wp_enqueue_script('rtoc_admin', plugins_url('js/rtoc_admin.js', dirname(__FILE__), array('jquery')));
 		wp_enqueue_style('admin_rtoc_style', plugins_url('css/admin_rtoc_style.css', dirname(__FILE__)));
-
-		global $theme_name;
-		global $theme_color;
+		$my_theme    = wp_get_theme();
+		$theme_name  = $my_theme->get('Name');
+		$theme_color = get_theme_mod('theme_color');
+		if($theme_name == 'JIN:R' || $theme_name == 'JIN:R child'){
+			$theme_color = jinr__theme_color();
+		} elseif ($theme_name == 'JIN' || $theme_name == 'jin-child') {
+			$theme_color = get_theme_mod( 'theme_color', '#3b4675');
+		} else{
+			$theme_color = '#000';
+		}
 
 		$rtoc_theme_name = array('rtocThemeName' => $theme_name);
 		wp_localize_script('rtoc_admin', 'rtocThemeName', $rtoc_theme_name);
 		$rtoc_theme_color = array('rtocThemeColor' => $theme_color);
 		wp_localize_script('rtoc_admin', 'rtocThemeColor', $rtoc_theme_color);
 
-		// Addonの有効/無効の状況をrtoc_admin.jsへ（RTOC ver1.2〜）.
-		$addon_active      = is_plugin_active('rich-table-of-content-addon/rtoc-addon.php');
-		$rtoc_addon_active = $addon_active ? 'on' : 'off';
-		wp_localize_script(
-			'rtoc_admin',
-			'rtocAddonActive',
-			array(
-				'isPluginActive' => $rtoc_addon_active,
-			)
-		);
 		// Addonの有効時はrtoc_admin_addon.jsを読み込む（RTOC ver1.2〜）.
 		if (is_plugin_active('rich-table-of-content-addon/rtoc-addon.php')) {
 			wp_enqueue_script('rtoc_admin_addon_js', plugins_url('../js/rtoc_admin_addon.js', __FILE__), array('jquery'), false, true);
@@ -634,6 +627,9 @@ function rtoc_senior_setting_field()
 add_action('admin_init', 'rtoc_senior_setting_field', 15);
 
 // プリセット設定
+$my_theme    = wp_get_theme();
+$theme_name  = $my_theme->get('Name');
+$theme_color = get_theme_mod('theme_color');
 if ($theme_name == 'JIN' || $theme_name == 'jin-child') {
 
 	function rtoc_preset_settings_init()
@@ -674,6 +670,58 @@ if ($theme_name == 'JIN' || $theme_name == 'jin-child') {
 			array(
 				'options' => array(
 					'preset1' => 'JIN Color',
+					'preset2' => $rtoc_preset_color_sunny,
+					'preset3' => $rtoc_preset_color_dark,
+					'preset4' => $rtoc_preset_color_feminine,
+					'preset5' => $rtoc_preset_color_aqua,
+					'preset6' => $rtoc_preset_color_smart,
+					'preset7' => $rtoc_preset_color_citrus
+				)
+			)
+		);
+		register_setting('rtoc_config', 'rtoc_color');
+	}
+	add_action('admin_init', 'rtoc_preset_setting_field', 15);
+} elseif ($theme_name == 'JIN:R' || $theme_name == 'JIN:R child') {
+
+	function rtoc_preset_settings_init()
+	{
+		$rtoc_preset = __('Preset Color', 'rich-table-of-content');
+		add_settings_section(
+			'rtoc_preset_section',
+			$rtoc_preset,
+			'rtoc_preset_function_callback',
+			'rtoc_preset_setting'
+		);
+	}
+	add_action('admin_init', 'rtoc_preset_settings_init');
+
+	function rtoc_preset_function_callback()
+	{
+		$rtoc_preset_txt = __('RTOC default design preset. Choose and set the preset that suits your site.', 'rich-table-of-content');
+		echo '<p>' . $rtoc_preset_txt . '</p>';
+	}
+
+	function rtoc_preset_setting_field()
+	{
+		$rtoc_preset_color = __('Classic color', 'rich-table-of-content');
+
+		$rtoc_preset_color_jinr      = __('JIN:R color', 'rich-table-of-content');
+		$rtoc_preset_color_sunny    = __('Sunny', 'rich-table-of-content');
+		$rtoc_preset_color_dark     = __('Dark', 'rich-table-of-content');
+		$rtoc_preset_color_feminine = __('Feminine', 'rich-table-of-content');
+		$rtoc_preset_color_aqua     = __('Aquamarine', 'rich-table-of-content');
+		$rtoc_preset_color_smart    = __('Smart color', 'rich-table-of-content');
+		$rtoc_preset_color_citrus   = __('Citrus color', 'rich-table-of-content');
+		add_settings_field(
+			'rtoc_color',
+			$rtoc_preset_color,
+			'rtoc_color_callback',
+			'rtoc_preset_setting',
+			'rtoc_preset_section',
+			array(
+				'options' => array(
+					'preset1' => $rtoc_preset_color_jinr,
 					'preset2' => $rtoc_preset_color_sunny,
 					'preset3' => $rtoc_preset_color_dark,
 					'preset4' => $rtoc_preset_color_feminine,
@@ -965,9 +1013,11 @@ function rtoc_color_callback($args)
 			checked($val, $option, false)
 		);
 		if ($theme_name == 'JIN' || $theme_name == 'jin-child') {
-			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/jin/%2$s.png', __FILE__) . '" alt="Mokujiのプリセットカラー"><span>' . $title . '</span></div></label>';
-		} else {
-			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/%2$s.png', __FILE__) . '" alt="Mokujiのプリセットカラー"><span>' . $title . '</span></div></label>';
+			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/jin/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';
+		} elseif ($theme_name == 'JIN:R' || $theme_name == 'JIN:R child') {
+			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/jin/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';
+		}  else {
+			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';
 		}
 		printf($format, $option_name, $val, $title);
 	}
