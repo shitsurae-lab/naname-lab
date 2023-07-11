@@ -88,3 +88,11 @@ function add_google_fonts()
   wp_enqueue_style('googleFonts');
 }
 add_action('wp_enqueue_scripts', 'add_google_fonts');
+
+/* ---- GSAP ---- */
+// function gsap_cdn()
+// {
+//   wp_register_script('gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
+//   wp_register_script('scrollTrigger', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
+// }
+// add_action('wp_enqueue_scripts', 'gsap_cdn');
