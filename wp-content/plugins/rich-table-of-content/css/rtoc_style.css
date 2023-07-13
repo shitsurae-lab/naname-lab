@@ -3,7 +3,7 @@
 Plugin Name: RTOC - Rich Table of Content
 Author:
 Author URI:
-Version: 1.3.96
+Version: 1.3.99
 */
 @-webkit-keyframes fadeIn {
   0% {
@@ -169,7 +169,6 @@ Version: 1.3.96
   height: calc(100% + 20px);
   width: 2px;
   border-radius: 1px;
-  background-color: #25343e;
 }
 @media (min-width: 768px) {
   .rtoc-mokuji-content.frame5::before, .rtoc-mokuji-content.frame5::after {
@@ -818,60 +817,60 @@ div#widget-tracking {
   top: 30px;
 }
 
-.sidebar_style1 .widget #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+.sidebar_style1 .widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content {
   padding: 0 0 0 4px;
 }
 
-.sidebar_style2 .widget #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-.sidebar_style3 .widget #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-.sidebar_style4 .widget #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-.sidebar_style5 .widget #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+.sidebar_style2 .widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+.sidebar_style3 .widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+.sidebar_style4 .widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+.sidebar_style5 .widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content {
   padding: 0.1px 10px;
 }
 
-.widget_block #rtoc-mokuji-wrapper,
-.widget #rtoc-mokuji-wrapper,
-#sideBarTracking #rtoc-mokuji-wrapper {
+.widget_block #rtoc-mokuji-widget-wrapper,
+.widget #rtoc-mokuji-widget-wrapper,
+#sideBarTracking #rtoc-mokuji-widget-wrapper {
   border: none;
 }
-.widget_block #rtoc-mokuji-wrapper::before, .widget_block #rtoc-mokuji-wrapper::after,
-.widget #rtoc-mokuji-wrapper::before,
-.widget #rtoc-mokuji-wrapper::after,
-#sideBarTracking #rtoc-mokuji-wrapper::before,
-#sideBarTracking #rtoc-mokuji-wrapper::after {
+.widget_block #rtoc-mokuji-widget-wrapper::before, .widget_block #rtoc-mokuji-widget-wrapper::after,
+.widget #rtoc-mokuji-widget-wrapper::before,
+.widget #rtoc-mokuji-widget-wrapper::after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper::after {
   border: none;
   background: transparent;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-sidebar-contents a,
-.widget #rtoc-mokuji-wrapper.rtoc-sidebar-contents a,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-sidebar-contents a {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-sidebar-contents a,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-sidebar-contents a,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-sidebar-contents a {
   opacity: 0.5;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-2,
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-3,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-2,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-3,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-2,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-3 {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2,
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3 {
   display: none;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-2,
-.widget_block #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-3,
-.widget #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-2,
-.widget #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-3,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-2,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-show .rtoc-mokuji.level-3 {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-2,
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-3,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-2,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-3,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-2,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-show .rtoc-mokuji.level-3 {
   display: block;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 {
   position: relative;
   padding-left: 25px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1:before,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1:before,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1:before {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1:before,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1:before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1:before {
   position: absolute;
   content: "";
   width: 2px;
@@ -881,20 +880,20 @@ div#widget-tracking {
   top: 16px;
   left: 5px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item {
   position: relative;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before {
   position: absolute;
   content: "" !important;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:before {
   width: 12px;
   height: 12px;
   background-color: #efefef !important;
@@ -902,151 +901,152 @@ div#widget-tracking {
   top: 4px;
   left: -25px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item:after,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item:after,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item:after {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item:after,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item:after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item:after {
   position: absolute;
   content: "" !important;
   width: 0;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   top: 6px;
   left: -23px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current > a {
   opacity: 1;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-mokuji.level-2 .rtoc-item.rtoc-current:after {
   top: 10px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a {
   color: #3c3737;
 }
-.widget_block #rtoc-mokuji-wrapper #rtoc-mokuji-title, .widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-.widget #rtoc-mokuji-wrapper #rtoc-mokuji-title,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-#sideBarTracking #rtoc-mokuji-wrapper #rtoc-mokuji-title,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+.widget_block #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title, .widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+.widget #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+#sideBarTracking #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content {
   margin: 0;
   padding: 0;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1 {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .rtoc-mokuji.level-1 {
   margin: 0.5em 0 0 0 !important;
   padding-bottom: 0;
 }
-.widget_block #rtoc-mokuji-wrapper #rtoc-mokuji-title,
-.widget #rtoc-mokuji-wrapper #rtoc-mokuji-title,
-#sideBarTracking #rtoc-mokuji-wrapper #rtoc-mokuji-title {
+.widget_block #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title,
+.widget #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title,
+#sideBarTracking #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title {
   font-size: 1.35em;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content {
   border: none;
   box-shadow: none;
   background-color: transparent;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content::before, .widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content::after,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content::before,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content::after,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content::before,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content::after {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::before, .widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::after,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::before,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content::after {
   border: none;
+  width: 0;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content.frame3,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content.frame3,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content.frame3 {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content.frame3,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content.frame3,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content.frame3 {
   width: 100%;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc_open_close,
-.widget #rtoc-mokuji-wrapper .rtoc_open_close,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc_open_close {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc_open_close,
+.widget #rtoc-mokuji-widget-wrapper .rtoc_open_close,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc_open_close {
   display: none;
 }
-.widget_block #rtoc-mokuji-wrapper #rtoc-mokuji-title.rtoc_left,
-.widget #rtoc-mokuji-wrapper #rtoc-mokuji-title.rtoc_left,
-#sideBarTracking #rtoc-mokuji-wrapper #rtoc-mokuji-title.rtoc_left {
+.widget_block #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title.rtoc_left,
+.widget #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title.rtoc_left,
+#sideBarTracking #rtoc-mokuji-widget-wrapper #rtoc-mokuji-title.rtoc_left {
   flex-direction: row;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji .rtoc-item {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji .rtoc-item,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji .rtoc-item,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji .rtoc-item {
   font-size: 12px;
   font-weight: 500;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item {
   padding-top: 0;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type),
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type),
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type) {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type),
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type),
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type) {
   padding-top: 10px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):before {
   top: 13px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 > .rtoc-item:not(:first-of-type):after {
   top: 15px;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 a {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 a {
   line-height: 1.5em;
   padding: 0;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-2,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-2,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-2 {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2 {
   padding-left: 0;
   padding: 0 !important;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-2 a,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-2 a,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-2 a {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2 a,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2 a,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-2 a {
   line-height: 1.4em;
 }
-.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-3,
-.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-3,
-#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-3 {
+.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3,
+.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-3 {
   padding: 0;
 }
-.widget_block #rtoc-mokuji-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before,
-.widget #rtoc-mokuji-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before,
-#sideBarTracking #rtoc-mokuji-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before {
+.widget_block #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before,
+.widget #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .mokuji_ol.level-2 .rtoc-item:before {
   content: none;
 }
-.widget_block #rtoc-mokuji-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before,
-.widget #rtoc-mokuji-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before,
-#sideBarTracking #rtoc-mokuji-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before {
+.widget_block #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before,
+.widget #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper .mokuji_ul.level-1 .decimal_ol.level-2 .rtoc-item::before {
   content: none;
 }
-.widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before, .widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before, .widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before, .widget_block #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before,
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before,
-#sideBarTracking #rtoc-mokuji-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before {
+.widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before, .widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before, .widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before, .widget_block #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before,
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ol .mokuji_ol > .rtoc-item::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol .mokuji_ol > .rtoc-item::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .decimal_ol.level-2 > .rtoc-item::before,
+#sideBarTracking #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content .mokuji_ul > .rtoc-item::before {
   content: none;
 }

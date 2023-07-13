@@ -129,7 +129,7 @@ jQuery(function($) {
 
 	} else if (rtocThemeName.rtocThemeName == 'JIN:R' || rtocThemeName.rtocThemeName == 'JIN:R child'){
 		const preset1_title = rtocThemeColor.rtocThemeColor;
-		const preset1_text = '#112375';
+		const preset1_text = rtocTextColor.rtocTextColor;
 		const preset1_back = '#ffffff';
 		const preset1_border = rtocThemeColor.rtocThemeColor;
 		const preset1_h2 = rtocThemeColor.rtocThemeColor;

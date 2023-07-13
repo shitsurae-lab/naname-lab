@@ -26,8 +26,18 @@ function rtoc_admin_enqueue($hook_suffix)
 		$my_theme    = wp_get_theme();
 		$theme_name  = $my_theme->get('Name');
 		$theme_color = get_theme_mod('theme_color');
+		$text_color = '';
 		if($theme_name == 'JIN:R' || $theme_name == 'JIN:R child'){
 			$theme_color = jinr__theme_color();
+			$text_color = jinr__text_color();
+			if (get_option('rtoc_color') == 'preset1') {
+				update_option('rtoc_title_color', jinr__theme_color());
+				update_option('rtoc_text_color', jinr__text_color());
+				update_option('rtoc_border_color', jinr__theme_color());
+				update_option('rtoc_h2_color', jinr__theme_color());
+				update_option('rtoc_h3_color', jinr__theme_color());
+				update_option('rtoc_back_button_color', jinr__theme_color());
+			}
 		} elseif ($theme_name == 'JIN' || $theme_name == 'jin-child') {
 			$theme_color = get_theme_mod( 'theme_color', '#3b4675');
 		} else{
@@ -38,6 +48,9 @@ function rtoc_admin_enqueue($hook_suffix)
 		wp_localize_script('rtoc_admin', 'rtocThemeName', $rtoc_theme_name);
 		$rtoc_theme_color = array('rtocThemeColor' => $theme_color);
 		wp_localize_script('rtoc_admin', 'rtocThemeColor', $rtoc_theme_color);
+		$rtoc_text_color = array('rtocTextColor' => $text_color);
+		wp_localize_script('rtoc_admin', 'rtocTextColor', $rtoc_text_color);
+
 
 		// Addonの有効時はrtoc_admin_addon.jsを読み込む（RTOC ver1.2〜）.
 		if (is_plugin_active('rich-table-of-content-addon/rtoc-addon.php')) {
@@ -92,6 +105,7 @@ function rtoc_basic_setting_field()
 	$rtoc_display      = __('The page to display the table of contents', 'rich-table-of-content');
 	$rtoc_display_post = __('post', 'rich-table-of-content');
 	$rtoc_display_page = __('page', 'rich-table-of-content');
+	$rtoc_display_cat  = __('category', 'rich-table-of-content');
 
 	$rtoc_headline    = __('Heading to be displayed', 'rich-table-of-content');
 	$rtoc_headline_h2 = __('Display up to H2', 'rich-table-of-content');
@@ -118,7 +132,8 @@ function rtoc_basic_setting_field()
 		array(
 			'options' => array(
 				'post' => $rtoc_display_post,
-				'page' => $rtoc_display_page
+				'page' => $rtoc_display_page,
+				'category' => $rtoc_display_cat,
 			)
 		)
 	);
@@ -822,7 +837,7 @@ function rtoc_display_callback($args)
 	$option_name = 'rtoc_display';
 	$option = get_option($option_name);
 	if ($option == '') {
-		update_option($option_name, array('post' => 'post', 'page' => 'page'));
+		update_option($option_name, array('post' => 'post', 'page' => 'page', 'category' => 'category'));
 		$option = get_option($option_name);
 	}
 	$html = '';
@@ -830,14 +845,29 @@ function rtoc_display_callback($args)
 		if (isset($option) && is_array($option)) {
 			$checked = in_array($val, $option, true) ? 'checked="checked"' : '';
 			$html .= sprintf('<input type="checkbox" class="rtoc_admin_check" id="%1$s[%2$s]" name="%1$s[%2$s]" value="%2$s" %3$s />', $option_name, $val, $checked);
-		} else {
-			$html .= sprintf('<input type="checkbox" id="%2$s" name="%1$s[%2$s]" value="%2$s" />', $option_name, $val);
 		}
 		$html .= sprintf('<label for="%1$s[%2$s]"> %3$s</label><br />', $option_name, $val, $title);
 	}
-
 	echo $html;
 }
+// カテゴリーのチェックボックスが一度だけ追加されるようにする
+function rtoc_check_category_added() {
+    $option_name = 'rtoc_display';
+    $category_added = get_option('rtoc_category_added');
+    if ($category_added === false) {
+        $option = get_option($option_name);
+        if ($option == '') {
+            update_option($option_name, array('post' => 'post', 'page' => 'page', 'category' => 'category'));
+        } else {
+            if (!in_array('category', $option, true)) {
+                $option['category'] = 'category';
+                update_option($option_name, $option);
+            }
+        }
+        update_option('rtoc_category_added', 'yes');
+    }
+}
+add_action('admin_init', 'rtoc_check_category_added');
 function rtoc_exclude_post_toc_callback()
 {
 	$option = get_option('rtoc_exclude_post_toc');
@@ -1003,8 +1033,6 @@ function rtoc_color_callback($args)
 		$option = get_option($option_name);
 	}
 	global $theme_name;
-	global $theme_color;
-
 	foreach ($args['options'] as $val => $title) {
 		printf(
 			'<input type="radio" id="%1$s_%2$s" class="rtoc_admin_radio visual visual_preset" name="%1$s" value="%2$s" %3$s />',
@@ -1015,6 +1043,7 @@ function rtoc_color_callback($args)
 		if ($theme_name == 'JIN' || $theme_name == 'jin-child') {
 			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/jin/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';
 		} elseif ($theme_name == 'JIN:R' || $theme_name == 'JIN:R child') {
+			
 			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/jin/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';
 		}  else {
 			$format = '<label for="%1$s_%2$s"><div class="preset_bg visual-%2$s"><img src="' . plugins_url('../img/%2$s.png', __FILE__) . '" alt="RTOCのプリセットカラー"><span>' . $title . '</span></div></label>';

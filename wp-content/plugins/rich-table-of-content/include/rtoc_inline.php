@@ -10,6 +10,7 @@ function rtoc_senior_color()
 	$rtoc_h3_color          = get_option('rtoc_h3_color');
 	$rtoc_back_button_color = get_option('rtoc_back_button_color');
 	$rtoc_frame_design      = get_option('rtoc_frame_design');
+
 ?>
 	<style type="text/css">
 		/*<!-- rtoc -->*/
@@ -49,10 +50,10 @@ function rtoc_senior_color()
 			background-color: <?php echo $rtoc_border_color; ?>;
 		}
 
-		.widget_block #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
-		.widget #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
-		#scrollad #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
-		#sideBarTracking #rtoc-mokuji-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after {
+		.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
+		.widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
+		#scrollad #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after,
+		#sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after {
 			background-color: <?php echo $rtoc_h2_color; ?> !important;
 		}
 
@@ -148,6 +149,71 @@ function rtoc_senior_color()
 }
 add_action('wp_head', 'rtoc_senior_color', 12, 1);
 
+function rtoc_customize_inline_style()
+{
+
+	$my_theme    = wp_get_theme();
+	$theme_name  = $my_theme->get('Name');
+	if($theme_name == 'JIN:R' || $theme_name == 'JIN:R child'){
+		$theme_color = jinr__theme_color();
+		$text_color = jinr__text_color();
+		$styles = "";
+		if( get_option('rtoc_color') == 'preset1'){
+			$theme_color_rgba 		  = jinr_hex_to_rgb($theme_color);
+			$styles .= <<<EOM
+			.rtoc-mokuji-content #rtoc-mokuji-title{
+				color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame1{
+				border-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame2::before{
+				border-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame3{
+				border-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame4{
+				border-top-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame5
+			{
+				border-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content.frame5::before,
+			.rtoc-mokuji-content.frame5::after
+			{
+				background-color:$theme_color!important;
+			}
+			.rtoc-mokuji-content .rtoc-mokuji li>a{
+				color:$text_color!important;
+			}
+			.rtoc-mokuji-content .decimal_ol.level-2>.rtoc-item::before, 
+			.rtoc-mokuji-content .mokuji_ol.level-2>.rtoc-item::before, 
+			.rtoc-mokuji-content .decimal_ol.level-2>.rtoc-item::after,
+			.rtoc-mokuji-content .rtoc-mokuji.level-1>.rtoc-item::before {
+				color: $theme_color!important;
+			}
+			.rtoc-mokuji-content .decimal_ol>.rtoc-item::after,
+			.rtoc-mokuji-content .mokuji_ul.level-1>.rtoc-item::before,
+			.rtoc-mokuji-content .mokuji_ul.level-2>.rtoc-item::before{
+				background-color:$theme_color!important;
+			}
+			.widget_block #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after, .widget #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after, #scrollad #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after, #sideBarTracking #rtoc-mokuji-widget-wrapper .rtoc-mokuji.level-1 .rtoc-item.rtoc-current:after{
+				background-color:$theme_color!important;
+			}
+EOM;
+		}
+
+		if (!is_customize_preview()) {
+			$styles = preg_replace('/\r\n|\n|\r|\t/', '', $styles);
+		}
+		if( get_option('rtoc_color') == 'preset1'){
+			echo '<style type="text/css">' . $styles . '</style>';
+		}
+	}
+}
+add_action('wp_head', 'rtoc_customize_inline_style', 13, 1);
 
 $my_theme    = wp_get_theme();
 $theme_name  = $my_theme->get('Name');

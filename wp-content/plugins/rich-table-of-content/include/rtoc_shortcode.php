@@ -679,7 +679,7 @@ function rtoc_shortcode($atts, $content)
 		$get_theme_name    = wp_get_theme();
 		$theme_name  = $get_theme_name->get('Name');
 
-		$shortcode_content_inside = '<div id="rtoc-mokuji-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
+		$shortcode_content_inside = '<div id="rtoc-mokuji-widget-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
 
 		$shortcode_content = '';
 		if (!isset($atts['heading']) || $atts['heading'] == null) {
@@ -1356,7 +1356,7 @@ function rtoc_shortcode($atts, $content)
 		$get_theme_name    = wp_get_theme();
 		$theme_name  = $get_theme_name->get('Name');
 
-		$shortcode_content_inside = '<div id="rtoc-mokuji-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
+		$shortcode_content_inside = '<div id="rtoc-mokuji-widget-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
 
 		$shortcode_content = '';
 		if (!isset($atts['heading']) || $atts['heading'] == null) {
@@ -2026,7 +2026,7 @@ function rtoc_shortcode($atts, $content)
 		$get_theme_name    = wp_get_theme();
 		$theme_name  = $get_theme_name->get('Name');
 
-		$shortcode_content_inside = '<div id="rtoc-mokuji-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
+		$shortcode_content_inside = '<div id="rtoc-mokuji-widget-wrapper" class="rtoc-mokuji-content ' . esc_attr($rtoc_sc_frame_design) . ' ' .  esc_attr($rtoc_sc_animation) . ' ' .  esc_attr($rtoc_sc_display) . ' ' .  esc_attr($rtoc_font) . '" data-id="' .  esc_attr($post_id) . '" data-theme="' .  esc_attr($theme_name) . '"><div id="rtoc-mokuji-title" class="rtoc_left">' . $RtocButton . '<span>' .  esc_html($rtoc_sc_title) . '</span></div>' . $rtoc . '</div>';
 
 		$shortcode_content = '';
 		if (!isset($atts['heading']) || $atts['heading'] == null) {

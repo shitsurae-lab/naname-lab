@@ -5,7 +5,7 @@ Tags: Table of Contents,toc,cms,indexes,navigation,contents
 Requires at least: WordPress 5.3.2
 Tested up to: WordPress 6.2.2
 Requires PHP: PHP 7.0
-Stable tag: 1.3.96
+Stable tag: 1.3.99
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -288,5 +288,13 @@ The following issues have been corrected.
 <FIX ITEMS>
 ・Fixed an issue that the table of contents is not displayed on fixed pages with customized categories of WordPress theme JIN:R.
 ・Design Adjustment
+
+= 1.3.97 =
+<FIX ITEMS>
+・Design Adjustment
+
+= 1.3.99 =
+<FIX ITEMS>
+・Fixed an error when using a theme other than JIN:R.
 
 == Frequently Asked Questions ==

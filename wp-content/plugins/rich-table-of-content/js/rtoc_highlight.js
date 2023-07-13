@@ -2,18 +2,21 @@
 	let rtocList = [];
 	let lastScrollY = 0;
 	let lastBodyClientHeight = 0;
-	let sidebar_rtoc_wrapper = document.querySelector('.sidebar #rtoc-mokuji-wrapper');
+	let sidebar_rtoc_wrapper = document.querySelector('.sidebar #rtoc-mokuji-widget-wrapper');
 	if (!sidebar_rtoc_wrapper) {
-		sidebar_rtoc_wrapper = document.querySelector('.widget #rtoc-mokuji-wrapper');
+		sidebar_rtoc_wrapper = document.querySelector('.widget #rtoc-mokuji-widget-wrapper');
 	}
 	if (!sidebar_rtoc_wrapper) {
-		sidebar_rtoc_wrapper = document.querySelector('.c-widget #rtoc-mokuji-wrapper');
+		sidebar_rtoc_wrapper = document.querySelector('.c-widget #rtoc-mokuji-widget-wrapper');
 	}
 	if (!sidebar_rtoc_wrapper) {
-		sidebar_rtoc_wrapper = document.querySelector('#scrollad #rtoc-mokuji-wrapper');
+		sidebar_rtoc_wrapper = document.querySelector('#scrollad #rtoc-mokuji-widget-wrapper');
 	}
 	if (!sidebar_rtoc_wrapper) {
-		sidebar_rtoc_wrapper = document.querySelector('#sideBarTracking #rtoc-mokuji-wrapper');
+		sidebar_rtoc_wrapper = document.querySelector('#sideBarTracking #rtoc-mokuji-widget-wrapper');
+	}
+	if (!sidebar_rtoc_wrapper) {
+		sidebar_rtoc_wrapper = document.querySelector('#sidebar1 #rtoc-mokuji-widget-wrapper');
 	}
 	
 	if (sidebar_rtoc_wrapper) {
@@ -21,7 +24,7 @@
 	} else {
 		return;
 	}
-	function init() {
+	function rtoc_init() {
 		rtocList = [];
 		rtocParentList = [];
 		if (sidebar_rtoc_wrapper == null) {
@@ -33,22 +36,25 @@
 			const a = itemList[i];
 			const linkAnker = a.href.substring(a.href.lastIndexOf('#'));
 			const itemElement = document.querySelector(decodeURI(linkAnker));
-			let top = itemElement.offsetTop;
-			let parent = itemElement.offsetParent;
-			while (parent != null) {
-				top += parent.offsetTop;
-				parent = parent.offsetParent;
-			}
-			rtocList.push({ top: top, bottom: 1e30, itemdom: a.parentElement });
-			if (i > 0) {
-				rtocList[i - 1].bottom = rtocList[i].top;
+			if(itemElement != null){
+				let top = itemElement.offsetTop;
+				let parent = itemElement.offsetParent;
+				while (parent != null) {
+					top += parent.offsetTop;
+					parent = parent.offsetParent;
+				}
+				rtocList.push({ top: top, bottom: 1e30, itemdom: a.parentElement });
+				if (i > 0) {
+					if(rtocList[i]){
+						rtocList[i - 1].bottom = rtocList[i].top;
+					}
+				}
 			}
 		}
 		for (let i = 0; i < itemAllList.length; i++) {
 			const a = itemAllList[i];
 			const linkAnker = a.href.substring(a.href.lastIndexOf('#'));
 			const itemAllElement = document.querySelector(decodeURI(linkAnker));
-			const tag = itemAllElement.tagName;
 			let top = itemAllElement.offsetTop;
 			let parent = itemAllElement.offsetParent;
 			while (parent != null) {
@@ -61,10 +67,10 @@
 			}
 		}
 	}
-	init();
-	function updateSection(scrollY) {
+	rtoc_init();
+	function rtocUpdateSection(scrollY) {
 		if (document.body.clientHeight !== lastBodyClientHeight) {
-			init();
+			rtoc_init();
 		}
 		for (let sec of rtocList) {
 			sec.itemdom.classList.remove('rtoc-current');
@@ -100,7 +106,7 @@
 		lastScrollY = window.scrollY;
 		if (ticking === false) {
 			window.requestAnimationFrame(function () {
-				updateSection(lastScrollY + 300);
+				rtocUpdateSection(lastScrollY + 300);
 				ticking = false;
 			});
 			ticking = true;

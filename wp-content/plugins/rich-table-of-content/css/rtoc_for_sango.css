@@ -5,7 +5,7 @@
   content: none;
 }
 
-.widget #rtoc-mokuji-wrapper.rtoc-mokuji-content {
+.widget #rtoc-mokuji-widget-wrapper.rtoc-mokuji-content {
   padding: 4px 16px;
 }
 .widget ul li a:hover {

@@ -38,8 +38,10 @@ jQuery(function ($) {
 					}
 				});
 				$('a[href^="#rtoc-mokuji-wrapper"]').click(function () {
-					document.querySelector('#widget-tracking #rtoc-mokuji-wrapper').querySelector('.rtoc-mokuji').scrollTo(0, 0);
-
+					const widgetDocument = document.querySelector('#widget-tracking #rtoc-mokuji-widget-wrapper');
+					if(widgetDocument){
+						widgetDocument.querySelector('.rtoc-mokuji').scrollTo(0, 0);
+					}
 					var speed = 400;
 					var href = $(this).attr('href');
 					var target = $(href == '#' || href == '' ? 'html' : href);
