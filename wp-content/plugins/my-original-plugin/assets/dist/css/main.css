@@ -238,7 +238,7 @@ img {
   --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
   --font-xxxl: clamp(2.5rem, 1rem + 4vw, 4rem);
   --font-hero: clamp(1.75rem, 1rem + 2vw, 2.5rem);
-  --font-hero--md: clamp(2.5rem, 2.2573rem + 1.0356vw, 3.5rem);
+  --font-hero--md: clamp(2.5rem, 2.3786rem + 0.5178vw, 3rem);
   --font-hero--lg: clamp(2.5rem, 0.5rem + 5.3333vw, 4.5rem);
   --font-hero--xl: clamp(4rem, 2rem + 5.3333vw, 6rem);
   /*  Global Font */
@@ -2550,6 +2550,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 .p-page__strengths--intro__container .p-page__strengths--intro__content[class*=ark-keep-mt] {
   position: relative;
@@ -2999,6 +3000,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 
 .p-page__works--intro__container {
@@ -3060,6 +3062,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 .p-page__works--intro__container .p-page__works--intro__content[class*=ark-keep-mt] {
   position: relative;
@@ -3233,6 +3236,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 .p-works--lists__container .p-works--lists__heading__inner {
   position: relative;
@@ -3343,6 +3347,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 .p-page__contact__container form dl {
   padding-top: 20px;
@@ -3449,6 +3454,7 @@ article.skills .p-entry__content {
   font-size: var(--font-xs);
   line-height: 1;
   margin-right: auto;
+  letter-spacing: normal;
 }
 .p-page__completed__container p {
   width: 100%;
