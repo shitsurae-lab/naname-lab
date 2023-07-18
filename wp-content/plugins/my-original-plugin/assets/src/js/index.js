@@ -17,9 +17,31 @@ intersection();
 
 //-- START GSAP & ScrollTrigger
 
-// import  myTimeline from './myScrollTrigger';
+import {
+  myScroll,
+  myScroll2,
+  myTimeline,
+  myTimeline2,
+} from './myScrollTrigger';
 
-// myTimeline();
+myTimeline();
+myTimeline2();
+myScroll();
+myScroll2();
+
+const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
+  const arr = [hoge, fuga, piyo];
+  if (arr.length) {
+    console.log('arrはtrue');
+  }
+  arr.forEach((elm) => {
+    console.log(elm);
+  });
+  return arr;
+};
+
+const test = FuncTime; //関数を代入するから文末は();ではなく、;にする
+test(); //関数が代入された変数を実行するので文末は();でOK
 
 import CreateSVG from './createSVG';
 CreateSVG();
