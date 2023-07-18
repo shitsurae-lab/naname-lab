@@ -3777,7 +3777,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp-slate.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }
@@ -3820,7 +3820,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp-slate.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }
@@ -3864,7 +3864,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }
@@ -3906,7 +3906,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp-wh.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }
@@ -3949,7 +3949,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp-wh.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }
@@ -3991,7 +3991,7 @@ article.skills .p-entry__content {
   width: 100%;
   height: calc(100% + 10px);
   background-image: url(../images/wave-sp.png);
-  background-size: contain;
+  background-size: 50%;
   animation: waves_move 20s linear infinite;
   transform-origin: 0% 0%;
 }

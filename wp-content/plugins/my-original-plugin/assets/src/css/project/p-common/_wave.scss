@@ -22,7 +22,7 @@
     width: 100%;
     height: calc(100% + 10px);
     background-image: url($image-sp);
-    background-size: contain;
+    background-size: 50%;
     animation: waves_move 20s linear infinite;
     transform-origin: 0% 0%;
     @include mq(tablet) {
