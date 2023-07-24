@@ -2,9 +2,9 @@
 Contributors: ishitaka
 Tags: security, login, pingback, xmlrpc, rest
 Requires at least: 4.9
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 5.6
-Stable tag: 3.6.2
+Stable tag: 3.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,11 @@ Please initialize the settings.
 Please install mbstring and GD module.
 
 == Changelog ==
+
+= 3.6.3 =
+
+* Added `required` attribute to CAPTCHA field in login form.
+* Supported WordPress 6.3.
 
 = 3.6.2 =
 

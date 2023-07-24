@@ -1210,7 +1210,7 @@ class XO_Security {
 		echo '<p><img id="xo-security-captcha" src="' . esc_url( $src ) . '" alt="CAPTCHA" width="100" height="36"></p>';
 		echo '<p>';
 		echo '<label for="xo_security_captcha">' . esc_html__( 'CAPTCHA Code', 'xo-security' ) . '</label><br />';
-		echo '<input type="text" name="xo_security_captcha" id="xo_security_captcha" class="input" value="" size="10" aria-required="true" autocomplete="off" />';
+		echo '<input type="text" name="xo_security_captcha" id="xo_security_captcha" class="input" value="" size="10" aria-required="true" autocomplete="off" required="required" />';
 		echo '</p>' . "\n";
 	}
 
@@ -1224,7 +1224,7 @@ class XO_Security {
 		echo '<p><img id="xo-security-captcha" src="' . esc_url( $src ) . '" alt="CAPTCHA" width="100" height="36" loading="lazy"></p>';
 		echo '<p class="comment-form-captcha">';
 		echo '<label for="xo_security_captcha">' . esc_html__( 'CAPTCHA Code', 'xo-security' ) . '</label>';
-		echo '<input type="text" name="xo_security_captcha" id="xo_security_captcha" value="" size="10" aria-required="true" autocomplete="off" />';
+		echo '<input type="text" name="xo_security_captcha" id="xo_security_captcha" value="" size="10" aria-required="true" autocomplete="off" required="required" />';
 		echo '</p>' . "\n";
 	}
 
