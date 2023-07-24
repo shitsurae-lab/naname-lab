@@ -229,18 +229,19 @@ img {
   --arc-circle--lg: 200px;
   --pseudo-arc-line: 40px;
   /* font-size */
-  --font-xxs: clamp(0.625rem, 0.5rem + 0.3333vw, 0.75rem);
-  --font-xs: clamp(0.75rem, 0.625rem + 0.3333vw, 0.875rem);
-  --font-sm: clamp(0.875rem, 0.75rem + 0.3333vw, 1rem);
-  --font-md: clamp(1rem, 0.75rem + 0.6667vw, 1.25rem);
-  --font-lg: clamp(1.25rem, 1rem + 0.6667vw, 1.5rem);
-  --font-xl: clamp(1.75rem, 1.5rem + 0.6667vw, 2rem);
-  --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
-  --font-xxxl: clamp(2.5rem, 1rem + 4vw, 4rem);
-  --font-hero: clamp(1.75rem, 1rem + 2vw, 2.5rem);
-  --font-hero--md: clamp(2.5rem, 2.3786rem + 0.5178vw, 3rem);
-  --font-hero--lg: clamp(2.5rem, 0.5rem + 5.3333vw, 4.5rem);
-  --font-hero--xl: clamp(4rem, 2rem + 5.3333vw, 6rem);
+  /*Break point: Minimum viewport width 375px to Maximum viewport width 1200px */
+  --font-xxs: clamp(0.625rem, 0.5682rem + 0.2424vw, 0.75rem);
+  --font-xs: clamp(0.75rem, 0.6932rem + 0.2424vw, 0.875rem);
+  --font-sm: clamp(0.875rem, 0.8182rem + 0.2424vw, 1rem);
+  --font-md: clamp(1rem, 0.8864rem + 0.4848vw, 1.25rem);
+  --font-lg: clamp(1.25rem, 1.1364rem + 0.4848vw, 1.5rem);
+  --font-xl: clamp(1.5rem, 1.3864rem + 0.4848vw, 1.75rem);
+  --font-xxl: clamp(2rem, 1.7727rem + 0.9697vw, 2.5rem);
+  --font-xxxl: clamp(2.5rem, 1.8182rem + 2.9091vw, 4rem);
+  --font-hero: clamp(1.75rem, 1.4091rem + 1.4545vw, 2.5rem);
+  --font-hero--md: clamp(2.5rem, 2.2727rem + 0.9697vw, 3rem);
+  --font-hero--lg: clamp(2.5rem, 1.5909rem + 3.8788vw, 4.5rem);
+  --font-hero--xl: clamp(4rem, 3.0909rem + 3.8788vw, 6rem);
   /*  Global Font */
   --global-font-xl: clamp(
     1.875rem,

@@ -36,44 +36,42 @@
   --pseudo-arc-line: 40px; //疑似要素 arc横のline
 
   /* font-size */
+  /*Break point: Minimum viewport width 375px to Maximum viewport width 1200px */
   //Min10px Max12px
-  --font-xxs: clamp(0.625rem, 0.5rem + 0.3333vw, 0.75rem);
+  --font-xxs: clamp(0.625rem, 0.5682rem + 0.2424vw, 0.75rem);
 
   //Min 12px Max 14px (案)font-xxs
-  --font-xs: clamp(0.75rem, 0.625rem + 0.3333vw, 0.875rem);
+  --font-xs: clamp(0.75rem, 0.6932rem + 0.2424vw, 0.875rem);
 
   //Min 14px Max 16px (案)font-reg-sm
-  --font-sm: clamp(0.875rem, 0.75rem + 0.3333vw, 1rem);
+  --font-sm: clamp(0.875rem, 0.8182rem + 0.2424vw, 1rem);
 
   //Min 16px Max 20px (案)font-reg-md
-  --font-md: clamp(1rem, 0.75rem + 0.6667vw, 1.25rem);
+  --font-md: clamp(1rem, 0.8864rem + 0.4848vw, 1.25rem);
   //-font-md: clamp()
 
   //Min 20px Max 24px
-  --font-lg: clamp(1.25rem, 1rem + 0.6667vw, 1.5rem);
+  --font-lg: clamp(1.25rem, 1.1364rem + 0.4848vw, 1.5rem);
 
-  //Min 24px Max 32px
-  // --font-xl: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
-
-  //Min 28px Max 32px
-  --font-xl: clamp(1.75rem, 1.5rem + 0.6667vw, 2rem);
+  //Min 24px Max 28px (28px to 32px から変更)
+  --font-xl: clamp(1.5rem, 1.3864rem + 0.4848vw, 1.75rem);
 
   //Min 32px Max 40px
-  --font-xxl: clamp(2rem, 1.5rem + 1.3333vw, 2.5rem);
+  --font-xxl: clamp(2rem, 1.7727rem + 0.9697vw, 2.5rem);
 
-  --font-xxxl: clamp(2.5rem, 1rem + 4vw, 4rem); // Min 40px Max 64px
+  --font-xxxl: clamp(2.5rem, 1.8182rem + 2.9091vw, 4rem); // Min 40px Max 64px
 
   //Min28px Max 40px
-  --font-hero: clamp(1.75rem, 1rem + 2vw, 2.5rem);
+  --font-hero: clamp(1.75rem, 1.4091rem + 1.4545vw, 2.5rem);
 
   //Min40px Max 48px
-  --font-hero--md: clamp(2.5rem, 2.3786rem + 0.5178vw, 3rem);
+  --font-hero--md: clamp(2.5rem, 2.2727rem + 0.9697vw, 3rem);
 
   //Min 40px Max 72px
-  --font-hero--lg: clamp(2.5rem, 0.5rem + 5.3333vw, 4.5rem);
+  --font-hero--lg: clamp(2.5rem, 1.5909rem + 3.8788vw, 4.5rem);
 
   //Min 64px, Max 96px
-  --font-hero--xl: clamp(4rem, 2rem + 5.3333vw, 6rem);
+  --font-hero--xl: clamp(4rem, 3.0909rem + 3.8788vw, 6rem);
 
   /*  Global Font */
   //H2
