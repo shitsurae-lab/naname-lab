@@ -359,6 +359,24 @@ img {
   --color-linear-royal-golden: linear-gradient(0deg, #ffe384 0%, #5570ce 100%);
 }
 
+.l-header {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px -3px rgba(18, 18, 18, 0.06);
+  height: auto;
+  position: relative;
+  top: 0;
+  transition: transform 0.4s ease-out, background 0.4s ease-out, height 0.4s ease-out;
+  width: 100%;
+  z-index: 199999;
+}
+.l-header.js-fixed {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.6);
+  height: auto;
+}
+.l-header.js-head-animation {
+  transform: translateY(-100%);
+}
 .l-header[data-btns=rl-rr] .l-header__body {
   grid-template-columns: 0% 75% auto var(--ark-drawerW) var(--ark-searchW);
 }

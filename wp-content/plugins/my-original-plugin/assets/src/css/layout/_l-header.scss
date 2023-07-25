@@ -1,6 +1,24 @@
 @use '../global' as *;
 .l-header {
   $this: &;
+  background: rgba(255 255 255 / 80%);
+  box-shadow: 0 4px 8px -3px rgba(18, 18, 18, 0.06);
+  height: auto;
+  position: relative;
+  top: 0;
+  //transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  transition: transform 0.4s ease-out, background 0.4s ease-out,
+    height 0.4s ease-out;
+  width: 100%;
+  z-index: 199999;
+  &.js-fixed {
+    position: fixed;
+    background: rgba(255 255 255 / 60%);
+    height: auto;
+  }
+  &.js-head-animation {
+    transform: translateY(-100%);
+  }
   &[data-btns='rl-rr'] {
     #{$this}__body {
       grid-template-columns: 0% 75% auto var(--ark-drawerW) var(--ark-searchW);
