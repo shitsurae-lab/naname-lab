@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Flexible Spacer Block - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-11 01:22:44+0000\n"
+"PO-Revision-Date: 2023-07-24 15:31:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,19 +11,19 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Flexible Spacer Block - Stable (latest release)\n"
 
-#: classes/class-options.php:279
+#: classes/class-options.php:326
 msgid "Default Value: Fill in all fields."
 msgstr "デフォルト値: すべての値を入力してください。"
 
-#: classes/class-options.php:245
+#: classes/class-options.php:288
 msgid "Responsive Setting: the screen width value in the left field must be equal to or smaller than the value in the right field."
 msgstr "レスポンシブ設定: 左側のフィールドの画面幅の値は、右側のフィールドの値と同じかそれ以下でなければなりません。"
 
-#: classes/class-options.php:235
+#: classes/class-options.php:278
 msgid "Responsive Setting: Fill in both fields."
 msgstr "レスポンシブ設定: 両方の値を入力してください。"
 
-#: classes/class-options.php:77
+#: classes/class-options.php:86
 msgid "Default Values"
 msgstr "デフォルト値"
 
@@ -51,58 +51,58 @@ msgctxt "block title"
 msgid "Flexible Spacer"
 msgstr "フレキシブルスペーサー"
 
-#: classes/class-options.php:212
+#: classes/class-options.php:255
 msgid "The block will always be visible even when it is not selected."
 msgstr "ブロックが選択されていない状態でも常に表示されます。"
 
-#: classes/class-options.php:210
+#: classes/class-options.php:253
 msgid "Always show blocks in the block editor"
 msgstr "ブロックエディターでブロックを常に可視状態にする"
 
-#: classes/class-options.php:110
+#: classes/class-options.php:119
 msgid "To apply the CSS class to the block, click on the block on WordPress editor, and check the block settings on the right for the Advanced setting ,then enter the CSS class."
 msgstr "ブロックにCSSクラスを適用するには、WordPressのエディタでブロックをクリックし、右側のブロック設定の高度な設定にチェックを入れ、CSSクラスを入力します。"
 
-#: classes/class-options.php:109
+#: classes/class-options.php:118
 msgid "If unintended overlap occurs, <strong>add a CSS class</strong> named <code>fsb-style-show-front</code> to the block you want to show in the front."
 msgstr "意図しない重なりが起こった場合は、前面に表示したいブロックに<code>fsb-style-show-front</code>という名前の<strong>CSSクラスを追加</strong>してください。"
 
-#: classes/class-options.php:108
+#: classes/class-options.php:117
 msgid "\"<strong>Negative space</strong>\" narrows the margins both blocks above and below the spacer, and it is also possible to overlap the blocks."
 msgstr "<strong>マイナススペース</strong>は、スペーサーの上下にあるブロックの余白を狭くし、ブロックを重ねることも可能です。"
 
-#: classes/class-options.php:106
+#: classes/class-options.php:115
 msgid "About Negative Space"
 msgstr "マイナススペースについて"
 
-#: classes/class-options.php:153
+#: classes/class-options.php:162
 msgid "If both values are the same, The spacer setting for tablets will be disabled."
 msgstr "両方の値が同じ場合、タブレットのスペーサー設定は無効になります。"
 
-#: classes/class-options.php:152
+#: classes/class-options.php:161
 msgid "Enter the screen width (breakpoint) that will be the basis for switching between each device."
 msgstr "各デバイスの切り替えの基準となる画面幅 (ブレークポイント) を入力します。"
 
-#: classes/class-options.php:148 classes/class-options.php:191
-#: build/js/index.js:1 src/edit.js:312
+#: classes/class-options.php:157 classes/class-options.php:224
+#: build/js/index.js:1 src/edit.js:211
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: classes/class-options.php:138 classes/class-options.php:181
-#: build/js/index.js:1 src/edit.js:278
+#: classes/class-options.php:147 classes/class-options.php:204
+#: build/js/index.js:1 src/edit.js:197
 msgid "Tablet"
 msgstr "タブレット"
 
-#: classes/class-options.php:128 classes/class-options.php:171
-#: build/js/index.js:1 src/edit.js:244
+#: classes/class-options.php:137 classes/class-options.php:184
+#: build/js/index.js:1 src/edit.js:183
 msgid "Mobile"
 msgstr "モバイル"
 
-#: classes/class-options.php:85
+#: classes/class-options.php:94
 msgid "Block Editor Setting"
 msgstr "ブロックエディターの設定"
 
-#: classes/class-options.php:69
+#: classes/class-options.php:78
 msgid "Responsive Setting"
 msgstr "レスポンシブ設定"
 
@@ -119,7 +119,7 @@ msgid "Add white space between blocks and customize its height for each device."
 msgstr "ブロックの間に、各デバイス毎に高さをカスタマイズ可能な余白を追加します。"
 
 #. Plugin Name of the plugin
-#: classes/class-options.php:30 classes/class-options.php:31
-#: classes/class-options.php:100
+#: classes/class-options.php:39 classes/class-options.php:40
+#: classes/class-options.php:109
 msgid "Flexible Spacer Block"
 msgstr "Flexible Spacer Block"
