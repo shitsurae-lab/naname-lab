@@ -264,6 +264,58 @@ const gnav = () => {
 
 /***/ }),
 
+/***/ "./assets/src/js/headerAnimation.js":
+/*!******************************************!*\
+  !*** ./assets/src/js/headerAnimation.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const headerAnimation = () => {
+  let offset = 0;
+  let lastPosition = 0;
+  //let ticking = false;
+  const header = document.getElementById('header');
+  const height = header.offsetHeight;
+
+  //「height」===固定値(ヘッダーの高さ)
+  //「lastposition」===スクロールの値
+
+  const onScroll = () => {
+    if (lastPosition > height) {
+      if (lastPosition > offset) {
+        header.classList.add('js-head-animation');
+        header.classList.add('js-fixed');
+      } else {
+        header.classList.remove('js-head-animation');
+        header.classList.add('js-fixed');
+      }
+      offset = lastPosition;
+    } else {
+      header.classList.remove('js-fixed');
+    }
+  };
+
+  document.addEventListener('scroll', () => {
+    lastPosition = window.scrollY;
+
+    window.requestAnimationFrame(() => {
+      onScroll();
+    });
+  });
+  console.log('headerAnimation.jsが読み込まれています');
+  return;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (headerAnimation);
+
+
+/***/ }),
+
 /***/ "./assets/src/js/intersection.js":
 /*!***************************************!*\
   !*** ./assets/src/js/intersection.js ***!
@@ -28812,20 +28864,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_style_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _gnav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gnav */ "./assets/src/js/gnav.js");
 /* harmony import */ var _openingAnime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./openingAnime */ "./assets/src/js/openingAnime.js");
-/* harmony import */ var _addSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addSelector */ "./assets/src/js/addSelector.js");
-/* harmony import */ var _intersection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./intersection */ "./assets/src/js/intersection.js");
-/* harmony import */ var _myScrollTrigger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./myScrollTrigger */ "./assets/src/js/myScrollTrigger.js");
-/* harmony import */ var _createSVG__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createSVG */ "./assets/src/js/createSVG.js");
-/* harmony import */ var _CreateWave__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CreateWave */ "./assets/src/js/CreateWave.js");
-/* harmony import */ var _myswiper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./myswiper */ "./assets/src/js/myswiper.js");
-/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./accordion */ "./assets/src/js/accordion.js");
-/* harmony import */ var _particles__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./particles */ "./assets/src/js/particles.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ "./node_modules/@fortawesome/fontawesome-free/js/solid.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ "./node_modules/@fortawesome/fontawesome-free/js/regular.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _headerAnimation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./headerAnimation */ "./assets/src/js/headerAnimation.js");
+/* harmony import */ var _addSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addSelector */ "./assets/src/js/addSelector.js");
+/* harmony import */ var _intersection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./intersection */ "./assets/src/js/intersection.js");
+/* harmony import */ var _myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./myScrollTrigger */ "./assets/src/js/myScrollTrigger.js");
+/* harmony import */ var _createSVG__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./createSVG */ "./assets/src/js/createSVG.js");
+/* harmony import */ var _CreateWave__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CreateWave */ "./assets/src/js/CreateWave.js");
+/* harmony import */ var _myswiper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./myswiper */ "./assets/src/js/myswiper.js");
+/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./accordion */ "./assets/src/js/accordion.js");
+/* harmony import */ var _particles__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./particles */ "./assets/src/js/particles.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ "./node_modules/@fortawesome/fontawesome-free/js/solid.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ "./node_modules/@fortawesome/fontawesome-free/js/regular.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_14__);
 
 
 
@@ -28835,22 +28888,25 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_openingAnime__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
+
+(0,_headerAnimation__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
 //-- addSelector
 
-(0,_addSelector__WEBPACK_IMPORTED_MODULE_3__["default"])();
+(0,_addSelector__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
 //Intersection Observe
 
-(0,_intersection__WEBPACK_IMPORTED_MODULE_4__["default"])();
+(0,_intersection__WEBPACK_IMPORTED_MODULE_5__["default"])();
 
 //-- START GSAP & ScrollTrigger
 
 
 
-(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_5__.myTimeline)();
-(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_5__.myTimeline2)();
-(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_5__.myScroll)();
-(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_5__.myScroll2)();
+(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myTimeline)();
+(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myTimeline2)();
+(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myScroll)();
+(0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myScroll2)();
 
 const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
   const arr = [hoge, fuga, piyo];
@@ -28867,10 +28923,10 @@ const test = FuncTime; //関数を代入するから文末は();ではなく、;
 test(); //関数が代入された変数を実行するので文末は();でOK
 
 
-(0,_createSVG__WEBPACK_IMPORTED_MODULE_6__["default"])();
+(0,_createSVG__WEBPACK_IMPORTED_MODULE_7__["default"])();
 
 
-(0,_CreateWave__WEBPACK_IMPORTED_MODULE_7__["default"])();
+(0,_CreateWave__WEBPACK_IMPORTED_MODULE_8__["default"])();
 
 //--- START: Swiper ---
 
@@ -28879,11 +28935,11 @@ test(); //関数が代入された変数を実行するので文末は();でOK
 
 //-- START summary・detailアニメーション
 
-(0,_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])();
+(0,_accordion__WEBPACK_IMPORTED_MODULE_10__["default"])();
 //--accordionAnimの中にクリックイベントが記載されているので、accordionAnim();(->関数実行)を行う
 
 
-(0,_particles__WEBPACK_IMPORTED_MODULE_10__["default"])();
+(0,_particles__WEBPACK_IMPORTED_MODULE_11__["default"])();
 
 //--Font awesome
 

@@ -7,6 +7,9 @@ gnav();
 import openingAnime from './openingAnime';
 openingAnime();
 
+import headerAnimation from './headerAnimation';
+headerAnimation();
+
 //-- addSelector
 import addSelector from './addSelector';
 addSelector();
