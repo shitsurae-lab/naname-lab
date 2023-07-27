@@ -101,22 +101,61 @@ module.exports = {
         },
       ],
     }),
-    new ImageMinimizerPlugin({
-      test: /\.(jpe?g|png)$/i,
-      minimizer: {
-        implementation: ImageMinimizerPlugin.squooshMinify,
-        options: {
-          encodeOptions: {
-            mozjpeg: {
-              quality: 70,
+    new ImageMinimizerPlugin(
+      {
+        test: /\.(jpe?g|png)$/i,
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              jpeg: {
+                // https://sharp.pixelplumbing.com/api-output#jpeg
+                quality: 80,
+              },
+              webp: {
+                // https://sharp.pixelplumbing.com/api-output#webp
+                lossless: true,
+              },
+              avif: {
+                // https://sharp.pixelplumbing.com/api-output#avif
+                lossless: true,
+              },
+              // https://sharp.pixelplumbing.com/api-output#png
+              png: {},
+              // https://sharp.pixelplumbing.com/api-output#gif
+              gif: {},
             },
-            oxipng: {
-              level: 3,
-              interlace: false,
+          },
+          // implementation: ImageMinimizerPlugin.squooshMinify,
+          // options: {
+          //   encodeOptions: {
+          //     mozjpeg: {
+          //       quality: 70,
+          //     },
+          //     oxipng: {
+          //       level: 3,
+          //       interlace: false,
+          //     },
+          //   },
+          // },
+        },
+      },
+      {
+        test: /\.(svg)&/i,
+        minimizer: {
+          implementation: ImageMinimizerPlugin.svgoMinify,
+          options: {
+            encodeOptions: {
+              multipass: true,
+              plugins: [
+                //'preset-default': デフォルトで有効になっている内容
+                //参照:https://github.com/svg/svgo#default-preset
+                'preset-default',
+              ],
             },
           },
         },
-      },
-    }),
+      }
+    ),
   ],
 };
