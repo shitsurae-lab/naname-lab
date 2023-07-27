@@ -122,8 +122,11 @@
 }
 
 //追従ボタン
+.p-fixBtnWrap:has(.c-fixBtn) {
+  bottom: 8%;
+}
 .c-fixBtn {
-  background: var(--color-linear-fly-high-light);
+  background: var(--color-linear-pewter-blue);
   border-radius: 100px;
 }
 
