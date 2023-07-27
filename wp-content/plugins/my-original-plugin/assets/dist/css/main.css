@@ -4261,6 +4261,9 @@ body.pageOn .l-wrapper {
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
+.p-curtain.change {
+  will-change: transform;
+}
 
 @keyframes curtainAnime {
   0% {

@@ -830,12 +830,13 @@ const openingAnime = () => {
   };
 
   const js_curtain = () => {
-    curtainElement.classList.add('loaded');
+    curtainElement.classList.add('loaded', 'change');
     console.log('③js_curtainが読み込まれたのよ!');
   };
 
   const js_pageOn = () => {
     document.body.classList.add('pageOn');
+    curtainElement.classList.remove('change');
     console.log('④ js_pageOnが読み込まれたぜ');
   };
 

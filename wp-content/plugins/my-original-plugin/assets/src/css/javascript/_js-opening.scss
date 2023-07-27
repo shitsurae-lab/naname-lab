@@ -155,6 +155,9 @@ body.pageOn .l-wrapper {
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
   }
+  &.change {
+    will-change: transform;
+  }
 }
 
 @keyframes curtainAnime {
