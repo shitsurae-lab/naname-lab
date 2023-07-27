@@ -69,6 +69,7 @@
 }
 /* START: variable */
 $flex-margin: 12px;
+$flex-margin--right: 32px;
 /* END */
 .p-footer__inner {
   $this: &;
@@ -111,23 +112,35 @@ $flex-margin: 12px;
       width: 100%;
       margin-left: 0;
       color: #ffffff;
-      h2 {
-        font-size: var(--font-xs);
-        font-weight: 400;
-        text-align: center;
-        margin-bottom: 1em;
-        @include mq(tablet) {
-          text-align: left;
-        }
-      }
+
       @include mq(tablet) {
         width: min(
           calc(480px - $flex-margin),
-          calc(100% - $flex-margin) / 3 * 2
+          calc((100% - $flex-margin) / 3 * 2) - $flex-margin--right
         );
         margin-left: $flex-margin;
         position: relative;
       }
+    }
+    #{$this}--catchphrase {
+      h2 {
+        font-size: var(--font-xs);
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 0.5em;
+        @include mq(tablet) {
+          text-align: left;
+        }
+      }
+      p {
+        font-size: var(--font-xxs);
+        font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+        text-align: center;
+        @include mq(tablet) {
+          text-align: left;
+        }
+      }
+      margin-bottom: 1em;
     }
   }
 }
@@ -151,6 +164,7 @@ $flex-margin: 12px;
 
   #{$this}--ttl {
     font-size: var(--font-xs);
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     width: 40%;
     margin-left: 12px;
   }
