@@ -56,7 +56,7 @@ if (columns) {
 // });
 
 const FuncScrollBatch = (element, num = 3, text = 'スクロールトリガー') => {
-  console.log(`${text}読みこんでます`);
+  // console.log(`${text}読みこんでます`);
   const batch = ScrollTrigger.batch(element, {
     batchMax: num,
     onEnter: (batch) =>

@@ -1,5 +1,5 @@
 const gnav = () => {
-  console.log('gnav.jsが正常に読み込まれています');
+  // console.log('gnav.jsが正常に読み込まれています');
   //JavaScriptの.addEventListener()でhoverした時、メニューに'active'を付与されたタイミングでanimationが発火するようにする(PC時のみ - mixinで設定済)
   //①https://dubdesign.net/javascript/hover-tooltip/
   //②https://gxy-life.com/2PC/PC/PC20211211.html

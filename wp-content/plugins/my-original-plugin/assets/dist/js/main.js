@@ -34,8 +34,8 @@ const CreateWave = () => {
   container.setAttribute('class', 'p-wave__container');
   div.appendChild(container);
   footerContainer.before(div);
-  console.log(footerContainer);
-  console.log('CreateWave.jsが読み込まれています');
+  //console.log(footerContainer);
+  //console.log('CreateWave.jsが読み込まれています');
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateWave);
 
@@ -242,7 +242,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const gnav = () => {
-  console.log('gnav.jsが正常に読み込まれています');
+  // console.log('gnav.jsが正常に読み込まれています');
   //JavaScriptの.addEventListener()でhoverした時、メニューに'active'を付与されたタイミングでanimationが発火するようにする(PC時のみ - mixinで設定済)
   //①https://dubdesign.net/javascript/hover-tooltip/
   //②https://gxy-life.com/2PC/PC/PC20211211.html
@@ -307,7 +307,7 @@ const headerAnimation = () => {
       onScroll();
     });
   });
-  console.log('headerAnimation.jsが読み込まれています');
+  // console.log('headerAnimation.jsが読み込まれています');
   return;
 };
 
@@ -333,12 +333,12 @@ const intersection = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('on');
-        console.log('監視範囲に入りました');
+        // console.log('監視範囲に入りました');
         //第２引数の observer の unobserve() メソッドで監視を停止
         observer.unobserve(entry.target);
       } else {
         entry.target.classList.remove('on');
-        console.log('監視範囲を出ました');
+        //console.log('監視範囲を出ました');
       }
     });
   };
@@ -360,7 +360,7 @@ const intersection = () => {
     //observe()に監視対象の要素を指定
     observer.observe(elem);
   });
-  console.log('Intersection Observer APIを読み込んでます');
+  //console.log('Intersection Observer APIを読み込んでます');
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (intersection);
 
@@ -441,7 +441,7 @@ if (columns) {
 // });
 
 const FuncScrollBatch = (element, num = 3, text = 'スクロールトリガー') => {
-  console.log(`${text}読みこんでます`);
+  // console.log(`${text}読みこんでます`);
   const batch = gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger.batch(element, {
     batchMax: num,
     onEnter: (batch) =>
@@ -821,23 +821,23 @@ const openingAnime = () => {
 
   const js_opening = () => {
     opening.classList.add('loaded');
-    console.log('①js_openingが読み込まれたよ!');
+    //console.log('①js_openingが読み込まれたよ!');
   };
 
   const js_loader = () => {
     loader.classList.add('loaded');
-    console.log('②js_loaderが読み込まれたよ!');
+    //console.log('②js_loaderが読み込まれたよ!');
   };
 
   const js_curtain = () => {
     curtainElement.classList.add('loaded', 'change');
-    console.log('③js_curtainが読み込まれたのよ!');
+    //console.log('③js_curtainが読み込まれたのよ!');
   };
 
   const js_pageOn = () => {
     document.body.classList.add('pageOn');
     curtainElement.classList.remove('change');
-    console.log('④ js_pageOnが読み込まれたぜ');
+    //console.log('④ js_pageOnが読み込まれたぜ');
   };
 
   /*コールバック関数 */
@@ -28909,19 +28909,19 @@ __webpack_require__.r(__webpack_exports__);
 (0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myScroll)();
 (0,_myScrollTrigger__WEBPACK_IMPORTED_MODULE_6__.myScroll2)();
 
-const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
-  const arr = [hoge, fuga, piyo];
-  if (arr.length) {
-    console.log('arrはtrue');
-  }
-  arr.forEach((elm) => {
-    console.log(elm);
-  });
-  return arr;
-};
+// const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
+//   const arr = [hoge, fuga, piyo];
+//   if (arr.length) {
+//     console.log('arrはtrue');
+//   }
+//   arr.forEach((elm) => {
+//     console.log(elm);
+//   });
+//   return arr;
+// };
 
-const test = FuncTime; //関数を代入するから文末は();ではなく、;にする
-test(); //関数が代入された変数を実行するので文末は();でOK
+// const test = FuncTime; //関数を代入するから文末は();ではなく、;にする
+// test(); //関数が代入された変数を実行するので文末は();でOK
 
 
 (0,_createSVG__WEBPACK_IMPORTED_MODULE_7__["default"])();

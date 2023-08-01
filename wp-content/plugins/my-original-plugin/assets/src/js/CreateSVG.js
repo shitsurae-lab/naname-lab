@@ -28,6 +28,6 @@ const CreateSVG = () => {
   elemSVG.appendChild(pt01);
   elemSVG.appendChild(pt02);
 
-  console.log(elemSVG);
+  //console.log(elemSVG);
 };
 export default CreateSVG;

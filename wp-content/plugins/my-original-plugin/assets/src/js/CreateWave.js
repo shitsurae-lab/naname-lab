@@ -20,7 +20,7 @@ const CreateWave = () => {
   container.setAttribute('class', 'p-wave__container');
   div.appendChild(container);
   footerContainer.before(div);
-  console.log(footerContainer);
-  console.log('CreateWave.jsが読み込まれています');
+  //console.log(footerContainer);
+  //console.log('CreateWave.jsが読み込まれています');
 };
 export default CreateWave;

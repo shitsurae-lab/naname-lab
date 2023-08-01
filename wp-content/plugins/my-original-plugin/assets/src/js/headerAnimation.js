@@ -30,7 +30,7 @@ const headerAnimation = () => {
       onScroll();
     });
   });
-  console.log('headerAnimation.jsが読み込まれています');
+  // console.log('headerAnimation.jsが読み込まれています');
   return;
 };
 
