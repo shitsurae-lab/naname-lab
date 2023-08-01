@@ -35,23 +35,23 @@ const openingAnime = () => {
 
   const js_opening = () => {
     opening.classList.add('loaded');
-    console.log('①js_openingが読み込まれたよ!');
+    //console.log('①js_openingが読み込まれたよ!');
   };
 
   const js_loader = () => {
     loader.classList.add('loaded');
-    console.log('②js_loaderが読み込まれたよ!');
+    //console.log('②js_loaderが読み込まれたよ!');
   };
 
   const js_curtain = () => {
     curtainElement.classList.add('loaded', 'change');
-    console.log('③js_curtainが読み込まれたのよ!');
+    //console.log('③js_curtainが読み込まれたのよ!');
   };
 
   const js_pageOn = () => {
     document.body.classList.add('pageOn');
     curtainElement.classList.remove('change');
-    console.log('④ js_pageOnが読み込まれたぜ');
+    //console.log('④ js_pageOnが読み込まれたぜ');
   };
 
   /*コールバック関数 */
