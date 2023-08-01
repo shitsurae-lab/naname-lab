@@ -223,7 +223,7 @@ const CreateSVG = () => {
   elemSVG.appendChild(pt01);
   elemSVG.appendChild(pt02);
 
-  console.log(elemSVG);
+  //console.log(elemSVG);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateSVG);
 
