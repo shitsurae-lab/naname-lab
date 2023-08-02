@@ -87,6 +87,7 @@ module.exports = {
       // },
     ],
   },
+
   plugins: [
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
@@ -158,4 +159,11 @@ module.exports = {
       }
     ),
   ],
+  performance: {
+    maxEntrypointSize: 500000,
+    maxAssetSize: 500000,
+    assetFilter: function (assetFilename) {
+      return !assetFilename.endsWith('.png');
+    },
+  },
 };
