@@ -4,6 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /* --- 1 --- */
+const works_list_heading = document.querySelector('.p-works--lists__heading');
+if (works_list_heading) {
+  works_list_heading.classList.add('js-target');
+}
+
+//works下部、それぞれのitemにjs-targetを付与
 const [...arr] = document.querySelectorAll('.p-postList .p-postList__item');
 
 arr.forEach((elm) => {
@@ -33,15 +39,16 @@ if (parent) {
 /* ---END 1 --- */
 
 /* --- 2 --- */
+//Service中程のアイテムにjs-target-itemsを付与
 //NodeListを取得
 const columns = document.querySelector(
-  '.p-page__strengths--intro__columns>.ark-block-columns__inner'
+  '.p-service__columns >.ark-block-columns__inner'
 );
+
 if (columns) {
   const [...array] = columns.children;
-  console.log(array);
-  array.forEach((child) => {
-    child.classList.add('js-target-items');
+  array.forEach((elem) => {
+    elem.classList.add('js-target');
   });
 }
 
@@ -58,6 +65,7 @@ if (columns) {
 const FuncScrollBatch = (element, num = 3, text = 'スクロールトリガー') => {
   // console.log(`${text}読みこんでます`);
   const batch = ScrollTrigger.batch(element, {
+    // interval: 1,
     batchMax: num,
     onEnter: (batch) =>
       gsap.fromTo(
@@ -81,11 +89,11 @@ const FuncScrollBatch = (element, num = 3, text = 'スクロールトリガー')
 const myScroll = FuncScrollBatch;
 const jsTarget = document.querySelector('.js-target');
 
-myScroll(jsTarget, 3);
+myScroll(jsTarget);
 
 const myScroll2 = FuncScrollBatch;
-const jsTargetItem = document.querySelector('.js-target-items');
-myScroll2(jsTargetItem, 1);
+const jsTargetItem = document.querySelector('.js-target');
+myScroll2(jsTargetItem);
 
 // const FuncTimeline = (headline, media, text) => {
 //   const array = [headline, media, text];
@@ -180,11 +188,9 @@ const FuncTimeline = (key) => {
 };
 
 /* - Service - */
-const headlineService = document.querySelector(
-  '.p-page__strengths--intro__heading'
-);
-const textService = document.querySelector('.p-page__strengths--intro__text');
-const mediaService = document.querySelector('.p-page__strengths--intro__media');
+const headlineService = document.querySelector('.p-service__heading');
+const textService = document.querySelector('.p-service__text');
+const mediaService = document.querySelector('.p-service__media');
 
 //①配列(CSSはそれぞれ別)
 const [...arrangement] = [headlineService, mediaService, textService];
@@ -194,11 +200,11 @@ const myTimeline = FuncTimeline;
 myTimeline(arrangement);
 
 /* -- Works -- */
-const headlineWorks = document.querySelector('.p-page__works--intro__heading');
+const headlineWorks = document.querySelector('.p-works--intro__heading');
 
-const textWorks = document.querySelector('.p-page__works--intro__text');
+const textWorks = document.querySelector('.p-works--intro__text');
 
-const mediaWorks = document.querySelector('.p-page__works--intro__media');
+const mediaWorks = document.querySelector('.p-works--intro__media');
 
 const [...arrangement2] = [headlineWorks, mediaWorks, textWorks];
 
