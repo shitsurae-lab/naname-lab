@@ -9,7 +9,8 @@
   $u-position--lg: 12%,
   $ratio--tablet: 70%,
   $heading: h2,
-  $mt: -16%
+  $mt: -16%,
+  $color: var(--color-weldon-blue)
 ) {
   position: relative;
   z-index: 2;
@@ -41,7 +42,7 @@
       position: absolute;
       width: 32px;
       height: 1px;
-      background: var(--color-weldon-blue);
+      background: $color;
       left: 0;
       bottom: 0;
     }
@@ -49,12 +50,12 @@
       font-size: $font-size;
       font-family: 'Allura', cursive;
       text-transform: capitalize;
-      color: var(--color-weldon-blue);
+      color: $color;
       line-height: 1;
     }
     #{$heading} {
       font-weight: 400;
-      color: var(--color-weldon-blue);
+      color: $color;
       font-size: var(--font-xs);
       line-height: 1;
       margin-right: auto;
