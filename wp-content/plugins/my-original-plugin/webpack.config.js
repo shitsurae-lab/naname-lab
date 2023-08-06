@@ -6,6 +6,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
+  //本番環境にアップロード(build)するときはdevtoolをコメントアウトすること
   devtool: 'source-map',
   entry: {
     main: './assets/src/js/index.js',
