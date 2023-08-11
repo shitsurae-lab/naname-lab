@@ -65,6 +65,7 @@ add_action('wp_enqueue_scripts', function () {
   );
 });
 
+
 /* フィルターフック */
 //上述したFont Awesome Scriptに crossorigin="anonymous"を付加する
 //crossoriginの直前に半角スペース忘れずにね。※入れないと「js"crosorigin=...」のようにダブルクォーテーションとcrossoriginが連続記述になる
@@ -89,10 +90,27 @@ function add_google_fonts()
 }
 add_action('wp_enqueue_scripts', 'add_google_fonts');
 
-/* ---- GSAP ---- */
-// function gsap_cdn()
-// {
-//   wp_register_script('gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
-//   wp_register_script('scrollTrigger', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
-// }
-// add_action('wp_enqueue_scripts', 'gsap_cdn');
+
+/* --Google Tag Manager --*/
+//head内にGTMコードを記載
+function add_gtm_head()
+{
+  echo "<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
+new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l='+l:\'\';j.async=true;j.src=
+\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,\'script\',\'dataLayer\',\'GTM-TV95XN58\');</script>
+<!-- End Google Tag Manager -->";
+}
+add_action('wp_enqueue_scripts', 'add_gtm_head');
+
+//body直下にGTMコード記載
+function add_gtm_body()
+{
+  echo "<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-TV95XN58\"
+height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->";
+}
+add_action('wp_body_open', 'add_gtm_body');
