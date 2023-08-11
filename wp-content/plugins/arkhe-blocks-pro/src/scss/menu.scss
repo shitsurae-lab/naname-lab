@@ -4,7 +4,7 @@
 /*
  * 管理画面で読み込むCSS
  */
-@import "mixin/**";
+@import "./mixin/**/*.scss";
 @import "../../node_modules/react-notifications-component/dist/scss/notification";
 
 // 設定ページ

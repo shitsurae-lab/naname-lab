@@ -3,6 +3,7 @@
 
 	--arkb-slide-width: 100%;
 	--arkb-slide-space: 0px;
+	--arkb-slide-color: #000; // フロントは swiper独自の変数を使う
 
 	position: relative;
 	padding: 8px 8px;
@@ -213,7 +214,7 @@
 			opacity: .4;
 
 			.ark-block-slider__nav {
-				border: dashed 1px var(--arkb-slide-color, #000);
+				border: dashed 1px var(--arkb-slide-color);
 			}
 		}
 
@@ -232,7 +233,7 @@
 				display: block;
 				width: 100%;
 				height: 100%;
-				fill: var(--arkb-slide-color, #000);
+				fill: var(--arkb-slide-color);
 			}
 
 			&.-off {
@@ -265,7 +266,7 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: var(--arkb-slide-color, #000);
+				background: var(--arkb-slide-color);
 				transform: scale(0);
 				transform-origin: left top;
 				transition-duration: 1200ms;
@@ -285,7 +286,7 @@
 			}
 
 			[data-active="true"] {
-				background: var(--arkb-slide-color, #000);
+				background: var(--arkb-slide-color);
 				opacity: 1;
 			}
 

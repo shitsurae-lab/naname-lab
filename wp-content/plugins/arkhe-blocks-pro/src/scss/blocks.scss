@@ -3,9 +3,9 @@
 /*
  * エディターのみで読み込むCSS
  */
-@import "mixin/**";
-@import "./common/**";
-@import "./editor/**";
+@import "./mixin/**/*.scss";
+@import "./common/**/*.scss";
+@import "./editor/**/*.scss";
 @import "../gutenberg/**/_common.scss";
 @import "../gutenberg/**/_editor.scss";
 

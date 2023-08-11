@@ -1,18 +1,13 @@
 [data-type="arkhe-blocks/box-links"] {
-	display: block !important;
-	margin-bottom: 0 !important;
 
-	.ark-block-boxLinks__inner {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		margin-left: calc(-1 * var(--arkb-gap--x));
-		row-gap: var(--arkb-gap--y);
+	> .block-list-appender {
+		position: relative;
+		width: 100%;
+	}
 
-		> .block-list-appender {
-			flex-basis: calc(100% - var(--arkb-gap--x));
-			margin: 0 0 0 var(--arkb-gap--x) !important;
-		}
+
+	>.wp-block {
+		margin-top: 0;
 	}
 
 	.arkb-boxLink__bg.components-placeholder {

@@ -62,12 +62,12 @@
 }
 
 
-.arkb-link-control {
+// .arkb-link-control {}
 
-	.block-editor-link-control.-bottom {
+.arkb-link-control__bottom {
+	padding: 0 16px;
 
-		.components-base-control + .components-base-control {
-			margin-top: 1em;
-		}
+	>.components-base-control {
+		padding-bottom: 12px;
 	}
 }

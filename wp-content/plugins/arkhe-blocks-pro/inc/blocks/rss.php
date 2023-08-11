@@ -142,7 +142,12 @@ function get_rss_data( $rss_url = '' ) {
 			}
 		}
 
-		// それでもなければ、OGPから取得
+		// それでもなければ、最初に出現するimgを取得する
+		if ( preg_match( '/<img.+?src=[\'"]([^\'"]+?)[\'"].*?>/msi', $item->get_content(), $matches ) ) {
+			$thumbnail = $matches[1];
+		}
+
+		// さらにそれでもなければ、OGP読みにいく
 		if ( '' === $thumbnail ) {
 			$thumbnail = get_remote_thumb( $item_link );
 		}

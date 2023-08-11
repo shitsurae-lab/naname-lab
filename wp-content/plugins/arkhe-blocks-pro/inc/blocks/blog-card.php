@@ -217,24 +217,6 @@ function get_external_blog_card( $url ) {
 	$description = $card_data['description'];
 	$site_name   = $card_data['site_name'];
 
-	/**
-	 * はてなブログの文字化け対策
-	 */
-	$title_decoded = utf8_decode( $title );  // utf8でのデコード
-	if ( mb_detect_encoding( $title_decoded ) === 'UTF-8' ) {
-		$title = $title_decoded;
-
-		$description_decoded = utf8_decode( $description );
-		if ( mb_detect_encoding( $description_decoded ) === 'UTF-8' ) {
-			$description = $description_decoded;
-		}
-
-		$site_name_decoded = utf8_decode( $site_name );
-		if ( mb_detect_encoding( $site_name_decoded ) === 'UTF-8' ) {
-			$site_name = $site_name_decoded;
-		}
-	}
-
 	// 最大文字数
 	$title_length   = apply_filters( 'arkb_blogcard__title_length', 100 );
 	$name_length    = apply_filters( 'arkb_blogcard__name_length', 32 );
