@@ -117,7 +117,7 @@ add_action('wp_body_open', 'add_gtm_body');
 
 function  add_mieruca_head()
 {
-  echo "<!-- Begin Mieruca Embed Code -->
+  echo "\n<!-- Begin Mieruca Embed Code -->
 <script type=\"text/javascript\" id=\"mierucajs\">
 window.__fid = window.__fid || [];__fid.push([556739964]);
 (function() {
