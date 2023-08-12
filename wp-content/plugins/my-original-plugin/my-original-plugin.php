@@ -111,7 +111,7 @@ function add_gtm_body()
   echo "\n" . "<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-TV95XN58\"
 height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->";
+<!-- End Google Tag Manager (noscript) -->" . "\n";
 }
 add_action('wp_body_open', 'add_gtm_body');
 
@@ -123,10 +123,10 @@ function add_mieruca_head()
 window.__fid = window.__fid || [];__fid.push([556739964]);
 (function() {
 function mieruca(){if(typeof window.__fjsld != \"undefined\") return; window.__fjsld = 1; var fjs = document.createElement('script'); fjs.type = 'text/javascript'; fjs.async = true; fjs.id = \"fjssync\"; var timestamp = new Date;fjs.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://hm.mieru-ca.com/service/js/mieruca-hm.js?v='+ timestamp.getTime(); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(fjs, x); };
-setTimeout(mieruca, 500); document.readyState != \"complete\" ? (window.attachEvent ? window.attachEvent(\"onload\", mieruca) : window.addEventListener\"load\", mieruca, false)) : mieruca();
+setTimeout(mieruca, 500); document.readyState != \"complete\" ? (window.attachEvent ? window.attachEvent(\"onload\", mieruca) : window.addEventListener(\"load\", mieruca, false)) : mieruca();
 })();
 </script>
-<!-- End Mieruca Embed Code -->";
+<!-- End Mieruca Embed Code -->" . "\n";
 }
 
 add_action('wp_head', 'add_mieruca_head');
