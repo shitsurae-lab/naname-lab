@@ -115,7 +115,8 @@ height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></nos
 }
 add_action('wp_body_open', 'add_gtm_body');
 
-function  add_mieruca_head()
+/* -- ミエルカヒートマップ --*/
+function add_mieruca_head()
 {
   echo "\n<!-- Begin Mieruca Embed Code -->
 <script type=\"text/javascript\" id=\"mierucajs\">
