@@ -95,12 +95,12 @@ add_action('wp_enqueue_scripts', 'add_google_fonts');
 //head内にGTMコードを記載
 function add_gtm_head()
 {
-  echo "<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
-new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l='+l:\'\';j.async=true;j.src=
-\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,\'script\',\'dataLayer\',\'GTM-TV95XN58\');</script>
+  echo "\n" . "<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TV95XN58');</script>
 <!-- End Google Tag Manager -->";
 }
 add_action('wp_enqueue_scripts', 'add_gtm_head');
@@ -108,7 +108,7 @@ add_action('wp_enqueue_scripts', 'add_gtm_head');
 //body直下にGTMコード記載
 function add_gtm_body()
 {
-  echo "<!-- Google Tag Manager (noscript) -->
+  echo "\n" . "<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-TV95XN58\"
 height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->";
@@ -118,7 +118,7 @@ add_action('wp_body_open', 'add_gtm_body');
 /* -- ミエルカヒートマップ --*/
 function add_mieruca_head()
 {
-  echo "\n<!-- Begin Mieruca Embed Code -->
+  echo "\n" . "<!-- Begin Mieruca Embed Code -->
 <script type=\"text/javascript\" id=\"mierucajs\">
 window.__fid = window.__fid || [];__fid.push([556739964]);
 (function() {
