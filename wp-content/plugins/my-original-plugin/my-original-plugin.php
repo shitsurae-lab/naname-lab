@@ -130,3 +130,9 @@ setTimeout(mieruca, 500); document.readyState != \"complete\" ? (window.attachEv
 }
 
 add_action('wp_enqueue_scripts', 'add_mieruca_head');
+
+function add_search_console()
+{
+  echo '<meta name="google-site-verification" content="WL5pFVBfJSWnBHXvjSHWsKSUI9P54HoT158M2DCigBk" />';
+}
+add_action('wp_enqueue_scripts', 'add_search_console');
