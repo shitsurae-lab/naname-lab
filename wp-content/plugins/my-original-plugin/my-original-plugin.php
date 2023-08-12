@@ -103,7 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TV95XN58');</script>
 <!-- End Google Tag Manager -->";
 }
-add_action('wp_enqueue_scripts', 'add_gtm_head');
+add_action('wp_head', 'add_gtm_head');
 
 //body直下にGTMコード記載
 function add_gtm_body()
@@ -129,10 +129,10 @@ setTimeout(mieruca, 500); document.readyState != \"complete\" ? (window.attachEv
 <!-- End Mieruca Embed Code -->";
 }
 
-add_action('wp_enqueue_scripts', 'add_mieruca_head');
+add_action('wp_head', 'add_mieruca_head');
 
 function add_search_console()
 {
   echo "\n" . '<meta name="google-site-verification" content="WL5pFVBfJSWnBHXvjSHWsKSUI9P54HoT158M2DCigBk" />' . "\n";
 }
-add_action('wp_enqueue_scripts', 'add_search_console');
+add_action('wp_head', 'add_search_console');
