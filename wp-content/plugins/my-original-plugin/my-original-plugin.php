@@ -133,6 +133,6 @@ add_action('wp_enqueue_scripts', 'add_mieruca_head');
 
 function add_search_console()
 {
-  echo '<meta name="google-site-verification" content="WL5pFVBfJSWnBHXvjSHWsKSUI9P54HoT158M2DCigBk" />';
+  echo "\n" . '<meta name="google-site-verification" content="WL5pFVBfJSWnBHXvjSHWsKSUI9P54HoT158M2DCigBk" />' . "\n";
 }
 add_action('wp_enqueue_scripts', 'add_search_console');
