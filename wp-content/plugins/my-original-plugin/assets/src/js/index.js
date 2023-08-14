@@ -20,17 +20,11 @@ intersection();
 
 //-- START GSAP & ScrollTrigger
 
-import {
-  myScroll,
-  myScroll2,
-  myTimeline,
-  myTimeline2,
-} from './myScrollTrigger';
+import { myScroll, myTimeline, myTimeline2 } from './myScrollTrigger';
 
+myScroll();
 myTimeline();
 myTimeline2();
-myScroll();
-myScroll2();
 
 // const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
 //   const arr = [hoge, fuga, piyo];

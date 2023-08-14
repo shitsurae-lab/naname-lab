@@ -4,185 +4,145 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /* --- 1 --- */
+//works下部
 const works_list_heading = document.querySelector('.p-works--lists__heading');
 if (works_list_heading) {
-  works_list_heading.classList.add('js-target');
+  works_list_heading.classList.add('js-scroll-trigger', 'js-scroll-element');
 }
 
-//works下部、それぞれのitemにjs-targetを付与
+//SERVICE下部
+const parent = document.querySelector('.p-profile--skills__container'); //配列
+if (parent) {
+  //SERVICE下部見出し
+  parent.firstElementChild.classList.add(
+    'js-scroll-trigger',
+    'js-scroll-element'
+  );
+}
+
+//WORKS・SERVICE下部共通
+//それぞれのitemにjs-targetを付与
 const [...arr] = document.querySelectorAll('.p-postList .p-postList__item');
 
 arr.forEach((elm) => {
-  elm.classList.add('js-target');
+  elm.classList.add('js-scroll-trigger', 'js-scroll-element');
 });
-
-// const [...arrs] = document.querySelectorAll(
-//   '.p-profile--skills__heading__inner'
-// );
-
-// arrs.forEach((elm) => {
-//   elm.classList.add('js-target');
-// });
-
-const parent = document.querySelector('.p-profile--skills__container'); //配列
-if (parent) {
-  parent.firstElementChild.classList.add('js-target');
-}
-
-// if (parent) {
-//   parent.forEach((elm) => {
-//     console.log(elm);
-//     elm.firstElementChild.classList.add('js-target');
-//   });
-// }
 
 /* ---END 1 --- */
 
 /* --- 2 --- */
 //Service中程のアイテムにjs-target-itemsを付与
 //NodeListを取得
-const columns = document.querySelector(
-  '.p-service__columns >.ark-block-columns__inner'
-);
-
-if (columns) {
-  const [...array] = columns.children;
-  array.forEach((elem) => {
-    elem.classList.add('js-target');
-  });
-}
 
 /* --- END 2 --- */
 
-// const items = columnsInner[0].children;
-// console.log(items);
-
-// items.forEach((item) => {
-//   item.classList.add('js-target');
-//   console.log(item);
-// });
-
-const FuncScrollBatch = (element, num = 3, text = 'スクロールトリガー') => {
-  // console.log(`${text}読みこんでます`);
-  const batch = ScrollTrigger.batch(element, {
-    // interval: 1,
-    batchMax: num,
-    onEnter: (batch) =>
+/* --- START Function 1 --- */
+const [...jsScrollElements] = document.querySelectorAll('.js-scroll-element');
+const [...jsScrollTrigger] = document.querySelectorAll('.js-scroll-trigger');
+const myScroll = () => {
+  if (jsScrollElements) {
+    jsScrollElements.forEach((elem) => {
       gsap.fromTo(
-        batch,
-        { autoAlpha: 0, x: 0, y: 8 },
+        elem,
+        {
+          autoAlpha: 0,
+          x: 0,
+          y: 8,
+        },
         {
           autoAlpha: 1,
           x: 0,
           y: 0,
           duration: 1.2,
-          ease: 'power4.out',
-          stagger: 0.2,
-        },
-        '-=.4'
-      ),
-    once: true,
-  });
-  return batch;
+          stagger: {
+            each: 0.8,
+            ease: 'power4.out',
+          },
+          scrollTrigger: {
+            trigger: elem.parentNode,
+            start: 'top 80%',
+          },
+        }
+      );
+    });
+  }
 };
-
-const myScroll = FuncScrollBatch;
-const jsTarget = document.querySelector('.js-target');
-
-myScroll(jsTarget);
-
-const myScroll2 = FuncScrollBatch;
-const jsTargetItem = document.querySelector('.js-target');
-myScroll2(jsTargetItem);
-
-// const FuncTimeline = (headline, media, text) => {
-//   const array = [headline, media, text];
-//   const tl = gsap.timeline();
-//   array.forEach((elem, index) => {
-//     if (index === 0) {
-//       tl.fromTo(
-//         elem,
-//         {
-//           autoAlpha: 0,
-//           y: 8,
-//         },
-//         {
-//           autoAlpha: 1,
-//           y: 0,
-//           duration: 1.2,
-//           ease: 'power4.out',
-//         },
-//         '+=3.2'
-//       );
-//     } else {
-//       tl.fromTo(
-//         elem,
-//         {
-//           autoAlpha: 0,
-//           x: -8,
-//         },
+// const myScroll = () => {
+//   ScrollTrigger.batch(jsScrollTarget, {
+//     interval: 0.1,
+//     batchMax: 1,
+//     onEnter: (batch) =>
+//       gsap.fromTo(
+//         batch,
+//         { autoAlpha: 0, x: 0, y: 8 },
 //         {
 //           autoAlpha: 1,
 //           x: 0,
+//           y: 0,
 //           duration: 1.2,
 //           ease: 'power4.out',
+//           stagger: { each: 0.2 },
 //         },
-//         '-=.8'
-//       );
-//     }
+//         '-=.2'
+//       ),
+//     once: true,
+//     start: 'top 80%',
+//     markers: 'true',
 //   });
-
-//   return array;
+//   return;
 // };
+
+/* --- END Function 1 --- */
+
 const FuncTimeline = (key) => {
   if (key) {
-  }
-  const array = gsap.utils.toArray(key);
-  const tl = gsap.timeline();
-  array.forEach((elem, index) => {
-    if (elem) {
-      if (index === 0) {
-        tl.fromTo(
-          elem,
-          {
-            autoAlpha: 0,
-            x: 0,
-            y: 8,
-          },
-          {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            duration: 1.2,
-            stagger: {
-              ease: 'power4.out',
+    const array = gsap.utils.toArray(key);
+    const tl = gsap.timeline();
+    array.forEach((elem, index) => {
+      if (elem) {
+        if (index === 0) {
+          tl.fromTo(
+            elem,
+            {
+              autoAlpha: 0,
+              x: 0,
+              y: 8,
             },
-          },
-          '+=3.2'
-        );
-      } else {
-        tl.fromTo(
-          elem,
-          {
-            autoAlpha: 0,
-            x: -4,
-            y: 0,
-          },
-          {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            duration: 1.2,
-            stagger: {
-              ease: 'power4.out',
-              each: -0.4,
+            {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: 1.2,
+              stagger: {
+                ease: 'power4.out',
+              },
             },
-          },
-          '-=.4'
-        );
+            '+=3.2'
+          );
+        } else {
+          tl.fromTo(
+            elem,
+            {
+              autoAlpha: 0,
+              x: -4,
+              y: 0,
+            },
+            {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: 1.2,
+              stagger: {
+                ease: 'power4.out',
+                each: -0.4,
+              },
+            },
+            '-=.4'
+          );
+        }
       }
-    }
-  });
+    });
+  }
 
   return;
 };
@@ -213,4 +173,4 @@ const myTimeline2 = FuncTimeline;
 myTimeline2(arrangement2);
 
 // export default myTimeline;
-export { myScroll, myScroll2, myTimeline, myTimeline2 };
+export { myScroll, myTimeline, myTimeline2 };
