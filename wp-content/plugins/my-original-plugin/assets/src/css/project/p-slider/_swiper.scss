@@ -59,6 +59,15 @@
               aspect-ratio: 8 / 5;
               clip-path: url(#cp-top);
             }
+            &::before {
+              content: '';
+              display: block;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(255, 255, 255, 0.5);
+              z-index: 1;
+            }
           }
         }
 
