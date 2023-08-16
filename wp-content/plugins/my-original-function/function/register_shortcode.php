@@ -117,3 +117,23 @@ function register_shortcode_fontawesome($atts)
   return $output;
 }
 add_shortcode('c-fontawesome', 'register_shortcode_fontawesome');
+
+//画像出し分け
+//PCでのみ表示するコンテンツ
+function if_is_pc($atts, $content = null)
+{
+  $content = do_shortcode($content);
+  if (!wp_is_mobile()) {
+    return $content;
+  }
+}
+add_shortcode('pc', 'if_is_pc');
+//スマートフォン・タブレットでのみ表示するコンテンツ
+function if_is_nopc($atts, $content = null)
+{
+  $content = do_shortcode($content);
+  if (wp_is_mobile()) {
+    return $content;
+  }
+}
+add_shortcode('nopc', 'if_is_nopc');
