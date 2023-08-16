@@ -97,9 +97,6 @@ function insert_front_slider()
                             // END
                             ?>
                             <?php if (wp_is_mobile()) : ?>
-
-
-
                               <?php
                               // START
                               $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
