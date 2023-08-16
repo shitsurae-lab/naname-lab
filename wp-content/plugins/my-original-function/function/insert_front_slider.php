@@ -12,7 +12,7 @@ function insert_front_slider()
 
   if (is_front_page()) :
     $paged = (get_query_var('page')) ? get_query_var('paged') : 1;
-    $list_count = 3; //スライダー数 当初は3
+    $list_count = 4; //スライダー数 当初は3
 
     // -- START: 先頭固定記事制御
     // $sticky = get_option('sticky_posts');
@@ -52,34 +52,6 @@ function insert_front_slider()
     $the_query = new WP_Query($args);
     $post_classes = 'swiper-slide';
 
-    //--- START: タームリスト
-    $term_query = new WP_Term_Query([
-      'taxonomy' => 'achievement_cat'
-    ]);
-    $list_src = '';
-    foreach ($term_query->get_terms() as $term_data) :
-      $img = '';
-      $term_img = get_term_meta($term_data->term_id, 'ark_meta_ttlbg', true);
-      if ($term_img) {
-        $img = Arkhe::get_image($term_img, array(
-          'size' => 'medium',
-          'alt' => $term_data->name,
-        ));
-      }
-      $list_src .= '<a href="' . get_term_link($term_data) . '" class="p-postList__link"><figure class="p-clipper">' . $img . '</figure></a>';
-    endforeach;
-    //--- END: タームリスト
-
-    /**
-     * トップエリア（タームアーカイブ用）
-     */
-    $term_obj         = get_queried_object();
-    $term_id          = $term_obj->term_id;
-    $term_description = apply_filters('arkhe_term_description', $term_obj->description, $term_id);
-    $show_description = apply_filters('arkhe_show_term_description', !empty($term_description), $term_id);
-    $bgimg_id         = apply_filters('arkhe_ttlbg_img_id', 0, $term_id);
-    $lazy_type        = apply_filters('arkhe_use_lazy_top_area', false) ? Arkhe::get_lazy_type() : '';
-
 ?>
     <section class="p-index__hero">
       <div class="hero-container">
@@ -111,15 +83,39 @@ function insert_front_slider()
                       <?php if (has_post_thumbnail()) :
                       ?>
 
-                        <a href="<?php the_permalink(); ?>" class="p-postList__link">
+                        <a href="<?php the_permalink();
+                                  ?>" class="p-postList__link">
                           <figure class="p-clipper">
                             <?php
                             $post_id = $post->ID;
-                            $thumb = get_the_post_thumbnail($post_id, 'full', ['class' => 'c-postThumb__img']);
-                            echo $thumb;
-                            //アイキャッチ画像URLの取得
-                            //$url = get_the_post_thumbnail_url($post_id, 'thumbnail');
                             ?>
+                            <?php
+                            // START
+                            $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                            $thumb_sp_url = '<img src="' . trim($thumb_url, 'pc.jpg') . 'sp.jpg' . '">';
+                            // var_dump($thumb_sp_url);
+                            // END
+                            ?>
+                            <?php if (wp_is_mobile()) : ?>
+
+
+
+                              <?php
+                              // START
+                              $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                              $thumb_sp_url = '<img src="' . trim($thumb_url, 'pc.jpg') . 'sp.jpg' . '">';
+                              echo $thumb_sp_url;
+                              // END
+                              ?>
+                            <?php else : ?>
+                              <?php
+                              $thumb = get_the_post_thumbnail($post_id, 'full', ['class' => 'c-postThumb__img']);
+                              echo $thumb;
+                              //アイキャッチ画像URLの取得
+                              //$url = get_the_post_thumbnail_url($post_id, 'thumbnail');
+                              ?>
+                            <?php endif; ?>
+
                           </figure>
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 741.66" width="0" height="0" preserveAspectRatio="xMidYMid meet">
@@ -134,11 +130,12 @@ function insert_front_slider()
                         </svg>
                         <!-- </div> -->
                       <?php else : ?>
-                        <a href="<?php the_permalink(); ?>">
-                          <figure class="p-clipper">
-                            <img src="<?php echo esc_url(get_template_directory_uri()) ?>/assets/img/noimg.png" alt="">
-                          </figure>
-                        </a>
+                        <!-- <a href="<?php //the_permalink();
+                                      ?>"> -->
+                        <figure class="p-clipper">
+                          <img src="<?php echo esc_url(get_template_directory_uri()) ?>/assets/img/noimg.png" alt="">
+                        </figure>
+                        <!-- </a> -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 741.66" width="0" height="0" preserveAspectRatio="xMidYMid meet">
                           <clippath id="cp-top" clipPathUnits="objectBoundingBox">
                             <path transform="scale(0.000833, 0.001348)" d="M1176 0H24C10.75 0 0 10.75 0 24v446.44c0 13.25 10.75 24 24 24h553c12.7 0 23 10.3 23 23v200.22c0 13.25 10.75 24 24 24h552c13.25 0 24-10.75 24-24V24c0-13.25-10.75-24-24-24Z" style="fill:#b3b3b3" />

@@ -26,6 +26,7 @@ include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar_2.php');
 
 //アーカイブページサイドバーカスタマイズ(追従)
 include_once(plugin_dir_path(__FILE__) . 'function/custom_archive_sidebar_2.php');
+
 include_once(plugin_dir_path(__FILE__) . 'function/custom_conditional_branch.php');
 
 //画像付きのページネーション
