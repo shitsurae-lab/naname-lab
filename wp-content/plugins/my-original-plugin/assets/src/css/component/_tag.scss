@@ -20,8 +20,8 @@
   }
   &__icon {
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     transition: transform 0.4s;
     &::before,
     &::after {
@@ -30,7 +30,7 @@
       left: 50%;
       content: '';
       display: inline-block;
-      width: 12px;
+      width: 10px;
       height: 2px;
 
       background: var(--color-moonlit-asteroid);
