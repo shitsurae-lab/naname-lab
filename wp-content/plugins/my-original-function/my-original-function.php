@@ -22,7 +22,7 @@ include_once(plugin_dir_path(__FILE__) . 'function/custom_footer.php');
 include_once(plugin_dir_path(__FILE__) . 'function/custom_image.php');
 
 //カスタム投稿タイプ-投稿詳細ページサイドバーカスタマイズ(追従)
-include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar_2.php');
+include_once(plugin_dir_path(__FILE__) . 'function/custom_post_sidebar.php');
 
 //アーカイブページサイドバーカスタマイズ(追従)
 include_once(plugin_dir_path(__FILE__) . 'function/custom_archive_sidebar_2.php');
