@@ -19,7 +19,7 @@ function custom_post_sidebar()
         <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
         <p id="recent-posts" class="p-newsList__heading">
           <?php
-          echo '<a href="' . get_category_link($cat->term_id) . '">'  . $icon_awesome . $cat_name . '</a>';
+          echo '<a href="' . get_category_link($cat->term_id) . '">'  . $icon_awesome . '<span>' . $cat_name . '</span></a>';
           ?>
         </p>
       </div>
@@ -47,29 +47,29 @@ function custom_post_sidebar()
     <div class="p-sidebar__content">
       <div class="p-sidebar__heading">
         <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
-        <details class="p-tag__details js-details">
-          <summary class="js-summary"><span class="p-summary__inner">keyword<span class="p-summary__icon p-tag__icon"></span></span></summary>
-
-          <div class="p-tag__details__content js-content">
-            <div class="p-tag__details__contentInner">
-              <ul>
-                <?php foreach ($terms as $term) : ?>
-                  <?php if ($term) :
-                    $term_name = $term->name;
-                    $term_slug = $term->slug;
-                    $term_link = get_term_link($term_slug, 'achievement_cat');
-                  ?>
-                    <li id="recent-posts" class="p-newsList__heading">
-                      <?php echo "<a href=\"" . $term_link . "\">" . $icon_awesome . $term_name . "</a>"; ?>
-                    </li>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-              </ul>
-
-            </div>
-          </div>
-        </details>
       </div>
+      <details class="p-tag__details js-details">
+        <summary class="js-summary"><span class="p-summary__inner">keyword<span class="p-summary__icon p-tag__icon"></span></span></summary>
+
+        <div class="p-tag__details__content js-content">
+          <div class="p-tag__details__contentInner">
+            <ul>
+              <?php foreach ($terms as $term) : ?>
+                <?php if ($term) :
+                  $term_name = $term->name;
+                  $term_slug = $term->slug;
+                  $term_link = get_term_link($term_slug, 'achievement_cat');
+                ?>
+                  <li id="recent-posts" class="p-newsList__heading">
+                    <?php echo '<a href="' . $term_link . '">' . $icon_awesome . '<span>' . $term_name . '</span></a>'; ?>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+
+          </div>
+        </div>
+      </details>
       <div class="p-sidebar__share">
         <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
         <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
@@ -109,7 +109,7 @@ function custom_post_sidebar()
               $term_link = get_term_link($term_slug, 'achievement_cat');
             ?>
               <li id="recent-posts" class="p-newsList__heading">
-                <?php echo "<a href=\"" . $term_link . "\">" . $icon_awesome . $term_name . "</a>"; ?>
+                <?php echo '<a href="' . $term_link . '">' . $icon_awesome . '<span>' . $term_name . '</span></a>'; ?>
               </li>
             <?php endif; ?>
           <?php endforeach; ?>
@@ -150,7 +150,7 @@ function custom_post_sidebar()
                 $term_link = get_term_link($term_slug, 'achievement_cat');
               ?>
                 <li id="recent-posts" class="p-newsList__heading">
-                  <?php echo "<a href=\"" . $term_link . "\">" . $icon_awesome . $term_name . "</a>"; ?>
+                  <?php echo '<a href="' . $term_link . '">' . $icon_awesome . '<span>' . $term_name . '</span></a>'; ?>
                 </li>
               <?php endif; ?>
             <?php endforeach; ?>
@@ -192,7 +192,7 @@ function custom_post_sidebar()
                 $term_link = get_term_link($term_slug, 'achievement_cat');
               ?>
                 <li id="recent-posts" class="p-newsList__heading">
-                  <?php echo "<a href=\"" . $term_link . "\">" . $icon_awesome . $term_name . "</a>"; ?>
+                  <?php echo '<a href="' . $term_link . '">' . $icon_awesome . '<span>' . $term_name . '</span></a>'; ?>
                 </li>
               <?php endif; ?>
             <?php endforeach; ?>
