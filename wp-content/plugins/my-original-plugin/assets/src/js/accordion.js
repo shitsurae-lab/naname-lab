@@ -1,5 +1,5 @@
 const accordionAnim = () => {
-  const details = document.querySelectorAll('.js-details');
+  const [...details] = document.querySelectorAll('.js-details');
   const RUNNING_VALUE = 'running'; // アニメーション実行中のときに付与する予定のカスタムデータ属性の値
   const IS_OPENED_CLASS = 'is-opened'; // アイコン操作用のクラス名
 
