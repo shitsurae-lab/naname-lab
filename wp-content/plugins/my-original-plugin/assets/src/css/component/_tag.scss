@@ -1,7 +1,7 @@
 @use '../global' as *;
 .p-tag {
   &__details {
-    color: var(--color-moonlit-asteroid);
+    color: var(--color-philippine-gray);
     font-weight: 500;
     display: flex;
     margin-bottom: 1rem;
@@ -33,7 +33,7 @@
       width: 10px;
       height: 2px;
 
-      background: var(--color-moonlit-asteroid);
+      background: var(--color-philippine-gray);
       transform: translate(-50%, -50%);
       transition: translate, 0.4s;
     }
@@ -88,7 +88,7 @@
     text-decoration: none;
     background: var(--color-primary);
     padding: 0.4rem 0.6rem;
-    color: var(--color-moonlit-asteroid);
+    color: var(--color-philippine-gray);
     border-radius: 100px;
     font-size: 0.75rem;
   }
