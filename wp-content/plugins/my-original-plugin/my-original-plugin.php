@@ -84,7 +84,9 @@ function add_google_fonts()
   wp_register_style(
     'googleFonts',
     // 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,600&display=swap'
-    'https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Hind:wght@300;400;500;600;700&family=Parisienne&display=swap'
+    'https://fonts.googleapis.com/css?family=Allura|Hind:wght@300;400|Montserrat:wght@300;400&display=swap',
+    false,
+    '1.0'
   );
   wp_enqueue_style('googleFonts');
 }
