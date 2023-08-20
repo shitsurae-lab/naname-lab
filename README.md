@@ -1,4 +1,3 @@
-# project--primary
+## History
+- Deploy WordPress with Github Actions after Reinstall OS on Aug 20, 2023 
 
-WordPress のデプロイを Github Actions で試してみた
-タグの追加
