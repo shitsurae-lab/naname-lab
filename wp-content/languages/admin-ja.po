@@ -191,101 +191,101 @@ msgstr "説明順のテーブル。"
 msgid "Table ordered hierarchically."
 msgstr "階層順のテーブル。"
 
-#: wp-admin/includes/class-wp-site-health.php:2798
+#: wp-admin/includes/class-wp-site-health.php:2790
 msgid "Available disk space"
 msgstr "利用可能なディスクスペース"
 
-#: wp-admin/includes/class-wp-site-health.php:2794
+#: wp-admin/includes/class-wp-site-health.php:2786
 msgid "Plugin and theme temporary backup directory access"
 msgstr "プラグインとテーマの一時バックアップディレクトリへのアクセス"
 
 #. translators: 1: wp-content/upgrade, 2: wp-content.
-#: wp-admin/includes/class-wp-site-health.php:2111
+#: wp-admin/includes/class-wp-site-health.php:2103
 msgid "The %1$s directory does not exist, and the server does not have write permissions in %2$s to create it. This directory is used for plugin and theme updates. Please make sure the server has write permissions in %2$s."
 msgstr "%1$s ディレクトリが存在せず、またサーバーには作成のための書き込み権限が %2$s にありません。このディレクトリはプラグインとテーマの更新で使用されます。%2$s にサーバーの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2108
+#: wp-admin/includes/class-wp-site-health.php:2100
 msgid "The upgrade directory cannot be created"
 msgstr "アップグレードディレクトリを作成できませんでした"
 
 #. translators: %s: wp-content/upgrade
-#: wp-admin/includes/class-wp-site-health.php:2100
+#: wp-admin/includes/class-wp-site-health.php:2092
 msgid "The %s directory exists but is not writable. This directory is used for plugin and theme updates. Please make sure the server has write permissions to this directory."
 msgstr "%s ディレクトリは存在しますが、書き込み可能ではありません。このディレクトリはプラグインとテーマの更新に使用されます。サーバーにこのディレクトリへの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2097
+#: wp-admin/includes/class-wp-site-health.php:2089
 msgid "The upgrade directory exists but is not writable"
 msgstr "アップグレードディレクトリは存在しますが、書き込み可能ではありません"
 
 #. translators: %s: wp-content/upgrade-temp-backup
-#: wp-admin/includes/class-wp-site-health.php:2089
+#: wp-admin/includes/class-wp-site-health.php:2081
 msgid "The %s directory exists but is not writable. This directory is used to improve the stability of plugin and theme updates. Please make sure the server has write permissions to this directory."
 msgstr "%s ディレクトリは存在しますが、書き込み可能でありません。このディレクトリはプラグインとテーマの更新の安定性を向上させるために使用されます。サーバーにこのディレクトリへの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2086
+#: wp-admin/includes/class-wp-site-health.php:2078
 msgid "The temporary backup directory exists but is not writable"
 msgstr "一時バックアップディレクトリは存在しますが、書き込み可能ではありません"
 
 #. translators: %s: wp-content/upgrade-temp-backup/themes
-#: wp-admin/includes/class-wp-site-health.php:2078
+#: wp-admin/includes/class-wp-site-health.php:2070
 msgid "The %s directory exists but is not writable. This directory is used to improve the stability of theme updates. Please make sure the server has write permissions to this directory."
 msgstr "%s ディレクトリは存在しますが、書き込み可能ではありません。このディレクトリはテーマ更新の安定性を向上させるために使用されます。サーバーにこのディレクトリへの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2075
+#: wp-admin/includes/class-wp-site-health.php:2067
 msgid "Theme temporary backup directory exists but is not writable"
 msgstr "テーマの一時バックアップディレクトリは存在しますが、書き込み可能ではありません"
 
 #. translators: %s: wp-content/upgrade-temp-backup/plugins
-#: wp-admin/includes/class-wp-site-health.php:2067
+#: wp-admin/includes/class-wp-site-health.php:2059
 msgid "The %s directory exists but is not writable. This directory is used to improve the stability of plugin updates. Please make sure the server has write permissions to this directory."
 msgstr "%s ディレクトリは存在しますが、書き込み可能ではありません。このディレクトリはプラグイン更新の安定性を向上させるために使用されます。サーバーにこのディレクトリへの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2064
+#: wp-admin/includes/class-wp-site-health.php:2056
 msgid "Plugin temporary backup directory exists but is not writable"
 msgstr "プラグインの一時バックアップディレクトリは存在しますが、書き込み可能ではありません"
 
 #. translators: 1: wp-content/upgrade-temp-backup/plugins, 2:
 #. wp-content/upgrade-temp-backup/themes.
-#: wp-admin/includes/class-wp-site-health.php:2055
+#: wp-admin/includes/class-wp-site-health.php:2047
 msgid "The %1$s and %2$s directories exist but are not writable. These directories are used to improve the stability of plugin updates. Please make sure the server has write permissions to these directories."
 msgstr "%1$s と %2$s ディレクトリは存在しますが、書き込み可能ではありません。これらのディレクトリは、プラグイン更新の安定性を向上させるために使用されます。サーバーにこれらのディレクトリへの書き込み権限があることを確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2052
+#: wp-admin/includes/class-wp-site-health.php:2044
 msgid "Plugin and theme temporary backup directories exist but are not writable"
 msgstr "プラグインとテーマの一時バックアップディレクトリは存在しますが、書き込み可能ではありません"
 
 #. translators: %s: wp-content
-#: wp-admin/includes/class-wp-site-health.php:2034
+#: wp-admin/includes/class-wp-site-health.php:2026
 msgid "The %s directory cannot be located."
 msgstr "%s ディレクトリが見つかりません。"
 
 #. translators: %s: wp-content/upgrade-temp-backup
-#: wp-admin/includes/class-wp-site-health.php:2005
+#: wp-admin/includes/class-wp-site-health.php:1997
 msgid "The %s directory used to improve the stability of plugin and theme updates is writable."
 msgstr "プラグインとテーマの更新の安定性を向上させるために使用される %s ディレクトリは書き込み可能です。"
 
-#: wp-admin/includes/class-wp-site-health.php:1997
+#: wp-admin/includes/class-wp-site-health.php:1989
 msgid "Plugin and theme temporary backup directory is writable"
 msgstr "プラグインとテーマの一時バックアップディレクトリは書き込み可能です"
 
-#: wp-admin/includes/class-wp-site-health.php:1977
+#: wp-admin/includes/class-wp-site-health.php:1963
 msgid "Could not determine available disk space for updates."
 msgstr "アップデートに利用可能なディスクスペースを特定できませんでした。"
 
-#: wp-admin/includes/class-wp-site-health.php:1972
+#: wp-admin/includes/class-wp-site-health.php:1966
 msgid "Available disk space is critically low, less than 20 MB available. Proceed with caution, updates may fail."
 msgstr "利用可能なディスクスペースが極端に少なく、20 MB 未満です。更新に失敗する可能性があるので注意してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:1967
+#: wp-admin/includes/class-wp-site-health.php:1969
 msgid "Available disk space is low, less than 100 MB available."
 msgstr "利用可能なディスクスペースが少なく、100 MB 未満です。"
 
 #. translators: %s: Available disk space in MB or GB.
-#: wp-admin/includes/class-wp-site-health.php:1959
+#: wp-admin/includes/class-wp-site-health.php:1955
 msgid "%s available disk space was detected, update routines can be performed safely."
 msgstr "%s の利用可能なディスクスペースが検出されたため、更新ルーチンを安全に実行できます。"
 
-#: wp-admin/includes/class-wp-site-health.php:1951
+#: wp-admin/includes/class-wp-site-health.php:1947
 msgid "Disk space available to safely perform updates"
 msgstr "更新を安全に実行するために利用可能なディスクスペース"
 
@@ -514,131 +514,131 @@ msgid "Be the future of WordPress"
 msgstr "WordPressの未来を築こう"
 
 #. translators: 1: Learn WordPress link, 2: Workshops link.
-#: wp-admin/about.php:252
+#: wp-admin/about.php:283
 msgid "<a href=\"%1$s\">Learn WordPress</a> is a free resource for new and experienced WordPress users. Learn is stocked with how-to videos on using various features in WordPress, <a href=\"%2$s\">interactive events</a> for exploring topics in-depth, and lesson plans for diving deep into specific areas of WordPress."
 msgstr "<a href=\"%1$s\">Learn WordPress</a> は WordPress の初心者と経験者、両者のための無料リソースです。Learn には、WordPress の様々な機能を使用するためのハウツー動画、トピックを深く掘り下げる<a href=\"%2$s\">対話型イベント</a>、WordPress の特定の領域を深く探るレッスンプランが用意されています。"
 
-#: wp-admin/about.php:228
+#: wp-admin/about.php:259
 msgid "Create unique patterns to jumpstart template creation with a new modal enabling access to pattern selection."
 msgstr "ユニークなパターンを作成し、テンプレート作成を加速しましょう。新しいモーダルでは、パターン選択にアクセスできます。"
 
-#: wp-admin/about.php:227
+#: wp-admin/about.php:258
 msgid "Build templates with Patterns"
 msgstr "パターンでテンプレートを構築"
 
-#: wp-admin/about.php:217
+#: wp-admin/about.php:248
 msgid "Drag and drop to every content layer and delete any block you would like in the updated List View."
 msgstr "更新されたリストビューでは、すべてのコンテンツレイヤーにドラッグ & ドロップし、任意のブロックを削除できます。"
 
-#: wp-admin/about.php:216
+#: wp-admin/about.php:247
 msgid "List View improvements"
 msgstr "リストビューの改良"
 
-#: wp-admin/about.php:205
+#: wp-admin/about.php:236
 msgid "A revamped top toolbar offers parent selectors for nested blocks, options when selecting multiple blocks, and a new interface embedded into the title bar with new functionality in mind."
 msgstr "刷新されたトップツールバーには、ネストされたブロックの親ブロックを選択するためのセレクター、複数ブロックを選択した際のオプション、新機能を考慮した新しいインターフェースがタイトルバーに埋め込まれています。"
 
-#: wp-admin/about.php:204
+#: wp-admin/about.php:235
 msgid "Rediscover the Top Toolbar"
 msgstr "トップツールバーの再発見"
 
-#: wp-admin/about.php:191
+#: wp-admin/about.php:222
 msgid "Distraction-free designing is now available in the Site Editor."
 msgstr "サイトエディター内で、気が散ることなくデザインできるようになりました。"
 
-#: wp-admin/about.php:190
+#: wp-admin/about.php:221
 msgid "Build your site distraction-free"
 msgstr "気が散らないサイト構築"
 
-#: wp-admin/about.php:181
+#: wp-admin/about.php:212
 msgid "Specify your aspect ratios and ensure design integrity, especially when using images in patterns."
 msgstr "パターンで画像を使う時、アスペクト比を指定してデザインの整合性を高めてください。"
 
-#: wp-admin/about.php:180
+#: wp-admin/about.php:211
 msgid "Set aspect ratio on images"
 msgstr "画像のアスペクト比を設定"
 
-#: wp-admin/about.php:171
+#: wp-admin/about.php:202
 msgid "Experience block themes before you switch and preview the Site Editor, with options to customize directly before committing to a new theme."
 msgstr "切り替えてサイトエディターでプレビューする前にブロックテーマを体験できます。新しいテーマを有効化せずに直接カスタマイズするオプションもあります。"
 
-#: wp-admin/about.php:170
+#: wp-admin/about.php:201
 msgid "Preview block themes"
 msgstr "ブロックテーマのプレビュー"
 
-#: wp-admin/about.php:156
+#: wp-admin/about.php:187
 msgid "Incorporating more than 50 accessibility improvements across the platform, WordPress 6.3 is more accessible than ever. Improved labeling, optimized tab and arrow-key navigation, revised heading hierarchy, and new controls in the admin image editor allow those using assistive technologies to navigate more easily."
 msgstr "プラットフォーム全体で50以上のアクセシビリティの改善が行われ、WordPress 6.3はこれまで以上にアクセシブルになりました。改善されたラベル、最適化されたタブと矢印キーのナビゲーション、改善された見出しの階層、管理画面の画像エディターにおける新しいコントロール。支援技術の使用者は、より簡単に操作できます。"
 
-#: wp-admin/about.php:155
+#: wp-admin/about.php:186
 msgid "Accessibility remains a core focus"
 msgstr "アクセシビリティは引き続き中核です"
 
-#: wp-admin/about.php:146
+#: wp-admin/about.php:177
 msgid "WordPress 6.3 has 170+ performance updates, including defer and async support for the Scripts API and fetchpriority support for images. These improvements can improve your website&#8217;s load time as perceived by visitors, along with block template resolution, image lazy-loading, and the emoji loader."
 msgstr "WordPress 6.3には、Scripts API の defer および async サポート、画像の fetchpriority サポート等、170以上のパフォーマンスアップデートが含まれています。これらの改善に加えブロックテンプレートの解像度、画像の遅延読み込み、絵文字ローダーにより、訪問者が感じるウェブサイトの読み込み時間が改善されました。"
 
-#: wp-admin/about.php:145
+#: wp-admin/about.php:176
 msgid "Performance gets a boost"
 msgstr "パフォーマンスが向上"
 
-#: wp-admin/about.php:131
+#: wp-admin/about.php:162
 msgid "Use the block to avoid spoiling a surprise, create an interactive Q&A section, or hide a long paragraph under a heading."
 msgstr "ネタバレを防止したり、Q&A セクションを作成したり、見出しの下に長文を隠しておくのに便利なブロックです。"
 
-#: wp-admin/about.php:130
+#: wp-admin/about.php:161
 msgid "Show or hide content with the Details block"
 msgstr "詳細ブロックで、コンテンツの表示 / 非表示を切り替え"
 
-#: wp-admin/about.php:124
+#: wp-admin/about.php:155
 msgid "Footnotes add convenient annotations throughout your content. Now you can add and link footnotes for any paragraph."
 msgstr "脚注ブロックは、コンテンツ全体を通して機能する便利な注釈を追加します。任意の段落に対して脚注を追加し、リンクすることができるようになりました。"
 
-#: wp-admin/about.php:123
+#: wp-admin/about.php:154
 msgid "Annotate with the Footnotes block"
 msgstr "脚注ブロックで、注釈を追加"
 
-#: wp-admin/about.php:117
+#: wp-admin/about.php:148
 msgid "You can now see how your site looked at a specific time. Visualize these revisions in a timeline and access a one-click option to restore prior styles."
 msgstr "過去にサイトがどのような見た目だったか、日時ごとに確認できるようになりました。変更履歴をタイムラインで視覚化し、1クリックで以前のスタイルに戻せます。"
 
-#: wp-admin/about.php:116
+#: wp-admin/about.php:147
 msgid "Track design changes with Style Revisions"
 msgstr "スタイルリビジョンでデザイン変更を追跡"
 
-#: wp-admin/about.php:102
+#: wp-admin/about.php:133
 msgid "New design controls bring more versatility for fine-tuning designs, starting with the ability to customize your caption&#8217;s styles from the Styles Interface without coding. You can manage your duotone filters in Styles for supported blocks and pick from the options provided by your theme or disable them entirely. The Cover block gets added settings for text color, layout controls, and border options, making this powerful block even more handy."
 msgstr "新しいデザインコントロールはきめ細かいデザインのために多様な機能を提供します。キャプションのスタイルをスタイルインターフェイスからコーディングせずにカスタマイズする機能に始まり、サポートするブロックに対してデュオトーンフィルタをスタイルで管理でき、テーマで提供されるオプションから選択したり、完全に無効にできます。カバーブロックは、テキストカラー、レイアウトコントロール、ボーダーオプションの設定を追加し、強力なブロックがさらに便利になりました。"
 
-#: wp-admin/about.php:101
+#: wp-admin/about.php:132
 msgid "Sharpen your designs with new tools"
 msgstr "新しいツールでデザインを洗練"
 
-#: wp-admin/about.php:95
+#: wp-admin/about.php:126
 msgid "Switch to a specific template or open your editor preferences with a new tool that helps you quickly navigate expanded functionality. With simple keyboard shortcuts (⌘+k on Mac or Ctrl+k on Windows), clicking the sidebar search icon in Site View, or clicking the Title Bar, get where you need to go and do what you need to do in seconds."
 msgstr "新しいツールを使用して素早く特定のテンプレートを切り替え、エディターの設定を開き、拡張された機能をナビゲートできます。シンプルなキーボードショートカット (Mac では ⌘+k、Windows ではctrl+k)、サイトビューのサイドバー検索アイコンのクリック、またはタイトルバーのクリックで起動し、目的の場所に移動し、一瞬で必要なタスクを実行できます。"
 
-#: wp-admin/about.php:94
+#: wp-admin/about.php:125
 msgid "Work faster with the Command Palette"
 msgstr "コマンドパレットでスピードアップ"
 
-#: wp-admin/about.php:78
+#: wp-admin/about.php:109
 msgid "Arrange blocks in unlimited ways and save them as Patterns for use throughout your site. You can even specify whether to sync your patterns (previously referred to as “reusable blocks”) so that one change applies to all parts of your site. Or, utilize patterns as a starting point with the ability to customize each instance."
 msgstr "ブロックを自由に配置し、パターンとして保存してサイト全体で利用しましょう。パターン (以前は「再利用ブロック」と呼ばれていた) を同期させ、1つの変更がサイト内のすべての箇所に適用されるよう指定することもできますし、インスタンスごとにカスタマイズ可能なパターンを手始めに利用することもできます。"
 
-#: wp-admin/about.php:77
+#: wp-admin/about.php:108
 msgid "Create and sync patterns"
 msgstr "パターンの作成と同期"
 
-#: wp-admin/about.php:71
+#: wp-admin/about.php:102
 msgid "WordPress 6.3 brings your content, templates, and patterns together in the Site Editor for the first time. Add pages, browse style variations, create synced patterns, and enjoy fine-tuned control over your navigation menus. No more time wasted switching across different site areas—now you can focus on what matters most. Creation to completion, all in one place."
 msgstr "WordPress 6.3では、コンテンツ、テンプレート、パターンが初めてサイトエディターに統合されました。ページの追加、スタイルバリエーションの閲覧、同期パターンの作成、ナビゲーションメニューのきめ細かなコントロールをお楽しみください。これからは、異なるサイト領域を切り替える無駄もなく、最も重要なことに集中できるようになります。作成から完成まで、すべてを1つの場所で。"
 
-#: wp-admin/about.php:70
+#: wp-admin/about.php:101
 msgid "Do everything in the Site Editor"
 msgstr "サイトエディターですべて完結"
 
-#: wp-admin/about.php:58
+#: wp-admin/about.php:89
 msgid "Create beautiful and compelling websites more efficiently than ever. Whether you want to build an entire site without coding or are a developer looking to customize every detail, WordPress 6.3 has something for you."
 msgstr "美しく魅力的なサイトをこれまでより効率的に作成できます。コーディングなしでサイト全体を構築したい場合でも、あらゆる詳細をカスタマイズしたい開発者であっても、WordPress 6.3はあなたにぴったりの機能を提供します。"
 
@@ -790,12 +790,12 @@ msgid "<a href=\"https://wordpress.org/documentation/article/customizer/\">Docum
 msgstr "<a href=\"https://wordpress.org/documentation/article/customizer/\">カスタマイザーの解説</a>"
 
 #. translators: The localized WordPress download URL.
-#: wp-admin/about.php:377
+#: wp-admin/about.php:408
 msgid "https://wordpress.org/download/"
 msgstr "http://ja.wordpress.org/download/"
 
 #. translators: %s: The major version of WordPress for this branch.
-#: wp-admin/about.php:374
+#: wp-admin/about.php:405
 msgid "This is the final release of WordPress %s"
 msgstr "これは WordPress %s の最新リリースです"
 
@@ -912,150 +912,150 @@ msgstr "サイトは古いバージョンの PHP (%s) で実行されていま�
 msgid "Your site is running on an outdated version of PHP (%s), which does not receive security updates and soon will not be supported by WordPress. Ensure that PHP is updated on your server as soon as possible. Otherwise you will not be able to upgrade WordPress."
 msgstr "このサイトは古いバージョンの PHP (%s) を実行しています。このバージョンではセキュリティアップデートを受け取れず、また、まもなく WordPress でサポートされなくなります。サーバーの PHP をできるだけ早く更新してください。そうでないと、WordPress をアップグレードできなくなります。"
 
-#: wp-admin/includes/class-wp-site-health.php:2851
+#: wp-admin/includes/class-wp-site-health.php:2843
 msgid "Persistent object cache"
 msgstr "永続オブジェクトキャッシュ"
 
-#: wp-admin/includes/class-wp-site-health.php:2844
+#: wp-admin/includes/class-wp-site-health.php:2836
 msgid "Page cache"
 msgstr "ページキャッシュ"
 
-#: wp-admin/includes/class-wp-site-health.php:2696
+#: wp-admin/includes/class-wp-site-health.php:2688
 msgid "You should use a persistent object cache"
 msgstr "永続オブジェクトキャッシュを使用してください"
 
 #. translators: Available object caching services.
-#: wp-admin/includes/class-wp-site-health.php:2675
+#: wp-admin/includes/class-wp-site-health.php:2667
 msgid "Your host appears to support the following object caching services: %s."
 msgstr "お使いのホスティングサービスでは、次のオブジェクトキャッシュサービスをサポートしているようです: %s。"
 
-#: wp-admin/includes/class-wp-site-health.php:2670
+#: wp-admin/includes/class-wp-site-health.php:2662
 msgid "Your hosting provider can tell you if a persistent object cache can be enabled on your site."
 msgstr "ホスティングサービスに問い合わせれば、サイトで永続オブジェクトキャッシュを有効化できるかどうかがわかります。"
 
-#: wp-admin/includes/class-wp-site-health.php:2663
+#: wp-admin/includes/class-wp-site-health.php:2655
 msgid "A persistent object cache is not required"
 msgstr "永続オブジェクトキャッシュは必須ではありません"
 
-#: wp-admin/includes/class-wp-site-health.php:2652
+#: wp-admin/includes/class-wp-site-health.php:2644
 msgid "Learn more about persistent object caching."
 msgstr "永続オブジェクトキャッシュについてさらに詳しく。"
 
-#: wp-admin/includes/class-wp-site-health.php:2647
+#: wp-admin/includes/class-wp-site-health.php:2639
 msgid "A persistent object cache makes your site&#8217;s database more efficient, resulting in faster load times because WordPress can retrieve your site&#8217;s content and settings much more quickly."
 msgstr "永続オブジェクトキャッシュは、サイトのデータベースの効率を上げます。その結果、WordPress がサイトのコンテンツや設定を迅速に取得できるようになるため、読み込み時間を短縮できます。"
 
-#: wp-admin/includes/class-wp-site-health.php:2644
+#: wp-admin/includes/class-wp-site-health.php:2636
 msgid "A persistent object cache is being used"
 msgstr "永続オブジェクトキャッシュを使用中です"
 
 #. translators: Localized Support reference.
-#: wp-admin/includes/class-wp-site-health.php:2634
+#: wp-admin/includes/class-wp-site-health.php:2626
 msgid "https://wordpress.org/documentation/article/optimization/#persistent-object-cache"
 msgstr "https://ja.wordpress.org/support/article/optimization/#persistent-object-cache"
 
-#: wp-admin/includes/class-wp-site-health.php:2609
+#: wp-admin/includes/class-wp-site-health.php:2601
 msgid "A page cache plugin was not detected."
 msgstr "ページキャッシュプラグインは検出されませんでした。"
 
-#: wp-admin/includes/class-wp-site-health.php:2606
+#: wp-admin/includes/class-wp-site-health.php:2598
 msgid "A page cache plugin was detected."
 msgstr "ページキャッシュプラグインを検出しました。"
 
 #. translators: %d: Number of caching headers.
-#: wp-admin/includes/class-wp-site-health.php:2593
+#: wp-admin/includes/class-wp-site-health.php:2585
 msgid "There was %d client caching response header detected:"
 msgid_plural "There were %d client caching response headers detected:"
 msgstr[0] "%d個のクライアントキャッシュレスポンスヘッダーを検出しました:"
 
-#: wp-admin/includes/class-wp-site-health.php:2588
+#: wp-admin/includes/class-wp-site-health.php:2580
 msgid "No client caching response headers were detected."
 msgstr "クライアントキャッシュレスポンスヘッダーを検出できませんでした。"
 
 #. translators: 1: The response time in milliseconds, 2: The recommended
 #. threshold in milliseconds.
-#: wp-admin/includes/class-wp-site-health.php:2581
+#: wp-admin/includes/class-wp-site-health.php:2573
 msgid "Median server response time was %1$s milliseconds. It should be less than the recommended %2$s milliseconds threshold."
 msgstr "サーバーの応答時間の中央値は%1$sミリ秒でした。推奨されるしきい値%2$sミリ秒以下の時間でなければなりません。"
 
 #. translators: 1: The response time in milliseconds, 2: The recommended
 #. threshold in milliseconds.
-#: wp-admin/includes/class-wp-site-health.php:2574
+#: wp-admin/includes/class-wp-site-health.php:2566
 msgid "Median server response time was %1$s milliseconds. This is less than the recommended %2$s milliseconds threshold."
 msgstr "サーバーのレスポンスの中央値は%1$sミリ秒でした。推奨される%2$sミリ秒のしきい値を下回っています。"
 
-#: wp-admin/includes/class-wp-site-health.php:2567
+#: wp-admin/includes/class-wp-site-health.php:2559
 msgid "Server response time could not be determined. Verify that loopback requests are working."
 msgstr "サーバーの応答時間を特定できませんでした。ループバックリクエストが動作しているか確認してください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2560
+#: wp-admin/includes/class-wp-site-health.php:2552
 msgid "Page cache is detected but the server response time is still slow"
 msgstr "ページキャッシュが検出されましたが、サーバーのレスポンスはまだ遅いです"
 
-#: wp-admin/includes/class-wp-site-health.php:2558
+#: wp-admin/includes/class-wp-site-health.php:2550
 msgid "Page cache is not detected and the server response time is slow"
 msgstr "ページキャッシュが検出されず、サーバーのレスポンスが遅くなっています"
 
-#: wp-admin/includes/class-wp-site-health.php:2554
+#: wp-admin/includes/class-wp-site-health.php:2546
 msgid "Page cache is detected and the server response time is good"
 msgstr "ページキャッシュが検出され、サーバーのレスポンスは良好です"
 
-#: wp-admin/includes/class-wp-site-health.php:2551
+#: wp-admin/includes/class-wp-site-health.php:2543
 msgid "Page cache is not detected but the server response time is OK"
 msgstr "ページキャッシュは検出されませんでしたが、サーバーのレスポンスは良好です"
 
 #. translators: 1: Error message, 2: Error code.
-#: wp-admin/includes/class-wp-site-health.php:2539
+#: wp-admin/includes/class-wp-site-health.php:2531
 msgid "Unable to detect page cache due to possible loopback request problem. Please verify that the loopback request test is passing. Error: %1$s (Code: %2$s)"
 msgstr "恐らくループバックリクエスト問題のため、ページキャッシュを検出できません。ループバックリクエストテストに合格することを確認してください。エラー: %1$s (コード: %2$s)"
 
-#: wp-admin/includes/class-wp-site-health.php:2535
+#: wp-admin/includes/class-wp-site-health.php:2527
 msgid "Unable to detect the presence of page cache"
 msgstr "ページキャッシュの存在を検出できません"
 
-#: wp-admin/includes/class-wp-site-health.php:2526
+#: wp-admin/includes/class-wp-site-health.php:2518
 msgid "Learn more about page cache"
 msgstr "ページキャッシュについてもっと詳しく"
 
-#: wp-admin/includes/class-wp-site-health.php:2525
+#: wp-admin/includes/class-wp-site-health.php:2517
 msgid "https://wordpress.org/documentation/article/optimization/#Caching"
 msgstr "https://ja.wordpress.org/support/article/optimization/#Caching"
 
-#: wp-admin/includes/class-wp-site-health.php:2511
+#: wp-admin/includes/class-wp-site-health.php:2503
 msgid "Page cache is detected by looking for an active page cache plugin as well as making three requests to the homepage and looking for one or more of the following HTTP client caching response headers:"
 msgstr "ページキャッシュの検出は、有効化されたページキャッシュプラグインの検索のほか、ホームページへのリクエストを3回行い、以下のHTTPクライアントキャッシュレスポンスヘッダーのうち1つ以上の検索で行います:"
 
-#: wp-admin/includes/class-wp-site-health.php:2510
+#: wp-admin/includes/class-wp-site-health.php:2502
 msgid "Page cache enhances the speed and performance of your site by saving and serving static pages instead of calling for a page every time a user visits."
 msgstr "ページキャッシュは、ユーザーがアクセスするたびにページを読み込むのではなく、静的なページを保存して提供することで、サイトの速度とパフォーマンスを向上させます。"
 
-#: wp-admin/includes/class-wp-site-health.php:2476
+#: wp-admin/includes/class-wp-site-health.php:2468
 msgid "If you are still seeing this warning after having tried the actions below, you may need to contact your hosting provider for further assistance."
 msgstr "以下の操作を試してもこの警告が引き続き表示される場合は、ホスティングサービスに連絡のうえサポートを受けてください。"
 
-#: wp-admin/includes/class-wp-site-health.php:2459
+#: wp-admin/includes/class-wp-site-health.php:2451
 msgid "The Authorization header is used by third-party applications you have approved for this site. Without this header, those apps cannot connect to your site."
 msgstr "Authorization ヘッダーは、このサイトに対して承認されたサードパーティアプリケーションによって使用されます。このヘッダーが無い場合、アプリケーションはサイトに接続できません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2315
+#: wp-admin/includes/class-wp-site-health.php:2307
 msgid "When testing the REST API, an unexpected result was returned:"
 msgstr "REST API のテスト時に、予期しない結果が返されました:"
 
 #. translators: 1: The WordPress error code. 2: The WordPress error message.
 #. translators: 1: The WordPress error code. 2: The HTTP status code error
 #. message.
-#: wp-admin/includes/class-wp-site-health.php:2303
-#: wp-admin/includes/class-wp-site-health.php:2323
+#: wp-admin/includes/class-wp-site-health.php:2295
+#: wp-admin/includes/class-wp-site-health.php:2315
 msgid "REST API Response: (%1$s) %2$s"
 msgstr "REST API レスポンス: (%1$s) %2$s"
 
 #. translators: %s: The REST API URL.
-#: wp-admin/includes/class-wp-site-health.php:2298
-#: wp-admin/includes/class-wp-site-health.php:2318
+#: wp-admin/includes/class-wp-site-health.php:2290
+#: wp-admin/includes/class-wp-site-health.php:2310
 msgid "REST API Endpoint: %s"
 msgstr "REST API エンドポイント: %s"
 
-#: wp-admin/includes/class-wp-site-health.php:2295
+#: wp-admin/includes/class-wp-site-health.php:2287
 msgid "When testing the REST API, an error was encountered:"
 msgstr "REST API のテスト時に、エラーが発生しました:"
 
@@ -1130,31 +1130,31 @@ msgid "Reach out to WordPress Core developers to ensure you'll never have this p
 msgstr "この問題が再発しないようにするためには、WordPress コア開発者にご連絡ください。"
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:371
+#: wp-admin/about.php:402
 msgid "Important! Your version of WordPress (%1$s) will stop receiving security updates in the near future. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "重要: お使いの WordPress バージョン (%1$s) では、近い将来にセキュリティアップデートの受信が終了します。サイトを安全に保つため、<a href=\"%2$s\">最新バージョンの WordPress に更新</a>してください。"
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:368
+#: wp-admin/about.php:399
 msgid "Important! Your version of WordPress (%1$s) is no longer supported, you will not receive any security updates for your website. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "重要: お使いの WordPress バージョン (%1$s) はサポートされなくなったため、サイトでセキュリティ更新プログラムを受け取ることができません。サイトを安全に保つため、<a href=\"%2$s\">最新バージョンの WordPress に更新</a>してください。"
 
-#: wp-admin/about.php:274
+#: wp-admin/about.php:305
 msgid "https://make.wordpress.org/core/2023/07/18/wordpress-6-3-field-guide/"
 msgstr "https://make.wordpress.org/core/2023/07/18/wordpress-6-3-field-guide/"
 
 #. translators: 1: WordPress Release Notes link, 2: WordPress version number.
-#: wp-admin/about.php:291
+#: wp-admin/about.php:322
 msgid "<a href=\"%1$s\">Read the WordPress %2$s Release Notes</a> for more information on the included enhancements and issues fixed, installation information, developer notes and resources, release contributors, and the list of file changes in this release."
 msgstr "詳細な情報については <a href=\"%1$s\">WordPress %2$s リリースノート</a>を参照してください。拡張された機能や修正された問題、インストール情報、開発者向け情報やリソース、このバージョンのコントリビューター、変更されたファイル一覧が記載されています。"
 
 #. translators: %s: WordPress Field Guide link.
-#: wp-admin/about.php:273
+#: wp-admin/about.php:304
 msgid "Check out the latest version of the <a href=\"%s\">WordPress Field Guide</a>. It is overflowing with detailed developer notes to help you build with WordPress."
 msgstr "<a href=\"%s\">WordPress フィールドガイド</a>の最新版をチェックしてください。WordPress 構築における詳細な開発者情報が盛りだくさんです。"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:243
+#: wp-admin/about.php:274
 msgid "Learn more about WordPress %s"
 msgstr "WordPress %sの詳細"
 
@@ -1883,7 +1883,7 @@ msgid "Cannot send password reset, permission denied."
 msgstr "パスワードリセットを送信できません。権限がありません。"
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2419
+#: wp-admin/includes/class-wp-site-health.php:2411
 msgid "The setting for %1$s is currently configured as 0, this could cause some problems when trying to upload files through plugin or theme features that rely on various upload methods. It is recommended to configure this setting to a fixed value, ideally matching the value of %2$s, as some upload methods read the value 0 as either unlimited, or disabled."
 msgstr "現在、%1$s の設定は0として構成されていますが、さまざまなアップロード方式に依存したプラグインやテーマの機能を使用してファイルをアップロードしようとすると、問題を生じる可能性があります。いくつかのアップロード方式では値0を制限なし、または無効と判断するため、この設定を固定値、理想的には %2$s の値と同じ値で構成することを推奨します。"
 
@@ -2009,7 +2009,7 @@ msgstr "PHP の更新を推奨"
 msgid "Your website appears to use Basic Authentication, which is not currently compatible with Application Passwords."
 msgstr "サイトでは Basic 認証が使われているようですが、現在、アプリケーションパスワードとは互換性がありません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2492
+#: wp-admin/includes/class-wp-site-health.php:2484
 msgid "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-is-authentication-not-working"
 msgstr "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-is-authentication-not-working"
 
@@ -2076,7 +2076,7 @@ msgstr "新しいアプリケーションパスワードを追加"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "アプリケーションパスワードの作成に必要ですが、ユーザーの更新には不要です。"
 
-#: wp-admin/about.php:312
+#: wp-admin/about.php:343
 msgid "Go to Updates"
 msgstr "更新へ移動"
 
@@ -2257,27 +2257,27 @@ msgstr "- %1$s (バージョン%2$sから%3$sへ)"
 msgid "Current Header Video"
 msgstr "現在のヘッダー動画"
 
-#: wp-admin/includes/class-wp-site-health.php:2833
+#: wp-admin/includes/class-wp-site-health.php:2825
 msgid "Authorization header"
 msgstr "Authorization ヘッダー"
 
-#: wp-admin/includes/class-wp-site-health.php:2493
+#: wp-admin/includes/class-wp-site-health.php:2485
 msgid "Learn how to configure the Authorization header."
 msgstr "Authorization ヘッダーを設定する方法。"
 
-#: wp-admin/includes/class-wp-site-health.php:2487
+#: wp-admin/includes/class-wp-site-health.php:2479
 msgid "Flush permalinks"
 msgstr "パーマリンクをフラッシュする"
 
-#: wp-admin/includes/class-wp-site-health.php:2468
+#: wp-admin/includes/class-wp-site-health.php:2460
 msgid "The authorization header is invalid"
 msgstr "Authorization ヘッダーが無効です"
 
-#: wp-admin/includes/class-wp-site-health.php:2466
+#: wp-admin/includes/class-wp-site-health.php:2458
 msgid "The authorization header is missing"
 msgstr "Authorization ヘッダーがありません"
 
-#: wp-admin/includes/class-wp-site-health.php:2451
+#: wp-admin/includes/class-wp-site-health.php:2443
 msgid "The Authorization header is working as expected"
 msgstr "Authorization ヘッダーは期待通りに機能しています"
 
@@ -2398,7 +2398,7 @@ msgid "You can choose whether or not your site will be crawled by robots, ping s
 msgstr "サイトをロボット、Ping サービス、スパイダーにクロールさせてよいか選べます。これらのサービスにサイトを無視させる場合は、「検索エンジンがサイトをインデックスしないようにする」と書かれた横のチェックボックスをクリックし、画面下の「変更を保存」ボタンをクリックしてください。"
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2408
+#: wp-admin/includes/class-wp-site-health.php:2400
 msgid "The \"%1$s\" value is smaller than \"%2$s\""
 msgstr "\"%1$s\" の値が \"%2$s\" の値より小さくなっています"
 
@@ -2427,27 +2427,27 @@ msgstr "この更新は現在使用中の WordPress と PHP のバージョン�
 msgid "Disallowed Comment Keys"
 msgstr "コメント内で許可されないキーワード"
 
-#: wp-admin/includes/class-wp-site-health.php:2790
+#: wp-admin/includes/class-wp-site-health.php:2782
 msgid "Plugin and theme auto-updates"
 msgstr "プラグインとテーマの自動更新"
 
-#: wp-admin/includes/class-wp-site-health.php:3122
+#: wp-admin/includes/class-wp-site-health.php:3114
 msgid "There appear to be no issues with plugin and theme auto-updates."
 msgstr "プラグインとテーマの自動更新には問題がないようです。"
 
-#: wp-admin/includes/class-wp-site-health.php:3116
+#: wp-admin/includes/class-wp-site-health.php:3108
 msgid "Auto-updates for themes appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "テーマの自動更新が無効になっているようです。これにより、新バージョンが利用可能になっても、サイトで自動的に使えるようにはなりません。"
 
-#: wp-admin/includes/class-wp-site-health.php:3111
+#: wp-admin/includes/class-wp-site-health.php:3103
 msgid "Auto-updates for plugins appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "プラグインの自動更新が無効になっているようです。これにより、新バージョンが利用可能になっても、サイトで自動的に使えるようにはなりません。"
 
-#: wp-admin/includes/class-wp-site-health.php:3106
+#: wp-admin/includes/class-wp-site-health.php:3098
 msgid "Auto-updates for plugins and themes appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "プラグインとテーマの自動更新が無効になっているようです。これにより、新バージョンが利用可能になっても、サイトで自動的に使えるようにはなりません。"
 
-#: wp-admin/includes/class-wp-site-health.php:3097
+#: wp-admin/includes/class-wp-site-health.php:3089
 msgid "Auto-updates for plugins and/or themes appear to be disabled, but settings are still set to be displayed. This could cause auto-updates to not work as expected."
 msgstr "プラグインやテーマの自動更新が無効化されているようですが、設定が引き続き表示されるようになっています。これにより、自動更新が期待通りに動作しない可能性があります。"
 
@@ -2477,26 +2477,26 @@ msgid "Sorry, you are not allowed to modify plugins."
 msgstr "プラグインを編集する権限がありません。"
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2429
+#: wp-admin/includes/class-wp-site-health.php:2421
 msgid "The setting for %1$s is smaller than %2$s, this could cause some problems when trying to upload files."
 msgstr "%1$s の設定が %2$s よりも小さく、同じ値ではないため、ファイルをアップロードする際に問題が発生する可能性があります。"
 
 #. translators: 1: file_uploads, 2: 0
-#: wp-admin/includes/class-wp-site-health.php:2394
+#: wp-admin/includes/class-wp-site-health.php:2386
 msgid "%1$s is set to %2$s. You won't be able to upload files on your site."
 msgstr "%1$s が %2$s に設定されています。ファイルをアップロードすることができません。"
 
 #. translators: %s: ini_get()
-#: wp-admin/includes/class-wp-site-health.php:2382
+#: wp-admin/includes/class-wp-site-health.php:2374
 msgid "The %s function has been disabled, some media settings are unavailable because of this."
 msgstr "%s 関数が無効になっているため、一部のメディア設定が利用できません。"
 
 #. translators: 1: file_uploads, 2: php.ini
-#: wp-admin/includes/class-wp-site-health.php:2369
+#: wp-admin/includes/class-wp-site-health.php:2361
 msgid "The %1$s directive in %2$s determines if uploading files is allowed on your site."
 msgstr "%2$s の %1$s ディレクティブがサイトでのファイルアップロードが許可されるかどうかを決定します。"
 
-#: wp-admin/includes/class-wp-site-health.php:2359
+#: wp-admin/includes/class-wp-site-health.php:2351
 msgid "Files can be uploaded"
 msgstr "ファイルをアップロードできます"
 
@@ -2517,7 +2517,7 @@ msgid "Max size of post data allowed"
 msgstr "post データの最大サイズ"
 
 #: wp-admin/includes/class-wp-debug-data.php:558
-#: wp-admin/includes/class-wp-site-health.php:2786
+#: wp-admin/includes/class-wp-site-health.php:2778
 msgid "File uploads"
 msgstr "ファイルアップロード"
 
@@ -2846,7 +2846,7 @@ msgctxt "comment"
 msgid "Not spam"
 msgstr "非スパム"
 
-#: wp-admin/includes/class-wp-site-health.php:2753
+#: wp-admin/includes/class-wp-site-health.php:2745
 msgid "PHP Sessions"
 msgstr "PHP セッション"
 
@@ -3231,13 +3231,13 @@ msgstr "ゴミ箱にコメントはありません。"
 msgid "File is empty. Please upload something more substantial. This error could also be caused by uploads being disabled in your %1$s file or by %2$s being defined as smaller than %3$s in %1$s."
 msgstr "ファイルが空のようです。中身のあるファイルをアップロードしてください。このエラーは %1$s ファイルでアップロードができない設定になっているか、%1$s 内で %2$s が %3$s よりも小さく設定されているために発生している可能性もあります。"
 
-#: wp-admin/includes/class-wp-site-health.php:3301
+#: wp-admin/includes/class-wp-site-health.php:3293
 #: wp-admin/js/site-health.js:340
 msgid "A test is unavailable"
 msgstr "テストは利用できません"
 
 #. translators: 1: The WordPress error message. 2: The WordPress error code.
-#: wp-admin/includes/class-wp-site-health.php:3173
+#: wp-admin/includes/class-wp-site-health.php:3165
 msgid "Error: %1$s (%2$s)"
 msgstr "エラー: %1$s (%2$s)"
 
@@ -3319,7 +3319,7 @@ msgstr "リクエストを削除"
 msgid "Table prefix"
 msgstr "テーブル接頭辞"
 
-#: wp-admin/includes/class-wp-site-health.php:2749
+#: wp-admin/includes/class-wp-site-health.php:2741
 msgid "PHP Default Timezone"
 msgstr "PHP デフォルトタイムゾーン"
 
@@ -4023,12 +4023,12 @@ msgid "Sorry, you are not allowed to perform this action."
 msgstr "この操作を実行する権限がありません。"
 
 #. translators: 1: Name of the constant used. 2: List of allowed hostnames.
-#: wp-admin/includes/class-wp-site-health.php:2226
+#: wp-admin/includes/class-wp-site-health.php:2218
 msgid "HTTP requests have been blocked by the %1$s constant, with some allowed hosts: %2$s."
 msgstr "HTTP リクエストは %1$s 定数によりブロックされています。ただし一部のホストは許可されています: %2$s。"
 
 #. translators: %s: Name of the constant used.
-#: wp-admin/includes/class-wp-site-health.php:2211
+#: wp-admin/includes/class-wp-site-health.php:2203
 msgid "HTTP requests have been blocked by the %s constant, with no allowed hosts."
 msgstr "HTTP リクエストは %s 定数によりブロックされています。すべてのホストからのリクエストが拒否されます。"
 
@@ -4056,12 +4056,12 @@ msgstr "WordPress ホスティングチームでは、こうした推奨され�
 #: wp-admin/includes/class-wp-site-health.php:1213
 #: wp-admin/includes/class-wp-site-health.php:1306
 #: wp-admin/includes/class-wp-site-health.php:1761
-#: wp-admin/includes/class-wp-site-health.php:2137
-#: wp-admin/includes/class-wp-site-health.php:2180
-#: wp-admin/includes/class-wp-site-health.php:2251
-#: wp-admin/includes/class-wp-site-health.php:2362
-#: wp-admin/includes/class-wp-site-health.php:2516
-#: wp-admin/includes/class-wp-site-health.php:2641
+#: wp-admin/includes/class-wp-site-health.php:2129
+#: wp-admin/includes/class-wp-site-health.php:2172
+#: wp-admin/includes/class-wp-site-health.php:2243
+#: wp-admin/includes/class-wp-site-health.php:2354
+#: wp-admin/includes/class-wp-site-health.php:2508
+#: wp-admin/includes/class-wp-site-health.php:2633
 msgid "Performance"
 msgstr "パフォーマンス"
 
@@ -4112,9 +4112,9 @@ msgstr[0] "このサイトには%d個の無効なプラグインがあります�
 #: wp-admin/includes/class-wp-site-health.php:1715
 #: wp-admin/includes/class-wp-site-health.php:1834
 #: wp-admin/includes/class-wp-site-health.php:1909
-#: wp-admin/includes/class-wp-site-health.php:1954
-#: wp-admin/includes/class-wp-site-health.php:2000
-#: wp-admin/includes/class-wp-site-health.php:2454
+#: wp-admin/includes/class-wp-site-health.php:1950
+#: wp-admin/includes/class-wp-site-health.php:1992
+#: wp-admin/includes/class-wp-site-health.php:2446
 msgid "Security"
 msgstr "セキュリティ"
 
@@ -4214,129 +4214,129 @@ msgstr "すばらしい !"
 msgid "Secondary menu"
 msgstr "サブメニュー"
 
-#: wp-admin/includes/class-wp-site-health.php:3194
+#: wp-admin/includes/class-wp-site-health.php:3186
 msgid "The loopback request to your site completed successfully."
 msgstr "サイトへのループバックリクエストは正常に完了しました。"
 
 #. translators: %d: The HTTP response code returned.
-#: wp-admin/includes/class-wp-site-health.php:3186
+#: wp-admin/includes/class-wp-site-health.php:3178
 msgid "The loopback request returned an unexpected http status code, %d, it was not possible to determine if this will prevent features from working as expected."
 msgstr "ループバックリクエストは予期しない HTTP ステータスコード %d を返しました。これが機能の想定どおりの動作を妨げてるかは判断できませんでした。"
 
-#: wp-admin/includes/class-wp-site-health.php:3170
+#: wp-admin/includes/class-wp-site-health.php:3162
 msgid "The loopback request to your site failed, this means features relying on them are not currently working as expected."
 msgstr "サイトへのループバックリクエストは失敗しました。現在、依存する機能は想定どおりに動作していません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2962
+#: wp-admin/includes/class-wp-site-health.php:2954
 msgid "No scheduled events exist on this site."
 msgstr "このサイトには予定されたイベントはありません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2777
+#: wp-admin/includes/class-wp-site-health.php:2769
 msgid "REST API availability"
 msgstr "REST API の利用"
 
-#: wp-admin/includes/class-wp-site-health.php:2816
+#: wp-admin/includes/class-wp-site-health.php:2808
 msgid "Loopback request"
 msgstr "ループバックリクエスト"
 
-#: wp-admin/includes/class-wp-site-health.php:2782
+#: wp-admin/includes/class-wp-site-health.php:2774
 msgid "Debugging enabled"
 msgstr "デバッグモード中"
 
-#: wp-admin/includes/class-wp-site-health.php:2773
+#: wp-admin/includes/class-wp-site-health.php:2765
 msgid "HTTP Requests"
 msgstr "HTTP リクエスト"
 
-#: wp-admin/includes/class-wp-site-health.php:2769
+#: wp-admin/includes/class-wp-site-health.php:2761
 msgid "Scheduled events"
 msgstr "予約したイベント"
 
-#: wp-admin/includes/class-wp-site-health.php:2765
+#: wp-admin/includes/class-wp-site-health.php:2757
 msgid "Secure communication"
 msgstr "暗号化された通信"
 
-#: wp-admin/includes/class-wp-site-health.php:2822
+#: wp-admin/includes/class-wp-site-health.php:2814
 msgid "HTTPS status"
 msgstr "HTTPS ステータス"
 
-#: wp-admin/includes/class-wp-site-health.php:2761
+#: wp-admin/includes/class-wp-site-health.php:2753
 msgid "MySQL utf8mb4 support"
 msgstr "MySQL utf8mb4 サポート"
 
-#: wp-admin/includes/class-wp-site-health.php:2745
+#: wp-admin/includes/class-wp-site-health.php:2737
 msgid "PHP Extensions"
 msgstr "PHP 拡張モジュール"
 
-#: wp-admin/includes/class-wp-site-health.php:2757
+#: wp-admin/includes/class-wp-site-health.php:2749
 msgid "Database Server version"
 msgstr "データベースサーバーバージョン"
 
-#: wp-admin/includes/class-wp-site-health.php:2741
+#: wp-admin/includes/class-wp-site-health.php:2733
 msgid "PHP Version"
 msgstr "PHP バージョン"
 
-#: wp-admin/includes/class-wp-site-health.php:2737
+#: wp-admin/includes/class-wp-site-health.php:2729
 msgid "Theme Versions"
 msgstr "テーマバージョン"
 
-#: wp-admin/includes/class-wp-site-health.php:2733
+#: wp-admin/includes/class-wp-site-health.php:2725
 msgid "Plugin Versions"
 msgstr "プラグインバージョン"
 
-#: wp-admin/includes/class-wp-site-health.php:2729
+#: wp-admin/includes/class-wp-site-health.php:2721
 msgid "WordPress Version"
 msgstr "WordPress バージョン"
 
 #. translators: %s: The name of the query parameter being tested.
-#: wp-admin/includes/class-wp-site-health.php:2340
+#: wp-admin/includes/class-wp-site-health.php:2332
 msgid "The REST API did not process the %s query parameter correctly."
 msgstr "REST API は %s クエリーパラメータを正しく処理しませんでした。"
 
-#: wp-admin/includes/class-wp-site-health.php:2334
+#: wp-admin/includes/class-wp-site-health.php:2326
 msgid "The REST API did not behave correctly"
 msgstr "REST API は正しく動作しませんでした"
 
-#: wp-admin/includes/class-wp-site-health.php:2311
+#: wp-admin/includes/class-wp-site-health.php:2303
 msgid "The REST API encountered an unexpected result"
 msgstr "REST API で予期しない結果が発生しました"
 
-#: wp-admin/includes/class-wp-site-health.php:2291
+#: wp-admin/includes/class-wp-site-health.php:2283
 msgid "The REST API encountered an error"
 msgstr "REST API でエラーが発生しました"
 
-#: wp-admin/includes/class-wp-site-health.php:2256
+#: wp-admin/includes/class-wp-site-health.php:2248
 msgid "The REST API is one way that WordPress and other applications communicate with the server. For example, the block editor screen relies on the REST API to display and save your posts and pages."
 msgstr "REST API は WordPress や他のアプリケーションがサーバーと通信する手段の1つです。たとえば、ブロックエディターの画面は投稿や固定ページの表示や保存のために REST API を使用しています。"
 
-#: wp-admin/includes/class-wp-site-health.php:2248
+#: wp-admin/includes/class-wp-site-health.php:2240
 msgid "The REST API is available"
 msgstr "REST API が利用可能です"
 
-#: wp-admin/includes/class-wp-site-health.php:2220
+#: wp-admin/includes/class-wp-site-health.php:2212
 msgid "HTTP requests are partially blocked"
 msgstr "HTTP リクエストが部分的にブロックされています"
 
-#: wp-admin/includes/class-wp-site-health.php:2205
+#: wp-admin/includes/class-wp-site-health.php:2197
 msgid "HTTP requests are blocked"
 msgstr "HTTP リクエストがブロックされています"
 
-#: wp-admin/includes/class-wp-site-health.php:2185
+#: wp-admin/includes/class-wp-site-health.php:2177
 msgid "It is possible for site maintainers to block all, or some, communication to other sites and services. If set up incorrectly, this may prevent plugins and themes from working as intended."
 msgstr "サイト管理者は他のサイトやサービスへの通信のすべて、または一部をブロックできます。設定を誤るとプラグインやテーマが正しく動作しなくなるかもしれません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2177
+#: wp-admin/includes/class-wp-site-health.php:2169
 msgid "HTTP requests seem to be working as expected"
 msgstr "HTTP リクエストは想定通り動作しているようです"
 
-#: wp-admin/includes/class-wp-site-health.php:2153
+#: wp-admin/includes/class-wp-site-health.php:2145
 msgid "Your site could not complete a loopback request"
 msgstr "サイトでループバックリクエストが完了できませんでした"
 
-#: wp-admin/includes/class-wp-site-health.php:2142
+#: wp-admin/includes/class-wp-site-health.php:2134
 msgid "Loopback requests are used to run scheduled events, and are also used by the built-in editors for themes and plugins to verify code stability."
 msgstr "ループバックリクエストは予約イベントの実行に使用されます。またテーマやプラグインの組み込みエディターでは、コードの安定性の確認に使用されます。"
 
-#: wp-admin/includes/class-wp-site-health.php:2134
+#: wp-admin/includes/class-wp-site-health.php:2126
 msgid "Your site can perform loopback requests"
 msgstr "サイトでループバックリクエストが実行可能です"
 
@@ -4971,7 +4971,7 @@ msgstr "WordPress.org にアクセス可能"
 
 #: wp-admin/includes/class-wp-debug-data.php:419
 #: wp-admin/includes/class-wp-debug-data.php:425
-#: wp-admin/includes/class-wp-site-health.php:2804
+#: wp-admin/includes/class-wp-site-health.php:2796
 msgid "Communication with WordPress.org"
 msgstr "WordPress.org との通信"
 
@@ -5335,7 +5335,7 @@ msgstr "インストール不可"
 
 #. translators: %s: WordPress version number.
 #. translators: %s: WordPress version.
-#: wp-admin/about.php:294 wp-admin/includes/update.php:323
+#: wp-admin/about.php:325 wp-admin/includes/update.php:323
 #: wp-admin/index.php:119 wp-admin/install.php:249 wp-admin/update-core.php:94
 #: wp-admin/upgrade.php:81
 msgid "https://wordpress.org/documentation/wordpress-version/version-%s/"
@@ -7693,7 +7693,7 @@ msgid "(Currently set to: %s)"
 msgstr "(現在の設定: %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:342
+#: wp-admin/about.php:373
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "<strong>バージョン %s</strong> ではセキュリティ問題1件に対応しました。"
 
@@ -7705,15 +7705,15 @@ msgstr "https://ja.gravatar.com/"
 msgid "Profile Picture"
 msgstr "プロフィール写真"
 
-#: wp-admin/about.php:339
+#: wp-admin/about.php:370
 msgid "Maintenance and Security Releases"
 msgstr "メンテナンスとセキュリティのリリース"
 
-#: wp-admin/about.php:336
+#: wp-admin/about.php:367
 msgid "Security Releases"
 msgstr "セキュリティリリース"
 
-#: wp-admin/about.php:333
+#: wp-admin/about.php:364
 msgid "Maintenance Releases"
 msgstr "メンテナンスリリース"
 
@@ -9515,7 +9515,7 @@ msgstr "%1$s (%2$s) の翻訳を更新しています&#8230;"
 msgid "Update Translations"
 msgstr "翻訳を更新"
 
-#: wp-admin/includes/class-wp-site-health.php:2810
+#: wp-admin/includes/class-wp-site-health.php:2802
 msgid "Background updates"
 msgstr "バックグラウンド更新"
 
@@ -10283,7 +10283,7 @@ msgid "Search engine visibility"
 msgstr "検索エンジンでの表示"
 
 #. translators: 1: WordPress version, 2: URL to About screen.
-#: wp-admin/includes/update-core.php:1708 wp-admin/update-core.php:912
+#: wp-admin/includes/update-core.php:1712 wp-admin/update-core.php:912
 msgid "Welcome to WordPress %1$s. You will be redirected to the About WordPress screen. If not, click <a href=\"%2$s\">here</a>."
 msgstr "WordPress %1$s へようこそ。「WordPress について」の画面に自動的に移動します。画面が切り替わらない場合は、<a href=\"%2$s\">ここ</a>をクリックしてください。"
 
@@ -11009,45 +11009,46 @@ msgstr "サイトネットワーク上の既存のユーザーをこのサイト
 msgid "Show Toolbar when viewing site"
 msgstr "サイトを見るときにツールバーを表示する"
 
+#. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:365
+#: wp-admin/about.php:65 wp-admin/about.php:396
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "詳しくは<a href=\"%s\">リリースノート</a>をご覧ください。"
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:359
+#: wp-admin/about.php:390
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>バージョン %1$s</strong> はいくつかのセキュリティ問題に対応し、%2$s個のバグを修正しました。"
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:353
+#: wp-admin/about.php:384
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>バージョン %1$s</strong> はセキュリティ問題に対応し、%2$s個のバグを修正しました。"
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:347
+#: wp-admin/about.php:53 wp-admin/about.php:378
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>バージョン %1$s</strong> では%2$s個のバグを修正しました。"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:344
+#: wp-admin/about.php:375
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>バージョン %s</strong> では複数のセキュリティ問題に対応しました。"
 
-#: wp-admin/about.php:338
+#: wp-admin/about.php:369
 msgid "Maintenance and Security Release"
 msgstr "メンテナンスとセキュリティのリリース"
 
-#: wp-admin/about.php:335
+#: wp-admin/about.php:366
 msgid "Security Release"
 msgstr "セキュリティリリース"
 
-#: wp-admin/about.php:332
+#: wp-admin/about.php:48 wp-admin/about.php:363
 msgid "Maintenance Release"
 msgstr "メンテナンスリリース"
 
@@ -11061,7 +11062,7 @@ msgid "This screen allows you to choose your permalink structure. You can choose
 msgstr "この画面ではパーマリンク構造を選択できます。共通設定から選ぶか、独自の URL 構造を作成できます。"
 
 #. translators: 1: WordPress version, 2: URL to About screen.
-#: wp-admin/includes/update-core.php:1716 wp-admin/update-core.php:920
+#: wp-admin/includes/update-core.php:1720 wp-admin/update-core.php:920
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 msgstr "WordPress %1$s へようこそ。<a href=\"%2$s\">詳細を読む</a>。"
 
@@ -11325,15 +11326,15 @@ msgid "Because this is a multisite installation, you may add accounts that alrea
 msgstr "このサイトはマルチサイトインストールのため、サイトネットワーク上にすでに存在するアカウントのユーザー名またはメールアドレスを指定し、権限グループを選択して追加することができます。パスワードを設定するといった追加オプションを使うには、「ネットワーク管理 > ユーザー一覧」ページで、サイトネットワーク管理者として既存のユーザーの名前をマウスオーバーしたときに表示される「編集」リンクを使う必要があります。"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:52
+#: wp-admin/about.php:83
 msgid "Welcome to WordPress %s"
 msgstr "WordPress %sへようこそ"
 
-#: wp-admin/about.php:319
+#: wp-admin/about.php:350
 msgid "Go to Dashboard &rarr; Home"
 msgstr "ダッシュボード &rarr; ホームへ移動"
 
-#: wp-admin/about.php:312
+#: wp-admin/about.php:343
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "ダッシュボード &rarr; 更新へ移動"
 
@@ -13050,7 +13051,7 @@ msgid "User already exists. Password inherited."
 msgstr "ユーザーはすでに存在しています。パスワードを引き継ぎました。"
 
 #: wp-admin/includes/class-wp-automatic-updater.php:485
-#: wp-admin/includes/update-core.php:1702 wp-admin/update-core.php:908
+#: wp-admin/includes/update-core.php:1706 wp-admin/update-core.php:908
 msgid "WordPress updated successfully."
 msgstr "WordPress の更新を完了しました。"
 
@@ -13079,7 +13080,7 @@ msgstr "WordPress の更新"
 msgid "Edit menu item"
 msgstr "メニュー項目を編集"
 
-#: wp-admin/about.php:319 wp-admin/includes/network.php:148
+#: wp-admin/about.php:350 wp-admin/includes/network.php:148
 msgid "Go to Dashboard"
 msgstr "ダッシュボードへ移動"
 
@@ -14275,7 +14276,7 @@ msgstr "%s に更新"
 msgid "You are using a development version (%1$s). Cool! Please <a href=\"%2$s\">stay updated</a>."
 msgstr "お使いの WordPress は開発版 (%1$s) です。すばらしい ! どうぞ<a href=\"%2$s\">最新版を使い続けてください</a>。"
 
-#: wp-admin/includes/update-core.php:1575
+#: wp-admin/includes/update-core.php:1579
 msgid "Upgrading database&#8230;"
 msgstr "データベースをアップグレードしています…"
 
@@ -15248,7 +15249,7 @@ msgid "Empty archive."
 msgstr "空のアーカイブ。"
 
 #: wp-admin/includes/file.php:1778 wp-admin/includes/file.php:1908
-#: wp-admin/includes/file.php:1961 wp-admin/includes/update-core.php:1513
+#: wp-admin/includes/file.php:1961 wp-admin/includes/update-core.php:1517
 msgid "Could not copy file."
 msgstr "ファイルをコピーできませんでした。"
 
@@ -15557,7 +15558,7 @@ msgid "The plugin is at the latest version."
 msgstr "プラグインは最新のバージョンです。"
 
 #: wp-admin/includes/class-wp-upgrader.php:207
-#: wp-admin/includes/update-core.php:1460
+#: wp-admin/includes/update-core.php:1464
 msgid "Disabling Maintenance mode&#8230;"
 msgstr "メンテナンスモードを無効にします…"
 
@@ -15594,7 +15595,7 @@ msgstr "ダウンロードに失敗しました。"
 msgid "Unable to locate needed folder (%s)."
 msgstr "必要なフォルダー (%s) が見つかりません。"
 
-#: wp-admin/includes/class-wp-site-health.php:2031
+#: wp-admin/includes/class-wp-site-health.php:2023
 msgid "Unable to locate WordPress content directory"
 msgstr "WordPress のコンテンツディレクトリが見つかりません"
 
@@ -15615,7 +15616,7 @@ msgstr "WordPress のルートディレクトリが見つかりません。"
 msgid "Filesystem error."
 msgstr "ファイルシステムのエラー。"
 
-#: wp-admin/includes/class-wp-site-health.php:2022
+#: wp-admin/includes/class-wp-site-health.php:2014
 msgid "Could not access filesystem"
 msgstr "ファイルシステムにアクセスできませんでした"
 
