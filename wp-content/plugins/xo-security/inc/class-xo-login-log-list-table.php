@@ -316,7 +316,7 @@ class XO_Login_Log_List_Table extends WP_List_Table {
 		if ( ! empty( $ids ) ) {
 			if ( $current_user->has_cap( 'administrator' ) ) {
 				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-				$wpdb->query( " {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids);" ); // WPCS: db call ok; no-cache ok.
+				$wpdb->query( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids);" ); // WPCS: db call ok; no-cache ok.
 			} else {
 				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 				$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids) AND user_name = %s;", $current_user->user_login ) ); // WPCS: db call ok; no-cache ok.

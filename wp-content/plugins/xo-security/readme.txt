@@ -4,7 +4,7 @@ Tags: security, login, pingback, xmlrpc, rest
 Requires at least: 4.9
 Tested up to: 6.3
 Requires PHP: 5.6
-Stable tag: 3.6.3
+Stable tag: 3.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,10 @@ Please initialize the settings.
 Please install mbstring and GD module.
 
 == Changelog ==
+
+= 3.6.4 =
+
+* Fixed a bug where logs could not be deleted on the login log page.
 
 = 3.6.3 =
 
