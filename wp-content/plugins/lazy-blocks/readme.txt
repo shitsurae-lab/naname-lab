@@ -4,9 +4,9 @@
 * Tags: gutenberg, blocks, custom, meta, fields
 * Donate link: https://www.lazyblocks.com/pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=donate
 * Requires at least: 5.8
-* Tested up to: 6.2
+* Tested up to: 6.3
 * Requires PHP: 7.2
-* Stable tag: 3.4.4
+* Stable tag: 3.5.1
 * License: GPLv2 or later
 * License URI: <http://www.gnu.org/licenses/gpl-2.0.html>
 
@@ -136,10 +136,23 @@ The manual installation method involves downloading our Lazy Blocks plugin and u
 
 ## Changelog
 
-= 3.4.4 =
+= 3.5.1 =
 
-PRO plugin:
-FREE plugin:
+* fixed JS error in editor in block containing `<script>` tag in content when preview showed
+
+= 3.5.0 =
+
+* added support for WordPress 6.3
+* all blocks now have `apiVersion` 3, which means that in the latest Gutenberg you will have an iframed page editor
+* fixed block rendering error inside core/group block
+* fixed editor error when view block preview or add a couple of reusable blocks
+* minor changes
+
+= 3.4.5 =
+
+* fixed wrong template rendering in Editor after InnerBlocks component used
+
+= 3.4.4 =
 
 * fixed InnerBlocks component rendering number values with `$` character
 
