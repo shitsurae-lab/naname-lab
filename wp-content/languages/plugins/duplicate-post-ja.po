@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - Yoast Duplicate Post - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-25 13:18:39+0000\n"
+"PO-Revision-Date: 2024-05-17 13:13:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.1\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Yoast Duplicate Post - Stable (latest release)\n"
 
@@ -22,7 +22,7 @@ msgstr "歓迎のお知らせ"
 
 #: src/admin/options.php:262
 msgid "Show welcome notice"
-msgstr "参考文献"
+msgstr "歓迎のお知らせを表示"
 
 #. translators: %s: Yoast Duplicate Post.
 #: admin-functions.php:224

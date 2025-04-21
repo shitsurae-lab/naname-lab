@@ -2,98 +2,174 @@
 # This file is distributed under the same license as the Plugins - SVG Support - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-07 12:27:25+0000\n"
+"PO-Revision-Date: 2024-10-15 04:44:30+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - SVG Support - Stable (latest release)\n"
 
-#: admin/svgs-settings-page.php:132
+#: functions/attachment.php:385 functions/attachment.php:400
+msgid "There was an error reading the SVG file for sanitization."
+msgstr "サニタイズのための SVG ファイルの読み取り中にエラーが発生しました。"
+
+#: admin/svgs-settings-page.php:412
+msgid "please consider leaving a"
+msgstr "残すことを検討してください"
+
+#: admin/svgs-settings-page.php:410
+msgid "If you like"
+msgstr "もし良かったら"
+
+#: admin/svgs-settings-page.php:350
+msgid "(or your custom class from above) to any IMG tags that you want this plugin to swap out with your actual SVG code."
+msgstr "(または上記のカスタム クラス) を、このプラグインで実際の SVG コードと置き換えたい IMG タグに追加します。"
+
+#: admin/svgs-settings-page.php:346
+msgid "Now, embed your SVG image like a standard image with the addition of adding the class"
+msgstr "次に、クラスを追加して、標準画像と同様に SVG 画像を埋め込みます"
+
+#: admin/svgs-settings-page.php:284
+msgid "Use case scenario: When using a visual builder such as in the Divi Theme or The Divi Builder, the class is not automatically added with the \"Automatically insert class?\" option selected or the builder module doesn't give you the option to manually add a CSS class directly to your image."
+msgstr "使用例のシナリオ: Divi テーマや Divi Builder などのビジュアルビルダーを使用する場合、「クラスを自動的に挿入しますか ?」オプションを選択してもクラスは自動的に追加されません。または、ビルダーモジュールで、画像に CSS クラスを手動で直接追加するオプションが提供されません。"
+
+#: admin/svgs-settings-page.php:282
+msgid "Checking this will automatically add the SVG class to ALL image tags containing SVG file sources in the rendered HTML via javascript and will therefore render all of your SVG files inline."
+msgstr "これをチェックすると、JavaScript 経由でレンダリングされた HTML 内の SVG ファイルソースを含むすべての画像タグに SVG クラスが自動的に追加され、すべての SVG ファイルがインラインでレンダリングされます。"
+
+#: admin/svgs-settings-page.php:281
+msgid "Use with caution!"
+msgstr "慎重に使用してください !"
+
+#: admin/svgs-settings-page.php:265
+msgid "Plugin can now go any level down to find your SVG! It will keep looking as long as the element with the target class has children. If it finds any IMG tags with .svg in the src URL, it will replace the IMG tag with your SVG code."
+msgstr "プラグインは、SVG を見つけるために任意のレベルまで下がれるようになりました。ターゲット クラスの要素に子がある限り、検索を続けます。src URL に .svg を含む IMG タグが見つかった場合、IMG タグを SVG コードに置き換えます。"
+
+#: admin/svgs-settings-page.php:262
+msgid "by typing it here. Leave blank to use the default class."
+msgstr "ここに入力します。デフォルトのクラスを使用する場合は空白のままにします。"
+
+#: admin/svgs-settings-page.php:258
+msgid "You can change it to your own class such as"
+msgstr "次のような独自のクラスに変更できます"
+
+#: admin/svgs-settings-page.php:254
+msgid "The default target class is"
+msgstr "デフォルトのターゲットクラスは、"
+
+#: admin/svgs-settings-page.php:148
+msgid "Select the user roles that should bypass SVG sanitization."
+msgstr "SVG サニタイズをバイパスするユーザー権限グループを選択します。"
+
+#: admin/svgs-settings-page.php:110
+msgid "Select the user roles that are allowed to upload SVG files."
+msgstr "SVG ファイルのアップロードが許可されるユーザー権限グループを選択します。"
+
+#: admin/svgs-settings-page.php:40
+msgid "tags alone."
+msgstr "タグだけ。"
+
+#: admin/svgs-settings-page.php:39
+msgid "img"
+msgstr "img"
+
+#: admin/svgs-settings-page.php:37
+msgid "object"
+msgstr "オブジェクト"
+
+#: admin/svgs-settings-page.php:36
+msgid "embed"
+msgstr "埋め込み"
+
+#: admin/svgs-settings-page.php:35
+msgid "The main purpose of this is to allow styling of SVG elements. Usually your styling options are restricted when using"
+msgstr "この主な目的は、SVG 要素のスタイル設定を可能にすることです。通常、スタイル設定オプションは、"
+
+#: admin/svgs-settings-page.php:32
+msgid "class with your complete SVG."
+msgstr "完全な SVG を使用してクラスを作成します。"
+
+#: admin/svgs-settings-page.php:30
+msgid "to your IMG elements, this plugin dynamically replaces any IMG elements containing the"
+msgstr "IMG 要素に対して、このプラグインは、含まれている任意の IMG 要素を動的に置き換えます"
+
+#: admin/svgs-settings-page.php:29 admin/svgs-settings-page.php:31
+msgid "style-svg"
+msgstr "style-svg"
+
+#: admin/svgs-settings-page.php:28
+msgid "When you enable advanced mode, this plugin not only provides SVG Support like the name says, it also allows you to easily embed your full SVG file's code using a simple IMG tag. By adding the class"
+msgstr "アドバンスモードを有効化すると、このプラグインは名前の通り SVG サポートを提供するだけでなく、シンプルな IMG タグを使用して SVG ファイルのコード全体を簡単に埋め込むこともできます。クラスを追加することで"
+
+#: admin/svgs-settings-page.php:25
+msgid "Now you can, easily!"
+msgstr "簡単にできるようになりました !"
+
+#: admin/svgs-settings-page.php:24
+msgid "When using SVG images on your WordPress site, it can be hard to style elements within the SVG using CSS."
+msgstr "WordPress サイトで SVG 画像を使用する場合、CSS を使用して SVG 内の要素にスタイルを設定するのは難しい場合があります。"
+
+#: admin/svgs-settings-page.php:128
 msgid "Do not sanitize for these roles"
 msgstr "下記の権限グループのときはサニタイズしない"
 
-#: admin/svgs-settings-page.php:67
+#: admin/svgs-settings-page.php:92
 msgid "Restrict SVG Uploads to?"
 msgstr "アップロードを許可する権限グループ"
 
-#: admin/svgs-settings-page.php:306
+#: admin/svgs-settings-page.php:292
 msgid "Settings for Classic Editor"
 msgstr "旧エディター向けの設定"
 
-#: admin/svgs-settings-page.php:257
-msgid " Checking this will use vanilla JS file instead of the jQuery."
-msgstr " チェックすると、jQuery の代わりに  Vanilla JS を使用します。"
-
-#: admin/svgs-settings-page.php:251
+#: admin/svgs-settings-page.php:223
 msgid "Use Vanilla JS?"
 msgstr "Vanilla JS を使用"
 
-#: admin/svgs-settings-page.php:229
-msgid "Enhance security by sanitizing  svg images on Front-end. This will help to prevent XSS and Injection attacks."
-msgstr "フロントエンドで SVG 画像をサニタイズし、セキュリティを強化します。XSS (クロスサイトスクリプティング) 攻撃やインジェクション攻撃からの防御につながります。"
-
-#: admin/svgs-settings-page.php:223
+#: admin/svgs-settings-page.php:199
 msgid "Sanitize SVG on Front-end"
 msgstr "フロントエンドで SVG をサニタイズ"
 
-#: admin/svgs-settings-page.php:190
+#: admin/svgs-settings-page.php:171
 msgid "Delete all plugin's data during uninstallation process."
 msgstr "アンインストール時にプラグインのデータをすべて削除します。"
 
-#: admin/svgs-settings-page.php:184
+#: admin/svgs-settings-page.php:166
 msgid "Delete Plugin's Data"
 msgstr "プラグインデータの全削除"
 
-#: admin/svgs-settings-page.php:176
-msgid "Enabling this option will auto-minify all svg uploads. Sanitization must be turned on for minification to work."
-msgstr "アップロードしたすべての SVG が自動的に最小化されます。最小化するには、「アップロード時に SVG をサニタイズ」をオンにする必要があります。"
-
-#: admin/svgs-settings-page.php:120
-msgid "Sanitize SVG while uploading"
-msgstr "アップロード時に SVG をサニタイズ"
-
-#: functions/attachment.php:247
-msgid "Sorry, this file couldn't be sanitized for security reasons and wasn't uploaded"
-msgstr "このファイルはセキュリティ上の理由からサニタイズ処理できなかったため、アップロードされませんでした。"
-
-#: admin/svgs-settings-page.php:457
+#: admin/svgs-settings-page.php:456
 msgid "on Twitter"
 msgstr "(Twitterアカウント)"
 
-#: admin/svgs-settings-page.php:457
+#: admin/svgs-settings-page.php:456
 msgid "@SVGSupport"
 msgstr "@SVGSupport"
 
-#: admin/svgs-settings-page.php:457
+#: admin/svgs-settings-page.php:456
 msgid "Follow"
 msgstr "ぜひフォローを:"
 
-#: admin/svgs-settings-page.php:441
+#: admin/svgs-settings-page.php:440
 msgid "Sanitize SVG files on upload"
 msgstr "アップロード時に SVG をサニタイズ"
 
-#: admin/svgs-settings-page.php:380
+#: admin/svgs-settings-page.php:371
 msgid "- You can set this target class on any element and the script will traverse all children of that target element looking for IMG tags with SVG in the src to replace."
 msgstr "- 上の例に示したようなターゲットクラスを任意の要素に設定すると、スクリプトはその要素のすべての子要素を走査して、src に SVG を含む IMG タグを探して置換します。"
 
-#: admin/svgs-settings-page.php:362
+#: admin/svgs-settings-page.php:353
 msgid "You can even use the class on an outer container and it will traverse all child elements to find all of the IMG tags with SVG files in the src and replace them."
 msgstr "外側のコンテナでこのターゲットクラスを使うと、子要素すべてを走査した上で src 属性に SVG を含む IMG タグをすべて置換することもできます。"
 
-#: admin/svgs-settings-page.php:284
-msgid "The default target class is <code>style-svg</code>. You can change it to your own class such as <code>my-class</code> by typing it here. Leave blank to use the default class.<br><em>Plugin can now go any level down to find your SVG! It will keep looking as long as the element with the target class has children. If it finds any IMG tags with .svg in the src URL, it will replace the IMG tag with your SVG code.</em>"
-msgstr "デフォルトで付与されるターゲットクラスは <code>style-svg</code> です。このフィールドに任意の文字列を設定すると、 <code>my-class</code> のような独自のクラスに変更できます。<br><em>ターゲットクラスを持つ要素に子要素がある場合、プラグインはその子要素を続けて走査します。src 属性の URL に .svg を含む IMG タグがあるとき、プラグインは IMG タグを SVG コードに置き換えます。</em>"
+#: admin/svgs-settings-page.php:159
+msgid "Enabling this option will auto-minify all svg uploads."
+msgstr "このオプションを有効化すると、すべての SVG アップロードが自動的に縮小されます。"
 
-#: admin/svgs-settings-page.php:170
+#: admin/svgs-settings-page.php:154
 msgid "Minify SVG"
 msgstr "SVG を最小化"
-
-#: admin/svgs-settings-page.php:162
-msgid "Enhance security of SVG uploads by sanitizing all svg images before being uploaded. This is helpful when non-admins are allowed to upload SVG images.<br><em>All external references are automatically removed during sanitization to prevent XSS and Injection attacks.</em>"
-msgstr "アップロードされる時にすべての SVG ファイルをサニタイズし、アップロードされた SVG ファイルのセキュリティを強化します。この設定は、管理者以外のユーザーに SVG 画像のアップロードを許可しているときに役立ちます。<br><em>SVG コード内のすべての外部参照は、XSS およびインジェクション攻撃を防ぐためにサニタイズ中に自動的に除去されます。</em>"
 
 #: admin/svgs-settings-page-help.php:84
 msgid "You can set this target class on any element and the script will traverse all children of that target element looking for IMG tags with SVG in the src to replace."
@@ -107,19 +183,19 @@ msgstr "アップロードされた SVG ファイルのサニタイズや最小�
 msgid "You can simply upload SVG files to your media library like any other image.<br>Make sure to select \"Restrict to Administrators\" if you only want to allow admins to upload SVG files."
 msgstr "SVG ファイルは他の画像と同様にメディアライブラリにアップロードできます。<br>管理者のみに SVG ファイルのアップロードを許可したいときは必ず、「アップロードを許可する権限グループ」の項目で「管理者」のみを設定してください。"
 
-#: admin/svgs-settings-page.php:427
-msgid "Support is handled exlusively through WordPress.org by my one man team - me."
-msgstr "プラグインに関するサポートは、開発者本人が WordPress.org を通じて対応いたします。"
-
 #: admin/svgs-settings-page.php:426
+msgid "Support is handled exclusively through WordPress.org by my one man team - me."
+msgstr "サポートは WordPress.org を通じて、私一人のチームによって行われます。"
+
+#: admin/svgs-settings-page.php:425
 msgid "I'm always happy to help out!"
 msgstr "喜んでお手伝いします !"
 
-#: admin/svgs-settings-page.php:424
+#: admin/svgs-settings-page.php:423
 msgid "Having Issues?"
 msgstr "お困りのときは"
 
-#: admin/svgs-settings-page.php:38
+#: admin/svgs-settings-page.php:64
 msgid "You can also"
 msgstr "こちらもご利用ください:"
 
@@ -127,51 +203,52 @@ msgstr "こちらもご利用ください:"
 msgid "Leave a Review"
 msgstr "レビューを書く"
 
-#: admin/svgs-settings-page.php:112
+#: admin/svgs-settings-page.php:121
 msgid "A very small piece of code that helps with displaying SVGs on the frontend in some cases."
 msgstr "フロントエンドで SVG を表示する際に役立つ、とても小さなサイズのコードを読み込みます。"
 
-#: admin/svgs-settings-page.php:106
+#: admin/svgs-settings-page.php:116
 msgid "Load frontend CSS?"
 msgstr "フロントエンド CSS の読み込み"
 
 #. Description of the plugin
+#: svg-support.php
 msgid "Upload SVG files to the Media Library and render SVG files inline for direct styling/animation of an SVG's internal elements using CSS/JS."
 msgstr "メディアライブラリへの SVG ファイルアップロードを可能にするプラグイン。アップロードしたファイルをインラインでレンダリングし、SVG の内部要素を CSSや JS で直接スタイリングしたり、アニメーション化したりすることもできます。"
 
-#: admin/svgs-settings-page.php:459
+#: admin/svgs-settings-page.php:458
 msgid "Thanks for your support, please consider donating."
 msgstr "ご協力ありがとうございます。寄付もご検討ください。"
 
-#: admin/svgs-settings-page.php:456
+#: admin/svgs-settings-page.php:455
 msgid "Visit The Support Forum"
 msgstr "サポート掲示板を見る"
 
-#: admin/svgs-settings-page.php:455
+#: admin/svgs-settings-page.php:454
 msgid "Learn more about SVG Support on:"
 msgstr "SVG Support についての詳細はこちら:"
 
-#: admin/svgs-settings-page.php:393
+#: admin/svgs-settings-page.php:384
 msgid "If you upgrade to a paid plan, I'll receive a small commission... And that's really nice!"
 msgstr "有料プランへアップグレードされると、開発者のもとに少額の手数料が支払われます。アップグレードいただけると、とてもうれしいです !"
 
-#: admin/svgs-settings-page.php:212
+#: admin/svgs-settings-page.php:190
 msgid "Advanced"
 msgstr "高度な設定"
 
-#: admin/svgs-settings-page.php:38 admin/svgs-settings-page.php:459
+#: admin/svgs-settings-page.php:64 admin/svgs-settings-page.php:458
 msgid "Donate using PayPal"
 msgstr "PayPalを使って寄付する"
 
-#: admin/svgs-settings-page.php:33
+#: admin/svgs-settings-page.php:59
 msgid "SVG Support has grown to be installed on 800,000+ active websites. That's insane! It's developed and maintained by one person alone. If you find it useful, please consider donating to help keep it going. I truly appreciate any contribution."
 msgstr "SVG Support は、80万以上のアクティブなウェブサイトにインストールされるまでに成長しました。1人で開発しメンテナンスしているプラグインにもかかわらずです ! このプラグインを気に入っていただけましたら、継続的な開発やメンテナンスのための寄付を検討いただけないでしょうか。どんな寄付でも、心から感謝いたします。"
 
-#: admin/svgs-settings-page.php:30
+#: admin/svgs-settings-page.php:56
 msgid "Send Some Love"
 msgstr "プラグインを気に入っていただけた方に"
 
-#: admin/svgs-settings-page.php:18
+#: admin/svgs-settings-page.php:43
 msgid "For help and more information, please check the help tab (top right of your screen)."
 msgstr "プラグインの概要や詳しい使い方を見るには、画面右上の「ヘルプ」タブをクリックしてください。"
 
@@ -199,7 +276,7 @@ msgstr "私の Coinbase の紹介リンクは、100米ドル相当の支払い�
 msgid "Need to buy some crypto to donate?"
 msgstr "寄付のために暗号資産を購入する必要がありますか ?"
 
-#: admin/svgs-settings-page-help.php:140 admin/svgs-settings-page.php:36
+#: admin/svgs-settings-page-help.php:140 admin/svgs-settings-page.php:62
 msgid "ETH: 0x599695Eb51aFe2e5a0DAD60aD9c89Bc8f10B54f4"
 msgstr "ETH: 0x599695Eb51aFe2e5a0DAD60aD9c89Bc8f10B54f4"
 
@@ -207,7 +284,7 @@ msgstr "ETH: 0x599695Eb51aFe2e5a0DAD60aD9c89Bc8f10B54f4"
 msgid "LTC: LUnQPJrSk6cVFmMqBMv5FAqweJbnzRUz4o"
 msgstr "LTC: LUnQPJrSk6cVFmMqBMv5FAqweJbnzRUz4o"
 
-#: admin/svgs-settings-page-help.php:140 admin/svgs-settings-page.php:35
+#: admin/svgs-settings-page-help.php:140 admin/svgs-settings-page.php:61
 msgid "BTC: 1qF8r2HkTLifND7WLGfWmvxfXc9ze55DZ"
 msgstr "BTC: 1qF8r2HkTLifND7WLGfWmvxfXc9ze55DZ"
 
@@ -218,10 +295,6 @@ msgstr "PayPal: "
 #: admin/svgs-settings-page-help.php:138
 msgid "Donation Methods:"
 msgstr "寄付方法:"
-
-#: admin/svgs-settings-page-help.php:136
-msgid "SVG Support (this plugin) has grown to be used by over 800,000 websites actively and is maintained solely by one person. I couldn't possibly tell you how many hours have gone into the development, maintenance and support of this plugin. If you find it useful and would like to donate to help keep it going, that would be amazing! I truly appreciate the support and how far this has come."
-msgstr "SVG Support は、80万以上のウェブサイトでアクティブに利用されるまでに成長したプラグインです。たった1人で開発とメンテナンスを行っています。好きで始めたこととはいえ、開発、メンテナンス、サポートにこれまで多くの時間を費やしました。だから、このプラグインを気に入ってくださり、開発を継続するための寄付をいただければ、これほどうれしいことはありません !"
 
 #: admin/svgs-settings-page-help.php:134
 msgid "Donations"
@@ -387,55 +460,47 @@ msgstr "SVG ファイルには、従来の画像フォーマットよりはる�
 msgid "Overview"
 msgstr "概要"
 
-#: admin/svgs-settings-page.php:447
+#: admin/svgs-settings-page.php:446
 msgid "Force all SVG files to be rendered inline"
 msgstr "すべての SVG ファイルの強制的なインラインレンダリング"
 
-#: admin/svgs-settings-page.php:402
+#: admin/svgs-settings-page.php:393
 msgid "An online tool to optimize your SVG files."
 msgstr "SVG ファイルを最適化するためのオンラインツールです。"
 
-#: admin/svgs-settings-page.php:401
+#: admin/svgs-settings-page.php:392
 msgid "Upload your SVG files and use the tools provided to animate strokes."
 msgstr "SVG ファイルをアップロードし、ツールを使ってアニメーションの動きを付けます。"
 
-#: admin/svgs-settings-page.php:399
+#: admin/svgs-settings-page.php:390
 msgid "Animate and Optimize your SVG files using these open source projects"
 msgstr "オープンソースのプロジェクトを使って、SVG ファイルをアニメーション化したり最適化したりしましょう"
 
-#: admin/svgs-settings-page.php:298
-msgid " <strong>Use with caution!</strong> Checking this will automatically add the SVG class to ALL image tags containing SVG file sources in the rendered HTML via javascript and will therefore render all of your SVG files inline.<br /><em>Use case scenario: When using a visual builder such as in the Divi Theme or The Divi Builder, the class is not automatically added with the \"Automatically insert class?\" option selected or the builder module doesn't give you the option to manually add a CSS class directly to your image.</em>"
-msgstr " <strong>使用上の注意</strong> この項目にチェックを入れると、レンダリングされた HTML の SVG ファイルソースを含むすべての画像タグに、JavaScript が自動的に SVG クラスを追加します。そのため、すべての SVG ファイルがインラインでレンダリングされます。<br /><em> この項目の利用想定例: Divi Theme や Divi Builder などのビジュアルビルダーで、「クラスを自動的に挿入しますか (Automatically insert class?)」オプションを選択してもクラスが自動的に追加されない場合。あるいは、ビジュアルビルダーのモジュールやブロックに、画像に対して CSS クラスを直接追加するオプションがない場合。</em>"
-
-#: admin/svgs-settings-page.php:292
+#: admin/svgs-settings-page.php:274
 msgid "Force Inline SVG?"
 msgstr "強制的に SVG をインラインレンダリング"
 
-#: admin/svgs-settings-page.php:271
-msgid " Checking this will use the expanded JS file instead of the minified JS file. Useful if you want to minify this externally using a caching plugin or similar."
-msgstr " これをチェックすると、最小化された JS ファイルの代わりに完全に展開された JS ファイルが使用されます。キャッシュプラグインなどほかの方法で最小化するときに便利です。"
-
-#: admin/svgs-settings-page.php:265
+#: admin/svgs-settings-page.php:235
 msgid "Use Expanded JS?"
 msgstr "展開された JS ファイルを使用"
 
-#: admin/svgs-settings-page.php:433
+#: admin/svgs-settings-page.php:432
 msgid "SVG Support Features"
 msgstr "SVG Support の特長"
 
-#: admin/svgs-settings-page.php:394
+#: admin/svgs-settings-page.php:385
 msgid "Try ShortPixel WordPress Plugin for FREE"
 msgstr "ShortPixel プラグインを試してみる"
 
-#: admin/svgs-settings-page.php:392
+#: admin/svgs-settings-page.php:383
 msgid "ShortPixel improves website performance by reducing the size of your images. The results are no different in quality from the original, plus your originals are stored in a backup folder for you."
 msgstr "ShortPixel プラグインを使うと画像のファイルサイズが縮小され、ウェブサイトのパフォーマンスを引き上げることができます。オリジナルファイルはバックアップフォルダに保存されます。"
 
-#: admin/svgs-settings-page.php:391
+#: admin/svgs-settings-page.php:382
 msgid "Now that you've set up SVG Support on your site, it's time to look at optimizing your existing images (jpg & png)."
 msgstr "SVG Support を設定した後は、既存画像 (jpg と png) の最適化も検討してみましょう。"
 
-#: admin/svgs-settings-page.php:388
+#: admin/svgs-settings-page.php:379
 msgid "Compress and Optimize Images with ShortPixel"
 msgstr "ShortPixel プラグインによる画像の圧縮と最適化"
 
@@ -443,197 +508,159 @@ msgstr "ShortPixel プラグインによる画像の圧縮と最適化"
 msgid "SVG Support Settings"
 msgstr "設定"
 
-#: admin/svgs-settings-page.php:418
+#: admin/svgs-settings-page.php:416
 msgid "A huge thanks in advance!"
 msgstr "レビューありがとうございます !"
 
-#: admin/svgs-settings-page.php:418
+#: admin/svgs-settings-page.php:414
 msgid "rating."
 msgstr "の5段階評価をお願いします。"
 
-#: admin/svgs-settings-page.php:418
-msgid "If you like <strong>SVG Support</strong> please consider leaving a"
-msgstr "<strong>SVG Support</strong> を気に入っていただけましたら"
-
-#: admin/svgs-settings-page.php:416
+#: admin/svgs-settings-page.php:407
 msgid "Ratings & Reviews"
 msgstr "評価とレビュー"
 
-#: admin/svgs-settings-page.php:322
-msgid " Checking this will make sure that either the default class or the custom one you set in <b>\"CSS Class to target\"</b> option will be inserted into the style attributes of <code>img</code> tags when you insert SVG images into a post. Additionally, it will remove all of the default WordPress classes. It will leave normal image types as default and only affect SVG files."
-msgstr " SVG 画像を記事に挿入するとき、デフォルトのクラス、または<b>「設定する CSS クラス」</b>オプションで設定したクラスのいずれかが <code>img</code> タグのスタイル属性として挿入されます。WordPress デフォルトのクラスはすべて削除されます。このオプションは SVG ファイルのみに適用され、通常の画像への影響はありません。"
-
-#: functions/featured-image.php:23
+#: functions/featured-image.php:22
 msgid "Render this SVG inline (advanced)"
 msgstr "SVG をインラインでレンダリング (高度な設定)"
 
-#: admin/svgs-settings-page.php:446
+#: admin/svgs-settings-page.php:445
 msgid "Inline SVG featured image support"
 msgstr "アイキャッチ画像に設定した SVG のインラインレンダリング対応"
 
-#: admin/svgs-settings-page.php:445
+#: admin/svgs-settings-page.php:444
 msgid "Use odd shapes as links"
 msgstr "異形の領域をリンクとして設定可"
 
-#: admin/svgs-settings-page.php:444
-msgid "Include multiple URL's inside single SVG"
-msgstr "1つの SVG 内に複数の URL を設定可能"
-
-#: admin/svgs-settings-page.php:443
+#: admin/svgs-settings-page.php:442
 msgid "Animate SVG using CSS or JS"
 msgstr "CSS や JS による SVG のアニメーション化"
 
-#: admin/svgs-settings-page.php:442
+#: admin/svgs-settings-page.php:441
 msgid "Style SVG elements using CSS"
 msgstr "CSS による SVG 要素のスタイル指定"
 
-#: admin/svgs-settings-page.php:440
+#: admin/svgs-settings-page.php:439
 msgid "Advanced Mode"
 msgstr "上級者モード"
 
-#: admin/svgs-settings-page.php:436
+#: admin/svgs-settings-page.php:435
 msgid "Basic Use"
 msgstr "基本的な使い方"
 
-#: admin/svgs-settings-page.php:357
+#: admin/svgs-settings-page.php:341
 msgid "You can simply upload SVG files to your media library like any other image. Make sure to select \"Restrict to Administrators\" if you only want to allow admins to upload SVG files."
 msgstr "このプラグインを使うと、他の画像と同様に SVG ファイルをメディアライブラリにアップロードできます。管理者のみにアップロードを許可するときは必ず、「アップロードを許可する権限グループ」を「管理者」のみに設定してください。"
 
-#: admin/svgs-settings-page.php:349
+#: admin/svgs-settings-page.php:333
 msgid "Advanced Usage"
 msgstr "高度な使い方"
 
-#: admin/svgs-settings-page.php:204
-msgid " You don't need to enable this to simply use SVG files as images. Enabling this will trigger advanced options and SVG functionality such as inline rendering."
-msgstr " 有効にすると、SVG のインラインレンダリングなど高度なオプションが設定できるようになります。SVG ファイルを単に画像として扱うときは有効にする必要はありません。"
-
-#: admin/svgs-settings-page.php:198
+#: admin/svgs-settings-page.php:178
 msgid "Enable Advanced Mode?"
 msgstr "高度な設定"
 
-#: admin/admin-init.php:195
-msgid "If you like <strong>SVG Support</strong> please leave a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thanks in advance!"
-msgstr "<strong>SVG Support</strong> が気に入ったら、%s&#9733;&#9733;&#9733;&#9733;%s の評価をしていただけるとうれしいです !"
-
 #. Author URI of the plugin
+#: svg-support.php
 msgid "https://benbodhi.com"
 msgstr "https://benbodhi.com"
 
 #. Author of the plugin
-#: admin/svgs-settings-page.php:458
+#: svg-support.php admin/svgs-settings-page.php:457
 msgid "Benbodhi"
 msgstr "Benbodhi"
 
 #. Plugin URI of the plugin
+#: svg-support.php
 msgid "http://wordpress.org/plugins/svg-support/"
 msgstr "http://ja.wordpress.org/plugins/svg-support/"
 
-#: admin/svgs-settings-page.php:456
+#: admin/svgs-settings-page.php:455
 msgid "Need help?"
 msgstr "お困りですか ?"
 
-#: admin/svgs-settings-page.php:455
+#: admin/svgs-settings-page.php:454
 msgid "The WordPress Plugin Repository"
 msgstr "WordPress.org プラグインページ"
 
-#: admin/svgs-settings-page.php:453
+#: admin/svgs-settings-page.php:452
 msgid "About The Plugin"
 msgstr "このプラグインについて"
 
-#: admin/svgs-settings-page.php:438
+#: admin/svgs-settings-page.php:437
 msgid "Restrict to Administrators only"
 msgstr "アップロード権限を管理者のみに制限"
 
-#: admin/svgs-settings-page.php:437
+#: admin/svgs-settings-page.php:436
 msgid "SVG Support for your media library"
 msgstr "メディアライブラリへの SVG アップロード許可"
 
-#: admin/svgs-settings-page.php:379
+#: admin/svgs-settings-page.php:370
 msgid "- Your uploaded image needs to be an SVG file for this plugin to replace the img tag with the inline SVG code. It will not create SVG files for you."
 msgstr "- このプラグインには SVG ファイルの作成機能はありません。img タグをインライン SVG コードに置き換えるためには、アップロードされた画像が SVG ファイルである必要があります。"
 
-#: admin/svgs-settings-page.php:378
+#: admin/svgs-settings-page.php:369
 msgid "- You will need to set your own height and width in your CSS for SVG files to display correctly."
 msgstr "- SVG ファイルを正しく表示するために、CSS で高さと幅を設定する必要があります。"
 
-#: admin/svgs-settings-page-help.php:84 admin/svgs-settings-page.php:377
+#: admin/svgs-settings-page-help.php:84 admin/svgs-settings-page.php:368
 msgid "Please Note:"
 msgstr "ご使用上の留意点:"
 
-#: admin/svgs-settings-page-help.php:82 admin/svgs-settings-page.php:374
+#: admin/svgs-settings-page-help.php:82 admin/svgs-settings-page.php:365
 msgid "This allows you to target elements within your SVG using CSS."
 msgstr "したがって、CSS で SVG 内の要素をターゲットとすることができるようにもなります。"
 
-#: admin/svgs-settings-page-help.php:82 admin/svgs-settings-page.php:373
+#: admin/svgs-settings-page-help.php:82 admin/svgs-settings-page.php:364
 msgid "The whole IMG tag element will now be dynamically replaced by the actual code of your SVG, making the inner content targetable."
 msgstr "こうすることで、IMG タグの要素全体が SVG の実際のコードに動的に置き換えられるようになります。"
 
-#: admin/svgs-settings-page-help.php:80 admin/svgs-settings-page.php:368
+#: admin/svgs-settings-page-help.php:80 admin/svgs-settings-page.php:38
+#: admin/svgs-settings-page.php:359
 msgid "or"
 msgstr "または"
 
-#: admin/svgs-settings-page-help.php:78 admin/svgs-settings-page.php:366
+#: admin/svgs-settings-page-help.php:78 admin/svgs-settings-page.php:357
 msgid "For example:"
 msgstr "例:"
 
-#: admin/svgs-settings-page.php:361
-msgid "Now, embed your SVG image like a standard image with the addition of adding the class <code>style-svg</code> (or your custom class from above) to any IMG tags that you want this plugin to swap out with your actual SVG code."
-msgstr "その上で SVG ファイルをアップロードしてサイト内に埋め込みます。埋め込む際、IMG タグに <code>style-svg</code> クラス(または任意のカスタムクラス) 属性を追加すると、このプラグインは IMG タグを実際の SVG コードに動的に置き換えます。"
-
-#: admin/svgs-settings-page.php:345
+#: admin/svgs-settings-page.php:329
 msgid "Usage"
 msgstr "使い方"
 
-#: admin/svgs-settings-page.php:330
+#: admin/svgs-settings-page.php:314
 msgid "Save Changes"
 msgstr "変更を保存"
 
-#: admin/svgs-settings-page.php:279
+#: admin/svgs-settings-page.php:247
 msgid "CSS Class to target"
 msgstr "ターゲットとする CSS クラス"
 
-#: admin/svgs-settings-page.php:316
+#: admin/svgs-settings-page.php:301
 msgid "Automatically insert class?"
 msgstr "クラスの自動挿入"
 
-#: admin/svgs-settings-page.php:243
-msgid " Normally, scripts are placed in <code>head</code> of the HTML document. If \"Yes\" is selected, the script is placed before the closing <code>body</code> tag. This requires the theme to have the <code>wp_footer()</code> template tag in the appropriate place."
-msgstr " 通常、JS は HTML の <code>head</code> 内に読み込まれます。「はい」にチェックを入れると、JS は <code>body</code> の閉じタグの直前で読み込まれます。この機能を使うには、テーマ内に <code>wp_footer()</code> テンプレートタグが適切に記述されている必要があります。"
-
-#: admin/svgs-settings-page.php:237
+#: admin/svgs-settings-page.php:211
 msgid "Output JS in Footer?"
 msgstr "JS をフッター部に読み込む"
 
-#: admin/svgs-settings-page.php:112 admin/svgs-settings-page.php:126
-#: admin/svgs-settings-page.php:176 admin/svgs-settings-page.php:190
-#: admin/svgs-settings-page.php:204 admin/svgs-settings-page.php:229
-#: admin/svgs-settings-page.php:243 admin/svgs-settings-page.php:257
-#: admin/svgs-settings-page.php:271 admin/svgs-settings-page.php:298
-#: admin/svgs-settings-page.php:322
+#: admin/svgs-settings-page.php:121 admin/svgs-settings-page.php:159
+#: admin/svgs-settings-page.php:171 admin/svgs-settings-page.php:183
+#: admin/svgs-settings-page.php:204 admin/svgs-settings-page.php:216
+#: admin/svgs-settings-page.php:228 admin/svgs-settings-page.php:240
+#: admin/svgs-settings-page.php:279 admin/svgs-settings-page.php:306
 msgid "Yes"
 msgstr "はい"
 
-#: admin/plugin-action-meta-links.php:17 admin/svgs-settings-page.php:55
+#: admin/plugin-action-meta-links.php:17 admin/svgs-settings-page.php:81
 msgid "Settings"
 msgstr "設定"
 
-#: admin/svgs-settings-page.php:17
-msgid "The main purpose of this is to allow styling of SVG elements. Usually your styling options are restricted when using <code>embed</code>, <code>object</code> or <code>img</code> tags alone."
-msgstr "この設定は主に、SVG 要素にスタイルを付けるときに使います。<code>embed</code>, <code>object</code> <code>img</code> タグを単独で使用するとき、通常はスタイル付けのオプションが制約を受けるからです。"
-
-#: admin/svgs-settings-page.php:16
-msgid "When you enable advanced mode, this plugin not only provides SVG Support like the name says, it also allows you to easily embed your full SVG file's code using a simple IMG tag. By adding the class <code>style-svg</code> to your IMG elements, this plugin dynamically replaces any IMG elements containing the <code>style-svg</code> class with your complete SVG."
-msgstr "「高度な設定」を有効にすると、単純な IMG タグを使って SVG ファイルの完全なコードをサイト内に埋め込めるようになります。具体的には、IMG 要素に <code>style-svg</code> クラスを追加するのがその方法です。そうすると、このプラグインは <code>style-svg</code> クラスを含むすべての IMG 要素を完全な SVG ファイルのコードへ動的に置き換えてくれます。"
-
-#: admin/svgs-settings-page.php:15
-msgid "When using SVG images on your WordPress site, it can be hard to style elements within the SVG using CSS. <strong>Now you can, easily!</strong>"
-msgstr "WordPress サイトで SVG 画像を扱うとき、SVG 内の要素に対して CSS でスタイルを設定するのが難しい場合があります。<strong>このプラグインなら、それが簡単にできます !</strong>"
-
-#: admin/svgs-settings-page.php:12
+#: admin/svgs-settings-page.php:20
 msgid "Introduction"
 msgstr "はじめに"
 
-#: admin/admin-init.php:15 admin/svgs-settings-page.php:4
+#: admin/admin-init.php:15 admin/svgs-settings-page.php:12
 msgid "SVG Support Settings and Usage"
 msgstr "SVG Support 設定と使い方"
 
@@ -641,7 +668,7 @@ msgstr "SVG Support 設定と使い方"
 msgid "Donate to author"
 msgstr "開発者に寄付する"
 
-#: admin/plugin-action-meta-links.php:36
+#: admin/plugin-action-meta-links.php:36 admin/svgs-settings-page.php:427
 msgid "Get Support"
 msgstr "サポートを受ける"
 
@@ -650,6 +677,6 @@ msgid "You can't play with this."
 msgstr "プラグインを使用できる権限がありません。"
 
 #. Plugin Name of the plugin
-#: admin/admin-init.php:16
+#: svg-support.php admin/admin-init.php:16 admin/svgs-settings-page.php:411
 msgid "SVG Support"
 msgstr "SVG Support"

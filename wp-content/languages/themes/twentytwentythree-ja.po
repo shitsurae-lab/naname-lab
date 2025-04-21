@@ -2,34 +2,61 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty-Three package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-26 09:20:28+0000\n"
+"PO-Revision-Date: 2025-02-28 13:25:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.7\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Themes - Twenty Twenty-Three\n"
 
 #. Description of the theme
+#: style.css
 #, gp-priority: high
 msgid "Twenty Twenty-Three is designed to take advantage of the new design tools introduced in WordPress 6.1. With a clean, blank base as a starting point, this default theme includes ten diverse style variations created by members of the WordPress community. Whether you want to build a complex or incredibly simple website, you can do it quickly and intuitively through the bundled styles or dive into creation and full customization yourself."
 msgstr "Twenty Twenty-Three は、WordPress 6.1 で導入された新しいデザインツールを活用するために設計されています。クリーンでまっさらなベースを出発点として、このデフォルトテーマには、WordPress コミュニティのメンバーによって作成された10種類の多様なスタイルバリエーションが含まれています。複雑なサイトでも驚くほどシンプルなサイトでも、同梱のスタイルから素早く直感的に作成したり、自分で作成して完全にカスタマイズしたりできます。"
 
 #. Theme Name of the theme
+#: style.css
 #, gp-priority: high
 msgid "Twenty Twenty-Three"
 msgstr "Twenty Twenty-Three"
+
+#: patterns/hidden-heading.php:9
+msgctxt "Main heading for homepage"
+msgid "Mindblown: a blog about philosophy."
+msgstr "Mindblown: a blog about philosophy."
+
+#: patterns/hidden-heading.php
+msgctxt "Pattern title"
+msgid "Hidden Heading for Homepage"
+msgstr "見出し非表示、ホームページ用"
+
+#: patterns/post-meta.php
+msgctxt "Pattern description"
+msgid "Post meta information with separator on the top."
+msgstr "投稿メタ情報、先頭に区切り線。"
+
+#: patterns/footer-default.php
+msgctxt "Pattern description"
+msgid "Footer with site title and powered by WordPress."
+msgstr "フッター、サイトタイトルと「powered by WordPress」。"
+
+#: patterns/call-to-action.php
+msgctxt "Pattern description"
+msgid "Left-aligned text with a CTA button and a separator."
+msgstr "左寄せテキスト、CTA ボタンと区切り線。"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Comments Template Part"
+msgstr "コメントテンプレートパーツ"
 
 #: theme.json
 msgctxt "Template part name"
 msgid "Post Meta"
 msgstr "投稿メタ"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Comments"
-msgstr "コメント"
 
 #: theme.json
 msgctxt "Template part name"
@@ -191,32 +218,32 @@ msgctxt "Font size name"
 msgid "Tiny"
 msgstr "特小"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "6"
 msgstr "6"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "5"
 msgstr "5"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "4"
 msgstr "4"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "3"
 msgstr "3"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "2"
 msgstr "2"
 
-#: theme.json styles/marigold.json styles/pitch.json
+#: styles/marigold.json styles/pitch.json theme.json
 msgctxt "Space size name"
 msgid "1"
 msgstr "1"
@@ -252,42 +279,42 @@ msgctxt "Style variation name"
 msgid "Block out"
 msgstr "ブロックアウト"
 
-#: theme.json styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
 #: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json
+#: styles/whisper.json theme.json
 msgctxt "Color name"
 msgid "Tertiary"
 msgstr "サブ2"
 
-#: theme.json styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
 #: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json
+#: styles/whisper.json theme.json
 msgctxt "Color name"
 msgid "Secondary"
 msgstr "サブ"
 
-#: theme.json styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
 #: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json
+#: styles/whisper.json theme.json
 msgctxt "Color name"
 msgid "Primary"
 msgstr "メイン"
 
-#: theme.json styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
 #: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json
+#: styles/whisper.json theme.json
 msgctxt "Color name"
 msgid "Contrast"
 msgstr "コントラスト"
 
-#: theme.json styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
 #: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json
+#: styles/whisper.json theme.json
 msgctxt "Color name"
 msgid "Base"
 msgstr "ベース"
@@ -317,22 +344,22 @@ msgctxt "Style variation name"
 msgid "Aubergine"
 msgstr "ナス"
 
-#: patterns/post-meta.php:64
+#: patterns/post-meta.php:65
 msgctxt "Label for a list of post tags"
 msgid "Tags:"
 msgstr "タグ:"
 
-#: patterns/post-meta.php:48
+#: patterns/post-meta.php:49
 msgctxt "Preposition to show the relationship between the post and its author"
 msgid "by"
 msgstr "投稿者:"
 
-#: patterns/post-meta.php:36
+#: patterns/post-meta.php:37
 msgctxt "Preposition to show the relationship between the post and its categories"
 msgid "in"
 msgstr "カテゴリー:"
 
-#: patterns/post-meta.php:28
+#: patterns/post-meta.php:29
 msgctxt "Verb to explain the publication status of a post"
 msgid "Posted"
 msgstr "投稿日"
@@ -392,7 +419,7 @@ msgid "Hidden 404"
 msgstr "非表示404"
 
 #. Translators: WordPress link.
-#: patterns/footer-default.php:19
+#: patterns/footer-default.php:20
 msgid "Proudly powered by %s"
 msgstr "Proudly powered by %s"
 
@@ -401,12 +428,12 @@ msgctxt "Pattern title"
 msgid "Default Footer"
 msgstr "デフォルトフッター"
 
-#: patterns/call-to-action.php:24
+#: patterns/call-to-action.php:25
 msgctxt "sample content for call to action button"
 msgid "Get In Touch"
 msgstr "お問い合わせ"
 
-#: patterns/call-to-action.php:15
+#: patterns/call-to-action.php:16
 msgctxt "sample content for call to action"
 msgid "Got any book recommendations?"
 msgstr "何かおすすめの本はありますか ?"
@@ -417,17 +444,19 @@ msgid "Call to action"
 msgstr "CTA (行動喚起)"
 
 #. Author URI of the theme
-#: patterns/footer-default.php:20
+#: style.css patterns/footer-default.php:21
 #, gp-priority: low
 msgid "https://wordpress.org"
 msgstr "https://ja.wordpress.org"
 
 #. Author of the theme
+#: style.css
 #, gp-priority: low
 msgid "the WordPress team"
 msgstr "WordPress チーム"
 
 #. Theme URI of the theme
+#: style.css
 #, gp-priority: low
 msgid "https://wordpress.org/themes/twentytwentythree"
 msgstr "https://ja.wordpress.org/themes/twentytwentythree"

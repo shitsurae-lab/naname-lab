@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - Flexible Table Block - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-28 06:59:52+0000\n"
+"PO-Revision-Date: 2025-03-18 14:53:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.0-alpha.6\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Flexible Table Block - Stable (latest release)\n"
 
@@ -20,6 +20,7 @@ msgid "Global setting saved."
 msgstr "グローバル設定を保存しました。"
 
 #. Author of the plugin
+#: flexible-table-block.php
 msgid "Aki Hamano"
 msgstr "Aki Hamano"
 
@@ -49,13 +50,16 @@ msgid "Flexible Table"
 msgstr "Flexible Table"
 
 #. Author URI of the plugin
+#: flexible-table-block.php
 msgid "https://github.com/t-hamano"
 msgstr "https://github.com/t-hamano"
 
 #. Description of the plugin
+#: flexible-table-block.php
 msgid "Easily create flexible configuration tables."
 msgstr "柔軟な設定を持つテーブルを簡単に作成することができます。"
 
 #. Plugin Name of the plugin
+#: flexible-table-block.php
 msgid "Flexible Table Block"
 msgstr "Flexible Table Block"
