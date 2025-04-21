@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty-Five package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-03 13:50:21+0000\n"
+"PO-Revision-Date: 2025-02-21 14:05:52+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,57 +40,57 @@ msgctxt "Template part name"
 msgid "Footer"
 msgstr "フッター"
 
-#: styles/02-noon.json styles/04-afternoon.json styles/05-twilight.json
-#: styles/06-morning.json styles/08-midnight.json
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
 #: styles/typography/typography-preset-1.json
 #: styles/typography/typography-preset-3.json
 #: styles/typography/typography-preset-4.json
 #: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json theme.json
+#: styles/typography/typography-preset-7.json
 msgctxt "Font size name"
 msgid "Extra Large"
 msgstr "特大"
 
-#: styles/02-noon.json styles/04-afternoon.json styles/05-twilight.json
-#: styles/06-morning.json styles/08-midnight.json
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
 #: styles/typography/typography-preset-1.json
 #: styles/typography/typography-preset-3.json
 #: styles/typography/typography-preset-4.json
 #: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json theme.json
+#: styles/typography/typography-preset-7.json
 msgctxt "Font size name"
 msgid "Large"
 msgstr "大"
 
-#: styles/02-noon.json styles/04-afternoon.json styles/05-twilight.json
-#: styles/06-morning.json styles/08-midnight.json
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
 #: styles/typography/typography-preset-1.json
 #: styles/typography/typography-preset-3.json
 #: styles/typography/typography-preset-4.json
 #: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json theme.json
+#: styles/typography/typography-preset-7.json
 msgctxt "Font size name"
 msgid "Medium"
 msgstr "中"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Contrast"
 msgstr "コントラスト"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Base"
 msgstr "ベース"
@@ -109,24 +109,24 @@ msgctxt "Template part name"
 msgid "Sidebar"
 msgstr "サイドバー"
 
-#: styles/02-noon.json styles/04-afternoon.json styles/05-twilight.json
-#: styles/06-morning.json styles/08-midnight.json
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
 #: styles/typography/typography-preset-1.json
 #: styles/typography/typography-preset-3.json
 #: styles/typography/typography-preset-4.json
 #: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json theme.json
+#: styles/typography/typography-preset-7.json
 msgctxt "Font size name"
 msgid "Extra Extra Large"
 msgstr "超特大"
 
-#: styles/02-noon.json styles/04-afternoon.json styles/05-twilight.json
-#: styles/06-morning.json styles/08-midnight.json
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
 #: styles/typography/typography-preset-1.json
 #: styles/typography/typography-preset-3.json
 #: styles/typography/typography-preset-4.json
 #: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json theme.json
+#: styles/typography/typography-preset-7.json
 msgctxt "Font size name"
 msgid "Small"
 msgstr "小"
@@ -291,7 +291,8 @@ msgstr "イベント詳細"
 msgid "Event image"
 msgstr "イベントの画像"
 
-#: patterns/cta-centered-heading.php:28
+#: patterns/banner-intro-image.php:42 patterns/cta-centered-heading.php:28
+#: patterns/hero-full-width-image.php:33
 msgid "Learn more"
 msgstr "さらに詳しく"
 
@@ -367,11 +368,6 @@ msgstr "フッターのニュースレター"
 
 #: theme.json
 msgctxt "Template part name"
-msgid "Vertical Header"
-msgstr "縦書きのヘッダー"
-
-#: theme.json
-msgctxt "Template part name"
 msgid "Header with large title"
 msgstr "大きなタイトルが入ったヘッダー"
 
@@ -427,7 +423,7 @@ msgctxt "Font family name"
 msgid "Fira Sans"
 msgstr "Fira Sans"
 
-#: styles/03-dusk.json styles/typography/typography-preset-2.json theme.json
+#: theme.json styles/03-dusk.json styles/typography/typography-preset-2.json
 msgctxt "Font family name"
 msgid "Fira Code"
 msgstr "Fira Code"
@@ -446,16 +442,11 @@ msgctxt "Font family name"
 msgid "Literata"
 msgstr "Literata"
 
-#: styles/05-twilight.json styles/typography/typography-preset-4.json
-#: theme.json
+#: theme.json styles/05-twilight.json
+#: styles/typography/typography-preset-4.json
 msgctxt "Font family name"
 msgid "Manrope"
 msgstr "Manrope"
-
-#: patterns/vertical-header.php
-msgctxt "Pattern title"
-msgid "Vertical header"
-msgstr "垂直ヘッダー"
 
 #: patterns/testimonials-large.php
 msgctxt "Pattern title"
@@ -471,11 +462,6 @@ msgstr "3列レイアウト、6個のお客様の声"
 msgctxt "Pattern title"
 msgid "2 columns with avatar"
 msgstr "2列、アバター付き"
-
-#: patterns/template-single-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, single post"
-msgstr "テキストのみのブログ、個別投稿"
 
 #: patterns/template-single-photo-blog.php
 msgctxt "Pattern title"
@@ -507,11 +493,6 @@ msgctxt "Pattern title"
 msgid "Right-aligned blog, search"
 msgstr "右寄せのブログ、検索"
 
-#: patterns/template-search-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, search"
-msgstr "テキストのみのブログ、検索"
-
 #: patterns/template-search-news-blog.php
 msgctxt "Pattern title"
 msgid "News blog search results"
@@ -527,16 +508,6 @@ msgctxt "Pattern title"
 msgid "List of posts, 1 column"
 msgstr "投稿一覧、1列"
 
-#: patterns/template-query-loop-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned posts"
-msgstr "右寄せの投稿"
-
-#: patterns/template-query-loop-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, posts"
-msgstr "テキストのみのブログ、投稿"
-
 #: patterns/template-query-loop-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog posts"
@@ -547,11 +518,6 @@ msgctxt "Pattern title"
 msgid "News blog query loop"
 msgstr "ニュースブログクエリーループ"
 
-#: patterns/template-page-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Page template for the right-aligned blog"
-msgstr "ページテンプレート、右寄せのブログ"
-
 #: patterns/template-home-with-sidebar-news-blog.php
 msgctxt "Pattern title"
 msgid "News blog with sidebar"
@@ -561,16 +527,6 @@ msgstr "ニュースブログ、サイドバーあり"
 msgctxt "Pattern title"
 msgid "Photo blog page"
 msgstr "写真ブログ、固定ページ"
-
-#: patterns/template-home-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Homepage for right-aligned blog"
-msgstr "ホームページ、右寄せのブログ"
-
-#: patterns/template-home-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, home"
-msgstr "テキストのみのブログ、ホーム"
 
 #: patterns/template-home-posts-grid-news-blog.php
 msgctxt "Pattern title"
@@ -587,16 +543,6 @@ msgctxt "Pattern title"
 msgid "News blog home"
 msgstr "ニュースブログ、ホーム"
 
-#: patterns/template-archive-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Archive for the right-aligned blog"
-msgstr "アーカイブ、右寄せのブログ"
-
-#: patterns/template-archive-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, archive"
-msgstr "テキストのみのブログ、アーカイブ"
-
 #: patterns/template-archive-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog archive"
@@ -606,11 +552,6 @@ msgstr "写真ブログ、アーカイブ"
 msgctxt "Pattern title"
 msgid "News blog archive"
 msgstr "ニュースブログ、アーカイブ"
-
-#: patterns/template-404-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned blog, 404"
-msgstr "右寄せのブログ、404"
 
 #: patterns/services-team-photos.php
 msgctxt "Pattern title"
@@ -741,11 +682,6 @@ msgstr "ヘッダー、大きなタイトル"
 msgctxt "Pattern title"
 msgid "Header with columns"
 msgstr "ヘッダー、カラム付き"
-
-#: patterns/header-centered.php
-msgctxt "Pattern title"
-msgid "Centered header"
-msgstr "中央寄せのヘッダー"
 
 #: patterns/grid-with-categories.php
 msgctxt "Pattern title"
@@ -1007,76 +943,71 @@ msgctxt "Space size name"
 msgid "Regular"
 msgstr "標準"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 6"
 msgstr "アクセント6"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 5"
 msgstr "アクセント5"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 4"
 msgstr "アクセント4"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 3"
 msgstr "アクセント3"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 2"
 msgstr "アクセント2"
 
-#: styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
 #: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
 #: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
 #: styles/colors/02-noon.json styles/colors/03-dusk.json
 #: styles/colors/04-afternoon.json styles/colors/05-twilight.json
 #: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json theme.json
+#: styles/colors/08-midnight.json
 msgctxt "Color name"
 msgid "Accent 1"
 msgstr "アクセント1"
-
-#: patterns/vertical-header.php
-msgctxt "Pattern description"
-msgid "Vertical Header with site title and navigation"
-msgstr "サイトタイトルとナビゲーション付きの垂直ヘッダー"
 
 #: patterns/text-faqs.php:21
 msgctxt "Heading of the FAQs pattern."
@@ -1553,6 +1484,80 @@ msgstr "投稿ナビゲーション"
 msgctxt "Pattern description"
 msgid "A business homepage pattern."
 msgstr "ビジネスホームページのパターン。"
+
+#: patterns/hidden-written-by.php:16
+msgid "Written by "
+msgstr "執筆者 "
+
+#: patterns/grid-with-categories.php:22
+msgid "Top Categories"
+msgstr "人気のカテゴリー"
+
+#: patterns/footer-columns.php:37 patterns/footer.php:47
+msgid "About"
+msgstr "このサイトについて"
+
+#: patterns/cta-grid-products-link.php:134
+msgid "Shop now"
+msgstr "今すぐ購入"
+
+#: patterns/contact-info-locations.php:62
+msgid "San Diego"
+msgstr "サンディエゴ"
+
+#: patterns/more-posts.php:18
+msgid "More posts"
+msgstr "投稿をさらに読み込む"
+
+#: patterns/footer-columns.php:39 patterns/footer.php:51
+msgid "Authors"
+msgstr "投稿者"
+
+#: patterns/footer-columns.php:38 patterns/footer.php:49
+msgid "FAQs"
+msgstr "よくある質問"
+
+#: patterns/footer-columns.php
+msgctxt "Pattern description"
+msgid "Footer columns with title, tagline and links."
+msgstr "タイトル、キャッチフレーズ、リンクを含むフッターカラム"
+
+#: patterns/grid-with-categories.php:36
+msgid "Anthuriums"
+msgstr "Anthuriums"
+
+#: patterns/banner-cover-big-heading.php:27 patterns/footer-columns.php:33
+#: patterns/footer-columns.php:35 patterns/footer-newsletter.php:20
+#: patterns/template-home-photo-blog.php:22
+msgid "Stories"
+msgstr "ストーリー"
+
+#: patterns/page-coming-soon.php:29
+msgid "Something great is coming soon"
+msgstr "Something great is coming soon"
+
+#: patterns/footer-columns.php:48
+msgid "Featured"
+msgstr "注目"
+
+#. translators: Designed with WordPress. %s: WordPress link.
+#: patterns/footer-centered.php:33 patterns/footer-columns.php:73
+#: patterns/footer-newsletter.php:49 patterns/footer-social.php:35
+#: patterns/footer.php:82
+msgid "Designed with %s"
+msgstr "Designed with %s"
+
+#: patterns/cta-grid-products-link.php:59
+msgid "30€"
+msgstr "30ユーロ"
+
+#: patterns/cta-grid-products-link.php:20
+msgid "Our online store."
+msgstr "オンラインストア"
+
+#: patterns/contact-location-and-link.php:36
+msgid "The business location"
+msgstr "会社の住所"
 
 #. Author of the theme
 #: style.css
