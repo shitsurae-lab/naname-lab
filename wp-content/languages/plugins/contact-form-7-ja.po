@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-02-18 07:36:32+0000\n"
+"PO-Revision-Date: 2025-04-11 06:42:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: ja_JP\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: modules/stripe/stripe.php:178
+msgid "Invalid Stripe Payment Intent ID detected."
+msgstr "不正な Stripe Payment Intent ID が検知されました。"
 
 #: modules/recaptcha/recaptcha.php:283
 msgid "<strong>Attention reCAPTCHA users:</strong> Google has a plan to make all reCAPTCHA users migrate to reCAPTCHA Enterprise. This means a cost increase for many of you. Learn about <a href=\"https://contactform7.com/2025/02/10/our-future-plans-for-captchas/\">our future plans for CAPTCHAs</a> and the options you have."
@@ -523,15 +527,15 @@ msgstr "%s からのオプトイン確認"
 msgid "You can set up the Constant Contact integration here. For details, see %s."
 msgstr "ここで Constant Contact インテグレーションを設定できます。詳しくは %s を参照。"
 
-#: modules/stripe/stripe.php:320
+#: modules/stripe/stripe.php:377
 msgid "Complete payment"
 msgstr "支払いを完了する"
 
-#: modules/stripe/stripe.php:305
+#: modules/stripe/stripe.php:362
 msgid "Proceed to checkout"
 msgstr "購入手続きに進む"
 
-#: modules/stripe/stripe.php:189
+#: modules/stripe/stripe.php:246
 msgid "Payment is required. Please pay by credit card."
 msgstr "支払いが必要です。クレジットカードでお支払いください。"
 
