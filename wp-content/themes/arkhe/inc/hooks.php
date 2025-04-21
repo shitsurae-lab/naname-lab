@@ -81,7 +81,7 @@ function hook_wp_list_categories( $output, $args ) {
 		$li_class = $matches[1];
 		$a_tag    = $matches[2] . ark_get__submenu_toggle_btn() . '</a>';
 		return '<li class="' . $li_class . ' has-child--acc">' . $a_tag . '<ul';
-	}, $output );
+	}, $output   );
 
 	return $output;
 }
@@ -93,12 +93,12 @@ function hook_wp_list_categories( $output, $args ) {
  */
 // add_action( 'wp_list_pages', __NAMESPACE__ . '\hook_wp_list_pages' );
 // function hook_wp_list_pages( $output ) {
-// 	$output = preg_replace(
-// 		'/<\/a>([^<]*)<ul/',
-// 		ark_get__submenu_toggle_btn() . '</a><ul',
-// 		$output
-// 	);
-// 	return $output;
+//  $output = preg_replace(
+//      '/<\/a>([^<]*)<ul/',
+//      ark_get__submenu_toggle_btn() . '</a><ul',
+//      $output
+//  );
+//  return $output;
 // }
 
 
