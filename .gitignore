@@ -1,6 +1,6 @@
-node_modules
-wp-content/all-in-one-wp-migration
-wp-content/languages/plugins/contact-form-7-ja.mo
-wp-content/plugins/seo-simple-pack
-local-xdebuginfo.php,
-wp-content/ai1wm-backups/*
+# npmなどの依存モジュール
+node_modules/
+# ローカル用の設定ファイル
+local-xdebuginfo.php
+# All in One WP Migrationのバックアップ(巨大ファイルのため)
+wp-content/ai1wm-backups/
