@@ -9,7 +9,7 @@
     "reusable": false
   },
   "parent": [
-    "arkhe-blocks/faq-item"
+    "arkhe-blocks/faq"
   ],
   "attributes": {
     "textQ": {
