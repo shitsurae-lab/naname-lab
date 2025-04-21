@@ -1,8 +1,4 @@
-// Hack to load css files into iframe editor instances on WordPress 6.0.
-// https://github.com/WordPress/gutenberg/pull/40842
-.wp-block-fsb-flexible-spacer {
-	background: transparent;
-}
+@use "wp-base-styles" as wpBaseStyles;
 
 .fsb-flexible-spacer__inner {
 	display: flex;
@@ -22,7 +18,7 @@
 
 .fsb-flexible-spacer__device-ttl {
 	position: absolute;
-	top: 2px;
+	top: wpBaseStyles.$grid-unit-05;
 	left: 0;
 	z-index: 1;
 	display: flex;
@@ -32,12 +28,15 @@
 	font-size: 12px;
 	font-weight: bold;
 	line-height: 1.2;
-	color: #757575;
+	color: wpBaseStyles.$gray-700;
 	text-align: center;
 	pointer-events: none;
 	user-select: none;
 	opacity: 0;
-	transition: opacity 120ms ease 0s;
+
+	@media not (prefers-reduced-motion) {
+		transition: opacity 120ms ease 0s;
+	}
 
 	svg {
 		margin-right: 2px;
@@ -46,7 +45,7 @@
 
 .fsb-flexible-spacer__breakpoint {
 	position: absolute;
-	top: -15px;
+	top: -14px;
 	left: 0;
 	z-index: 2;
 	display: flex;
@@ -55,23 +54,26 @@
 	pointer-events: none;
 	user-select: none;
 	opacity: 0;
-	transition: opacity 120ms ease 0s;
+
+	@media not (prefers-reduced-motion) {
+		transition: opacity 120ms ease 0s;
+	}
 }
 
 .fsb-flexible-spacer__breakpoint-item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 70px;
-	height: 20px;
+	width: wpBaseStyles.$grid-unit-10 * 9;
+	height: wpBaseStyles.$grid-unit-20 + wpBaseStyles.$grid-unit-05;
 	font-size: 11px;
-	color: #fff;
+	color: wpBaseStyles.$white;
 	text-align: center;
-	background: #757575;
-	border-radius: 2px;
+	background: wpBaseStyles.$gray-700;
+	border-radius: wpBaseStyles.$radius-small;
 
 	&:last-child:not(:first-child) {
-		margin-left: calc(33.3% - 70px);
+		margin-left: calc(33.3% - wpBaseStyles.$grid-unit-10 * 9);
 	}
 }
 
@@ -84,7 +86,7 @@
 	}
 
 	.components-resizable-box__container {
-		background: #f0f0f0;
+		background: wpBaseStyles.$gray-100;
 
 		&.is-negative {
 			background: #f6b9b9;
@@ -96,14 +98,5 @@
 
 	.fsb-flexible-spacer__breakpoint {
 		display: none;
-	}
-}
-
-// Backward compatibility
-body.branch-6,
-body.branch-6-1 {
-
-	.components-unit-control-wrapper {
-		margin-bottom: 24px;
 	}
 }

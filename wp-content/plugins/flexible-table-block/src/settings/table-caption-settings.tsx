@@ -8,13 +8,15 @@ import type { Property, Properties } from 'csstype';
  */
 import { __ } from '@wordpress/i18n';
 import {
-	BaseControl,
 	Button,
-	ButtonGroup,
+	Flex,
+	FlexBlock,
 	TextControl,
-	// @ts-ignore: has no exported member
+	__experimentalSpacer as Spacer,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 	__experimentalUnitControl as UnitControl,
-	// @ts-ignore: has no exported member
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
 
@@ -24,11 +26,10 @@ import {
 import { FONT_SIZE_UNITS, TEXT_ALIGNMENT_CONTROLS, CAPTION_SIDE_CONTROLS } from '../constants';
 import { PaddingControl } from '../controls';
 import { convertToInline } from '../utils/style-converter';
-import { pickPadding } from '../utils/style-picker';
+import { pickPadding, type DirectionProps } from '../utils/style-picker';
 import { updatePadding } from '../utils/style-updater';
 import { sanitizeUnitValue } from '../utils/helper';
-import type { CaptionSideValue, TextAlignValue, BlockAttributes } from '../BlockAttributes';
-import type { DirectionProps } from '../utils/style-picker';
+import type { CaptionSideValue, BlockAttributes } from '../BlockAttributes';
 
 type Props = {
 	attributes: BlockAttributes;
@@ -45,7 +46,7 @@ export default function TableCaptionSettings( {
 
 	const fontSizeUnits = useCustomUnits( { availableUnits: FONT_SIZE_UNITS } );
 
-	const onChangeFontSize = ( value: Property.FontSize ) => {
+	const onChangeFontSize = ( value: Property.FontSize | undefined ) => {
 		const newStylesObj = {
 			...captionStylesObj,
 			fontSize: sanitizeUnitValue( value ),
@@ -66,16 +67,28 @@ export default function TableCaptionSettings( {
 		setAttributes( { captionStyles: convertToInline( newStylesObj ) } );
 	};
 
-	const onChangeSide = ( value: CaptionSideValue ) => {
-		setAttributes( { captionSide: value } );
+	const onChangeSide = ( value: string | number | undefined ) => {
+		const isAllowedValue = ( _value: any ): _value is CaptionSideValue => {
+			return CAPTION_SIDE_CONTROLS.some( ( control ) => control.value === _value );
+		};
+		if ( isAllowedValue( value ) ) {
+			setAttributes( { captionSide: value } );
+		}
 	};
 
-	const onChangeAlign = ( value: TextAlignValue ) => {
-		const newStylesObj = {
-			...captionStylesObj,
-			textAlign: value === captionStylesObj.textAlign ? undefined : value,
+	const onChangeAlign = ( value: string | number | undefined ) => {
+		const isAllowedValue = ( _value: any ): _value is Properties[ 'textAlign' ] => {
+			return ! value || TEXT_ALIGNMENT_CONTROLS.some( ( control ) => control.value === _value );
 		};
-		setAttributes( { captionStyles: convertToInline( newStylesObj ) } );
+		if ( isAllowedValue( value ) ) {
+			const newStylesObj = {
+				...captionStylesObj,
+				textAlign: value === captionStylesObj.textAlign ? undefined : value,
+			};
+			setAttributes( {
+				captionStyles: convertToInline( newStylesObj ),
+			} );
+		}
 	};
 
 	const onResetSettings = () => {
@@ -87,86 +100,70 @@ export default function TableCaptionSettings( {
 
 	return (
 		<>
-			<BaseControl
-				id="flexible-table-block-caption-clear-settings"
-				className="ftb-reset-settings-control"
-			>
+			<Spacer marginBottom="4" as={ Flex } justify="end">
 				<Button variant="link" isDestructive onClick={ onResetSettings }>
 					{ __( 'Clear caption settings', 'flexible-table-block' ) }
 				</Button>
-			</BaseControl>
-			<BaseControl
-				id="flexible-table-block-caption-font-size"
-				label={ __( 'Caption font size', 'flexible-table-block' ) }
-				className="ftb-font-size-control"
-			>
-				<UnitControl
-					id="flexible-table-block-caption-font-size"
-					value={ captionStylesObj?.fontSize }
-					units={ fontSizeUnits }
-					min="0"
-					onChange={ onChangeFontSize }
-				/>
-			</BaseControl>
-			<BaseControl
-				id="flexible-table-block-caption-line-height"
-				className="ftb-line-height-control"
-			>
-				<TextControl
-					label={ __( 'Caption line height', 'flexible-table-block' ) }
-					autoComplete="off"
-					onChange={ onChangeLineHeight }
-					step={ 0.1 }
-					type="number"
-					value={ captionStylesObj?.lineHeight || '' }
-					min={ 0 }
-				/>
-			</BaseControl>
+			</Spacer>
+			<Spacer marginBottom="4" as={ Flex } align="end">
+				<FlexBlock>
+					<UnitControl
+						label={ __( 'Caption font size', 'flexible-table-block' ) }
+						value={ captionStylesObj?.fontSize }
+						units={ fontSizeUnits }
+						min={ 0 }
+						onChange={ onChangeFontSize }
+						size="__unstable-large"
+					/>
+				</FlexBlock>
+				<FlexBlock>
+					<TextControl
+						label={ __( 'Caption line height', 'flexible-table-block' ) }
+						autoComplete="off"
+						onChange={ onChangeLineHeight }
+						step={ 0.1 }
+						type="number"
+						value={ captionStylesObj?.lineHeight || '' }
+						min={ 0 }
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+					/>
+				</FlexBlock>
+			</Spacer>
 			<PaddingControl
-				id="flexible-table-block-caption-padding"
 				label={ __( 'Caption padding', 'flexible-table-block' ) }
 				values={ pickPadding( captionStylesObj ) }
 				onChange={ onChangePadding }
 			/>
-			<BaseControl id="flexible-table-block-caption-side">
-				<div aria-labelledby="flexible-table-block-caption-side-heading" role="region">
-					<span id="flexible-table-block-caption-side-heading" className="ftb-base-control-label">
-						{ __( 'Caption position', 'flexible-table-block' ) }
-					</span>
-					<ButtonGroup className="ftb-button-group">
-						{ CAPTION_SIDE_CONTROLS.map( ( { label, value } ) => (
-							<Button
-								key={ value }
-								label={ label }
-								variant={ captionSide === value ? 'primary' : undefined }
-								onClick={ () => onChangeSide( value ) }
-							>
-								{ label }
-							</Button>
-						) ) }
-					</ButtonGroup>
-				</div>
-			</BaseControl>
-			<BaseControl id="flexible-table-block-caption-align">
-				<div aria-labelledby="flexible-table-block-caption-align-heading" role="region">
-					<span id="flexible-table-block-caption-align-heading" className="ftb-base-control-label">
-						{ __( 'Caption text alignment', 'flexible-table-block' ) }
-					</span>
-					<ButtonGroup className="ftb-button-group">
-						{ TEXT_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => {
-							return (
-								<Button
-									key={ value }
-									label={ label }
-									variant={ value === captionStylesObj?.textAlign ? 'primary' : 'secondary' }
-									icon={ icon }
-									onClick={ () => onChangeAlign( value ) }
-								/>
-							);
-						} ) }
-					</ButtonGroup>
-				</div>
-			</BaseControl>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				label={ __( 'Caption position', 'flexible-table-block' ) }
+				value={ captionSide }
+				isBlock
+				onChange={ onChangeSide }
+			>
+				{ CAPTION_SIDE_CONTROLS.map( ( { label, value } ) => (
+					<ToggleGroupControlOption key={ value } value={ value } label={ label } />
+				) ) }
+			</ToggleGroupControl>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				label={ __( 'Caption text alignment', 'flexible-table-block' ) }
+				value={ captionStylesObj?.textAlign }
+				isDeselectable
+				onChange={ onChangeAlign }
+			>
+				{ TEXT_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => (
+					<ToggleGroupControlOptionIcon
+						key={ value }
+						value={ value }
+						icon={ icon }
+						label={ label }
+					/>
+				) ) }
+			</ToggleGroupControl>
 		</>
 	);
 }

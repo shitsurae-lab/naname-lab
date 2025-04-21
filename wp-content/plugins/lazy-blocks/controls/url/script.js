@@ -46,3 +46,21 @@ function ComponentRender(props) {
 addFilter('lzb.editor.control.url.render', 'lzb.editor', (render, props) => (
 	<ComponentRender {...props} />
 ));
+
+/**
+ * Required check.
+ * Just check for empty value. Previously we used advanced URL validation, but we can't restrict values like '#' or 'relative-url-string'.
+ *
+ * @param {Object} validationData
+ * @param {number} value
+ *
+ * @return {Object} validation data.
+ */
+function validate(validationData, value) {
+	if (!value) {
+		return { valid: false };
+	}
+
+	return validationData;
+}
+addFilter('lzb.editor.control.url.validate', 'lzb.editor', validate);

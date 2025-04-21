@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\BoxLink;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/box-link',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/box-link',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\BoxLink\render_block',
 	]

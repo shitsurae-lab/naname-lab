@@ -71,7 +71,7 @@ class XO_Login_Log_List_Table extends WP_List_Table {
 		 * @param bool $show Whether to show the checkbox.
 		 */
 		if ( apply_filters( 'xo_security_loginlog_checkbox', true ) ) {
-			echo sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', esc_attr( $this->_args['singular'] ), esc_attr( $item['id'] ) );
+			printf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', esc_attr( $this->_args['singular'] ), esc_attr( $item['id'] ) );
 		}
 	}
 
@@ -82,10 +82,10 @@ class XO_Login_Log_List_Table extends WP_List_Table {
 	 */
 	public function column_type( $item ) {
 		$s = '';
-		if ( XO_Security::LOGIN_TYPE_LOGIN_PAGE == $item['type'] ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-			$s = __( 'Login page', 'xo-security' );
-		} elseif ( XO_Security::LOGIN_TYPE_XMLRPC == $item['type'] ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-			$s = __( 'XMLRPC', 'xo-security' );
+		if ( XO_Security::LOGIN_TYPE_LOGIN_PAGE === (int) $item['type'] ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			$s = esc_html__( 'Login page', 'xo-security' );
+		} elseif ( XO_Security::LOGIN_TYPE_XMLRPC === (int) $item['type'] ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			$s = esc_html__( 'XMLRPC', 'xo-security' );
 		}
 		return $s;
 	}
@@ -306,8 +306,8 @@ class XO_Login_Log_List_Table extends WP_List_Table {
 			return;
 		}
 
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'bulk-' . $this->_args['plural'] ) ) {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'bulk-' . $this->_args['plural'] ) ) {
 			return;
 		}
 
@@ -315,11 +315,11 @@ class XO_Login_Log_List_Table extends WP_List_Table {
 		$ids = implode( ',', array_map( 'absint', $ids ) );
 		if ( ! empty( $ids ) ) {
 			if ( $current_user->has_cap( 'administrator' ) ) {
-				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-				$wpdb->query( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids);" ); // WPCS: db call ok; no-cache ok.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$wpdb->query( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids);" );
 			} else {
-				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-				$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids) AND user_name = %s;", $current_user->user_login ) ); // WPCS: db call ok; no-cache ok.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id IN ($ids) AND user_name = %s;", $current_user->user_login ) );
 			}
 		}
 	}

@@ -146,6 +146,7 @@ function get_article_json_data() {
 
 /**
  * グローバルナビ用のJSON-LDの生成
+ * ※ SiteNavigationElement は リッチリザルト に適用はされないのでオフにしている
  */
 function get_gnav_json_data() {
 	// 各ロケーションにセットされているメニューIDを取得

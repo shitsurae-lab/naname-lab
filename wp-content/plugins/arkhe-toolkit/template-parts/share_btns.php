@@ -26,6 +26,11 @@ if ( $show_url_copy ) {
 	<?php do_action( 'arkhe_toolkit_before_share_btns_list' ); ?>
 	<ul class="c-shareBtns__list">
 		<?php foreach ( $share_btns as $key => $data ) : ?>
+			<?php
+				if ( 'twitter' === $key && apply_filters( 'arkhe_toolkit_twitter_to_x', 1 ) ) {
+					$key = 'twitter-x';
+				}
+			?>
 			<li class="c-shareBtns__item -<?=esc_attr( $key )?>">
 				<a class="c-shareBtns__btn u-flex--c" <?php \Arkhe_Toolkit::print_attrs_as_string( \Arkhe_Toolkit::generate_share_btn_attrs( $data ) ); ?>>
 					<?php \Arkhe_Toolkit::the_svg( $key, [ 'class' => 'c-shareBtns__icon' ] ); ?>

@@ -3,17 +3,18 @@
  */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { cloneDeep } from 'lodash';
-import { __ } from '@wordpress/i18n';
 import { Component, Fragment, RawHTML } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
-import { PanelBody, Notice } from '@wordpress/components';
+import { PanelBody, ExternalLink, Notice } from '@wordpress/components';
+import { select } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies.
  */
 import getControlTypeData from '../../utils/get-control-type-data';
 import getControlValue from '../../utils/get-control-value';
-import isControlValueValid from '../../utils/is-control-value-valid';
+import checkControlValidity from '../../utils/check-control-validity';
 
 let options = window.lazyblocksGutenberg;
 if (!options || !options.blocks || !options.blocks.length) {
@@ -130,12 +131,18 @@ export default class RenderControls extends Component {
 	 * Render controls
 	 *
 	 * @param {string}         placement  - controls placement [inspector, content]
+	 * @param {string}         group      - control group [default, styles, advanced]
 	 * @param {string|boolean} childOf    - parent control name.
 	 * @param {number|boolean} childIndex - child index in parent.
 	 *
 	 * @return {Array} react blocks with controls.
 	 */
-	renderControls(placement, childOf = '', childIndex = false) {
+	renderControls(
+		placement,
+		group = 'default',
+		childOf = '',
+		childIndex = false
+	) {
 		let result = [];
 		const controls = this.getControls(childOf);
 
@@ -147,7 +154,8 @@ export default class RenderControls extends Component {
 				control,
 				placement,
 				k,
-				childIndex
+				childIndex,
+				group
 			);
 
 			if (renderedControl) {
@@ -163,6 +171,7 @@ export default class RenderControls extends Component {
 		// filter render result.
 		result = applyFilters('lzb.editor.controls.render', result, {
 			placement,
+			group,
 			childOf,
 			childIndex,
 			getControls: this.getControls,
@@ -179,12 +188,24 @@ export default class RenderControls extends Component {
 	 * @param {string}         placement   - placement
 	 * @param {string}         uniqueId    - unique control ID
 	 * @param {number|boolean} childIndex  - child index in parent.
+	 * @param {string}         group       - group control
 	 *
 	 * @return {object|boolean} react control.
 	 */
-	renderControl(controlData, placement, uniqueId, childIndex = false) {
-		const { lazyBlockData, isLazyBlockSelected, attributes, meta } =
-			this.props;
+	renderControl(
+		controlData,
+		placement,
+		uniqueId,
+		childIndex = false,
+		group = 'default'
+	) {
+		const {
+			lazyBlockData,
+			isLazyBlockSelected,
+			allowErrorNotice,
+			attributes,
+			meta,
+		} = this.props;
 		let result = false;
 
 		let placementCheck =
@@ -192,9 +213,14 @@ export default class RenderControls extends Component {
 			controlData.placement !== 'nowhere' &&
 			(controlData.placement === 'both' ||
 				controlData.placement === placement);
-		let { label } = controlData;
 
+		let { label } = controlData;
 		const controlTypeData = getControlTypeData(controlData.type);
+
+		// Group check.
+		if (placement !== 'content') {
+			placementCheck = placementCheck && controlData.group === group;
+		}
 
 		// restrictions.
 		if (controlTypeData && controlTypeData.restrictions) {
@@ -206,6 +232,9 @@ export default class RenderControls extends Component {
 				placementCheck =
 					controlTypeData.restrictions.placement_settings.indexOf(
 						placement
+					) > -1 ||
+					controlTypeData.restrictions.placement_settings.indexOf(
+						`${placement}-fallback`
 					) > -1;
 			}
 
@@ -288,29 +317,49 @@ export default class RenderControls extends Component {
 			}
 
 			if (controlResult) {
-				let controlNotice = '';
+				const val = controlRenderData.getValue();
+				const controlNotice = [];
 
-				// show error for required fields
-				if (
-					controlTypeData &&
-					controlTypeData.restrictions.required_settings &&
-					controlData.required &&
-					controlData.required === 'true'
-				) {
-					const val = controlRenderData.getValue();
+				// Display an error for meta controls when the post type doesn't support custom fields and the control is configured to save_in_meta fields.
+				if (controlData.save_in_meta === 'true') {
+					const postType = select('core/editor').getCurrentPostType();
+					const postTypeObject = select('core').getPostType(postType);
 
-					if (!isControlValueValid(val, controlData)) {
-						controlNotice = (
+					const postTypeSupportMeta =
+						postTypeObject?.supports?.['custom-fields'] || false;
+					if (!postTypeSupportMeta) {
+						controlNotice.push(
 							<Notice
-								key={`notice-${controlData.name}`}
+								key={`notice-meta-${controlData.name}`}
 								status="warning"
 								isDismissible={false}
-								className="lzb-constructor-notice"
+								className="lzb-block-builder-notice"
 							>
-								{__('This field is required', 'lazy-blocks')}
+								{__(
+									'Custom fields are not enabled for this post type. Enable "custom-fields" support to use this control.',
+									'lazy-blocks'
+								)}{' '}
+								<ExternalLink href="https://developer.wordpress.org/reference/functions/add_post_type_support/">
+									{__('Learn how', 'lazy-blocks')}
+								</ExternalLink>
 							</Notice>
 						);
 					}
+				}
+
+				// show error for required fields
+				const requiredError = checkControlValidity(val, controlData);
+				if (allowErrorNotice && requiredError) {
+					controlNotice.push(
+						<Notice
+							key={`notice-required-${controlData.name}`}
+							status="error"
+							isDismissible={false}
+							className="lzb-block-builder-notice"
+						>
+							{requiredError}
+						</Notice>
+					);
 				}
 
 				if (placement === 'inspector') {
@@ -342,6 +391,6 @@ export default class RenderControls extends Component {
 	}
 
 	render() {
-		return this.renderControls(this.props.placement);
+		return this.renderControls(this.props.placement, this.props.group);
 	}
 }

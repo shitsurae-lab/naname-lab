@@ -1,0 +1,135 @@
+@use '../global' as *;
+
+/* COMMON */
+
+/**
+* COLOR
+**/
+body {
+  color: $color-granite-gray;
+}
+
+/**
+* FONTS
+**/
+body {
+  letter-spacing: 0.05em;
+}
+
+/**
+* LETTER SPACING
+**/
+
+/**
+* HEADING
+**/
+
+/* FRONT-PAGE */
+.p-front__content {
+  .ark-block-heading:has(h2) {
+    margin-bottom: 60px;
+    h2.ark-block-heading__main {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.125em;
+      font-size: var(--global-font-xl);
+      line-height: 1;
+      // color: transparent;
+      // background-image: var(--color-moonlit-asteroid);
+      // -webkit-background-clip: text;
+      color: $color-weldon-blue;
+      & + .ark-block-heading__sub {
+        // color: var(--color-moonlit-asteroid);
+        color: $color-granite-gray;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0.125em;
+    color: $color-weldon-blue;
+  }
+}
+
+/* PAGE */
+//Headline at Mainvisual
+.p-topArea {
+  .c-pageTitle__main {
+    text-transform: uppercase;
+    font-size: var(--font-xxl);
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+.p-page__content {
+  .ark-block-heading__main {
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    // letter-spacing: 0.125em;
+    letter-spacing: 0.1em;
+    font-size: var(--global-font-xl);
+    line-height: 1;
+    color: $color-weldon-blue;
+    width: fit-content;
+    position: relative;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 10%;
+      height: 2px;
+      background: var(--color-weldon-blue);
+    }
+    //サブ見出し
+    & + .ark-block-heading__sub {
+      color: var(--color-cadet-gray);
+      font-weight: 400;
+      // font-size: 0.875rem;
+      font-size: var(--font-xs);
+      width: fit-content;
+    }
+  }
+  .c-subheading--profile {
+    font-size: var(--font-lg);
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    color: $color-weldon-blue;
+    position: relative;
+    display: inline-block;
+    padding-right: 8px;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 2px;
+      background: var(--color-weldon-blue);
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+    }
+    @include mq(tablet) {
+      position: static;
+      display: block;
+      padding-right: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .c-subheading--card {
+    font-size: var(--font-md);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: $color-weldon-blue;
+  }
+}

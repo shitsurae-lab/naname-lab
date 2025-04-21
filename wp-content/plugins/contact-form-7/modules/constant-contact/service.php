@@ -19,7 +19,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 
 	public static function get_instance() {
 		if ( empty( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -113,10 +113,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 	}
 
 	public function link() {
-		echo sprintf( '<a href="%1$s">%2$s</a>',
-			'https://constant-contact.evyy.net/c/1293104/205991/3411',
-			'constantcontact.com'
-		);
+		echo 'constantcontact.com';
 	}
 
 	protected function get_redirect_uri() {
@@ -137,7 +134,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 	}
 
 	public function load( $action = '' ) {
-		if ( 'auth_redirect' == $action ) {
+		if ( 'auth_redirect' === $action ) {
 			$code = isset( $_GET['code'] ) ? urldecode( $_GET['code'] ) : '';
 			$state = isset( $_GET['state'] ) ? urldecode( $_GET['state'] ) : '';
 
@@ -162,7 +159,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 			exit();
 		}
 
-		if ( 'setup' == $action and 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+		if ( 'setup' === $action and 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 			check_admin_referer( 'wpcf7-constant-contact-setup' );
 
 			if ( ! empty( $_POST['reset'] ) ) {
@@ -247,7 +244,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 				'Accept' => 'application/json',
 				'Content-Type' => 'application/json; charset=utf-8',
 			),
-			'body' => json_encode( $properties ),
+			'body' => wp_json_encode( $properties ),
 		);
 
 		$response = $this->remote_request( $endpoint, $request );
@@ -322,7 +319,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 		}
 
 		foreach ( (array) $selection as $key => $ids_or_names ) {
-			foreach( $contact_lists as $list_id => $list ) {
+			foreach ( $contact_lists as $list_id => $list ) {
 				if ( in_array( $list['list_id'], (array) $ids_or_names, true )
 				or in_array( $list['name'], (array) $ids_or_names, true ) ) {
 					$contact_lists[$list_id]['selected'][$key] = true;
@@ -344,28 +341,43 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 	public function admin_notice( $message = '' ) {
 		switch ( $message ) {
 			case 'success':
-				echo sprintf(
-					'<div class="notice notice-success"><p>%s</p></div>',
-					esc_html( __( "Connection established.", 'contact-form-7' ) )
+				wp_admin_notice(
+					esc_html( __( "Connection established.", 'contact-form-7' ) ),
+					array( 'type' => 'success' )
 				);
+
 				break;
 			case 'failed':
-				echo sprintf(
-					'<div class="notice notice-error"><p><strong>%1$s</strong>: %2$s</p></div>',
-					esc_html( __( "Error", 'contact-form-7' ) ),
-					esc_html( __( "Failed to establish connection. Please double-check your configuration.", 'contact-form-7' ) )
+				wp_admin_notice(
+					sprintf(
+						'<strong>%1$s</strong>: %2$s',
+						esc_html( __( "Error", 'contact-form-7' ) ),
+						esc_html( __( "Failed to establish connection. Please double-check your configuration.", 'contact-form-7' ) )
+					),
+					array( 'type' => 'error' )
 				);
+
 				break;
 			case 'updated':
-				echo sprintf(
-					'<div class="notice notice-success"><p>%s</p></div>',
-					esc_html( __( "Configuration updated.", 'contact-form-7' ) )
+				wp_admin_notice(
+					esc_html( __( "Configuration updated.", 'contact-form-7' ) ),
+					array( 'type' => 'success' )
 				);
+
 				break;
 		}
 	}
 
 	public function display( $action = '' ) {
+		echo sprintf(
+			'<p><strong>%1$s</strong> %2$s</p>',
+			esc_html( __( 'Warning:', 'contact-form-7' ) ),
+			wpcf7_link(
+				__( 'https://contactform7.com/2024/02/02/we-end-the-constant-contact-integration/', 'contact-form-7' ),
+				__( "This feature is deprecated. You are not recommended to use it.", 'contact-form-7' )
+			)
+		);
+
 		echo sprintf(
 			'<p>%s</p>',
 			esc_html( __( "The Constant Contact integration module allows you to send contact data collected through your contact forms to the Constant Contact API. You can create reliable email subscription services in a few easy steps.", 'contact-form-7' ) )
@@ -386,7 +398,7 @@ class WPCF7_ConstantContact extends WPCF7_Service_OAuth2 {
 			);
 		}
 
-		if ( 'setup' == $action ) {
+		if ( 'setup' === $action ) {
 			$this->display_setup();
 		} else {
 			echo sprintf(

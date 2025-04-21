@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import type { Property } from 'csstype';
 
 /**
@@ -13,14 +12,17 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
-	Tooltip,
-	// @ts-ignore: has no exported member
+	Flex,
+	FlexBlock,
+	FlexItem,
+	__experimentalGrid as Grid,
+	__experimentalHStack as HStack,
+	__experimentalVStack as VStack,
 	__experimentalText as Text,
-	// @ts-ignore: has no exported member
 	__experimentalUnitControl as UnitControl,
-	// @ts-ignore: has no exported member
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
+import { useInstanceId } from '@wordpress/compose';
 
 /**
  * Internal dependencies
@@ -38,10 +40,8 @@ const DEFAULT_VALUES = {
 };
 
 type Props = {
-	id: string;
 	label: string;
 	help?: string;
-	className?: string;
 	onChange: ( event: any ) => void;
 	values: {
 		top?: Property.PaddingTop;
@@ -49,34 +49,30 @@ type Props = {
 		bottom?: Property.PaddingBottom;
 		left?: Property.PaddingLeft;
 	};
-	allowSides?: boolean;
-	hasIndicator?: boolean;
 };
 
 type ValuesKey = keyof typeof DEFAULT_VALUES;
 
 export default function PaddingControl( {
-	id,
 	label = __( 'Padding', 'flexible-table-block' ),
 	help,
-	className,
 	onChange,
 	values: valuesProp,
-	allowSides = true,
-	hasIndicator = true,
 }: Props ) {
 	const values = { ...DEFAULT_VALUES, ...valuesProp };
+	const instanceId = useInstanceId( PaddingControl, 'ftb-padding-control' );
+	const headingId = `${ instanceId }-heading`;
 
-	const isMixed: boolean =
-		allowSides &&
-		! ( values.top === values.right && values.top === values.bottom && values.top === values.left );
+	const isMixed = ! (
+		values.top === values.right &&
+		values.top === values.bottom &&
+		values.top === values.left
+	);
 
 	const paddingUnits = useCustomUnits( { availableUnits: PADDING_UNITS } );
 
 	const [ isLinked, setIsLinked ] = useState< boolean >( true );
 	const [ side, setSide ] = useState< SideValue | undefined >( undefined );
-
-	const headingId: string = `${ id }-heading`;
 
 	const linkedLabel: string = isLinked
 		? __( 'Unlink sides', 'flexible-table-block' )
@@ -84,8 +80,6 @@ export default function PaddingControl( {
 
 	const allInputPlaceholder: string = isMixed ? __( 'Mixed', 'flexible-table-block' ) : '';
 	const allInputValue: string | 0 = isMixed ? '' : values.top;
-
-	const classNames: string = classnames( 'ftb-padding-control', className );
 
 	const toggleLinked = () => {
 		setIsLinked( ! isLinked );
@@ -100,7 +94,7 @@ export default function PaddingControl( {
 
 	const handleOnFocus = ( focusSide: SideValue ) => setSide( focusSide );
 
-	const handleOnChangeAll = ( inputValue: string ) => {
+	const handleOnChangeAll = ( inputValue: string | undefined ) => {
 		const sanitizedValue = sanitizeUnitValue( inputValue );
 		onChange( {
 			top: sanitizedValue,
@@ -110,7 +104,7 @@ export default function PaddingControl( {
 		} );
 	};
 
-	const handleOnChange = ( inputValue: string, targetSide: SideValue ) => {
+	const handleOnChange = ( inputValue: string | undefined, targetSide: SideValue ) => {
 		onChange( {
 			...values,
 			[ targetSide ]: sanitizeUnitValue( inputValue ),
@@ -118,56 +112,74 @@ export default function PaddingControl( {
 	};
 
 	return (
-		<BaseControl id={ id } className={ classNames } help={ help }>
-			<div aria-labelledby={ headingId } role="region">
-				<div className="ftb-padding-control__header">
-					<Text id={ headingId }>{ label }</Text>
-					<Button isSmall variant="secondary" onClick={ handleOnReset }>
-						{ __( 'Reset', 'flexible-table-block' ) }
-					</Button>
-				</div>
-				<div className="ftb-padding-control__header-control">
-					{ hasIndicator && (
+		<BaseControl className="ftb-padding-control" help={ help } __nextHasNoMarginBottom>
+			<VStack aria-labelledby={ headingId } role="group">
+				<Flex>
+					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
+						{ label }
+					</Text>
+					<FlexItem>
+						<Button variant="secondary" onClick={ handleOnReset } size="small">
+							{ __( 'Reset', 'flexible-table-block' ) }
+						</Button>
+					</FlexItem>
+				</Flex>
+				<HStack alignment="center" justify="space-between" style={ { minHeight: '40px' } }>
+					<HStack justify="start">
 						<SideIndicatorControl sides={ side === undefined ? undefined : [ side ] } />
-					) }
-					{ ( isLinked || ! allowSides ) && (
-						<UnitControl
-							placeholder={ allInputPlaceholder }
-							aria-label={ __( 'All', 'flexible-table-block' ) }
-							onChange={ handleOnChangeAll }
-							value={ allInputValue }
-							units={ paddingUnits }
-						/>
-					) }
-					{ allowSides && (
-						<Tooltip text={ linkedLabel }>
-							<span>
-								<Button
-									className="ftb-padding-control__header-linked-button"
-									label={ linkedLabel }
-									isSmall
-									onClick={ toggleLinked }
-									icon={ isLinked ? link : linkOff }
+						{ isLinked && (
+							<div>
+								<UnitControl
+									placeholder={ allInputPlaceholder }
+									aria-label={ __( 'All', 'flexible-table-block' ) }
+									onChange={ handleOnChangeAll }
+									value={ allInputValue }
+									units={ paddingUnits }
+									size="__unstable-large"
+									__unstableInputWidth="100px"
 								/>
-							</span>
-						</Tooltip>
-					) }
-				</div>
-				{ ! isLinked && allowSides && (
-					<div className="ftb-padding-control__input-controls">
-						{ SIDE_CONTROLS.map( ( item ) => (
-							<UnitControl
-								key={ item.value }
-								aria-label={ item.label }
-								value={ values[ item.value as ValuesKey ] }
-								units={ paddingUnits }
-								onFocus={ () => handleOnFocus( item.value ) }
-								onChange={ ( value: string ) => handleOnChange( value, item.value ) }
-							/>
-						) ) }
-					</div>
+							</div>
+						) }
+					</HStack>
+					<Button
+						label={ linkedLabel }
+						onClick={ toggleLinked }
+						icon={ isLinked ? link : linkOff }
+						size="small"
+					/>
+				</HStack>
+				{ ! isLinked && (
+					<Grid gap={ 2 } columns={ 2 } rows={ 3 }>
+						{ SIDE_CONTROLS.map( ( item ) => {
+							const gridStyles = ( value: SideValue ) => {
+								if ( value === 'top' || value === 'bottom' ) {
+									return {
+										gridColumn: 'span 2',
+										margin: '0 auto',
+									};
+								}
+								if ( value === 'right' ) {
+									return { gridColumn: 2, display: 'flex', justifyContent: 'flex-end' };
+								}
+								return { gridRow: 2 };
+							};
+							return (
+								<div key={ item.value } style={ gridStyles( item.value ) }>
+									<UnitControl
+										aria-label={ item.label }
+										value={ values[ item.value as ValuesKey ] }
+										units={ paddingUnits }
+										onFocus={ () => handleOnFocus( item.value ) }
+										onChange={ ( value ) => handleOnChange( value, item.value ) }
+										size="__unstable-large"
+										__unstableInputWidth="100px"
+									/>
+								</div>
+							);
+						} ) }
+					</Grid>
 				) }
-			</div>
+			</VStack>
 		</BaseControl>
 	);
 }

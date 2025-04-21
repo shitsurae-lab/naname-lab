@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import type { Property } from 'csstype';
 
 /**
@@ -13,14 +12,17 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
-	Tooltip,
-	// @ts-ignore: has no exported member
+	Flex,
+	FlexBlock,
+	FlexItem,
+	__experimentalGrid as Grid,
+	__experimentalHStack as HStack,
+	__experimentalVStack as VStack,
 	__experimentalText as Text,
-	// @ts-ignore: has no exported member
 	__experimentalUnitControl as UnitControl,
-	// @ts-ignore: has no exported member
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
+import { useInstanceId } from '@wordpress/compose';
 
 /**
  * Internal dependencies
@@ -38,10 +40,8 @@ const DEFAULT_VALUES = {
 };
 
 type Props = {
-	id: string;
 	label: string;
 	help?: string;
-	className?: string;
 	onChange: ( event: any ) => void;
 	values: {
 		topLeft?: Property.BorderTopLeftRadius;
@@ -49,42 +49,34 @@ type Props = {
 		bottomRight?: Property.BorderBottomRightRadius;
 		bottomLeft?: Property.BorderBottomLeftRadius;
 	};
-	allowSides?: boolean;
-	hasIndicator?: boolean;
 };
 
 type ValuesKey = keyof typeof DEFAULT_VALUES;
 type MaxBorderRadiusKey = keyof typeof MAX_BORDER_RADIUS;
 
 export default function BorderRadiusControl( {
-	id,
 	label = __( 'Border radius', 'flexible-table-block' ),
 	help,
-	className,
 	onChange,
 	values: valuesProp,
-	allowSides = true,
-	hasIndicator = true,
 }: Props ) {
 	const values = {
 		...DEFAULT_VALUES,
 		...valuesProp,
 	};
+	const instanceId = useInstanceId( BorderRadiusControl, 'ftb-border-radius-control' );
+	const headingId = `${ instanceId }-heading`;
 
-	const isMixed: boolean =
-		allowSides &&
-		! (
-			values.topLeft === values.topRight &&
-			values.topLeft === values.bottomRight &&
-			values.topLeft === values.bottomLeft
-		);
+	const isMixed = ! (
+		values.topLeft === values.topRight &&
+		values.topLeft === values.bottomRight &&
+		values.topLeft === values.bottomLeft
+	);
 
 	const borderRadiusUnits = useCustomUnits( { availableUnits: BORDER_RADIUS_UNITS } );
 
 	const [ isLinked, setIsLinked ] = useState< boolean >( true );
 	const [ corner, setCorner ] = useState< CornerValue | undefined >( undefined );
-
-	const headingId: string = `${ id }-heading`;
 
 	const linkedLabel: string = isLinked
 		? __( 'Unlink sides', 'flexible-table-block' )
@@ -92,8 +84,6 @@ export default function BorderRadiusControl( {
 
 	const allInputPlaceholder: string = isMixed ? __( 'Mixed', 'flexible-table-block' ) : '';
 	const allInputValue: string | 0 = isMixed ? '' : values.topLeft;
-
-	const classNames: string = classnames( 'ftb-border-radius-control', className );
 
 	const toggleLinked = () => {
 		setIsLinked( ! isLinked );
@@ -108,83 +98,106 @@ export default function BorderRadiusControl( {
 
 	const handleOnFocus = ( focusCorner: CornerValue ) => setCorner( focusCorner );
 
-	const handleOnChangeAll = ( inputValue: string ) => {
-		const [ , unit ] = parseUnit( inputValue );
-		const sanitizedValue = sanitizeUnitValue( inputValue, {
-			maxNum: MAX_BORDER_RADIUS[ unit as MaxBorderRadiusKey ],
-		} );
+	const handleOnChangeAll = ( inputValue: string | undefined ) => {
+		if ( inputValue ) {
+			const [ , unit ] = parseUnit( inputValue );
+			const sanitizedValue = sanitizeUnitValue( inputValue, {
+				maxNum: MAX_BORDER_RADIUS[ unit as MaxBorderRadiusKey ],
+			} );
 
-		onChange( {
-			topLeft: sanitizedValue,
-			topRight: sanitizedValue,
-			bottomRight: sanitizedValue,
-			bottomLeft: sanitizedValue,
-		} );
+			onChange( {
+				topLeft: sanitizedValue,
+				topRight: sanitizedValue,
+				bottomRight: sanitizedValue,
+				bottomLeft: sanitizedValue,
+			} );
+		} else {
+			onChange( {
+				topLeft: undefined,
+				topRight: undefined,
+				bottomRight: undefined,
+				bottomLeft: undefined,
+			} );
+		}
 	};
 
-	const handleOnChange = ( inputValue: string, targetCorner: CornerValue ) => {
-		const [ , unit ] = parseUnit( inputValue );
-		const sanitizedValue = sanitizeUnitValue( inputValue, {
-			maxNum: MAX_BORDER_RADIUS[ unit as MaxBorderRadiusKey ],
-		} );
+	const handleOnChange = ( inputValue: string | undefined, targetCorner: CornerValue ) => {
+		if ( inputValue ) {
+			const [ , unit ] = parseUnit( inputValue );
+			const sanitizedValue = sanitizeUnitValue( inputValue, {
+				maxNum: MAX_BORDER_RADIUS[ unit as MaxBorderRadiusKey ],
+			} );
 
-		onChange( {
-			...values,
-			[ targetCorner ]: sanitizedValue,
-		} );
+			onChange( {
+				...values,
+				[ targetCorner ]: sanitizedValue,
+			} );
+		} else {
+			onChange( {
+				...values,
+				[ targetCorner ]: undefined,
+			} );
+		}
 	};
 
 	return (
-		<BaseControl id={ id } className={ classNames } help={ help }>
-			<div aria-labelledby={ headingId } role="region">
-				<div className="ftb-border-radius-control__header">
-					<Text id={ headingId }>{ label }</Text>
-					<Button isSmall variant="secondary" onClick={ handleOnReset }>
-						{ __( 'Reset', 'flexible-table-block' ) }
-					</Button>
-				</div>
-				<div className="ftb-border-radius-control__header-control">
-					{ hasIndicator && (
+		<BaseControl className="ftb-border-radius-control" help={ help } __nextHasNoMarginBottom>
+			<VStack aria-labelledby={ headingId } role="group">
+				<Flex>
+					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
+						{ label }
+					</Text>
+					<FlexItem>
+						<Button variant="secondary" onClick={ handleOnReset } size="small">
+							{ __( 'Reset', 'flexible-table-block' ) }
+						</Button>
+					</FlexItem>
+				</Flex>
+				<HStack alignment="center" justify="space-between" style={ { minHeight: '40px' } }>
+					<HStack justify="start">
 						<CornerIndicatorControl corners={ corner === undefined ? undefined : [ corner ] } />
-					) }
-					{ isLinked && (
-						<UnitControl
-							aria-label={ __( 'All', 'flexible-table-block' ) }
-							placeholder={ allInputPlaceholder }
-							onChange={ handleOnChangeAll }
-							value={ allInputValue }
-							units={ borderRadiusUnits }
-							min="0"
-						/>
-					) }
-					<Tooltip text={ linkedLabel }>
-						<span>
-							<Button
-								className="ftb-border-radius-control__header-linked-button"
-								label={ linkedLabel }
-								isSmall
-								onClick={ toggleLinked }
-								icon={ isLinked ? link : linkOff }
-							/>
-						</span>
-					</Tooltip>
-				</div>
+						{ isLinked && (
+							<div>
+								<UnitControl
+									hideLabelFromVision
+									label={ __( 'All', 'flexible-table-block' ) }
+									placeholder={ allInputPlaceholder }
+									onChange={ handleOnChangeAll }
+									value={ allInputValue }
+									units={ borderRadiusUnits }
+									min={ 0 }
+									size="__unstable-large"
+									__unstableInputWidth="100px"
+								/>
+							</div>
+						) }
+					</HStack>
+					<Button
+						label={ linkedLabel }
+						onClick={ toggleLinked }
+						icon={ isLinked ? link : linkOff }
+						size="small"
+					/>
+				</HStack>
 				{ ! isLinked && (
-					<div className="ftb-border-radius-control__input-controls">
+					<Grid gap={ 2 }>
 						{ CORNER_CONTROLS.map( ( item ) => (
-							<UnitControl
-								key={ item.value }
-								aria-label={ item.label }
-								value={ values[ item.value as ValuesKey ] }
-								units={ borderRadiusUnits }
-								min="0"
-								onFocus={ () => handleOnFocus( item.value ) }
-								onChange={ ( value: string ) => handleOnChange( value, item.value ) }
-							/>
+							<div key={ item.value }>
+								<UnitControl
+									aria-label={ item.label }
+									value={ values[ item.value as ValuesKey ] }
+									units={ borderRadiusUnits }
+									min={ 0 }
+									onFocus={ () => handleOnFocus( item.value ) }
+									onChange={ ( value ) => handleOnChange( value, item.value ) }
+									size="__unstable-large"
+									style={ { marginBottom: 0 } }
+								/>
+							</div>
 						) ) }
-					</div>
+					</Grid>
 				) }
-			</div>
+			</VStack>
 		</BaseControl>
 	);
 }

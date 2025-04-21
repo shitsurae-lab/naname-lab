@@ -146,6 +146,29 @@ Option page
 	}
 }
 
+.captcha-type-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 8px;
+}
+
+.captcha-type-list .captcha-type-option {
+	display: block;
+	padding: 4px 16px 16px;
+	box-sizing: border-box;
+	margin: 0;
+	cursor: pointer;
+}
+
+.captcha-type-list .captcha-type-option > img {
+	display: block;
+}
+
+.captcha-type-list .captcha-type-option:hover,
+.captcha-type-list .captcha-type-option.selected {
+	background: #dcdcde;
+}
+
 /*
 Checkbox toggle
 */
@@ -168,7 +191,7 @@ input[type="checkbox"].checkbox-toggle {
 	cursor: pointer;
 	background: none;
 	box-shadow: none;
-    vertical-align: middle;
+	vertical-align: middle;
 	border: 2px solid transparent;
 }
 input[type="checkbox"].checkbox-toggle:focus {

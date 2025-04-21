@@ -49,17 +49,42 @@ class XO_Security {
 		if ( false === $this->options ) {
 			$this->activation();
 			$this->options = get_option( 'xo_security_options' );
-		} else {
-			if ( ! isset( $this->options['plugin_version'] ) || version_compare( $this->options['plugin_version'], XO_SECURITY_VERSION, '<' ) ) {
-				$this->activation();
-				$this->options = get_option( 'xo_security_options' );
+		} elseif ( ! isset( $this->options['plugin_version'] ) || version_compare( $this->options['plugin_version'], XO_SECURITY_VERSION, '<' ) ) {
+			$this->activation();
+			$this->options = get_option( 'xo_security_options' );
+		}
+
+		if ( defined( 'XMLRPC_REQUEST' ) ) {
+			if (
+				( isset( $this->options['xmlrpc'] ) && $this->options['xmlrpc'] )
+				&& ( isset( $this->options['pingback'] ) && $this->options['pingback'] )
+			) {
+				$blocked_tarpit = isset( $this->options['blocked_tarpit'] ) ? (int) $this->options['blocked_tarpit'] : 0;
+				if ( $blocked_tarpit > 0 ) {
+					sleep( $blocked_tarpit );
+				}
+
+				if ( ! headers_sent() ) {
+					nocache_headers();
+				}
+
+				header( 'HTTP/1.1 403 Forbidden' );
+				die();
 			}
 		}
 
-		$login_captcha   = isset( $this->options['login_captcha'] ) ? $this->options['login_captcha'] : '';
-		$comment_captcha = isset( $this->options['comment_captcha'] ) ? $this->options['comment_captcha'] : '';
-		if ( ! is_admin() && ( '' !== $login_captcha || '' !== $comment_captcha ) ) {
-			$this->session_start();
+		if ( isset( $this->options['delete_readme'] ) && $this->options['delete_readme'] ) {
+			add_action( '_core_updated_successfully', array( $this, 'core_updated_successfully' ) );
+		}
+
+		if ( isset( $this->options['maintenance_mode'] ) && $this->options['maintenance_mode'] ) {
+			require_once __DIR__ . '/class-xo-security-maintenance-mode.php';
+			new XO_Security_Maintenance_Mode( $this );
+		}
+
+		if ( isset( $this->options['two_factor'] ) && $this->options['two_factor'] ) {
+			require_once __DIR__ . '/class-xo-security-two-factor.php';
+			new XO_Security_Two_Factor( $this );
 		}
 
 		add_action( 'plugins_loaded', array( $this, 'setup' ), 99999 );
@@ -111,6 +136,10 @@ class XO_Security {
 			$options = self::get_default_options();
 		}
 		update_option( 'xo_security_options', $options );
+
+		if ( isset( $options['delete_readme'] ) && $options['delete_readme'] ) {
+			self::delete_readme_file();
+		}
 	}
 
 	/**
@@ -124,6 +153,18 @@ class XO_Security {
 		global $wpdb;
 
 		$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'xo_security_loginlog' ); // phpcs:ignore WordPress.DB
+
+		$options = get_option( 'xo_security_options' );
+
+		if ( isset( $options['login_page'] ) && $options['login_page'] ) {
+			if ( isset( $options['login_page_name'] ) ) {
+				$filename = ABSPATH . $options['login_page_name'] . '.php';
+				if ( file_exists( $filename ) ) {
+					wp_delete_file( $filename );
+				}
+			}
+		}
+
 		delete_option( 'xo_security_options' );
 	}
 
@@ -148,6 +189,7 @@ class XO_Security {
 			self::uninstall_site();
 		}
 	}
+
 	/**
 	 * Plugin deactivation.
 	 *
@@ -166,6 +208,7 @@ class XO_Security {
 	 */
 	public static function get_default_options() {
 		$default_options = array(
+			// phpcs:disable Squiz.PHP.CommentedOutCode.Found
 			'plugin_version'       => XO_SECURITY_VERSION,
 			'interval'             => 0,
 			'limit_count'          => 4,
@@ -174,28 +217,37 @@ class XO_Security {
 			'login_page'           => false,
 			'login_page_name'      => '',
 			'ms_common_login_page' => true,
+			'two_factor'           => false,
+			'two_factor_roles'     => array( 'administrator', 'editor', 'author' ),
 			'password_reset'       => true,
 			'login_site_link'      => true,
 			'comment_spam'         => false,
 			'comment_spam_email'   => false,
-			'comment_spam_action'  => 'block',
+			'comment_spam_action'  => 'block',   // 'block', 'spam' or 'trash'.
 			'comment_bat'          => false,
 			'xmlrpc'               => false,
 			'pingback'             => false,
 			'rest'                 => false,
-			'rest_rename'          => false,
-			'rest_name'            => '',
+			'rest_rename'          => false,     // Deprecation.
+			'rest_name'            => '',        // Deprecation.
 			'author_archive'       => false,
 			'edit_author_slug'     => false,
+			'edit_author_base'     => false,
+			'author_base'          => '',        // '': Default ('author').
 			'comment_author_class' => false,
 			'oembed_author'        => false,
-			'error_login_message'  => false,
-			'login_id_type'        => '',
-			'ip_mode'              => '',
-			'auto_truncate'        => 365,
 			'disable_feed'         => false,
-			'log_default_status'   => '',
+			'remove_version'       => false,
+			'delete_readme'        => false,
+			'error_login_message'  => false,
+			'login_id_type'        => '',        // '', 'username' or 'email'.
+			'ip_mode'              => '',        // '': Auto, 'http_x_real_ip', 'remote_addr' or etc.
+			'auto_truncate'        => 365,
+			'log_default_status'   => '',        // '': All, '0': Failure or '1': Success.
 			'dashboard_widget'     => true,
+			'maintenance_mode'     => false,
+			'captcha_type'         => 'default', // 'default': Default, 'chokokutai': Chokokutai font, 'auto': Auto mode.
+			// phpcs:enable
 		);
 		return $default_options;
 	}
@@ -222,19 +274,18 @@ class XO_Security {
 			}
 		}
 
-		add_filter( 'authenticate', array( $this, 'authenticate' ), 100, 3 );
-		add_action( 'wp_login', array( $this, 'handler_wp_login' ), 1, 2 );
-		add_action( 'xmlrpc_call', array( $this, 'handler_xmlrpc_call' ), 10, 1 );
+		add_filter( 'authenticate', array( $this, 'authenticate' ), 100, 2 );
+		add_action( 'wp_login', array( $this, 'handler_wp_login' ), 0, 2 );
+		add_action( 'xmlrpc_call', array( $this, 'handler_xmlrpc_call' ) );
 		add_filter( 'xmlrpc_login_error', array( $this, 'xmlrpc_login_error_message' ) );
 		add_action( 'login_init', array( $this, 'login_init' ) );
 		add_filter( 'login_errors', array( $this, 'login_error_message' ) );
 		add_filter( 'shake_error_codes', array( $this, 'login_failure_shake' ) );
-		add_filter( 'wp_authenticate_user', array( $this, 'authenticate_user' ), 99999, 2 );
 
 		if ( isset( $this->options['login_page'] ) && $this->options['login_page'] ) {
 			add_filter( 'site_url', array( $this, 'site_url' ), 10, 4 );
 			add_filter( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
-			add_filter( 'wp_redirect', array( $this, 'login_page_wp_redirect' ), 10, 2 );
+			add_filter( 'wp_redirect', array( $this, 'login_page_wp_redirect' ) );
 			add_filter( 'template_redirect', array( $this, 'recreate_login_file' ) );
 		}
 
@@ -279,9 +330,17 @@ class XO_Security {
 		$login_captcha   = isset( $this->options['login_captcha'] ) ? $this->options['login_captcha'] : '';
 		$comment_captcha = isset( $this->options['comment_captcha'] ) ? $this->options['comment_captcha'] : '';
 
+		if (
+			( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX && ! is_user_logged_in() ) )
+			&& ( '' !== $login_captcha || '' !== $comment_captcha )
+		) {
+			$this->session_start();
+		}
+
 		if ( '' !== $login_captcha ) {
 			add_filter( 'login_form', array( $this, 'login_form' ) );
 			add_filter( 'wp_authenticate_user', array( $this, 'authenticate_user_by_captcha' ), 9, 1 );
+			add_filter( 'shake_error_codes', array( $this, 'shake_error_codes' ), 10, 1 );
 
 			add_action( 'woocommerce_login_form', array( $this, 'login_form' ) );
 		}
@@ -319,17 +378,21 @@ class XO_Security {
 				add_filter( 'login_form_defaults', array( $this, 'login_form_defaults' ) );
 				add_filter( 'gettext', array( $this, 'gettext_login_id_username' ), 20, 3 );
 			} if ( 'email' === $this->options['login_id_type'] ) {
-				add_filter( 'authenticate', array( $this, 'authenticate_email' ), 20, 3 );
+				add_filter( 'authenticate', array( $this, 'authenticate_email' ), 20, 2 );
 				add_filter( 'gettext', array( $this, 'gettext_login_id_email' ), 20, 3 );
 			}
 		}
 
 		if ( isset( $this->options['password_reset'] ) && ! $this->options['password_reset'] ) {
-			add_filter( 'gettext', array( $this, 'gettext_password_reset' ), 10, 3 );
+			if ( version_compare( $wp_version, '6.1.0' ) >= 0 ) {
+				add_filter( 'lost_password_html_link', array( $this, 'lost_password_html_link' ) );
+			} else {
+				add_filter( 'gettext', array( $this, 'gettext_password_reset' ), 10, 3 );
+			}
 		}
 
 		if ( isset( $this->options['login_site_link'] ) && ! $this->options['login_site_link'] ) {
-			if ( version_compare( $wp_version, '5.7' ) >= 0 ) {
+			if ( version_compare( $wp_version, '5.7.0' ) >= 0 ) {
 				add_filter( 'login_site_html_link', array( $this, 'login_site_html_link' ) );
 			} else {
 				add_filter( 'gettext_with_context', array( $this, 'gettext_login_site_link' ), 10, 4 );
@@ -344,12 +407,8 @@ class XO_Security {
 			add_filter( 'script_loader_src', array( $this, 'remove_meta_tag_version' ) );
 		}
 
-		if ( isset( $this->options['edit_author_slug'] ) && $this->options['edit_author_slug'] ) {
-			if ( current_user_can( 'administrator' ) ) {
-				add_action( 'show_user_profile', array( $this, 'edit_user_profile' ) );
-				add_action( 'edit_user_profile', array( $this, 'edit_user_profile' ) );
-				add_action( 'user_profile_update_errors', array( $this, 'user_profile_update_errors' ), 20, 3 );
-			}
+		if ( isset( $this->options['edit_author_base'] ) && $this->options['edit_author_base'] ) {
+			add_action( 'init', array( $this, 'rewrite_author_base' ), 8 );
 		}
 
 		if ( isset( $this->options['disable_feed'] ) && $this->options['disable_feed'] ) {
@@ -425,7 +484,7 @@ class XO_Security {
 	public function gettext_login_id_email( $translation, $text, $domain ) {
 		if ( 'wp-login.php' === $GLOBALS['pagenow'] ) {
 			if ( 'default' === $domain && 'Username or Email Address' === $text ) {
-				$translation = __( 'Email' );
+				$translation = __( 'Email', 'xo-security' );
 			}
 		}
 		return $translation;
@@ -486,12 +545,22 @@ class XO_Security {
 	 *
 	 * @param null|WP_User|WP_Error $user     WP_User if the user is authenticated.
 	 * @param string                $username Username or email address.
-	 * @param string                $password User password.
 	 */
-	public function authenticate( $user, $username, $password ) {
+	public function authenticate( $user, $username ) {
 		if ( ! empty( $username ) ) {
-			if ( null === $user || is_wp_error( $user ) ) {
+			if ( ! $this->is_login_ok() ) {
+				$blocked_tarpit = isset( $this->options['blocked_tarpit'] ) ? (int) $this->options['blocked_tarpit'] : 0;
+				if ( $blocked_tarpit > 0 ) {
+					sleep( $blocked_tarpit );
+				}
+				$user = new WP_Error( 'limit_login', __( 'We restrict the login right now.', 'xo-security' ) );
+			}
+			if ( empty( $user ) || is_wp_error( $user ) ) {
 				$this->failed_login( $username );
+				$failed_tarpit = isset( $this->options['failed_tarpit'] ) ? (int) $this->options['failed_tarpit'] : 0;
+				if ( $failed_tarpit > 0 ) {
+					sleep( $failed_tarpit );
+				}
 			}
 		}
 		return $user;
@@ -512,32 +581,13 @@ class XO_Security {
 
 	/**
 	 * Filter for xmlrpc_call.
-	 *
-	 * @param  string $method The current XML-RPC method.
 	 */
-	public function handler_xmlrpc_call( $method ) {
+	public function handler_xmlrpc_call() {
 		$current_user = wp_get_current_user();
 		if ( '' === $current_user->user_login ) {
 			return;
 		}
 		$this->successful_login( $current_user, self::LOGIN_TYPE_XMLRPC );
-	}
-
-	/**
-	 * Filter for wp_authenticate_user.
-	 *
-	 * @param string $user     User.
-	 * @param string $password Password.
-	 */
-	public function authenticate_user( $user, $password ) {
-		if ( ! is_wp_error( $user ) && ! $this->is_login_ok() ) {
-			$blocked_tarpit = isset( $this->options['blocked_tarpit'] ) ? (int) $this->options['blocked_tarpit'] : 0;
-			if ( $blocked_tarpit > 0 ) {
-				sleep( $blocked_tarpit );
-			}
-			$user = new WP_Error( 'limit_login', __( 'We restrict the login right now.', 'xo-security' ) );
-		}
-		return $user;
 	}
 
 	/**
@@ -549,17 +599,14 @@ class XO_Security {
 		if ( ! is_wp_error( $user ) ) {
 			if ( ! empty( $_SESSION['xo_security_captcha_login'] ) ) {
 				if ( ! empty( $_REQUEST['xo_security_captcha'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					$captcha = $_SESSION['xo_security_captcha_login'];
-					if ( $captcha !== $_REQUEST['xo_security_captcha'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$user = new WP_Error( 'captcha_login', __( '<strong>Error</strong>: The CAPTCHA code is wrong.', 'xo-security' ) );
+					if ( $_SESSION['xo_security_captcha_login'] !== $_REQUEST['xo_security_captcha'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						$user = new WP_Error( 'captcha_login', __( '<strong>Error:</strong> The CAPTCHA code is wrong.', 'xo-security' ) );
 					}
 				} else {
-					$user = new WP_Error( 'captcha_login', __( '<strong>Error</strong>: Please enter the CAPTCHA code.', 'xo-security' ) );
+					$user = new WP_Error( 'captcha_login', __( '<strong>Error:</strong> Please enter the CAPTCHA code.', 'xo-security' ) );
 				}
-			} else {
-				if ( isset( $this->options['login_captcha'] ) && ! empty( $this->options['login_captcha'] ) ) {
-					$user = new WP_Error( 'captcha_login', __( '<strong>Error</strong>: The session is unavailable. ', 'xo-security' ) );
-				}
+			} elseif ( isset( $this->options['login_captcha'] ) && ! empty( $this->options['login_captcha'] ) ) {
+				$user = new WP_Error( 'captcha_login', __( '<strong>Error:</strong> The session is unavailable. ', 'xo-security' ) );
 			}
 		}
 		return $user;
@@ -570,12 +617,11 @@ class XO_Security {
 	 *
 	 * @param WP_User|Mixed $user user object if authenticated.
 	 * @param String        $username username.
-	 * @param String        $password password string.
 	 * @return WP_User|Mixed authenticated user or error.
 	 */
-	public function authenticate_email( $user, $username, $password ) {
+	public function authenticate_email( $user, $username ) {
 		if ( null !== $user && ! is_wp_error( $user ) && $user->user_email !== $username ) {
-			$user = new WP_Error( 'invalid_username', __( '<strong>Error</strong>: There is no account with that email address.', 'xo-security' ) );
+			$user = new WP_Error( 'invalid_username', __( '<strong>Error:</strong> There is no account with that email address.', 'xo-security' ) );
 		}
 		return $user;
 	}
@@ -593,7 +639,7 @@ class XO_Security {
 			if ( $blocked_tarpit > 0 ) {
 				sleep( $blocked_tarpit );
 			}
-			return __( '<strong>Error</strong>: We restrict the login right now.', 'xo-security' );
+			return __( '<strong>Error:</strong> We restrict the login right now.', 'xo-security' );
 		}
 
 		if ( is_wp_error( $errors ) ) {
@@ -604,7 +650,7 @@ class XO_Security {
 		}
 
 		if ( isset( $this->options['error_login_message'] ) && $this->options['error_login_message'] ) {
-			return __( '<strong>Error</strong>: Username or password is incorrect.', 'xo-security' );
+			return __( '<strong>Error:</strong> Username or password is incorrect.', 'xo-security' );
 		}
 
 		return $error;
@@ -768,9 +814,8 @@ class XO_Security {
 	 * Filter for wp_redirect.
 	 *
 	 * @param string $location The path or URL to redirect to.
-	 * @param int    $status   The HTTP response status code to use.
 	 */
-	public function login_page_wp_redirect( $location, $status ) {
+	public function login_page_wp_redirect( $location ) {
 		if ( isset( $this->options['login_page_name'] ) ) {
 			$loginfile = $this->options['login_page_name'] . '.php';
 			if ( isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( $_SERVER['REQUEST_URI'], $loginfile ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -1022,7 +1067,7 @@ class XO_Security {
 	 *
 	 * @param string $username Username for authentication.
 	 */
-	private function failed_login( $username ) {
+	public function failed_login( $username ) {
 		global $wpdb;
 
 		if ( empty( $username ) ) {
@@ -1035,6 +1080,7 @@ class XO_Security {
 		$lang       = $this->get_language();
 		$user_agent = $this->get_user_agent();
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->insert(
 			$wpdb->prefix . 'xo_security_loginlog',
 			array(
@@ -1046,12 +1092,7 @@ class XO_Security {
 				'user_agent' => $user_agent,
 				'user_name'  => $username,
 			)
-		); // WPCS: db call ok; no-cache ok.
-
-		$failed_tarpit = isset( $this->options['failed_tarpit'] ) ? (int) $this->options['failed_tarpit'] : 0;
-		if ( $failed_tarpit > 0 ) {
-			sleep( $failed_tarpit );
-		}
+		);
 	}
 
 	/**
@@ -1071,6 +1112,7 @@ class XO_Security {
 		$lang       = $this->get_language();
 		$user_agent = $this->get_user_agent();
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->insert(
 			$wpdb->prefix . 'xo_security_loginlog',
 			array(
@@ -1082,17 +1124,20 @@ class XO_Security {
 				'user_agent' => $user_agent,
 				'user_name'  => $user_name,
 			)
-		); // WPCS: db call ok; no-cache ok.
+		);
 
 		// Automatic deletion of old login log.
 		$truncate_date = isset( $this->options['auto_truncate'] ) ? intval( $this->options['auto_truncate'] ) : 0;
 		if ( $truncate_date > 0 ) {
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE login_time <= DATE_SUB(NOW(), INTERVAL %d day)", $truncate_date ) ); // WPCS: db call ok; no-cache ok.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE login_time <= DATE_SUB(NOW(), INTERVAL %d day)", $truncate_date ) );
 		}
 
-		$id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}xo_security_loginlog ORDER BY id DESC LIMIT %d,1;", self::MAX_LOGIN_LOG_RECORDS ), 0, 0 ); // WPCS: db call ok; no-cache ok.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}xo_security_loginlog ORDER BY id DESC LIMIT %d,1;", self::MAX_LOGIN_LOG_RECORDS ), 0, 0 );
 		if ( null !== $id ) {
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id <= %d;", $id ) ); // WPCS: db call ok; no-cache ok.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE id <= %d;", $id ) );
 		}
 
 		$login_alert = isset( $this->options['login_alert'] ) ? $this->options['login_alert'] : false;
@@ -1143,24 +1188,26 @@ class XO_Security {
 		if ( $interval_hour > 0 ) {
 			$time = gmdate( 'Y-m-d H:i:s', (int) strtotime( current_time( 'mysql' ) ) - ( $interval_hour * 60 * 60 ) );
 
-			$login_time = $wpdb->get_var( // WPCS: db call ok; no-cache ok.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$login_time = $wpdb->get_var(
 				$wpdb->prepare(
 					"SELECT login_time FROM {$wpdb->prefix}xo_security_loginlog WHERE ip_address = %s AND success = 1 ORDER BY login_time DESC LIMIT 1;",
 					$ipaddress
 				)
-			); // WPCS: db call ok; no-cache ok.
+			);
 
 			if ( null !== $login_time ) {
 				$time = max( $time, $login_time );
 			}
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$count = $wpdb->get_var(
 				$wpdb->prepare(
 					"SELECT COUNT(*) FROM {$wpdb->prefix}xo_security_loginlog WHERE ip_address = %s AND success = 0 AND login_time > %s;",
 					$ipaddress,
 					$time
 				)
-			); // WPCS: db call ok; no-cache ok.
+			);
 
 			$limit_count = isset( $this->options['limit_count'] ) ? (int) $this->options['limit_count'] : 1;
 			if ( $count >= $limit_count ) {
@@ -1204,8 +1251,21 @@ class XO_Security {
 	 * Filter for login_form.
 	 */
 	public function login_form() {
-		$char_mode = isset( $this->options['login_captcha'] ) ? $this->options['login_captcha'] : 'en';
-		$src       = XO_SECURITY_URL . '/captcha/captcha.php?prefix=login&char_mode=' . rawurlencode( $char_mode );
+		$char_mode    = isset( $this->options['login_captcha'] ) ? $this->options['login_captcha'] : 'en';
+		$captcha_type = isset( $this->options['captcha_type'] ) ? $this->options['captcha_type'] : 'default';
+
+		switch ( $captcha_type ) {
+			case 'default':
+				$font = 'mplus';
+				break;
+			case 'chokokutai':
+				$font = 'chokokutai';
+				break;
+			default:
+				$font = '';
+		}
+
+		$src = XO_SECURITY_URL . '/captcha/captcha.php?prefix=login&char_mode=' . rawurlencode( $char_mode ) . '&font=' . rawurlencode( $font );
 
 		echo '<p><img id="xo-security-captcha" src="' . esc_url( $src ) . '" alt="CAPTCHA" width="100" height="36"></p>';
 		echo '<p>';
@@ -1218,8 +1278,21 @@ class XO_Security {
 	 * Display comment form captcah.
 	 */
 	public function display_comment_form_captcah() {
-		$char_mode = isset( $this->options['comment_captcha'] ) ? $this->options['comment_captcha'] : 'en';
-		$src       = XO_SECURITY_URL . '/captcha/captcha.php?prefix=comment&char_mode=' . rawurlencode( $char_mode );
+		$char_mode    = isset( $this->options['comment_captcha'] ) ? $this->options['comment_captcha'] : 'en';
+		$captcha_type = isset( $this->options['captcha_type'] ) ? $this->options['captcha_type'] : 'default';
+
+		switch ( $captcha_type ) {
+			case 'default':
+				$font = 'mplus';
+				break;
+			case 'chokokutai':
+				$font = 'chokokutai';
+				break;
+			default:
+				$font = '';
+		}
+
+		$src = XO_SECURITY_URL . '/captcha/captcha.php?prefix=comment&char_mode=' . rawurlencode( $char_mode ) . '&font=' . rawurlencode( $font );
 
 		echo '<p><img id="xo-security-captcha" src="' . esc_url( $src ) . '" alt="CAPTCHA" width="100" height="36" loading="lazy"></p>';
 		echo '<p class="comment-form-captcha">';
@@ -1263,7 +1336,7 @@ class XO_Security {
 			}
 		}
 		wp_die(
-			wp_kses( __( '<strong>Error</strong>: Invalid CAPTCHA code.', 'xo-security' ), array( 'strong' => array() ) ),
+			wp_kses( __( '<strong>Error:</strong> Invalid CAPTCHA code.', 'xo-security' ), array( 'strong' => array() ) ),
 			esc_html__( 'Error', 'xo-security' ),
 			array( 'back_link' => true )
 		);
@@ -1277,7 +1350,22 @@ class XO_Security {
 		echo '<input id="comment-form-bot-check" name="comment-form-bot-check" type="checkbox" value="yes">';
 		echo '<label for="comment-form-bot-check" class="comment-notes" style="display: inline;">' . esc_html__( "I'm not a robot.", 'xo-security' ) . '</label>';
 		echo '</p>';
-		echo '<script async defer>var spamtimeout=function(){ document.getElementById("comment-form-bot-check").value = "OK"; };setTimeout(spamtimeout, 1000);</script>';
+		echo '<script type="text/javascript">
+				let isHuman = false;
+				setTimeout(() => {
+					window.addEventListener("mousemove", () => {
+						isHuman = true;
+					});
+					window.addEventListener("keypress", () => {
+						isHuman = true;
+					});
+				}, 3000);
+				document.getElementById("commentform").addEventListener("submit", () => {
+					if ( isHuman ) {
+						document.getElementById("comment-form-bot-check").value = "OK";
+					}
+				});
+			</script>';
 	}
 
 	/**
@@ -1305,9 +1393,9 @@ class XO_Security {
 		$check = isset( $_POST['comment-form-bot-check'] ) ? sanitize_text_field( wp_unslash( $_POST['comment-form-bot-check'] ) ) : '';
 
 		if ( '' === $check ) {
-			wp_die( wp_kses( __( '<strong>Error</strong>: Please check the anti-bot checkbox.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
+			wp_die( wp_kses( __( '<strong>Error:</strong> Please check the anti-bot checkbox.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
 		} elseif ( 'OK' !== $check ) {
-			wp_die( wp_kses( __( '<strong>Error</strong>: Please enable JavaScript in your browser.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
+			wp_die( wp_kses( __( '<strong>Error:</strong> Please enable JavaScript in your browser.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
 		}
 
 		return $comment;
@@ -1338,7 +1426,7 @@ class XO_Security {
 
 		if ( isset( $this->options['comment_spam'] ) && $this->options['comment_spam'] ) {
 			$comment_content = stripslashes( $comment['comment_content'] );
-			if ( ! preg_match( '/[一-龠]+|[ぁ-ん]+|[ァ-ヴー]/u', $comment_content ) ) {
+			if ( ! preg_match( '/[ぁ-ん]+/u', $comment_content ) ) {
 				$is_spam = true;
 			}
 		}
@@ -1364,7 +1452,7 @@ class XO_Security {
 			} elseif ( 'trash' === $action ) {
 				$comment['trash'] = true;
 			} else {
-				wp_die( wp_kses( __( '<strong>Error</strong>: Invalid Comment.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
+				wp_die( wp_kses( __( '<strong>Error:</strong> Invalid Comment.', 'xo-security' ), array( 'strong' => array() ) ), esc_html__( 'Error', 'xo-security' ), array( 'back_link' => true ) );
 			}
 		}
 
@@ -1401,6 +1489,18 @@ class XO_Security {
 	}
 
 	/**
+	 * Filter for lost_password_html_link.
+	 *
+	 * @since 3.7.0
+	 *
+	 * @param string $html_link HTML link to the lost password form.
+	 */
+	public function lost_password_html_link( $html_link ) {
+		$html_link = '';
+		return $html_link;
+	}
+
+	/**
 	 * Filter for gettext_with_context.
 	 *
 	 * @param string $translation See gettext_with_context.
@@ -1425,7 +1525,8 @@ class XO_Security {
 	 * @param string $link HTML link to the home URL of the current site.
 	 */
 	public function login_site_html_link( $link ) {
-		return '';
+		$link = '';
+		return $link;
 	}
 
 	/**
@@ -1443,68 +1544,14 @@ class XO_Security {
 	}
 
 	/**
-	 * Display 'Nicename' item on the 'Edit User' screen.
+	 * Rewrite author base.
 	 *
-	 * @since 3.0.0
-	 *
-	 * @param object $profileuser A WP_User object.
+	 * @since 3.10.0
 	 */
-	public function edit_user_profile( $profileuser ) {
-		?>
-		<h2><?php esc_html_e( 'Slug', 'xo-security' ); ?></h2>
-		<table class="form-table" role="presentation">
-		<tbody>
-		<tr class="user-last-name-wrap">
-			<th><label for="user_nicename"><?php esc_html_e( 'Author Slug (Nicename)', 'xo-security' ); ?></label></th>
-			<td>
-			<input type="text" name="user_nicename" id="user_nicename" value="<?php echo esc_attr( $profileuser->user_nicename ); ?>" class="regular-text" />
-			<span class="description"><?php esc_html_e( 'If omitted, it will be the username.', 'xo-security' ); ?></span>
-			<p class="description"><?php esc_html_e( 'Used for things like the URL of an author archive page.', 'xo-security' ); ?></p>
-			</td>
-		</tr>
-		</tbody></table>
-		<?php
-	}
-
-	/**
-	 * Fires before user profile update errors are returned.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param WP_Error $errors WP_Error object (passed by reference).
-	 * @param bool     $update Whether this is a user update.
-	 * @param stdClass $user   User object (passed by reference).
-	 */
-	public function user_profile_update_errors( $errors, $update, $user ) {
-		if ( ! $update ) {
-			return;
-		}
-
-		if ( empty( $user->ID ) ) {
-			return;
-		}
-
-		check_admin_referer( 'update-user_' . $user->ID );
-
-		if ( isset( $_POST['user_nicename'] ) ) {
-			$user_nicename = sanitize_user( wp_unslash( $_POST['user_nicename'] ), true );
-
-			$old_user_nicename = get_user_by( 'id', $user->ID )->user_nicename;
-			if ( $user_nicename === $old_user_nicename ) {
-				return;
-			}
-
-			if ( mb_strlen( $user_nicename ) > 50 ) {
-				$errors->add( 'user_nicename_too_long', __( '<strong>Error</strong>: The author slug may not be longer than 50 characters.', 'xo-security' ) );
-				return;
-			}
-
-			if ( get_user_by( 'slug', $user_nicename ) ) {
-				$errors->add( 'user_nicename_exists', __( '<strong>Error</strong>: The author slug with the same name already exists.', 'xo-security' ) );
-				return;
-			}
-
-			$user->user_nicename = $user_nicename;
+	public function rewrite_author_base() {
+		if ( ! empty( $this->options['author_base'] ) && 'author' !== $this->options['author_base'] ) {
+			global $wp_rewrite;
+			$wp_rewrite->author_base = $this->options['author_base'];
 		}
 	}
 
@@ -1562,8 +1609,64 @@ class XO_Security {
 		global $wpdb;
 
 		// Exclude SQLite.
-		if ( 'wpdb' === get_class( $wpdb ) ) { // phpcs:ignore WordPress.DB
-			$wpdb->query( "OPTIMIZE TABLE {$wpdb->prefix}xo_security_loginlog" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		if ( ! empty( $wpdb->is_mysql ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query( "OPTIMIZE TABLE {$wpdb->prefix}xo_security_loginlog" );
 		}
+	}
+
+	/**
+	 * Delete the WordPress core readme.txt file.
+	 *
+	 * @since 3.8.1
+	 *
+	 * @return bool True on success, false on failure.
+	 */
+	public static function delete_readme_file() {
+		global $wp_filesystem;
+
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+			if ( ! WP_Filesystem() ) {
+				return false;
+			}
+		}
+
+		$file = ABSPATH . 'readme.html';
+
+		if ( file_exists( $file ) ) {
+			if ( ! $wp_filesystem->delete( $file ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Fires after WordPress core has been successfully updated.
+	 *
+	 * @since 3.8.1
+	 */
+	public function core_updated_successfully() {
+		global $action;
+
+		if ( isset( $action ) && ( 'do-core-upgrade' === $action || 'do-core-reinstall' === $action ) ) {
+			show_message( __( 'Deleting readme.html&#8230;', 'xo-security' ) );
+		}
+
+		$this->delete_readme_file();
+	}
+
+	/**
+	 * Filters the error codes array for shaking the login form.
+	 *
+	 * @since 3.10.0
+	 *
+	 * @param string[] $shake_error_codes Error codes that shake the login form.
+	 */
+	public function shake_error_codes( $shake_error_codes ) {
+		$shake_error_codes[] = 'captcha_login';
+		return $shake_error_codes;
 	}
 }

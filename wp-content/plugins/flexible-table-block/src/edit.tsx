@@ -1,31 +1,25 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import type { Properties } from 'csstype';
 
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
-import { InspectorControls, BlockControls, useBlockProps } from '@wordpress/block-editor';
+import { useEffect, useState } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
 import {
+	InspectorControls,
+	BlockControls,
+	useBlockProps,
 	// @ts-ignore: has no exported member
-	ToolbarDropdownMenu,
-	PanelBody,
-} from '@wordpress/components';
-import {
-	blockTable,
-	justifyLeft,
-	tableColumnAfter,
-	tableColumnBefore,
-	tableColumnDelete,
-	tableRowAfter,
-	tableRowBefore,
-	tableRowDelete,
-} from '@wordpress/icons';
+	useBlockEditingMode,
+} from '@wordpress/block-editor';
+import { ToolbarDropdownMenu, PanelBody } from '@wordpress/components';
+import { blockTable, justifyLeft } from '@wordpress/icons';
+import { store as noticesStore } from '@wordpress/notices';
 import type { BlockEditProps } from '@wordpress/blocks';
 
 /**
@@ -33,7 +27,7 @@ import type { BlockEditProps } from '@wordpress/blocks';
  */
 import './editor.scss';
 import { CONTENT_JUSTIFY_CONTROLS } from './constants';
-import { STORE_NAME } from './store';
+import { STORE_NAME, type StoreOptions } from './store';
 import { TableSettings, TableCaptionSettings, TableCellSettings } from './settings';
 import { Table, TablePlaceholder, TableCaption } from './elements';
 import {
@@ -48,18 +42,28 @@ import {
 	toTableAttributes,
 	toVirtualTable,
 	isEmptySection,
+	type VTable,
+	type VSelectedLine,
+	type VSelectedCells,
 } from './utils/table-state';
 import { convertToObject } from './utils/style-converter';
-import { mergeCell, splitCell } from './icons';
+import {
+	tableRowAfter,
+	tableRowBefore,
+	tableColumnBefore,
+	tableColumnAfter,
+	tableColumnDelete,
+	tableRowDelete,
+	tableMergeCell,
+	tableSplitCell,
+} from './icons';
 import type { BlockAttributes, SectionName, ContentJustifyValue } from './BlockAttributes';
-import type { StoreOptions } from './store';
-import type { VTable, VSelectedLine, VSelectedCells } from './utils/table-state';
 
 function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	const {
 		attributes,
 		setAttributes,
-		isSelected,
+		isSelected: isSingleSelected,
 		// @ts-ignore: `insertBlocksAfter` prop is not exist at @types
 		insertBlocksAfter,
 	} = props;
@@ -69,13 +73,21 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 
 	const tableStylesObj: Properties = convertToObject( tableStyles );
 	const captionStylesObj: Properties = convertToObject( captionStyles );
-	const options: StoreOptions = useSelect(
-		( select ) =>
-			select( STORE_NAME )
-				// @ts-ignore
-				.getOptions(),
-		[]
-	);
+	const options = useSelect( ( select ) => {
+		const { getOptions }: { getOptions: () => StoreOptions } = select( STORE_NAME );
+		return getOptions();
+	}, [] );
+	const { createWarningNotice } = useDispatch( noticesStore );
+	const blockEditingMode = useBlockEditingMode();
+	const isContentOnlyMode = blockEditingMode === 'contentOnly';
+
+	// Release cell selection.
+	useEffect( () => {
+		if ( ! isSingleSelected ) {
+			setSelectedCells( undefined );
+			setSelectedLine( undefined );
+		}
+	}, [ isSingleSelected ] );
 
 	// Create virtual table object with the cells placed in positions based on how they actually look.
 	const vTable: VTable = toVirtualTable( attributes );
@@ -86,7 +98,9 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	};
 
 	const onInsertRow = ( offset: number ) => {
-		if ( ! selectedCells || selectedCells.length !== 1 ) return;
+		if ( ! selectedCells || selectedCells.length !== 1 ) {
+			return;
+		}
 
 		const { sectionName, rowIndex, rowSpan } = selectedCells[ 0 ];
 
@@ -101,7 +115,9 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	};
 
 	const onDeleteRow = () => {
-		if ( ! selectedCells || selectedCells.length !== 1 ) return;
+		if ( ! selectedCells || selectedCells.length !== 1 ) {
+			return;
+		}
 
 		const { sectionName, rowIndex } = selectedCells[ 0 ];
 
@@ -111,8 +127,14 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 			vTable.body.length === 1 &&
 			( ! isEmptySection( vTable.head ) || ! isEmptySection( vTable.foot ) )
 		) {
-			// eslint-disable-next-line no-alert, no-undef
-			alert( __( 'The table body must have one or more rows.', 'flexible-table-block' ) );
+			// @ts-ignore
+			createWarningNotice(
+				__( 'The table body must have one or more rows.', 'flexible-table-block' ),
+				{
+					id: 'flexible-table-block-body-row',
+					type: 'snackbar',
+				}
+			);
 			return;
 		}
 
@@ -123,7 +145,9 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	};
 
 	const onInsertColumn = ( offset: number ) => {
-		if ( ! selectedCells || selectedCells.length !== 1 ) return;
+		if ( ! selectedCells || selectedCells.length !== 1 ) {
+			return;
+		}
 
 		const { vColIndex, colSpan } = selectedCells[ 0 ];
 
@@ -138,7 +162,9 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	};
 
 	const onDeleteColumn = () => {
-		if ( ! selectedCells || selectedCells.length !== 1 ) return;
+		if ( ! selectedCells || selectedCells.length !== 1 ) {
+			return;
+		}
 
 		const { vColIndex } = selectedCells[ 0 ];
 
@@ -208,18 +234,18 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 			onClick: () => onDeleteColumn(),
 		},
 		{
-			icon: splitCell,
+			icon: tableSplitCell,
 			title: __( 'Split merged cells', 'flexible-table-block' ),
 			isDisabled: ! selectedCells || ! hasMergedCells( selectedCells ),
 			onClick: () => onSplitMergedCells(),
 		},
 		{
-			icon: mergeCell,
+			icon: tableMergeCell,
 			title: __( 'Merge cells', 'flexible-table-block' ),
 			isDisabled: ! selectedCells || ! isRectangleSelected( selectedCells ),
 			onClick: () => onMergeCells(),
 		},
-	] as const;
+	];
 
 	const isEmpty: boolean = ! [ 'head', 'body', 'foot' ].filter(
 		( sectionName ) => ! isEmptySection( vTable[ sectionName as SectionName ] )
@@ -228,17 +254,18 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 	const tablePlaceholderProps = useBlockProps();
 
 	const tableFigureProps = useBlockProps( {
-		className: classnames( `is-caption-side-${ captionSide }`, {
+		className: clsx( `is-caption-side-${ captionSide }`, {
 			[ `is-content-justification-${ contentJustification }` ]: contentJustification,
 			'show-dot-on-th': options.show_dot_on_th,
 			'show-control-button': options.show_control_button,
+			'is-content-only': isContentOnlyMode,
 		} ),
 	} );
 
 	const tableProps = {
 		attributes,
 		setAttributes,
-		isSelected,
+		isSelected: isSingleSelected,
 		options,
 		vTable,
 		tableStylesObj,
@@ -246,6 +273,7 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 		setSelectedCells,
 		selectedLine,
 		setSelectedLine,
+		isContentOnlyMode,
 	};
 
 	const tableSettingsProps = {
@@ -275,6 +303,7 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 		setSelectedLine,
 		setSelectedCells,
 		captionStylesObj,
+		isSelected: isSingleSelected,
 	};
 
 	const tableCaptionSettingProps = {
@@ -292,28 +321,28 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 			) }
 			{ ! isEmpty && (
 				<figure { ...tableFigureProps }>
-					<BlockControls
-						// @ts-ignore: `group` prop is not exist at @types
-						group="block"
-					>
-						<ToolbarDropdownMenu
-							label={ __( 'Change table justification', 'flexible-table-block' ) }
-							icon={
-								( contentJustification &&
-									TableJustifyControls.find( ( control ) => control.value === contentJustification )
-										?.icon ) ||
-								justifyLeft
-							}
-							controls={ TableJustifyControls }
-							hasArrowIndicator
-						/>
-						<ToolbarDropdownMenu
-							label={ __( 'Edit table', 'flexible-table-block' ) }
-							icon={ blockTable }
-							controls={ TableEditControls }
-							hasArrowIndicator
-						/>
-					</BlockControls>
+					{ ! isContentOnlyMode && (
+						<>
+							<BlockControls group="block">
+								<ToolbarDropdownMenu
+									label={ __( 'Change table justification', 'flexible-table-block' ) }
+									icon={
+										( contentJustification &&
+											TableJustifyControls.find(
+												( control ) => control.value === contentJustification
+											)?.icon ) ||
+										justifyLeft
+									}
+									controls={ TableJustifyControls }
+								/>
+								<ToolbarDropdownMenu
+									label={ __( 'Edit table', 'flexible-table-block' ) }
+									icon={ blockTable }
+									controls={ TableEditControls }
+								/>
+							</BlockControls>
+						</>
+					) }
 					<InspectorControls>
 						<PanelBody
 							title={ __( 'Table settings', 'flexible-table-block' ) }

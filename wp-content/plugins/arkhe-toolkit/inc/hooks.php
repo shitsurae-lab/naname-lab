@@ -65,6 +65,10 @@ function hook__author_links( $author_id ) {
 		<?php
 			foreach ( $icon_links as $key => $href ) :
 			if ( empty( $href ) ) continue;
+
+			if ( 'twitter' === $key && apply_filters( 'arkhe_toolkit_twitter_to_x', 1 ) ) {
+				$key = 'twitter-x';
+			}
 		?>
 			<li class="c-iconList__item -<?=esc_attr( $key )?>">
 				<a href="<?=esc_url( $href )?>" target="_blank" rel="noopener" class="c-iconList__link">

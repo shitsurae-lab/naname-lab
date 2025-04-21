@@ -3,7 +3,7 @@
  * Plugin Name: Arkhe Toolkit
  * Plugin URI: https://arkhe-theme.com
  * Description: A plugin that extends Arkhe more conveniently
- * Version: 1.10.0
+ * Version: 1.11.1
  * Author: LOOS,Inc.
  * Author URI: https://loos.co.jp/
  * License: GPL2 or later
@@ -64,12 +64,7 @@ class Arkhe_Toolkit extends \Arkhe_Toolkit\Data {
 
 		// テーマチェック : IS_ARKHE_THEME は Arkheプラグインで共通
 		if ( ! defined( 'IS_ARKHE_THEME' ) ) {
-			$theme_data     = wp_get_theme();
-			$theme_name     = $theme_data->get( 'Name' );
-			$theme_template = $theme_data->get( 'Template' );
-
-			$is_arkhe_theme = ( 'Arkhe' === $theme_name || 'arkhe' === $theme_template );
-			define( 'IS_ARKHE_THEME', $is_arkhe_theme );
+			define( 'IS_ARKHE_THEME', 'arkhe' === get_template() );
 		}
 
 		if ( ! IS_ARKHE_THEME ) return;

@@ -16,7 +16,11 @@ function custom_post_sidebar()
 ?>
     <div class="p-sidebar__content">
       <div class="p-sidebar__heading">
-        <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
+        <p class="p-sidebar__update">Last update</p>
+        <p class="p-sidebar__date">
+          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php echo esc_html($mod_date); ?>
+        </p>
         <p id="recent-posts" class="p-newsList__heading">
           <?php
           echo '<a href="' . get_category_link($cat->term_id) . '">'  . $icon_awesome . '<span>' . $cat_name . '</span></a>';
@@ -46,7 +50,11 @@ function custom_post_sidebar()
   ?>
     <div class="p-sidebar__content">
       <div class="p-sidebar__heading">
-        <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
+        <p class="p-sidebar__update">Last update</p>
+        <p class="p-sidebar__date">
+            <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php echo esc_html($mod_date); ?>
+        </p>
       </div>
       <details class="p-tag__details js-details">
         <summary class="js-summary"><span class="p-summary__inner">keyword<span class="p-summary__icon p-tag__icon"></span></span></summary>
@@ -96,7 +104,11 @@ function custom_post_sidebar()
   ?>
     <div class="p-sidebar__content">
       <div class="p-sidebar__heading">
-        <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
+        <p class="p-sidebar__update">Last update</p>
+        <p class="p-sidebar__date">
+          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php echo esc_html($mod_date); ?>
+        </p>
         <!-- 見出しに$term-nameがない場合はfalse(非表示)に: 条件分岐 -->
         <ul>
           <?php foreach ($terms as $term) : ?>
@@ -140,7 +152,11 @@ function custom_post_sidebar()
     ?>
       <div class="p-sidebar__content">
         <div class="p-sidebar__heading">
-          <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
+          <p class="p-sidebar__update">Last update</p>
+          <p class="p-sidebar__date">
+          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php echo esc_html($mod_date); ?>
+          </p>
           <!-- 見出しに$term-nameがない場合はfalse(非表示)に: 条件分岐 -->
           <ul>
             <?php foreach ($terms as $term) : ?>
@@ -183,7 +199,11 @@ function custom_post_sidebar()
     $terms = get_the_terms($post->ID,  'skill_cat'); ?>
       <div class="p-sidebar__content">
         <div class="p-sidebar__heading">
-          <p class="p-sidebar__date"><?php the_date('Y.m.d'); ?></p>
+          <p class="p-sidebar__update">Last update</p>
+          <p class="p-sidebar__date">
+          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php echo esc_html($mod_date); ?>
+          </p>
           <ul>
             <?php foreach ($terms as $term) : ?>
               <?php if ($term) :

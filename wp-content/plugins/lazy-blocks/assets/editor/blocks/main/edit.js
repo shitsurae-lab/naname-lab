@@ -7,8 +7,8 @@ import classnames from 'classnames/dedupe';
 /**
  * WordPress dependencies.
  */
-import { __ } from '@wordpress/i18n';
-import { useRef, useEffect } from '@wordpress/element';
+import { __, _n, sprintf } from '@wordpress/i18n';
+import { useRef, useEffect, useState } from '@wordpress/element';
 import { ToolbarButton } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
@@ -25,7 +25,7 @@ import {
 import PreviewServerCallback from '../../../components/preview-server-callback';
 import RenderControls from '../../../components/render-controls';
 import getControlValue from '../../../utils/get-control-value';
-import isControlValueValid from '../../../utils/is-control-value-valid';
+import checkControlValidity from '../../../utils/check-control-validity';
 
 let options = window.lazyblocksGutenberg;
 if (!options || !options.blocks || !options.blocks.length) {
@@ -36,11 +36,19 @@ if (!options || !options.blocks || !options.blocks.length) {
 	};
 }
 
+const blocksWithErrors = {};
+
 export default function BlockEdit(props) {
 	const { lazyBlockData, clientId, isSelected, attributes } = props;
 
 	const isFirstLoad = useRef(true);
 	const isMounted = useRef(true);
+
+	// Skip locking if the component mounts with a selected state,
+	// as this indicates we've just inserted the block and don't want
+	// to alarm the user with error messages.
+	const [allowErrorNotice, setAllowErrorNotice] = useState(!isSelected);
+	const [invalidControlsCount, setInvalidControlsCount] = useState(0);
 
 	const { innerBlockSelected, postType } = useSelect(
 		(select) => {
@@ -61,16 +69,55 @@ export default function BlockEdit(props) {
 
 	const isLazyBlockSelected = isSelected || innerBlockSelected;
 
+	useEffect(() => {
+		if (!allowErrorNotice && !isSelected) {
+			setAllowErrorNotice(true);
+		}
+	}, [allowErrorNotice, isSelected]);
+
 	const {
 		lockPostSaving: lockPostSavingDispatch,
 		unlockPostSaving: unlockPostSavingDispatch,
 	} = useDispatch('core/editor') || {};
+	const { createErrorNotice, removeNotice } =
+		useDispatch('core/notices') || {};
 
-	function lockPostSaving() {
+	function updateEditorErrorNotice(errorsCount) {
+		if (!createErrorNotice || !removeNotice) {
+			return;
+		}
+
+		if (errorsCount) {
+			blocksWithErrors[clientId] = errorsCount;
+
+			setInvalidControlsCount(errorsCount);
+		} else if (typeof blocksWithErrors[clientId] !== 'undefined') {
+			delete blocksWithErrors[clientId];
+
+			setInvalidControlsCount(0);
+		}
+
+		if (Object.keys(blocksWithErrors).length) {
+			createErrorNotice(
+				__(
+					'Some blocks on this page require attention before you can save.',
+					'lazy-blocks'
+				),
+				{
+					id: 'lzb-validation',
+					isDismissible: true,
+				}
+			);
+		} else {
+			removeNotice('lzb-validation');
+		}
+	}
+	function lockPostSaving(errorsCount) {
 		// We should check this because of Widget screen does not have this feature
 		// https://github.com/WordPress/gutenberg/issues/33756
 		if (lockPostSavingDispatch) {
 			lockPostSavingDispatch(`lazyblock-${clientId}`);
+			updateEditorErrorNotice(errorsCount);
 		}
 	}
 	function unlockPostSaving() {
@@ -78,6 +125,7 @@ export default function BlockEdit(props) {
 		// https://github.com/WordPress/gutenberg/issues/33756
 		if (unlockPostSavingDispatch) {
 			unlockPostSavingDispatch(`lazyblock-${clientId}`);
+			updateEditorErrorNotice(0);
 		}
 	}
 
@@ -88,8 +136,8 @@ export default function BlockEdit(props) {
 		let shouldLock = 0;
 		let thereIsRequired = false;
 
-		// Prevent if component already unmounted.
-		if (!isMounted.current) {
+		// Prevent if not allowed or component already unmounted.
+		if (!allowErrorNotice || !isMounted.current) {
 			return;
 		}
 
@@ -120,7 +168,7 @@ export default function BlockEdit(props) {
 									childIndex
 								);
 
-								if (!isControlValueValid(val, control)) {
+								if (checkControlValidity(val, control)) {
 									shouldLock += 1;
 								}
 							});
@@ -136,7 +184,7 @@ export default function BlockEdit(props) {
 						control
 					);
 
-					if (!isControlValueValid(val, control)) {
+					if (checkControlValidity(val, control)) {
 						shouldLock += 1;
 					}
 				}
@@ -150,7 +198,7 @@ export default function BlockEdit(props) {
 
 		// lock or unlock post saving depending on required controls values.
 		if (shouldLock > 0) {
-			lockPostSaving();
+			lockPostSaving(shouldLock);
 		} else {
 			unlockPostSaving();
 		}
@@ -167,8 +215,9 @@ export default function BlockEdit(props) {
 
 	useEffect(() => {
 		isFirstLoad.current = false;
+		isMounted.current = true;
 
-		// Try to lock post once component mounted.
+		// Attempt to lock the post once the component is mounted.
 		maybeLockPostSaving();
 
 		// Unlock once component unmounted (mostly when block removed).
@@ -182,9 +231,19 @@ export default function BlockEdit(props) {
 
 	const { blockUniqueClass = '' } = attributes;
 
-	const className = classnames('lazyblock', blockUniqueClass);
+	const className = classnames(
+		'lazyblock',
+		invalidControlsCount > 0 && !isSelected && 'lzb-invalid',
+		blockUniqueClass
+	);
 
 	const attsForRender = {};
+	const controlsHasGroup = {
+		// Default group is always available to show error notices.
+		default: true,
+		styles: false,
+		advanced: false,
+	};
 
 	// prepare data for preview.
 	Object.keys(lazyBlockData.controls).forEach((k) => {
@@ -195,6 +254,19 @@ export default function BlockEdit(props) {
 				lazyBlockData,
 				lazyBlockData.controls[k]
 			);
+		}
+		if (lazyBlockData.controls[k].placement !== 'content') {
+			switch (lazyBlockData.controls[k].group) {
+				case 'default':
+					controlsHasGroup.default = true;
+					break;
+				case 'styles':
+					controlsHasGroup.styles = true;
+					break;
+				case 'advanced':
+					controlsHasGroup.advanced = true;
+					break;
+			}
 		}
 	});
 
@@ -243,24 +315,50 @@ export default function BlockEdit(props) {
 
 				<h6>{lazyBlockData.title}</h6>
 			</div>
-			<InspectorControls>
-				<div
-					className="lzb-inspector-controls"
-					data-lazyblocks-block-name={props.name}
-				>
-					<RenderControls
-						placement="inspector"
-						isLazyBlockSelected={isLazyBlockSelected}
-						meta={meta}
-						setMeta={(...args) => {
-							if (postType) {
-								setMeta(...args);
-							}
-						}}
-						{...props}
-					/>
-				</div>
-			</InspectorControls>
+			{Object.keys(controlsHasGroup).map((group) => {
+				if (!controlsHasGroup[group]) {
+					return null;
+				}
+
+				return (
+					<InspectorControls key={`inspector-${group}`} group={group}>
+						<div
+							className={`lzb-inspector-controls lzb-inspector-controls-${group}`}
+							data-lazyblocks-block-name={props.name}
+						>
+							{'default' === group &&
+								allowErrorNotice &&
+								invalidControlsCount > 0 && (
+									<div className="lzb-invalid-notice">
+										{sprintf(
+											// translators: %d: number of child controls.
+											_n(
+												'Validation failed. %d control require attention.',
+												'Validation failed. %d controls require attention.',
+												invalidControlsCount,
+												'lazy-blocks'
+											),
+											invalidControlsCount
+										)}
+									</div>
+								)}
+							<RenderControls
+								placement="inspector"
+								group={group}
+								isLazyBlockSelected={isLazyBlockSelected}
+								allowErrorNotice={allowErrorNotice}
+								meta={meta}
+								setMeta={(...args) => {
+									if (postType) {
+										setMeta(...args);
+									}
+								}}
+								{...props}
+							/>
+						</div>
+					</InspectorControls>
+				);
+			})}
 			{lazyBlockData.edit_url ? (
 				<BlockControls group="other">
 					<ToolbarButton
@@ -280,7 +378,7 @@ export default function BlockEdit(props) {
 								/>
 							</svg>
 						}
-						label={__('Edit Block', '@@text_domain')}
+						label={__('Edit Block', 'lazy-blocks')}
 						href={lazyBlockData.edit_url.replace('&amp;', '&')}
 						target="_blank"
 						rel="noopener noreferrer"
@@ -294,6 +392,7 @@ export default function BlockEdit(props) {
 				<RenderControls
 					placement="content"
 					isLazyBlockSelected={isLazyBlockSelected}
+					allowErrorNotice={allowErrorNotice}
 					meta={meta}
 					setMeta={(...args) => {
 						if (postType) {

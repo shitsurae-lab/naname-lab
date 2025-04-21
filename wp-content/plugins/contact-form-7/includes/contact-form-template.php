@@ -3,13 +3,13 @@
 class WPCF7_ContactFormTemplate {
 
 	public static function get_default( $prop = 'form' ) {
-		if ( 'form' == $prop ) {
+		if ( 'form' === $prop ) {
 			$template = self::form();
-		} elseif ( 'mail' == $prop ) {
+		} elseif ( 'mail' === $prop ) {
 			$template = self::mail();
-		} elseif ( 'mail_2' == $prop ) {
+		} elseif ( 'mail_2' === $prop ) {
 			$template = self::mail_2();
-		} elseif ( 'messages' == $prop ) {
+		} elseif ( 'messages' === $prop ) {
 			$template = self::messages();
 		} else {
 			$template = null;
@@ -74,7 +74,7 @@ class WPCF7_ContactFormTemplate {
 				. '-- ' . "\n"
 				. sprintf(
 					/* translators: 1: blog name, 2: blog URL */
-					__( 'This e-mail was sent from a contact form on %1$s (%2$s)', 'contact-form-7' ),
+					__( 'This is a notification that a contact form was submitted on your website (%1$s %2$s).', 'contact-form-7' ),
 					'[_site_title]',
 					'[_site_url]'
 				),
@@ -108,7 +108,7 @@ class WPCF7_ContactFormTemplate {
 				. '-- ' . "\n"
 				. sprintf(
 					/* translators: 1: blog name, 2: blog URL */
-					__( 'This e-mail was sent from a contact form on %1$s (%2$s)', 'contact-form-7' ),
+					__( 'This email is a receipt for your contact form submission on our website (%1$s %2$s) in which your email address was used. If that was not you, please ignore this message.', 'contact-form-7' ),
 					'[_site_title]',
 					'[_site_url]'
 				),

@@ -10,7 +10,7 @@
  */
 class XO_Security_Admin {
 	/**
-	 * Options.
+	 * Parent object.
 	 *
 	 * @var XO_Security
 	 */
@@ -42,10 +42,10 @@ class XO_Security_Admin {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param XO_Security $parent XO_Security object.
+	 * @param XO_Security $parent_object XO_Security object.
 	 */
-	public function __construct( $parent ) {
-		$this->parent = $parent;
+	public function __construct( $parent_object ) {
+		$this->parent = $parent_object;
 		add_action( 'plugins_loaded', array( $this, 'setup' ), 99999 );
 	}
 
@@ -58,9 +58,23 @@ class XO_Security_Admin {
 		add_filter( 'set-screen-option', array( $this, 'set_screen_option' ), 10, 3 );
 		add_action( 'admin_init', array( $this, 'option_page_init' ) );
 		add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
+
 		if ( ! isset( $this->parent->options['dashboard_widget'] ) || $this->parent->options['dashboard_widget'] ) {
 			add_action( 'wp_dashboard_setup', array( $this, 'dashboard_setup' ) );
 			add_action( 'wp_ajax_xo_security_dashboard', array( $this, 'ajax_dashboard' ) );
+		}
+
+		if ( isset( $this->parent->options['edit_author_slug'] ) && $this->parent->options['edit_author_slug'] ) {
+			if ( current_user_can( 'edit_users' ) ) {
+				add_action( 'show_user_profile', array( $this, 'edit_user_profile' ) );
+				add_action( 'edit_user_profile', array( $this, 'edit_user_profile' ) );
+				add_action( 'user_profile_update_errors', array( $this, 'user_profile_update_errors' ), 10, 3 );
+			}
+		}
+
+		if ( isset( $this->parent->options['edit_author_base'] ) && $this->parent->options['edit_author_base'] ) {
+			add_action( 'admin_init', array( $this, 'add_settings_author_base_field' ) );
+			add_action( 'admin_init', array( $this, 'update_settings_author_base' ) );
 		}
 	}
 
@@ -96,7 +110,8 @@ class XO_Security_Admin {
 	 * Filter foradmin_bar_init.
 	 */
 	public function admin_bar_init() {
-		wp_enqueue_style( 'xo-security-admin', XO_SECURITY_URL . '/css/admin.min.css', false, XO_SECURITY_VERSION );
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		wp_enqueue_style( 'xo-security-admin', XO_SECURITY_URL . "/css/admin{$min}.css", false, XO_SECURITY_VERSION );
 	}
 
 	/**
@@ -119,7 +134,7 @@ class XO_Security_Admin {
 	 * Admin screen Add menu.
 	 */
 	public function add_admin_menu() {
-		$login_log_page = add_submenu_page( 'profile.php', __( 'Login log', 'xo-security' ), __( 'Login log', 'xo-security' ), 'level_2', 'xo-security-login-log', array( $this, 'login_log_page' ) );
+		$login_log_page = add_submenu_page( 'profile.php', __( 'Login log', 'xo-security' ), __( 'Login log', 'xo-security' ), 'delete_posts', 'xo-security-login-log', array( $this, 'login_log_page' ) );
 		add_action( "load-{$login_log_page}", array( $this, 'add_login_log_page_tabs' ) );
 
 		$this->settings_page = add_options_page( 'XO Security', 'XO Security', 'manage_options', 'xo-security-settings', array( $this, 'option_page' ) );
@@ -181,8 +196,7 @@ class XO_Security_Admin {
 				'id'      => 'overview',
 				'title'   => __( 'Overview', 'xo-security' ),
 				'content' =>
-					'<p>' . __( 'XO Security setup.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Limit of records and login attempts of login log, change the login page, disable such as XML-RPC, it makes the security-related settings.', 'xo-security' ) . '</p>',
+					'<p>' . __( 'XO Security setup.', 'xo-security' ) . '</p>',
 			)
 		);
 		$screen->add_help_tab(
@@ -190,38 +204,7 @@ class XO_Security_Admin {
 				'id'      => 'login-config',
 				'title'   => __( 'Login', 'xo-security' ),
 				'content' =>
-					'<p>' . __( 'Make login related settings.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Number of trials restriction limits the number of times that you can try from the same IP address during a specified time. From was over a specified number of IP address you will not be able to log in.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Login page, Change the name of the login page.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Login alert, Send an e-mail when login.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Login CAPTCHA, add CAPTCHA to the login page.', 'xo-security' ) . '</p>',
-			)
-		);
-		$screen->add_help_tab(
-			array(
-				'id'      => 'comment-config',
-				'title'   => __( 'Comment', 'xo-security' ),
-				'content' =>
-					'<p>' . __( 'Make comment related settings.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Comment CAPTCHA, add CAPTCHA to the comment form.', 'xo-security' ) . '</p>',
-			)
-		);
-		$screen->add_help_tab(
-			array(
-				'id'      => 'xml-rpc-config',
-				'title'   => __( 'XML-RPC', 'xo-security' ),
-				'content' =>
-					'<p>' . __( 'Disable XML-RPC, XML-RPC functionality disabled. This setting does not disable XML-RPC pingback.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'Disabling pingback XML-RPC, XML-RPC pingback functionality disabled.', 'xo-security' ) . '</p>',
-			)
-		);
-		$screen->add_help_tab(
-			array(
-				'id'      => 'rest-api-config',
-				'title'   => __( 'REST API', 'xo-security' ),
-				'content' =>
-					'<p>' . __( 'Disable REST API, REST API functionality disabled.', 'xo-security' ) . '</p>' .
-					'<p>' . __( 'REST API URL prefix, Change the prefix for the REST API URL.', 'xo-security' ) . '</p>',
+					'<p>' . __( 'Number of trials restriction limits the number of times that you can try from the same IP address during a specified time. From was over a specified number of IP address you will not be able to log in.', 'xo-security' ) . '</p>',
 			)
 		);
 		$screen->add_help_tab(
@@ -284,7 +267,7 @@ class XO_Security_Admin {
 	public function option_page() {
 		$this->parent->options = $this->get_option();
 
-		$tabs = array( 'status-page', 'login-page', 'comment-page', 'xmlrpc-page', 'restapi-page', 'secret-page', 'environment-page' );
+		$tabs = array( 'status-page', 'login-page', 'comment-page', 'xmlrpc-page', 'restapi-page', 'secret-page', 'maintenance-page', 'environment-page' );
 
 		$active_tab = ( isset( $_GET['tab'] ) && in_array( $_GET['tab'], $tabs, true ) ) ? $_GET['tab'] : 'status-page'; // phpcs:ignore
 
@@ -303,6 +286,8 @@ class XO_Security_Admin {
 			. esc_html__( 'REST API', 'xo-security' ) . '</a>'
 			. '<a href="?page=xo-security-settings&amp;tab=secret-page" class="nav-tab ' . ( 'secret-page' === $active_tab ? 'nav-tab-active' : '' ) . '">'
 			. esc_html__( 'Secret', 'xo-security' ) . '</a>'
+			. '<a href="?page=xo-security-settings&amp;tab=maintenance-page" class="nav-tab ' . ( 'maintenance-page' === $active_tab ? 'nav-tab-active' : '' ) . '">'
+			. esc_html__( 'Maintenance', 'xo-security' ) . '</a>'
 			. '<a href="?page=xo-security-settings&amp;tab=environment-page" class="nav-tab ' . ( 'environment-page' === $active_tab ? 'nav-tab-active' : '' ) . '">'
 			. esc_html__( 'Environment', 'xo-security' ) . '</a>'
 			. '</h2>'
@@ -337,6 +322,11 @@ class XO_Security_Admin {
 				do_settings_sections( 'xo_security_secret' );
 				submit_button();
 				break;
+			case 'maintenance-page':
+				settings_fields( 'xo_security_maintenance' );
+				do_settings_sections( 'xo_security_maintenance' );
+				submit_button();
+				break;
 			case 'environment-page':
 				settings_fields( 'xo_security_environment' );
 				do_settings_sections( 'xo_security_environment' );
@@ -358,6 +348,7 @@ class XO_Security_Admin {
 		$login_page           = isset( $this->parent->options['login_page'] ) ? $this->parent->options['login_page'] : false;
 		$login_alert          = isset( $this->parent->options['login_alert'] ) ? $this->parent->options['login_alert'] : false;
 		$error_login_message  = isset( $this->parent->options['error_login_message'] ) ? $this->parent->options['error_login_message'] : false;
+		$two_factor           = isset( $this->parent->options['two_factor'] ) ? $this->parent->options['two_factor'] : false;
 		$login_id_type        = isset( $this->parent->options['login_id_type'] ) ? $this->parent->options['login_id_type'] : '';
 		$login_captcha        = isset( $this->parent->options['login_captcha'] ) ? ( '' !== $this->parent->options['login_captcha'] ) : false;
 		$comment_captcha      = isset( $this->parent->options['comment_captcha'] ) ? ( '' !== $this->parent->options['comment_captcha'] ) : false;
@@ -367,11 +358,13 @@ class XO_Security_Admin {
 		$pingback             = isset( $this->parent->options['pingback'] ) ? $this->parent->options['pingback'] : false;
 		$rest                 = isset( $this->parent->options['rest'] ) ? $this->parent->options['rest'] : false;
 		$edit_author_slug     = isset( $this->parent->options['edit_author_slug'] ) ? $this->parent->options['edit_author_slug'] : false;
+		$edit_author_base     = isset( $this->parent->options['edit_author_base'] ) ? $this->parent->options['edit_author_base'] : false;
 		$author_archive       = isset( $this->parent->options['author_archive'] ) ? $this->parent->options['author_archive'] : false;
 		$comment_author_class = isset( $this->parent->options['comment_author_class'] ) ? $this->parent->options['comment_author_class'] : false;
 		$oembed_author        = isset( $this->parent->options['oembed_author'] ) ? $this->parent->options['oembed_author'] : false;
 		$disable_feed         = isset( $this->parent->options['disable_feed'] ) ? $this->parent->options['disable_feed'] : false;
 		$remove_version       = isset( $this->parent->options['remove_version'] ) ? $this->parent->options['remove_version'] : false;
+		$delete_readme        = isset( $this->parent->options['delete_readme'] ) ? $this->parent->options['delete_readme'] : false;
 		?>
 		<h3 class="label"><?php esc_html_e( 'Setting status', 'xo-security' ); ?></h3>
 		<table class="xo-security-form-table">
@@ -405,6 +398,11 @@ class XO_Security_Admin {
 					<th scope="row" class="status-check"><span class="<?php echo ( $error_login_message ? 'check-on' : 'check-off' ); ?>"></span></th>
 					<td class="status-title"><?php esc_html_e( 'Login error message', 'xo-security' ); ?></td>
 					<td class="status-description"><?php esc_html_e( 'Simplify login error messages.', 'xo-security' ); ?></td>
+				</tr>
+				<tr>
+					<th scope="row" class="status-check"><span class="<?php echo ( $two_factor ? 'check-on' : 'check-off' ); ?>"></span></th>
+					<td class="status-title"><?php esc_html_e( 'Two-factor authentication', 'xo-security' ); ?></td>
+					<td class="status-description"><?php esc_html_e( 'Add Time Based One-Time Password (TOTP) authentication.', 'xo-security' ); ?></td>
 				</tr>
 				<tr>
 					<th scope="row" class="status-check"><span class="<?php echo ( $login_captcha ? 'check-on' : 'check-off' ); ?>"></span></th>
@@ -452,6 +450,11 @@ class XO_Security_Admin {
 					<td class="status-description"><?php esc_html_e( 'The author slug can be edited.', 'xo-security' ); ?></td>
 				</tr>
 				<tr>
+					<th scope="row" class="status-check"><span class="<?php echo ( $edit_author_base ? 'check-on' : 'check-off' ); ?>"></span></th>
+					<td class="status-title"><?php esc_html_e( 'Edit author base', 'xo-security' ); ?></td>
+					<td class="status-description"><?php esc_html_e( 'The author base can be edited.', 'xo-security' ); ?></td>
+				</tr>
+				<tr>
 					<th scope="row" class="status-check"><span class="<?php echo ( $author_archive ? 'check-on' : 'check-off' ); ?>"></span></th>
 					<td class="status-title"><?php esc_html_e( 'Disable author archives', 'xo-security' ); ?></td>
 					<td class="status-description"><?php esc_html_e( 'Disable authors archive page.', 'xo-security' ); ?></td>
@@ -476,6 +479,13 @@ class XO_Security_Admin {
 					<td class="status-title"><?php esc_html_e( 'Delete version information', 'xo-security' ); ?></td>
 					<td class="status-description"><?php esc_html_e( 'Remove the generator meta tags and WordPress versions such as links and script tags.', 'xo-security' ); ?></td>
 				</tr>
+				<?php if ( is_main_site() ) : ?>
+				<tr>
+					<th scope="row" class="status-check"><span class="<?php echo ( $delete_readme ? 'check-on' : 'check-off' ); ?>"></span></th>
+					<td class="status-title"><?php esc_html_e( 'Delete readme.html', 'xo-security' ); ?></td>
+					<td class="status-description"><?php esc_html_e( 'Delete the WordPress core readme.html file.', 'xo-security' ); ?></td>
+				</tr>
+				<?php endif; ?>
 			</tbody>
 		</table>
 		<?php
@@ -498,6 +508,7 @@ class XO_Security_Admin {
 		add_settings_field( 'login_id_type', __( 'Login ID type', 'xo-security' ), array( $this, 'option_page_field_login_id_type' ), 'xo_security_login', 'xo_security_login_limit_section' );
 		add_settings_field( 'login_languages', __( 'Login language Restrictions', 'xo-security' ), array( $this, 'option_page_field_login_languages' ), 'xo_security_login', 'xo_security_login_limit_section' );
 		add_settings_field( 'error_login_message', __( 'Login error message', 'xo-security' ), array( $this, 'option_page_field_error_login_message' ), 'xo_security_login', 'xo_security_login_limit_section' );
+		add_settings_field( 'two_factor', __( 'Two-factor authentication', 'xo-security' ), array( $this, 'option_page_field_two_factor' ), 'xo_security_login', 'xo_security_login_limit_section' );
 		add_settings_section( 'xo_security_login_form_section', __( 'Login Form', 'xo-security' ), '__return_empty_string', 'xo_security_login' );
 		add_settings_field( 'login_captcha', __( 'CAPTCHA', 'xo-security' ), array( $this, 'option_page_field_login_captcha' ), 'xo_security_login', 'xo_security_login_form_section' );
 		add_settings_field( 'password_reset', __( 'Password reset link', 'xo-security' ), array( $this, 'option_page_field_password_reset' ), 'xo_security_login', 'xo_security_login_form_section' );
@@ -520,11 +531,14 @@ class XO_Security_Admin {
 		register_setting( 'xo_security_restapi', 'xo_security_options', array( $this, 'sanitize_restapi' ) );
 		add_settings_section( 'xo_security_rest_section', __( 'REST API', 'xo-security' ), '__return_false', 'xo_security_restapi' );
 		add_settings_field( 'rest', __( 'Disable REST API', 'xo-security' ), array( $this, 'option_page_field_rest' ), 'xo_security_restapi', 'xo_security_rest_section' );
-		add_settings_field( 'rest_rename', __( 'Change REST API URL prefix', 'xo-security' ), array( $this, 'option_page_field_rest_rename' ), 'xo_security_restapi', 'xo_security_rest_section' );
+		if ( isset( $this->parent->options['rest_rename'] ) && $this->parent->options['rest_rename'] ) {
+			add_settings_field( 'rest_rename', __( 'Change REST API URL prefix', 'xo-security' ), array( $this, 'option_page_field_rest_rename' ), 'xo_security_restapi', 'xo_security_rest_section' );
+		}
 
 		register_setting( 'xo_security_secret', 'xo_security_options', array( $this, 'sanitize_secret' ) );
 		add_settings_section( 'xo_security_security_user_section', __( 'Username', 'xo-security' ), '__return_false', 'xo_security_secret' );
 		add_settings_field( 'edit_author_slug', __( 'Edit author slug', 'xo-security' ), array( $this, 'option_page_field_edit_author_slug' ), 'xo_security_secret', 'xo_security_security_user_section' );
+		add_settings_field( 'edit_author_base', __( 'Edit author base', 'xo-security' ), array( $this, 'option_page_field_edit_author_base' ), 'xo_security_secret', 'xo_security_security_user_section' );
 		add_settings_field( 'author_archive', __( 'Disable author archives', 'xo-security' ), array( $this, 'option_page_field_author_archive' ), 'xo_security_secret', 'xo_security_security_user_section' );
 		add_settings_field( 'comment_author_class', __( 'Delete comment author class', 'xo-security' ), array( $this, 'option_page_field_comment_author_class' ), 'xo_security_secret', 'xo_security_security_user_section' );
 		add_settings_field( 'oembed_author', __( 'Remove oEmbed username', 'xo-security' ), array( $this, 'option_page_field_oembed_author' ), 'xo_security_secret', 'xo_security_security_user_section' );
@@ -532,6 +546,14 @@ class XO_Security_Admin {
 		add_settings_field( 'disable_feed', __( 'Disable RSS and Atom feeds', 'xo-security' ), array( $this, 'option_page_field_disable_feed' ), 'xo_security_secret', 'xo_security_disable_feed_section' );
 		add_settings_section( 'xo_security_security_generator_section', __( 'WordPress version', 'xo-security' ), '__return_false', 'xo_security_secret' );
 		add_settings_field( 'remove_version', __( 'Delete version information', 'xo-security' ), array( $this, 'option_page_field_remove_version' ), 'xo_security_secret', 'xo_security_security_generator_section' );
+		if ( is_main_site() ) {
+			add_settings_section( 'xo_security_security_wordpress_core_file', __( 'WordPress Core File', 'xo-security' ), '__return_false', 'xo_security_secret' );
+			add_settings_field( 'remove_readme', __( 'Delete readme.html', 'xo-security' ), array( $this, 'option_page_field_delete_readme' ), 'xo_security_secret', 'xo_security_security_wordpress_core_file' );
+		}
+
+		register_setting( 'xo_security_maintenance', 'xo_security_options', array( $this, 'sanitize_maintenance' ) );
+		add_settings_section( 'xo_security_maintenance_section', __( 'Maintenance', 'xo-security' ), '__return_false', 'xo_security_maintenance' );
+		add_settings_field( 'maintenance_mode', __( 'Maintenance mode', 'xo-security' ), array( $this, 'option_page_field_maintenance_mode' ), 'xo_security_maintenance', 'xo_security_maintenance_section' );
 
 		register_setting( 'xo_security_environment', 'xo_security_options', array( $this, 'sanitize_environment' ) );
 		add_settings_section( 'xo_security_environment_section', __( 'Environment', 'xo-security' ), '__return_false', 'xo_security_environment' );
@@ -541,6 +563,8 @@ class XO_Security_Admin {
 		add_settings_section( 'xo_security_loginlog_section', __( 'Login log', 'xo-security' ), '__return_false', 'xo_security_environment' );
 		add_settings_field( 'auto_truncate', __( 'Automatic removal', 'xo-security' ), array( $this, 'option_page_field_auto_truncate' ), 'xo_security_environment', 'xo_security_loginlog_section' );
 		add_settings_field( 'log_default_status', __( 'Status to display by default', 'xo-security' ), array( $this, 'option_page_field_log_default_status' ), 'xo_security_environment', 'xo_security_loginlog_section' );
+		add_settings_section( 'xo_security_captcha_section', __( 'CAPTCHA', 'xo-security' ), '__return_false', 'xo_security_environment' );
+		add_settings_field( 'captcha_type', __( 'CAPTCHA type', 'xo-security' ), array( $this, 'option_page_field_captcha_type' ), 'xo_security_environment', 'xo_security_captcha_section' );
 	}
 
 	/**
@@ -601,6 +625,29 @@ class XO_Security_Admin {
 		echo '<option value="0"' . ( ! $error_login_message ? ' selected' : '' ) . '>' . esc_html__( 'Default', 'xo-security' ) . '</option>';
 		echo '<option value="1"' . ( $error_login_message ? ' selected' : '' ) . '>' . esc_html__( 'Simplification', 'xo-security' ) . '</option>';
 		echo '</select>';
+	}
+
+	/**
+	 * Dispaly error login message fields.
+	 *
+	 * @since 3.9.0
+	 */
+	public function option_page_field_two_factor() {
+		$two_factor = isset( $this->parent->options['two_factor'] ) ? $this->parent->options['two_factor'] : false;
+		echo '<label for="field_two_factor" class="label-checkbox-toggle"><input id="field_two_factor" name="xo_security_options[two_factor]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $two_factor, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
+		echo '<p class="description">' . esc_html__( 'Two-factor authentication settings are made on the profile screen.', 'xo-security' ) . '</p>';
+
+		$two_factor_roles = isset( $this->parent->options['two_factor_roles'] ) ? $this->parent->options['two_factor_roles'] : array( 'administrator' );
+		$roles            = wp_roles();
+		echo '<p>';
+		foreach ( $roles->role_names as $key => $name ) {
+			$c = in_array( $key, $two_factor_roles, true );
+			echo '<label for="field_two_factor_roles_' . esc_attr( $key ) . '" style="display: inline-block; margin: 4px 12px 4px 0;">';
+			echo '<input id="field_two_factor_roles_' . esc_attr( $key ) . '" name="xo_security_options[two_factor_roles][]" type="checkbox" value="' . esc_attr( $key ) . '" class="code" ' . checked( 1, $c, false ) . ' /> ' . esc_html( translate_user_role( $name ) );
+			echo '</label> ';
+		}
+		echo '</p>';
+		echo '<p class="description">' . esc_html__( 'Choose which user roles will have two factor authentication available.', 'xo-security' ) . '</p>';
 	}
 
 	/**
@@ -775,7 +822,7 @@ class XO_Security_Admin {
 	public function option_page_field_comment_bot() {
 		$bot = isset( $this->parent->options['comment_bot'] ) ? $this->parent->options['comment_bot'] : false;
 		echo '<label for="field_comment_bot" class="label-checkbox-toggle"><input id="field_comment_bot" name="xo_security_options[comment_bot]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $bot, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
-		echo '<p class="description">' . esc_html__( 'If JavaScript is disabled, if a response is received within 1 second after the form is displayed, or if the form is unchecked, it will be considered a bot.', 'xo-security' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'If JavaScript is disabled, if the form responds within 3 seconds, if it is not checked, etc., it is considered a bot.', 'xo-security' ) . '</p>';
 	}
 
 	/**
@@ -784,6 +831,7 @@ class XO_Security_Admin {
 	public function option_page_field_xmlrpc() {
 		$xmlrpc = isset( $this->parent->options['xmlrpc'] ) ? $this->parent->options['xmlrpc'] : false;
 		echo '<label for="field_xmlrpc" class="label-checkbox-toggle"><input id="field_xmlrpc" name="xo_security_options[xmlrpc]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $xmlrpc, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
+		echo '<p class="description">' . esc_html__( 'If XML-RPC pingback is not disabled, only authentication for XML-RPC is disabled. If XML-RPC pingback is disabled, XML-RPC as a whole is disabled.', 'xo-security' ) . '</p>';
 	}
 
 	/**
@@ -811,7 +859,7 @@ class XO_Security_Admin {
 		echo '<p><div id="xo_security_rest_disable" class="xo-security-endpoints-checklist">';
 		foreach ( $namespaces as $namespace ) {
 			$namespace = '/' . $namespace;
-			$counter++;
+			++$counter;
 
 			echo '<ul>';
 			echo '<li>';
@@ -819,7 +867,7 @@ class XO_Security_Admin {
 			echo '<ul>';
 			foreach ( $routes as $route ) {
 				if ( $route !== $namespace && strpos( $route, $namespace ) === 0 ) {
-					$counter++;
+					++$counter;
 
 					echo '<li>';
 					echo '<label class="selectit"><input id="field_rest_disable_' . esc_attr( $counter ) . '" class="route" name="xo_security_options[rest_disable_endpoints][]" value="' . esc_attr( $route ) . '" type="checkbox" data-namespace="' . esc_attr( $namespace ) . '" ' . checked( in_array( $route, $disable_endpoints, true ), true, false ) . ' /> ' . esc_html( $route ) . '</label>';
@@ -859,6 +907,18 @@ class XO_Security_Admin {
 
 		echo '<label for="field_edit_author_slug" class="label-checkbox-toggle"><input id="field_edit_author_slug" name="xo_security_options[edit_author_slug]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $edit_author_slug, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
 		echo '<p class="description">' . esc_html__( 'The author slug (Nicename) item has been added to your profile screen for editing. The author slug is the nicename of the user data. The value is retained even if you remove the plugin.', 'xo-security' ) . '</p>';
+	}
+
+	/**
+	 * Dispaly edit author slug fields.
+	 *
+	 * @since 3.10.0
+	 */
+	public function option_page_field_edit_author_base() {
+		$edit_author_base = isset( $this->parent->options['edit_author_base'] ) ? $this->parent->options['edit_author_base'] : false;
+
+		echo '<label for="field_edit_author_base" class="label-checkbox-toggle"><input id="field_edit_author_base" name="xo_security_options[edit_author_base]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $edit_author_base, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
+		echo '<p class="description">' . esc_html__( 'Author base item will be added to the permalink screen.', 'xo-security' ) . '</p>';
 	}
 
 	/**
@@ -912,6 +972,25 @@ class XO_Security_Admin {
 	}
 
 	/**
+	 * Dispaly delete readme.txt fields.
+	 */
+	public function option_page_field_delete_readme() {
+		$delete_readme = isset( $this->parent->options['delete_readme'] ) ? $this->parent->options['delete_readme'] : false;
+
+		echo '<label for="field_delete_readme" class="label-checkbox-toggle"><input id="field_delete_readme" name="xo_security_options[delete_readme]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $delete_readme, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
+		echo '<p class="description">' . esc_html__( 'Delete the WordPress core readme.html file.', 'xo-security' ) . '</p>';
+	}
+
+	/**
+	 * Dispaly maintenance mode.
+	 */
+	public function option_page_field_maintenance_mode() {
+		$maintenance_mode = isset( $this->parent->options['maintenance_mode'] ) ? $this->parent->options['maintenance_mode'] : false;
+		echo '<label for="field_maintenance_mode" class="label-checkbox-toggle"><input id="field_maintenance_mode" name="xo_security_options[maintenance_mode]" type="checkbox" value="1" class="code checkbox-toggle" ' . checked( 1, $maintenance_mode, false ) . ' /> ' . esc_html__( 'ON', 'xo-security' ) . '</label>';
+		echo '<p class="description">' . esc_html__( 'Displays the maintenance screen for all non-administrator users.', 'xo-security' ) . '</p>';
+	}
+
+	/**
 	 * Dispaly IP mode fields.
 	 */
 	public function option_page_field_ip_mode() {
@@ -949,6 +1028,38 @@ class XO_Security_Admin {
 
 		echo '</fieldset>';
 		echo '<p class="description">' . esc_html__( 'Normally you should select "Auto".', 'xo-security' ) . '</p>';
+	}
+
+	/**
+	 * Dispaly CAPTCHA type fields.
+	 *
+	 * @since 3.10.0
+	 */
+	public function option_page_field_captcha_type() {
+		$captcha_type = isset( $this->parent->options['captcha_type'] ) ? $this->parent->options['captcha_type'] : 'default';
+
+		$captcha_type_items = array(
+			array( 'default', __( 'Default', 'xo-security' ), 'captcha-default.png' ),
+			array( 'chokokutai', __( 'Chokokutai font', 'xo-security' ), 'captcha-chokokutai.png' ),
+			array( 'auto', __( 'Auto mode', 'xo-security' ), 'captcha-auto.png' ),
+		)
+		?>
+		<fieldset id="captcha-type-picker" class="captcha-type-list">
+			<?php
+			foreach ( $captcha_type_items as $captcha_type_item ) :
+				?>
+				<div class="captcha-type-option <?php echo ( $captcha_type_item[0] === $captcha_type ) ? 'selected' : ''; ?>">
+					<input name="xo_security_options[captcha_type]" type="radio" value="<?php echo esc_attr( $captcha_type_item[0] ); ?>" class="tog" <?php checked( $captcha_type_item[0], $captcha_type ); ?> />
+					<label for="xo_security_options[captcha_type]"><?php echo esc_html( $captcha_type_item[1] ); ?></label>
+					<img src="<?php echo esc_url( XO_SECURITY_URL . '/images/' . $captcha_type_item[2] ); ?>" alt="" height="36" width="100">
+				</div>
+				<?php
+			endforeach;
+			?>
+		</fieldset>
+		<?php
+
+		echo '<p class="description">' . esc_html__( 'The contents of "Auto mode" are subject to change with version upgrades.', 'xo-security' ) . '</p>';
 	}
 
 	/**
@@ -993,39 +1104,37 @@ class XO_Security_Admin {
 			$creds = request_filesystem_credentials( $url, '', false, false, null );
 			if ( false === $creds ) {
 				add_settings_error( 'xo_security', 'file', __( 'Unable to connect to the filesystem.', 'xo-security' ) );
+			} elseif ( ! WP_Filesystem( $creds ) ) {
+				add_settings_error( 'xo_security', 'file', __( 'Unable to write.', 'xo-security' ) );
 			} else {
-				if ( ! WP_Filesystem( $creds ) ) {
-					add_settings_error( 'xo_security', 'file', __( 'Unable to write.', 'xo-security' ) );
-				} else {
-					if ( $output['login_page_name'] ) {
-						$old_path = ABSPATH . $output['login_page_name'] . '.php';
-						if ( $wp_filesystem->exists( $old_path ) ) {
-							$wp_filesystem->delete( $old_path );
-						}
+				if ( $output['login_page_name'] ) {
+					$old_path = ABSPATH . $output['login_page_name'] . '.php';
+					if ( $wp_filesystem->exists( $old_path ) ) {
+						$wp_filesystem->delete( $old_path );
 					}
-					if ( $login_page ) {
-						if ( $login_page_name ) {
-							$new_path = ABSPATH . $login_page_name . '.php';
-							if ( $wp_filesystem->exists( $new_path ) ) {
-								$login_page      = $output['login_page'];
-								$login_page_name = $output['login_page_name'];
-								add_settings_error( 'xo_security', 'login_page_name', __( 'The file specified in the login file already exists. Please enter a different name.', 'xo-security' ) );
-							} else {
-								$result = $wp_filesystem->put_contents( $new_path, stripslashes( $this->loginfile_content ), FS_CHMOD_FILE );
-								if ( ! $result || ! $wp_filesystem->exists( $new_path ) ) {
-									$login_page      = $output['login_page'];
-									$login_page_name = $output['login_page_name'];
-									add_settings_error( 'xo_security', 'file', __( 'Failed to create a login file.', 'xo-security' ) );
-								}
-							}
-						} else {
+				}
+				if ( $login_page ) {
+					if ( $login_page_name ) {
+						$new_path = ABSPATH . $login_page_name . '.php';
+						if ( $wp_filesystem->exists( $new_path ) ) {
 							$login_page      = $output['login_page'];
 							$login_page_name = $output['login_page_name'];
-							add_settings_error( 'xo_security', 'login_page_name', __( 'It is not possible to omit the login file.', 'xo-security' ) );
+							add_settings_error( 'xo_security', 'login_page_name', __( 'The file specified in the login file already exists. Please enter a different name.', 'xo-security' ) );
+						} else {
+							$result = $wp_filesystem->put_contents( $new_path, stripslashes( $this->loginfile_content ), FS_CHMOD_FILE );
+							if ( ! $result || ! $wp_filesystem->exists( $new_path ) ) {
+								$login_page      = $output['login_page'];
+								$login_page_name = $output['login_page_name'];
+								add_settings_error( 'xo_security', 'file', __( 'Failed to create a login file.', 'xo-security' ) );
+							}
 						}
 					} else {
-						$login_page_name = '';
+						$login_page      = $output['login_page'];
+						$login_page_name = $output['login_page_name'];
+						add_settings_error( 'xo_security', 'login_page_name', __( 'It is not possible to omit the login file.', 'xo-security' ) );
 					}
+				} else {
+					$login_page_name = '';
 				}
 			}
 		}
@@ -1048,6 +1157,8 @@ class XO_Security_Admin {
 		$output['login_alert_admin_only'] = isset( $input['login_alert_admin_only'] );
 		$output['login_captcha']          = sanitize_text_field( $input['login_captcha'] );
 		$output['error_login_message']    = ( '1' === $input['error_login_message'] );
+		$output['two_factor']             = isset( $input['two_factor'] );
+		$output['two_factor_roles']       = array_map( 'sanitize_text_field', isset( $input['two_factor_roles'] ) ? $input['two_factor_roles'] : array() );
 		$output['login_id_type']          = sanitize_text_field( $input['login_id_type'] );
 		$output['password_reset']         = ( '1' === $input['password_reset'] );
 		$output['login_site_link']        = ( '1' === $input['login_site_link'] );
@@ -1160,13 +1271,20 @@ class XO_Security_Admin {
 	 * @param array $input Input field datas.
 	 */
 	public function sanitize_secret( $input ) {
-		global $option_page;
+		global $option_page, $wp_filesystem;
 
 		if ( 'xo_security_secret' !== $option_page ) {
 			return $input;
 		}
 
-		$output = get_option( 'xo_security_options' );
+		$output  = get_option( 'xo_security_options' );
+		$rewrite = false;
+
+		$output_edit_author_base = isset( $output['edit_author_base'] ) ? $output['edit_author_base'] : false;
+		$edit_author_base        = isset( $input['edit_author_base'] );
+		if ( $output_edit_author_base !== $edit_author_base ) {
+			$rewrite = true;
+		}
 
 		$author_archive = isset( $input['author_archive'] );
 		if ( ! isset( $output['author_archive'] ) || $author_archive !== $output['author_archive'] ) {
@@ -1175,15 +1293,47 @@ class XO_Security_Admin {
 			} else {
 				remove_filter( 'author_rewrite_rules', array( $this, 'author_rewrite_rules' ) );
 			}
+			$rewrite = true;
+		}
+
+		if ( isset( $input['delete_readme'] ) ) {
+			if ( ! $this->parent->delete_readme_file() ) {
+				unset( $input['delete_readme'] );
+				add_settings_error( 'xo_security', 'delete_readme', __( 'Could not delete readme.html file.', 'xo-security' ) );
+			}
+		}
+
+		if ( $rewrite ) {
 			set_transient( 'xo_security_flush_rewrite_rules', true, MINUTE_IN_SECONDS );
 		}
 
 		$output['edit_author_slug']     = isset( $input['edit_author_slug'] );
+		$output['edit_author_base']     = $edit_author_base;
 		$output['author_archive']       = $author_archive;
 		$output['comment_author_class'] = isset( $input['comment_author_class'] );
 		$output['oembed_author']        = isset( $input['oembed_author'] );
 		$output['disable_feed']         = isset( $input['disable_feed'] );
 		$output['remove_version']       = isset( $input['remove_version'] );
+		$output['delete_readme']        = isset( $input['delete_readme'] );
+
+		return $output;
+	}
+
+	/**
+	 * Sanitize maintenance tab fields.
+	 *
+	 * @param array $input Input field datas.
+	 */
+	public function sanitize_maintenance( $input ) {
+		global $option_page;
+
+		if ( 'xo_security_maintenance' !== $option_page ) {
+			return $input;
+		}
+
+		$output = get_option( 'xo_security_options' );
+
+		$output['maintenance_mode'] = isset( $input['maintenance_mode'] );
 
 		return $output;
 	}
@@ -1206,9 +1356,11 @@ class XO_Security_Admin {
 		$output['auto_truncate']      = intval( $input['auto_truncate'] );
 		$output['log_default_status'] = sanitize_text_field( $input['log_default_status'] );
 		$output['dashboard_widget']   = ( '1' === $input['dashboard_widget'] );
+		$output['captcha_type']       = sanitize_text_field( $input['captcha_type'] );
 
 		if ( $output['auto_truncate'] > 0 ) {
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE login_time <= DATE_SUB(NOW(), INTERVAL %d day);", $output['auto_truncate'] ) ); // WPCS: db call ok; no-cache ok.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}xo_security_loginlog WHERE login_time <= DATE_SUB(NOW(), INTERVAL %d day);", $output['auto_truncate'] ) );
 		}
 
 		return $output;
@@ -1229,10 +1381,29 @@ class XO_Security_Admin {
 			. '<p class="hide-if-js">'
 			. esc_html__( 'This widget requires JavaScript.', 'xo-security' )
 			. '</p>'
-			. '</div>'
-			. '<div class="login-widget-loading hide-if-no-js">'
-			. esc_html__( 'Loading&hellip;', 'xo-security' )
 			. '</div>' . "\n";
+
+		echo '<div class="login_widget hide-if-no-js">'
+			. '<ul>'
+			. '<li>' . esc_html__( 'Current login date', 'xo-security' ) . ': </li>'
+			. '<li>' . esc_html__( 'Last login date', 'xo-security' ) . ': </li>'
+			. '</ul>'
+			. '</div>' . "\n";
+
+		$current_user = wp_get_current_user();
+		if ( $current_user->has_cap( 'administrator' ) ) {
+			$hours = 24;
+			$days  = 30;
+
+			echo '<div class="login_widget hide-if-no-js">'
+				. '<ul>'
+				/* translators: %s hours */
+				. '<li>' . esc_html( sprintf( _n( 'Failed login count (%d hour)', 'Failed login count (%d hours)', $hours, 'xo-security' ), $hours ) ) . ': </li>'
+				/* translators: %s Days */
+				. '<li>' . esc_html( sprintf( _n( 'Failed login count (%d day)', 'Failed login count (%d days)', $days, 'xo-security' ), $days ) ) . ': </li>'
+				. '</ul>'
+				. '</div>' . "\n";
+		}
 	}
 
 	/**
@@ -1254,12 +1425,13 @@ class XO_Security_Admin {
 		$user_login      = $current_user->get( 'user_login' );
 		$datetime_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT login_time FROM {$wpdb->prefix}xo_security_loginlog WHERE user_name = %s AND success = 1 ORDER BY login_time DESC LIMIT 2;",
 				$user_login
 			)
-		); // WPCS: db call ok; no-cache ok.
+		);
 
 		if ( is_array( $rows ) ) {
 			if ( count( $rows ) >= 1 ) {
@@ -1285,16 +1457,18 @@ class XO_Security_Admin {
 			$hours = 24;
 			$days  = 30;
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$hours_count = $wpdb->get_var(
 				$wpdb->prepare(
 					"SELECT COUNT(*) FROM {$wpdb->prefix}xo_security_loginlog WHERE success = 0 AND login_time >= %s;",
 					gmdate( 'Y-m-d H:i:s', (int) $timestamp - ( $hours * 60 * 60 ) )
 				)
-			); // WPCS: db call ok; no-cache ok.
+			);
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$first_date = $wpdb->get_var(
 				"SELECT login_time FROM {$wpdb->prefix}xo_security_loginlog ORDER BY login_time ASC LIMIT 1;"
-			); // WPCS: db call ok; no-cache ok.
+			);
 
 			if ( null === $first_date ) {
 				$days       = 0;
@@ -1306,12 +1480,14 @@ class XO_Security_Admin {
 				} elseif ( $days > $first_days ) {
 					$days = $first_days;
 				}
+
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 				$days_count = $wpdb->get_var(
 					$wpdb->prepare(
 						"SELECT COUNT(*) FROM {$wpdb->prefix}xo_security_loginlog WHERE success = 0 AND login_time >= %s;",
 						gmdate( 'Y-m-d H:i:s', (int) $timestamp - ( $days * 24 * 60 * 60 ) )
 					)
-				); // WPCS: db call ok; no-cache ok.
+				);
 			}
 
 			$html .= '<div class="login_widget">'
@@ -1327,5 +1503,157 @@ class XO_Security_Admin {
 		}
 
 		wp_send_json_success( $html );
+	}
+
+	/**
+	 * Display 'Nicename' item on the 'Edit User' screen.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param object $profileuser A WP_User object.
+	 */
+	public function edit_user_profile( $profileuser ) {
+		?>
+		<h2><?php esc_html_e( 'Slug', 'xo-security' ); ?></h2>
+		<table class="form-table" role="presentation">
+		<tbody>
+		<tr class="user-last-name-wrap">
+			<th><label for="user_nicename"><?php esc_html_e( 'Author Slug (Nicename)', 'xo-security' ); ?></label></th>
+			<td>
+			<input type="text" name="user_nicename" id="user_nicename" value="<?php echo esc_attr( $profileuser->user_nicename ); ?>" class="regular-text" />
+			<span class="description"><?php esc_html_e( 'If omitted, it will be the username.', 'xo-security' ); ?></span>
+			<p class="description"><?php esc_html_e( 'Used for things like the URL of an author archive page.', 'xo-security' ); ?></p>
+			</td>
+		</tr>
+		</tbody></table>
+		<?php
+	}
+
+	/**
+	 * Fires before user profile update errors are returned.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param WP_Error $errors WP_Error object (passed by reference).
+	 * @param bool     $update Whether this is a user update.
+	 * @param stdClass $user   User object (passed by reference).
+	 */
+	public function user_profile_update_errors( $errors, $update, $user ) {
+		if ( ! $update ) {
+			return;
+		}
+
+		if ( empty( $user->ID ) ) {
+			return;
+		}
+
+		check_admin_referer( 'update-user_' . $user->ID );
+
+		if ( isset( $_POST['user_nicename'] ) ) {
+			$user_nicename = sanitize_user( wp_unslash( $_POST['user_nicename'] ), true );
+
+			$old_user_nicename = get_user_by( 'id', $user->ID )->user_nicename;
+			if ( $user_nicename === $old_user_nicename ) {
+				return;
+			}
+
+			if ( mb_strlen( $user_nicename ) > 50 ) {
+				$errors->add( 'user_nicename_too_long', __( '<strong>Error:</strong> The author slug may not be longer than 50 characters.', 'xo-security' ) );
+				return;
+			}
+
+			if ( get_user_by( 'slug', $user_nicename ) ) {
+				$errors->add( 'user_nicename_exists', __( '<strong>Error:</strong> The author slug with the same name already exists.', 'xo-security' ) );
+				return;
+			}
+
+			$user->user_nicename = $user_nicename;
+		}
+	}
+
+	/**
+	 * Renders author-base field.
+	 *
+	 * @since 3.10.0
+	 */
+	public function author_base_field() {
+		$author_base = isset( $this->parent->options['author_base'] ) ? $this->parent->options['author_base'] : '';
+		if ( 'author' === $author_base ) {
+			$author_base = '';
+		}
+
+		$blog_prefix = '';
+
+		$permalink_structure = get_option( 'permalink_structure' );
+		if ( is_multisite() && ! is_subdomain_install() && is_main_site() && str_starts_with( $permalink_structure, '/blog/' ) ) {
+			$blog_prefix = '/blog';
+			if ( ! empty( $author_base ) ) {
+				$author_base = '/' . $author_base;
+			}
+		}
+
+		echo esc_html( $blog_prefix . "\n" );
+		printf( '<input name="author_base" id="author_base" type="text" value="%s" class="regular-text code">', esc_attr( $author_base ) );
+	}
+
+	/**
+	 * Add an author-base configuration field to your permalink page.
+	 *
+	 * @since 3.10.0
+	 */
+	public function add_settings_author_base_field() {
+		add_settings_field(
+			'xo_security_author_base',
+			esc_html__( 'Author base', 'xo-security' ),
+			array( $this, 'author_base_field' ),
+			'permalink',
+			'optional',
+			array( 'label_for' => 'author_base' )
+		);
+	}
+
+	/**
+	 * Sanitize author base.
+	 *
+	 * @since 3.10.0
+	 *
+	 * @param string $author_base Author base.
+	 * @return string Author base.
+	 */
+	private function sanitize_author_base( $author_base ) {
+		if ( ! empty( $author_base ) ) {
+			$author_base = trim( $author_base, '/' );
+			$author_base = preg_replace( '#/+#', '/', $author_base );
+			$author_base = preg_replace( '/[^A-Za-z0-9\_\-\/]/', '', $author_base );
+		}
+		return $author_base;
+	}
+
+	/**
+	 * Add an author-base configuration field to your permalink page.
+	 *
+	 * @since 3.10.0
+	 */
+	public function update_settings_author_base() {
+		if ( isset( $_POST['permalink_structure'] ) || isset( $_POST['category_base'] ) ) {
+			check_admin_referer( 'update-permalink' );
+			if ( isset( $_POST['author_base'] ) ) {
+				$input_author_base = $this->sanitize_author_base( sanitize_text_field( wp_unslash( $_POST['author_base'] ) ) );
+
+				if ( 'author' === $input_author_base ) {
+					$input_author_base = '';
+				}
+
+				$author_base = isset( $this->parent->options['author_base'] ) ? $this->parent->options['author_base'] : '';
+				if ( $author_base !== $input_author_base ) {
+					global $wp_rewrite;
+
+					$wp_rewrite->author_base = $input_author_base;
+
+					$this->parent->options['author_base'] = $input_author_base;
+					update_option( 'xo_security_options', $this->parent->options );
+				}
+			}
+		}
 	}
 }

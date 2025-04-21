@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -12,14 +7,16 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
-	Tooltip,
-	// @ts-ignore: has no exported member
+	Flex,
+	FlexBlock,
+	FlexItem,
+	__experimentalHStack as HStack,
+	__experimentalVStack as VStack,
 	__experimentalText as Text,
-	// @ts-ignore: has no exported member
 	__experimentalUnitControl as UnitControl,
-	// @ts-ignore: has no exported member
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
+import { useInstanceId } from '@wordpress/compose';
 
 /**
  * Internal dependencies
@@ -35,42 +32,33 @@ const DEFAULT_VALUES = {
 };
 
 type Props = {
-	id: string;
 	label: string;
 	help?: string;
-	className?: string;
 	onChange: ( event: any ) => void;
 	values: typeof DEFAULT_VALUES;
-	allowSides?: boolean;
-	hasIndicator?: boolean;
 };
 
 type ValuesKey = keyof typeof DEFAULT_VALUES;
 type MaxBorderSpacingKey = keyof typeof MAX_BORDER_SPACING;
 
 export default function BorderSpacingControl( {
-	id,
 	label = __( 'Border spacing', 'flexible-table-block' ),
 	help,
-	className,
 	onChange,
 	values: valuesProp,
-	allowSides = true,
-	hasIndicator = true,
 }: Props ) {
 	const values = {
 		...DEFAULT_VALUES,
 		...valuesProp,
 	};
+	const instanceId = useInstanceId( BorderSpacingControl, 'ftb-border-spacing-control' );
+	const headingId = `${ instanceId }-heading`;
 
-	const isMixed: boolean = allowSides && ! ( values.horizontal === values.vertical );
+	const isMixed = ! ( values.horizontal === values.vertical );
 
 	const borderSpacingUnits = useCustomUnits( { availableUnits: BORDER_SPACING_UNITS } );
 
 	const [ isLinked, setIsLinked ] = useState< boolean >( true );
-	const [ direction, setDirection ] = useState< DirectionValue | undefined >( undefined );
-
-	const headingId: string = `${ id }-heading`;
 
 	const linkedLabel: string = isLinked
 		? __( 'Unlink directions', 'flexible-table-block' )
@@ -79,98 +67,107 @@ export default function BorderSpacingControl( {
 	const allInputPlaceholder: string = isMixed ? __( 'Mixed', 'flexible-table-block' ) : '';
 	const allInputValue: string | 0 = isMixed ? '' : values.horizontal;
 
-	const classNames: string = classnames( 'ftb-border-spacing-control', className );
-
 	const toggleLinked = () => {
 		setIsLinked( ! isLinked );
-		setDirection( undefined );
 	};
 
 	const handleOnReset = () => {
 		setIsLinked( true );
-		setDirection( undefined );
 		onChange( DEFAULT_VALUES );
 	};
 
-	const handleOnFocus = ( focusDirection: DirectionValue ) => setDirection( focusDirection );
+	const handleOnChangeAll = ( inputValue: string | undefined ) => {
+		if ( inputValue ) {
+			const [ , unit ] = parseUnit( inputValue );
+			const sanitizedValue = sanitizeUnitValue( inputValue, {
+				maxNum: MAX_BORDER_SPACING[ unit as MaxBorderSpacingKey ],
+			} );
 
-	const handleOnChangeAll = ( inputValue: string ) => {
-		const [ , unit ] = parseUnit( inputValue );
-		const sanitizedValue = sanitizeUnitValue( inputValue, {
-			maxNum: MAX_BORDER_SPACING[ unit as MaxBorderSpacingKey ],
-		} );
-
-		onChange( {
-			horizontal: sanitizedValue,
-			vertical: sanitizedValue,
-		} );
+			onChange( {
+				horizontal: sanitizedValue,
+				vertical: sanitizedValue,
+			} );
+		} else {
+			onChange( {
+				horizontal: undefined,
+				vertical: undefined,
+			} );
+		}
 	};
 
-	const handleOnChange = ( inputValue: string, targetDirection: DirectionValue ) => {
-		const [ , unit ] = parseUnit( inputValue );
-		const sanitizedValue = sanitizeUnitValue( inputValue, {
-			maxNum: MAX_BORDER_SPACING[ unit as MaxBorderSpacingKey ],
-		} );
+	const handleOnChange = ( inputValue: string | undefined, targetDirection: DirectionValue ) => {
+		if ( inputValue ) {
+			const [ , unit ] = parseUnit( inputValue );
+			const sanitizedValue = sanitizeUnitValue( inputValue, {
+				maxNum: MAX_BORDER_SPACING[ unit as MaxBorderSpacingKey ],
+			} );
 
-		onChange( {
-			...values,
-			[ targetDirection ]: sanitizedValue,
-		} );
+			onChange( {
+				...values,
+				[ targetDirection ]: sanitizedValue,
+			} );
+		} else {
+			onChange( {
+				...values,
+				[ targetDirection ]: undefined,
+			} );
+		}
 	};
 
 	return (
-		<BaseControl id={ id } className={ classNames } help={ help }>
-			<div aria-labelledby={ headingId } role="region">
-				<div className="ftb-border-spacing-control__header">
-					<Text id={ headingId }>{ label }</Text>
-					<Button isSmall variant="secondary" onClick={ handleOnReset }>
-						{ __( 'Reset', 'flexible-table-block' ) }
-					</Button>
-				</div>
-				<div className="ftb-border-spacing-control__header-control">
-					{ hasIndicator && (
-						<DirectionIndicatorControl
-							directions={ direction === undefined ? undefined : [ direction ] }
-						/>
-					) }
-					{ ( isLinked || ! allowSides ) && (
-						<UnitControl
-							aria-label={ __( 'All', 'flexible-table-block' ) }
-							value={ allInputValue }
-							units={ borderSpacingUnits }
-							placeholder={ allInputPlaceholder }
-							onChange={ handleOnChangeAll }
-						/>
-					) }
-					{ allowSides && (
-						<Tooltip text={ linkedLabel }>
-							<span>
-								<Button
-									className="ftb-border-spacing-control__header-linked-button"
-									label={ linkedLabel }
-									isSmall
-									icon={ isLinked ? link : linkOff }
-									onClick={ toggleLinked }
-								/>
-							</span>
-						</Tooltip>
-					) }
-				</div>
-				{ ! isLinked && allowSides && (
-					<div className="ftb-border-spacing-control__input-controls">
-						{ DIRECTION_CONTROLS.map( ( item ) => (
+		<BaseControl className="ftb-border-spacing-control" help={ help } __nextHasNoMarginBottom>
+			<VStack aria-labelledby={ headingId } role="group">
+				<Flex>
+					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
+						{ label }
+					</Text>
+					<FlexItem>
+						<Button variant="secondary" onClick={ handleOnReset } size="small">
+							{ __( 'Reset', 'flexible-table-block' ) }
+						</Button>
+					</FlexItem>
+				</Flex>
+				<HStack alignment="start" justify="space-between">
+					{ isLinked ? (
+						<HStack justify="start">
+							<DirectionIndicatorControl />
 							<UnitControl
-								key={ item.value }
-								aria-label={ item.label }
-								value={ values[ item.value as ValuesKey ] }
+								aria-label={ __( 'All', 'flexible-table-block' ) }
+								value={ allInputValue }
 								units={ borderSpacingUnits }
-								onFocus={ () => handleOnFocus( item.value ) }
-								onChange={ ( value: string ) => handleOnChange( value, item.value ) }
+								placeholder={ allInputPlaceholder }
+								onChange={ handleOnChangeAll }
+								size="__unstable-large"
+								__unstableInputWidth="100px"
 							/>
-						) ) }
-					</div>
-				) }
-			</div>
+						</HStack>
+					) : (
+						<VStack spacing={ 1 }>
+							{ DIRECTION_CONTROLS.map( ( item ) => (
+								<HStack justify="start" key={ item.value }>
+									<DirectionIndicatorControl directions={ [ item.value ] } />
+									<UnitControl
+										key={ item.value }
+										aria-label={ item.label }
+										value={ values[ item.value as ValuesKey ] }
+										units={ borderSpacingUnits }
+										onChange={ ( value ) => handleOnChange( value, item.value ) }
+										size="__unstable-large"
+										__unstableInputWidth="100px"
+									/>
+								</HStack>
+							) ) }
+						</VStack>
+					) }
+					<Button
+						label={ linkedLabel }
+						icon={ isLinked ? link : linkOff }
+						onClick={ toggleLinked }
+						size="small"
+						style={ { marginTop: '8px' } }
+					/>
+				</HStack>
+			</VStack>
 		</BaseControl>
 	);
 }

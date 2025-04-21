@@ -10,15 +10,18 @@ import type { Dispatch, SetStateAction } from 'react';
 import { __, _x, sprintf } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import {
-	BaseControl,
 	Button,
-	ButtonGroup,
+	Flex,
 	SelectControl,
 	ToggleControl,
-	// @ts-ignore: has no exported member
+	__experimentalHStack as HStack,
+	__experimentalSpacer as Spacer,
 	__experimentalUnitControl as UnitControl,
-	// @ts-ignore: has no exported member
 	__experimentalUseCustomUnits as useCustomUnits,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
+	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
 } from '@wordpress/components';
 
 /**
@@ -38,7 +41,13 @@ import {
 	BorderSpacingControl,
 	PaddingControl,
 } from '../controls';
-import { toggleSection, toTableAttributes } from '../utils/table-state';
+import {
+	toggleSection,
+	toTableAttributes,
+	type VTable,
+	type VSelectedCells,
+	type VSelectedLine,
+} from '../utils/table-state';
 import { convertToInline } from '../utils/style-converter';
 import {
 	pickPadding,
@@ -47,6 +56,9 @@ import {
 	pickBorderStyle,
 	pickBorderColor,
 	pickBorderSpacing,
+	type CornerProps,
+	type DirectionProps,
+	type CrossProps,
 } from '../utils/style-picker';
 import {
 	updatePadding,
@@ -56,11 +68,10 @@ import {
 	updateBorderColor,
 	updateBorderSpacing,
 } from '../utils/style-updater';
-import { sanitizeUnitValue } from '../utils/helper';
-import type { VTable, VSelectedCells, VSelectedLine } from '../utils/table-state';
-import type { CornerProps, DirectionProps, CrossProps } from '../utils/style-picker';
-import type { StickyValue, BorderCollapseValue, BlockAttributes } from '../BlockAttributes';
+import type { StickyValue, BlockAttributes } from '../BlockAttributes';
 import type { StoreOptions } from '../store';
+
+const PERCENTAGE_WIDTHS = [ 25, 50, 75, 100 ];
 
 type Props = {
 	attributes: BlockAttributes;
@@ -82,15 +93,22 @@ export default function TableSettings( {
 	const { hasFixedLayout, isStackedOnMobile, isScrollOnPc, isScrollOnMobile, sticky, head, foot } =
 		attributes;
 
-	const options: StoreOptions = useSelect(
-		( select ) =>
-			select( STORE_NAME )
-				// @ts-ignore
-				.getOptions(),
-		[]
-	);
+	const options = useSelect( ( select ) => {
+		const { getOptions }: { getOptions: () => StoreOptions } = select( STORE_NAME );
+		return getOptions();
+	}, [] );
 
 	const tableWidthUnits = useCustomUnits( { availableUnits: TABLE_WIDTH_UNITS } );
+
+	const [ parsedWidthQuantity, parsedWidthUnit ] = parseQuantityAndUnitFromRawValue(
+		tableStylesObj?.width
+	);
+	const [ parsedMaxWidthQuantity, parsedMaxWidthUnit ] = parseQuantityAndUnitFromRawValue(
+		tableStylesObj?.maxWidth
+	);
+	const [ parsedMinWidthQuantity, parsedMinWidthUnit ] = parseQuantityAndUnitFromRawValue(
+		tableStylesObj?.minWidth
+	);
 
 	const onChangeHasFixedLayout = () => {
 		setAttributes( { hasFixedLayout: ! hasFixedLayout } );
@@ -108,8 +126,13 @@ export default function TableSettings( {
 		setAttributes( { isScrollOnMobile: ! isScrollOnMobile } );
 	};
 
-	const onChangeSticky = ( value: StickyValue ) => {
-		setAttributes( { sticky: 'none' === value ? undefined : value } );
+	const onChangeSticky = ( value: string ) => {
+		const isAllowedValue = ( _value: any ): _value is StickyValue => {
+			return ! value || STICKY_CONTROLS.some( ( control ) => control.value === _value );
+		};
+		if ( isAllowedValue( value ) ) {
+			setAttributes( { sticky: 'none' === value ? undefined : value } );
+		}
 	};
 
 	const onToggleHeaderSection = () => {
@@ -126,7 +149,7 @@ export default function TableSettings( {
 		setSelectedLine( undefined );
 	};
 
-	const onChangeWidth = ( value: Property.Width ) => {
+	const onChangeWidth = ( value: Property.Width | undefined ) => {
 		const newStylesObj = {
 			...tableStylesObj,
 			width: value,
@@ -134,7 +157,7 @@ export default function TableSettings( {
 		setAttributes( { tableStyles: convertToInline( newStylesObj ) } );
 	};
 
-	const onChangeMaxWidth = ( value: Property.MaxWidth ) => {
+	const onChangeMaxWidth = ( value: Property.MaxWidth | undefined ) => {
 		const newStylesObj = {
 			...tableStylesObj,
 			maxWidth: value,
@@ -142,7 +165,7 @@ export default function TableSettings( {
 		setAttributes( { tableStyles: convertToInline( newStylesObj ) } );
 	};
 
-	const onChangeMinWidth = ( value: Property.MinWidth ) => {
+	const onChangeMinWidth = ( value: Property.MinWidth | undefined ) => {
 		const newStylesObj = {
 			...tableStylesObj,
 			minWidth: value,
@@ -175,15 +198,23 @@ export default function TableSettings( {
 		setAttributes( { tableStyles: convertToInline( newStylesObj ) } );
 	};
 
-	const onChangeBorderCollapse = ( value: BorderCollapseValue ) => {
-		const borderCollapse = tableStylesObj?.borderCollapse === value ? undefined : value;
-		const borderSpacing = 'separate' === borderCollapse ? tableStylesObj?.borderSpacing : undefined;
-		const newStylesObj = {
-			...tableStylesObj,
-			borderCollapse,
-			borderSpacing,
+	const onChangeBorderCollapse = ( value: string | number | undefined ) => {
+		const isAllowedValue = ( _value: any ): _value is Properties[ 'borderCollapse' ] => {
+			return ! value || BORDER_COLLAPSE_CONTROLS.some( ( control ) => control.value === _value );
 		};
-		setAttributes( { tableStyles: convertToInline( newStylesObj ) } );
+		if ( isAllowedValue( value ) ) {
+			const borderCollapse = tableStylesObj?.borderCollapse === value ? undefined : value;
+			const borderSpacing =
+				'separate' === borderCollapse ? tableStylesObj?.borderSpacing : undefined;
+			const newStylesObj = {
+				...tableStylesObj,
+				borderCollapse,
+				borderSpacing,
+			};
+			setAttributes( {
+				tableStyles: convertToInline( newStylesObj ),
+			} );
+		}
 	};
 
 	const onChangeBorderSpacing = ( values: Partial< CrossProps > ) => {
@@ -204,29 +235,29 @@ export default function TableSettings( {
 
 	return (
 		<>
-			<BaseControl
-				id="flexible-table-block-table-clear-settings"
-				className="ftb-reset-settings-control"
-			>
+			<Spacer marginBottom="4" as={ Flex } justify="end">
 				<Button variant="link" isDestructive onClick={ onResetTableSettings }>
 					{ __( 'Clear table settings', 'flexible-table-block' ) }
 				</Button>
-			</BaseControl>
+			</Spacer>
 			<ToggleControl
 				label={ __( 'Header section', 'flexible-table-block' ) }
 				checked={ !! ( head && head.length ) }
 				onChange={ onToggleHeaderSection }
+				__nextHasNoMarginBottom
 			/>
 			<ToggleControl
 				label={ __( 'Footer section', 'flexible-table-block' ) }
 				checked={ !! ( foot && foot.length ) }
 				onChange={ onToggleFooterSection }
+				__nextHasNoMarginBottom
 			/>
 			<hr />
 			<ToggleControl
 				label={ __( 'Fixed width table cells', 'flexible-table-block' ) }
 				checked={ !! hasFixedLayout }
 				onChange={ onChangeHasFixedLayout }
+				__nextHasNoMarginBottom
 			/>
 			<ToggleControl
 				label={ __( 'Scroll on desktop view', 'flexible-table-block' ) }
@@ -241,6 +272,7 @@ export default function TableSettings( {
 					)
 				}
 				onChange={ onChangeIsScrollOnPc }
+				__nextHasNoMarginBottom
 			/>
 			<ToggleControl
 				label={ __( 'Scroll on mobile view', 'flexible-table-block' ) }
@@ -255,6 +287,7 @@ export default function TableSettings( {
 					)
 				}
 				onChange={ onChangeIsScrollOnMobile }
+				__nextHasNoMarginBottom
 			/>
 			<ToggleControl
 				label={ __( 'Stack on mobile', 'flexible-table-block' ) }
@@ -269,6 +302,7 @@ export default function TableSettings( {
 					)
 				}
 				onChange={ onChangeIsStackedOnMobile }
+				__nextHasNoMarginBottom
 			/>
 			<SelectControl
 				label={ __( 'Fixed control', 'flexible-table-block' ) }
@@ -285,124 +319,141 @@ export default function TableSettings( {
 					)
 				}
 				onChange={ onChangeSticky }
+				size="__unstable-large"
+				__nextHasNoMarginBottom
 			/>
 			<hr />
-			<BaseControl
-				id="flexible-table-block-table-width"
-				label={ __( 'Table width', 'flexible-table-block' ) }
-				className="ftb-width-control"
-			>
+			<HStack alignment="start">
 				<UnitControl
-					id="flexible-table-block-table-width"
+					label={ __( 'Table width', 'flexible-table-block' ) }
 					value={ tableStylesObj?.width }
 					units={ tableWidthUnits }
 					disabled={ tableStylesObj?.width === 'auto' }
-					min="0"
+					min={ 0 }
 					onChange={ onChangeWidth }
+					size="__unstable-large"
+					__unstableInputWidth="calc(50% - 8px)"
 				/>
-				<ButtonGroup
-					aria-label={ __( 'Table percentage width', 'flexible-table-block' ) }
-					className="ftb-percent-group"
-				>
-					{ [ 25, 50, 75, 100 ].map( ( perWidth ) => {
-						const isPressed = tableStylesObj?.width === `${ perWidth }%`;
-						return (
-							<Button
-								key={ perWidth }
-								variant={ isPressed ? 'primary' : undefined }
-								isSmall
-								onClick={ () =>
-									onChangeWidth( isPressed ? '' : sanitizeUnitValue( `${ perWidth }%` ) )
-								}
-							>
-								{ `${ perWidth }%` }
-							</Button>
-						);
-					} ) }
-					<Button
-						variant={ tableStylesObj?.width === 'auto' ? 'primary' : undefined }
-						isSmall
-						onClick={ () => onChangeWidth( tableStylesObj?.width === 'auto' ? '' : 'auto' ) }
-					>
-						{ __( 'auto', 'flexible-table-block' ) }
-					</Button>
-				</ButtonGroup>
-			</BaseControl>
-			<BaseControl
-				id="flexible-table-block-table-max-width"
-				label={ __( 'Table max width', 'flexible-table-block' ) }
-				className="ftb-width-control"
+				<Button variant="secondary" size="small" onClick={ () => onChangeWidth( undefined ) }>
+					{ __( 'Reset', 'flexible-table-block' ) }
+				</Button>
+			</HStack>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				hideLabelFromVision
+				label={ __( 'Table percentage width', 'flexible-table-block' ) }
+				isBlock
+				value={
+					tableStylesObj?.width === 'auto' ||
+					( parsedWidthQuantity &&
+						PERCENTAGE_WIDTHS.includes( parsedWidthQuantity ) &&
+						parsedWidthUnit === '%' )
+						? tableStylesObj?.width
+						: undefined
+				}
+				onChange={ ( value ) => onChangeWidth( value as Property.Width ) }
 			>
+				{ PERCENTAGE_WIDTHS.map( ( perWidth ) => {
+					return (
+						<ToggleGroupControlOption
+							key={ perWidth }
+							label={ `${ perWidth }%` }
+							value={ `${ perWidth }%` }
+						/>
+					);
+				} ) }
+				<ToggleGroupControlOption
+					label={ _x( 'auto', 'width', 'flexible-table-block' ) }
+					value="auto"
+				/>
+			</ToggleGroupControl>
+			<HStack alignment="start">
 				<UnitControl
-					id="flexible-table-block-table-max-width"
+					label={ __( 'Table max width', 'flexible-table-block' ) }
 					value={ tableStylesObj?.maxWidth }
 					units={ tableWidthUnits }
 					disabled={ tableStylesObj?.maxWidth === 'none' }
-					min="0"
+					min={ 0 }
 					onChange={ onChangeMaxWidth }
+					size="__unstable-large"
+					__unstableInputWidth="calc(50% - 8px)"
 				/>
-				<ButtonGroup
-					aria-label={ __( 'Table percentage max width' ) }
-					className="ftb-percent-group"
-				>
-					{ [ 25, 50, 75, 100 ].map( ( perWidth ) => {
-						const isPressed = tableStylesObj?.maxWidth === `${ perWidth }%`;
-						return (
-							<Button
-								key={ perWidth }
-								variant={ isPressed ? 'primary' : undefined }
-								isSmall
-								onClick={ () =>
-									onChangeMaxWidth( isPressed ? '' : sanitizeUnitValue( `${ perWidth }%` ) )
-								}
-							>
-								{ `${ perWidth }%` }
-							</Button>
-						);
-					} ) }
-					<Button
-						variant={ tableStylesObj?.maxWidth === 'none' ? 'primary' : undefined }
-						isSmall
-						onClick={ () => onChangeMaxWidth( tableStylesObj?.maxWidth === 'none' ? '' : 'none' ) }
-					>
-						{ _x( 'none', 'width', 'flexible-table-block' ) }
-					</Button>
-				</ButtonGroup>
-			</BaseControl>
-			<BaseControl
-				id="flexible-table-block-table-min-width"
-				label={ __( 'Table min width', 'flexible-table-block' ) }
-				className="ftb-width-control"
+				<Button variant="secondary" size="small" onClick={ () => onChangeMaxWidth( undefined ) }>
+					{ __( 'Reset', 'flexible-table-block' ) }
+				</Button>
+			</HStack>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				hideLabelFromVision
+				label={ __( 'Table percentage max width', 'flexible-table-block' ) }
+				isBlock
+				value={
+					tableStylesObj?.maxWidth === 'none' ||
+					( parsedMaxWidthQuantity &&
+						PERCENTAGE_WIDTHS.includes( parsedMaxWidthQuantity ) &&
+						parsedMaxWidthUnit === '%' )
+						? tableStylesObj?.maxWidth
+						: undefined
+				}
+				onChange={ ( value ) => onChangeMaxWidth( value as Property.MaxWidth ) }
 			>
+				{ PERCENTAGE_WIDTHS.map( ( perWidth ) => {
+					return (
+						<ToggleGroupControlOption
+							key={ perWidth }
+							label={ `${ perWidth }%` }
+							value={ `${ perWidth }%` }
+						/>
+					);
+				} ) }
+				<ToggleGroupControlOption
+					label={ _x( 'none', 'width', 'flexible-table-block' ) }
+					value="none"
+				/>
+			</ToggleGroupControl>
+			<HStack alignment="start">
 				<UnitControl
-					id="flexible-table-block-table-min-width"
+					label={ __( 'Table min width', 'flexible-table-block' ) }
 					value={ tableStylesObj?.minWidth }
 					units={ tableWidthUnits }
-					min="0"
+					min={ 0 }
 					onChange={ onChangeMinWidth }
+					size="__unstable-large"
+					__unstableInputWidth="calc(50% - 8px)"
 				/>
-				<ButtonGroup
-					aria-label={ __( 'Table percentage min width' ) }
-					className="ftb-percent-group"
-				>
-					{ [ 25, 50, 75, 100 ].map( ( perWidth ) => {
-						const isPressed = tableStylesObj?.minWidth === `${ perWidth }%`;
-						return (
-							<Button
-								key={ perWidth }
-								variant={ isPressed ? 'primary' : undefined }
-								isSmall
-								onClick={ () => onChangeMinWidth( isPressed ? '' : `${ perWidth }%` ) }
-							>
-								{ `${ perWidth }%` }
-							</Button>
-						);
-					} ) }
-				</ButtonGroup>
-			</BaseControl>
+				<Button variant="secondary" size="small" onClick={ () => onChangeMinWidth( undefined ) }>
+					{ __( 'Reset', 'flexible-table-block' ) }
+				</Button>
+			</HStack>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				hideLabelFromVision
+				label={ __( 'Table percentage min width', 'flexible-table-block' ) }
+				isBlock
+				value={
+					parsedMinWidthQuantity &&
+					PERCENTAGE_WIDTHS.includes( parsedMinWidthQuantity ) &&
+					parsedMinWidthUnit === '%'
+						? tableStylesObj?.minWidth
+						: undefined
+				}
+				onChange={ ( value ) => onChangeMinWidth( value as Property.MinWidth ) }
+			>
+				{ PERCENTAGE_WIDTHS.map( ( perWidth ) => {
+					return (
+						<ToggleGroupControlOption
+							key={ perWidth }
+							label={ `${ perWidth }%` }
+							value={ `${ perWidth }%` }
+						/>
+					);
+				} ) }
+			</ToggleGroupControl>
 			<hr />
 			<PaddingControl
-				id="flexible-table-block-table-padding"
 				label={ __( 'Table padding', 'flexible-table-block' ) }
 				help={ __(
 					'Table padding is only enabled when "Cell Borders" is set to "Separate".',
@@ -413,13 +464,11 @@ export default function TableSettings( {
 			/>
 			<hr />
 			<BorderRadiusControl
-				id="flexible-table-block-table-border-radius"
 				label={ __( 'Table border radius', 'flexible-table-block' ) }
 				values={ pickBorderRadius( tableStylesObj ) }
 				onChange={ onChangeBorderRadius }
 			/>
 			<BorderWidthControl
-				id="flexible-table-block-table-border-width"
 				label={ __( 'Table border width', 'flexible-table-block' ) }
 				help={ __(
 					'Table border width is only enabled when "Cell Borders" is set to "Separate".',
@@ -429,45 +478,35 @@ export default function TableSettings( {
 				onChange={ onChangeBorderWidth }
 			/>
 			<BorderStyleControl
-				id="flexible-table-block-table-border-style"
 				label={ __( 'Table border style', 'flexible-table-block' ) }
 				values={ pickBorderStyle( tableStylesObj ) }
 				onChange={ onChangeBorderStyle }
 			/>
 			<BorderColorControl
-				id="flexible-table-block-table-border-color"
 				label={ __( 'Table border color', 'flexible-table-block' ) }
 				values={ pickBorderColor( tableStylesObj ) }
 				onChange={ onChangeBorderColor }
 			/>
 			<hr />
-			<BaseControl id="flexible-table-block-table-border-collapse">
-				<div aria-labelledby="flexible-table-block-table-border-collapse-heading" role="region">
-					<span
-						id="flexible-table-block-table-border-collapse-heading"
-						className="ftb-base-control-label"
-					>
-						{ __( 'Cell borders', 'flexible-table-block' ) }
-					</span>
-					<ButtonGroup className="ftb-button-group">
-						{ BORDER_COLLAPSE_CONTROLS.map( ( { icon, label, value } ) => {
-							return (
-								<Button
-									key={ value }
-									variant={ value === tableStylesObj?.borderCollapse ? 'primary' : 'secondary' }
-									icon={ icon }
-									onClick={ () => onChangeBorderCollapse( value ) }
-								>
-									{ label }
-								</Button>
-							);
-						} ) }
-					</ButtonGroup>
-				</div>
-			</BaseControl>
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				label={ __( 'Cell borders', 'flexible-table-block' ) }
+				value={ tableStylesObj?.borderCollapse }
+				isDeselectable
+				onChange={ onChangeBorderCollapse }
+			>
+				{ BORDER_COLLAPSE_CONTROLS.map( ( { icon, label, value } ) => (
+					<ToggleGroupControlOptionIcon
+						key={ value }
+						label={ label }
+						value={ value }
+						icon={ icon }
+					/>
+				) ) }
+			</ToggleGroupControl>
 			{ 'separate' === tableStylesObj?.borderCollapse && (
 				<BorderSpacingControl
-					id="flexible-table-block-table-border-spacing"
 					label={ __( 'Border spacing', 'flexible-table-block' ) }
 					values={ pickBorderSpacing( tableStylesObj ) }
 					onChange={ onChangeBorderSpacing }

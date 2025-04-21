@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:  Lazy Blocks
- * Description:  Gutenberg blocks visual constructor. Custom meta fields or blocks with output without hard coding.
- * Version:      3.5.1
+ * Description:  Easily create custom blocks and custom meta fields for Gutenberg without hard coding.
+ * Version:      3.8.3
  * Author:       Lazy Blocks Team
  * Author URI:   https://www.lazyblocks.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
  * License:      GPLv2 or later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'LAZY_BLOCKS_VERSION' ) ) {
-	define( 'LAZY_BLOCKS_VERSION', '3.5.1' );
+	define( 'LAZY_BLOCKS_VERSION', '3.8.3' );
 }
 
 if ( ! class_exists( 'LazyBlocks' ) ) :
@@ -80,6 +80,13 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 		private $controls;
 
 		/**
+		 * Handlebars class object.
+		 *
+		 * @var LazyBlocks_Handlebars
+		 */
+		private $handlebars;
+
+		/**
 		 * Blocks class object.
 		 *
 		 * @var LazyBlocks_Blocks
@@ -127,14 +134,14 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 			$this->plugin_url      = plugin_dir_url( __FILE__ );
 			$this->plugin_basename = plugin_basename( __FILE__ );
 
-			$this->load_text_domain();
 			$this->include_dependencies();
 
-			$this->icons     = new LazyBlocks_Icons();
-			$this->controls  = new LazyBlocks_Controls();
-			$this->blocks    = new LazyBlocks_Blocks();
-			$this->templates = new LazyBlocks_Templates();
-			$this->tools     = new LazyBlocks_Tools();
+			$this->icons      = new LazyBlocks_Icons();
+			$this->controls   = new LazyBlocks_Controls();
+			$this->handlebars = new LazyBlocks_Handlebars();
+			$this->blocks     = new LazyBlocks_Blocks();
+			$this->templates  = new LazyBlocks_Templates();
+			$this->tools      = new LazyBlocks_Tools();
 
 			add_action( 'init', array( $this, 'init_hook' ), 5 );
 		}
@@ -143,6 +150,8 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 		 * Init hook should be used to register user blocks and add customizations.
 		 */
 		public function init_hook() {
+			$this->load_text_domain();
+
 			do_action( 'lzb/init' );
 		}
 
@@ -228,6 +237,7 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 			require_once $this->plugin_path() . '/classes/class-admin.php';
 			require_once $this->plugin_path() . '/classes/class-icons.php';
 			require_once $this->plugin_path() . '/classes/class-controls.php';
+			require_once $this->plugin_path() . '/classes/class-handlebars.php';
 			require_once $this->plugin_path() . '/classes/class-blocks.php';
 			require_once $this->plugin_path() . '/classes/class-templates.php';
 			require_once $this->plugin_path() . '/classes/class-tools.php';
@@ -252,6 +262,13 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 		 */
 		public function controls() {
 			return $this->controls;
+		}
+
+		/**
+		 * Get lazyblocks handlebars object.
+		 */
+		public function handlebars() {
+			return $this->handlebars;
 		}
 
 		/**
@@ -282,6 +299,18 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 		 */
 		public function add_block( $data ) {
 			return $this->blocks()->add_block( $data );
+		}
+
+		/**
+		 * Add lazyblocks block collection.
+		 *
+		 * This method is does nothing in Free plugin,
+		 * the actual implementation is in Pro plugin.
+		 *
+		 * @param array $data - collection data.
+		 */
+		public function add_collection( $data ) {
+			do_action( 'lzb/add_collection', $data );
 		}
 
 		/**

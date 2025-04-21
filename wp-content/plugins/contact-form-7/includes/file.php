@@ -4,11 +4,11 @@
  * Validates uploaded files and moves them to the temporary directory.
  *
  * @param array $file An item of `$_FILES`.
- * @param string|array $args Optional. Arguments to control behavior.
+ * @param string|array $options Optional. Options to control behavior.
  * @return array|WP_Error Array of file paths, or WP_Error if validation fails.
  */
-function wpcf7_unship_uploaded_file( $file, $args = '' ) {
-	$args = wp_parse_args( $args, array(
+function wpcf7_unship_uploaded_file( $file, $options = '' ) {
+	$options = wp_parse_args( $options, array(
 		'required' => false,
 		'filetypes' => '',
 		'limit' => MB_IN_BYTES,
@@ -33,14 +33,16 @@ function wpcf7_unship_uploaded_file( $file, $args = '' ) {
 		}
 	}
 
-	if ( isset( $args['schema'] ) and isset( $args['name'] ) ) {
-		$result = $args['schema']->validate( array(
+	if ( isset( $options['schema'] ) and isset( $options['name'] ) ) {
+		$context = array(
 			'file' => true,
-			'field' => $args['name'],
-		) );
+			'field' => $options['name'],
+		);
 
-		if ( is_wp_error( $result ) ) {
-			return $result;
+		foreach ( $options['schema']->validate( $context ) as $result ) {
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
 		}
 	}
 
@@ -62,7 +64,7 @@ function wpcf7_unship_uploaded_file( $file, $args = '' ) {
 		$filename = wpcf7_antiscript_file_name( $filename );
 
 		$filename = apply_filters( 'wpcf7_upload_file_name',
-			$filename, $name, $args
+			$filename, $name, $options
 		);
 
 		$filename = wp_unique_filename( $uploads_dir, $filename );
@@ -159,7 +161,7 @@ function wpcf7_convert_mime_to_ext( $mime ) {
 	if ( preg_match( '%^([a-z]+)/([*]|[a-z0-9.+-]+)$%i', $mime, $matches ) ) {
 		foreach ( $mime_types as $key => $val ) {
 			if ( '*' === $matches[2] and str_starts_with( $val, $matches[1] . '/' )
-		 	or $val === $matches[0] ) {
+			or $val === $matches[0] ) {
 				$results = array_merge( $results, explode( '|', $key ) );
 			}
 		}
@@ -207,7 +209,7 @@ function wpcf7_acceptable_filetypes( $types = 'default', $format = 'regex' ) {
 				if ( false === strpos( $type, '/' ) ) {
 					return sprintf( '.%s', trim( $type, '.' ) );
 				} elseif ( preg_match( '%^([a-z]+)/[*]$%i', $type, $matches ) ) {
-					if ( in_array( $matches[1], array( 'audio', 'video', 'image' ) ) ) {
+					if ( in_array( $matches[1], array( 'audio', 'video', 'image' ), true ) ) {
 						return $type;
 					} else {
 						return '';
@@ -358,9 +360,7 @@ function wpcf7_cleanup_upload_files( $seconds = 60, $max = 100 ) {
 
 	if ( $handle = opendir( $dir ) ) {
 		while ( false !== ( $file = readdir( $handle ) ) ) {
-			if ( '.' == $file
-			or '..' == $file
-			or '.htaccess' == $file ) {
+			if ( '.' === $file or '..' === $file or '.htaccess' === $file ) {
 				continue;
 			}
 
@@ -416,9 +416,6 @@ function wpcf7_file_display_warning_message( $page, $action, $object ) {
 			$uploads_dir
 		);
 
-		echo sprintf(
-			'<div class="notice notice-warning"><p>%s</p></div>',
-			esc_html( $message )
-		);
+		wp_admin_notice( esc_html( $message ), array( 'type' => 'warning' ) );
 	}
 }

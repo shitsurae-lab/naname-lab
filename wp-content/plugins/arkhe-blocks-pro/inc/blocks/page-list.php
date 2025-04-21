@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\Page_List;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/page-list',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/page-list',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Page_List\cb',
 	]

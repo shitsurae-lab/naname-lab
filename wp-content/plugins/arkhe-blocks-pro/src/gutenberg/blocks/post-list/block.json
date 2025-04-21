@@ -122,6 +122,6 @@
             "default": "div"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/post-list/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

@@ -66,13 +66,13 @@ export const MIN_RESPONSIVE_BREAKPOINT = 200 as const;
 export const MAX_RESPONSIVE_BREAKPOINT = 1200 as const;
 
 // Available units on UnitControl component.
-export const FONT_SIZE_UNITS = [ 'px', 'em', 'rem', '%' ] as const;
-export const TABLE_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ] as const;
-export const CELL_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ] as const;
-export const BORDER_SPACING_UNITS = [ 'px', 'em', 'rem' ] as const;
-export const BORDER_RADIUS_UNITS = [ 'px', 'em', 'rem' ] as const;
-export const BORDER_WIDTH_UNITS = [ 'px', 'em', 'rem' ] as const;
-export const PADDING_UNITS = [ 'px', '%', 'em', 'rem', 'vw', 'vh' ] as const;
+export const FONT_SIZE_UNITS = [ 'px', 'em', 'rem', '%' ];
+export const TABLE_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ];
+export const CELL_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ];
+export const BORDER_SPACING_UNITS = [ 'px', 'em', 'rem' ];
+export const BORDER_RADIUS_UNITS = [ 'px', 'em', 'rem' ];
+export const BORDER_WIDTH_UNITS = [ 'px', 'em', 'rem' ];
+export const PADDING_UNITS = [ 'px', '%', 'em', 'rem', 'vw', 'vh' ];
 
 // Cell label & text variations.
 export const CELL_ARIA_LABEL = {
@@ -200,6 +200,10 @@ export const CELL_TAG_CONTROLS = [
 
 export const CELL_SCOPE_CONTROLS = [
 	{
+		label: _x( 'none', 'Cell scope control', 'flexible-table-block' ),
+		value: 'none',
+	},
+	{
 		label: __( 'row', 'flexible-table-block' ),
 		value: 'row',
 	},
@@ -249,12 +253,12 @@ export const CORNER_CONTROLS = [
 
 export const DIRECTION_CONTROLS = [
 	{
-		label: __( 'Horizontal', 'flexible-table-block' ),
-		value: 'horizontal',
-	},
-	{
 		label: __( 'Vertical', 'flexible-table-block' ),
 		value: 'vertical',
+	},
+	{
+		label: __( 'Horizontal', 'flexible-table-block' ),
+		value: 'horizontal',
 	},
 ] as const;
 

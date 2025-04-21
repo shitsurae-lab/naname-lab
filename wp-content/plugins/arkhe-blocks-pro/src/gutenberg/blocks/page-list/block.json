@@ -53,6 +53,6 @@
             "default": "menu_order"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/page-list/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

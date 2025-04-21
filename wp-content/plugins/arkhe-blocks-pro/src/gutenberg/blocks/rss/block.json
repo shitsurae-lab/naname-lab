@@ -69,6 +69,6 @@
             "default": "div"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/rss/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

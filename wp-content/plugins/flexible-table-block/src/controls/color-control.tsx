@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import type { Property } from 'csstype';
 import type { ReactElement } from 'react';
 
@@ -14,20 +13,26 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
+	Flex,
+	FlexBlock,
+	FlexItem,
 	Popover,
-	ColorIndicator,
 	ColorPalette,
-	SlotFillProvider,
-	// @ts-ignore: has no exported member
+	__experimentalVStack as VStack,
+	__experimentalSpacer as Spacer,
 	__experimentalText as Text,
 } from '@wordpress/components';
 import { store as blockEditorStore } from '@wordpress/block-editor';
+import { useInstanceId } from '@wordpress/compose';
+
+/**
+ * Internal dependencies
+ */
+import ColorIndicatorButton from './color-indicator-button';
 
 type Props = {
-	id: string;
 	label: string | ReactElement;
 	help?: string;
-	className?: string;
 	onChange: ( event: any ) => void;
 	colors?: {
 		name: string;
@@ -38,14 +43,15 @@ type Props = {
 };
 
 export default function ColorControl( {
-	id,
 	label = __( 'Color', 'flexible-table-block' ),
 	help,
-	className,
 	onChange,
 	colors: colorsProp = [],
 	value,
 }: Props ) {
+	const instanceId = useInstanceId( ColorControl, 'ftb-color-control' );
+	const headingId = `${ instanceId }-heading`;
+
 	const colors = useSelect( ( select ) => {
 		const settings = select(
 			blockEditorStore
@@ -56,56 +62,46 @@ export default function ColorControl( {
 
 	const [ isPickerOpen, setIsPickerOpen ] = useState< boolean >( false );
 
-	const headingId: string = `${ id }-heading`;
-
-	const classNames: string = classnames( 'ftb-color-control', className );
-
 	const handleOnReset = () => onChange( undefined );
 
-	const handleOnChange = ( inputValue: Property.Color ) => onChange( inputValue );
+	const handleOnChange = ( inputValue: Property.Color | undefined ) => onChange( inputValue );
 
 	const handleOnPickerOpen = () => setIsPickerOpen( true );
 
 	const handleOnPickerClose = () => setIsPickerOpen( false );
 
 	return (
-		<SlotFillProvider>
-			<BaseControl id={ id } className={ classNames } help={ help }>
-				<div aria-labelledby={ headingId } role="region">
-					<div className="ftb-color-control__header">
-						<Text id={ headingId }>{ label }</Text>
-						<Button isSmall variant="secondary" onClick={ handleOnReset }>
+		<BaseControl className="ftb-color-control" help={ help } __nextHasNoMarginBottom>
+			<VStack aria-labelledby={ headingId } role="group">
+				<Flex>
+					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
+						{ label }
+					</Text>
+					<FlexItem>
+						<Button variant="secondary" onClick={ handleOnReset } size="small">
 							{ __( 'Reset', 'flexible-table-block' ) }
 						</Button>
-					</div>
-					<div className="ftb-color-control__controls">
-						<div className="ftb-color-control__controls-inner">
-							<div className="ftb-color-control__controls-row">
-								<Button
-									label={ __( 'All', 'flexible-table-block' ) }
-									className={ classnames( 'ftb-color-control__indicator', {
-										'ftb-color-control__indicator--none': ! value,
-										'ftb-color-control__indicator--transparent': value === 'transparent',
-									} ) }
-									onClick={ () => handleOnPickerOpen() }
-								>
-									<ColorIndicator colorValue={ value || '' } />
-								</Button>
-								{ isPickerOpen && (
-									<Popover className="ftb-color-control__popover" onClose={ handleOnPickerClose }>
-										<ColorPalette
-											colors={ [ ...colors, ...colorsProp ] }
-											value={ value || '' }
-											onChange={ handleOnChange }
-										/>
-									</Popover>
-								) }
-							</div>
-						</div>
-					</div>
-				</div>
-				<Popover.Slot />
-			</BaseControl>
-		</SlotFillProvider>
+					</FlexItem>
+				</Flex>
+				<ColorIndicatorButton
+					label={ __( 'Color', 'flexible-table-block' ) }
+					value={ value }
+					onClick={ handleOnPickerOpen }
+					isNone={ ! value }
+					isTransparent={ value === 'transparent' }
+				/>
+			</VStack>
+			{ isPickerOpen && (
+				<Popover placement="left-start" shift offset={ 36 } onClose={ handleOnPickerClose }>
+					<Spacer padding={ 4 } marginBottom={ 0 }>
+						<ColorPalette
+							colors={ [ ...colors, ...colorsProp ] }
+							value={ value || '' }
+							onChange={ handleOnChange }
+						/>
+					</Spacer>
+				</Popover>
+			) }
+		</BaseControl>
 	);
 }

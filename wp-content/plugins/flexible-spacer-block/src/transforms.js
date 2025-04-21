@@ -2,11 +2,11 @@
  * WordPress dependencies
  */
 import { createBlock } from '@wordpress/blocks';
-import {
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
-} from '@wordpress/components';
+import { __experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue } from '@wordpress/components';
 
+/**
+ * Internal dependencies
+ */
 import { DEFAULT_SPACER_HEIGHT, DEFAULT_SPACER_HEIGHT_UNIT } from './constants';
 import metadata from './block.json';
 

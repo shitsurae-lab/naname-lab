@@ -2,22 +2,22 @@
 (function ($) {
 	var xoSecuritySettings = function () {
 		var
-			field_interval = $("#field_interval"),
+			field_login_interval = $("#field_interval"),
 			field_login_page = $("#field_login_page"),
 			field_login_page_name = $("#field_login_page_name"),
+			field_login_two_factor = $("#field_two_factor"),
+			field_login_two_factor_roles = $("[id^='field_two_factor_roles_']"),
 			field_login_alert = $("#field_login_alert"),
 			field_login_alert_subject = $("#field_login_alert_subject"),
 			field_login_alert_body = $("#field_login_alert_body"),
 			field_login_alert_admin_only = $("#field_login_alert_admin_only"),
 			field_rest = $("#field_rest"),
 			field_rest_namespace = $("#xo_security_rest_disable input.namespace");
-			field_rest_rename = $("#field_rest_rename"),
-			field_rest_name = $("#field_rest_name"),
 			field_comment_spam = $("#field_comment_spam"),
 			field_comment_spam_message = $("#field_comment_spam_message"),
 
-			interval_change = function () {
-				if ("0" === field_interval.val()) {
+			login_interval_change = function () {
+				if ("0" === field_login_interval.val()) {
 					$("#field_limit_count").attr("disabled", "disabled");
 				} else {
 					$("#field_limit_count").prop("disabled", false);
@@ -30,10 +30,10 @@
 				} else {
 					field_login_page_name.attr("disabled", "disabled");
 				}
-				loginurl_update();
+				login_url_update();
 			},
 
-			loginurl_update = function () {
+			login_url_update = function () {
 				if (field_login_page.prop("checked")) {
 					var login_url = field_login_page_name.val();
 					if (login_url !== '') {
@@ -45,6 +45,14 @@
 					}
 				} else {
 					$("#login_url").text(xoSecurityAdminOptions.site_url + "wp-login.php");
+				}
+			},
+
+			login_two_factor_change = function () {
+				if (field_login_two_factor.prop("checked")) {
+					field_login_two_factor_roles.prop("readonly", false);
+				} else {
+					field_login_two_factor_roles.attr("readonly", "disabled");
 				}
 			},
 
@@ -79,23 +87,6 @@
 				}
 			},
 
-			rest_rename_change = function () {
-				if (field_rest_rename.prop("checked")) {
-					field_rest_name.prop("disabled", false);
-				} else {
-					field_rest_name.attr("disabled", "disabled");
-				}
-				rest_name_update();
-			},
-
-			rest_name_update = function () {
-				var rest_name = field_rest_name.val();
-				if (rest_name !== undefined) {
-					rest_name = rest_name.toLowerCase().replace(/[^\w-]/g, "");
-					field_rest_name.val(rest_name);
-				}
-			},
-
 			comment_spam_change = function () {
 				if (field_comment_spam.prop("checked")) {
 					field_comment_spam_message.prop("readonly", false);
@@ -104,22 +95,34 @@
 				}
 			};
 
-		field_interval.on('change', interval_change);
+		field_login_interval.on('change', login_interval_change);
 		field_login_page.on('change', login_page_change);
-		field_login_page_name.on('change', loginurl_update);
+		field_login_page_name.on('change', login_url_update);
+		field_login_two_factor.on('change', login_two_factor_change);
 		field_login_alert.on('change', login_alert_change);
 		field_rest.on('change', rest_change);
 		field_rest_namespace.on('change', rest_namespace_change);
-		field_rest_rename.on('change', rest_rename_change);
-		field_rest_name.on('change', rest_name_update);
 		field_comment_spam.on('change', comment_spam_change);
 
-		interval_change();
+		login_interval_change();
 		login_page_change();
+		login_two_factor_change();
 		login_alert_change();
 		rest_change();
-		rest_rename_change();
 		comment_spam_change();
+	};
+
+	var xoSecurityCaptchaTypeSettings = function () {
+		var $captchatypepicker = $('#captcha-type-picker');
+
+		$captchatypepicker.on( 'click.captchatypepicker', '.captcha-type-option', function() {
+			var $this = $(this);
+			if ( $this.hasClass( 'selected' ) ) {
+				return;
+			}
+			$this.siblings( '.selected' ).removeClass( 'selected' );
+			$this.addClass( 'selected' ).find( 'input[type="radio"]' ).prop( 'checked', true );
+		});
 	};
 
 	var xoSecurityDashboard = function () {
@@ -143,6 +146,7 @@
 	$(document).ready(function () {
 		if ('settings_page_xo-security-settings' === pagenow) {
 			xoSecuritySettings();
+			xoSecurityCaptchaTypeSettings();
 		} else if ('dashboard' === pagenow) {
 			xoSecurityDashboard();
 		}

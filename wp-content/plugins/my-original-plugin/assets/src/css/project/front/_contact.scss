@@ -1,0 +1,43 @@
+@use '../../global' as *;
+.p-index-contact {
+  $this: &;
+  &__container {
+  }
+
+  &__heading {
+    h2 {
+      text-transform: capitalize;
+    }
+  }
+
+  &__columns {
+    // flex: 9 0 min(1065px, 90%);
+    // width: min(1065px, 90%);
+    // margin-left: var(--arkb-gap--x);
+  }
+
+  &__column {
+    &:has(figure) {
+      figure {
+        width: min(480px, 100%);
+        border-radius: 8px;
+        overflow: hidden;
+        @include mq(tablet) {
+          border-radius: 8px;
+        }
+      }
+    }
+    &:has(.p-index-contact__textarea) {
+      #{$this}__textarea {
+        aspect-ratio: 8 / 5;
+      }
+      #{$this}__textarea--top {
+        // writing-mode: vertical-rl;
+        // margin-left: auto;
+      }
+      #{$this}__textarea--par {
+        line-height: 2;
+      }
+    }
+  }
+}

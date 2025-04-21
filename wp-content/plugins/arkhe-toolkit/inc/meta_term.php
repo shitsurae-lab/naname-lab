@@ -26,7 +26,7 @@ function add_term_metas( $term ) {
 	$the_term_id = $term->term_id;
 
 	// nonce
-	wp_nonce_field( 'arkhe_nonce_term_meta', 'arkhe_nonce_term_meta' );
+	wp_nonce_field( 'arkhe_nonce_term_meta', '_ark_nonce' );
 ?>
 	<tr class="ark-termMetaTitle">
 		<th colspan="2">

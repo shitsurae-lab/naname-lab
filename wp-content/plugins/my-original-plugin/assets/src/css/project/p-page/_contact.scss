@@ -39,6 +39,12 @@
           margin-right: auto;
         }
       }
+      input::placeholder{
+        color: rgb(200, 200, 200)
+      }
+      textarea::placeholder{
+        color: rgb(200, 200, 200)
+      }
       hr {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -50,9 +56,9 @@
       span {
         &.haveto,
         &.any {
-          background: var(--color-cinereous);
+          background: var(--color-weldon-blue);
           padding: 2px 6px;
-          font-size: 10px;
+          font-size: 12px;
           color: #ffffff;
           vertical-align: text-bottom;
         }

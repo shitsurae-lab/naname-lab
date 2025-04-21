@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
 use \Arkhe_Blocks\Style as Style;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/slider',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/slider',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Slider\cb',
 	]

@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\RSS;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/rss',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/rss',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\RSS\cb',
 	]

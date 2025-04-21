@@ -21,8 +21,13 @@
 
 
 .arkb-panel--pageList .block-editor-url-input {
+	min-width: auto;
 	margin: 0 !important;
 	padding: 0 !important;
+}
+
+.arkb-control--searchPage__suggestions {
+	min-width: 260px;
 }
 
 .arkb-control--searchPage {

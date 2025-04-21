@@ -1,6 +1,16 @@
-import { createTable, deleteColumn, deleteRow, insertRow } from '../table-state';
+/**
+ * Internal dependencies
+ */
+import {
+	createTable,
+	deleteColumn,
+	deleteRow,
+	insertRow,
+	type VTable,
+	type VRow,
+	type VCell,
+} from '../table-state';
 import type { SectionName } from '../../BlockAttributes';
-import type { VTable, VRow, VCell } from '../../utils/table-state';
 
 const getRow = (
 	cells: number,

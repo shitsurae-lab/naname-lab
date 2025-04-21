@@ -12,12 +12,13 @@ class Enqueue {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Enqueue front-end inline styles
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		// Enqueue block editor scripts
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
+		if ( is_admin() ) {
+			add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
+		}
 
 		// Enqueue admin option page scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -36,10 +37,10 @@ class Enqueue {
 	}
 
 	/**
-	 * Enqueue block editor scripts
+	 * Enqueue block assets
 	 */
-	public function enqueue_editor_scripts() {
-		$asset_file = include( FSB_PATH . '/build/js/index.asset.php' );
+	public function enqueue_block_assets() {
+		$asset_file = include FSB_PATH . '/build/js/index.asset.php';
 
 		wp_register_style(
 			'fsb-flexible-spacer-editor',

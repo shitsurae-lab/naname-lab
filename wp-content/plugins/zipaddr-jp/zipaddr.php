@@ -21,6 +21,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$sysid[11]="SnowMonkeyForm,snowmonkeyform";
 	$sysid[12]="TieredWorks, tieredworks";
 	$sysid[13]="Forminator,  forminator";
+	$sysid[14]="booking-package,bookingpackage";
 	$sysid[99]="###other###, tricks";
 //
 	$contf7= strpos($output, 'wpcf7-form');       //Contact Form 7
@@ -38,6 +39,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$snowmon=strpos($output, 'snow-monkey-form'); //SnowMonkeyForm
 	$tieredw=strpos($output, 'SF-contact');       //TieredWorks
 	$formina=strpos($output, 'forminator-label'); //Forminator
+	$bookpak=strpos($output, 'id="booking-package"'); //booking-package
 	$yubin=  strpos($output, '郵便番号');
 //フォームの自動判定
 	$sid= "";
@@ -54,6 +56,7 @@ function zipaddr_jp_change($output, $opt=""){
 	else if( $snowmon!==false ) $sid= 11;
 	else if( $tieredw!==false ) $sid= 12;
 	else if( $formina!==false ) $sid= 13;
+	else if( $bookpak!==false ){$sid= 14; $sys_dyna="1";}
 	else if( empty($sys_syid))  $sid= 99;
 //
 	if( $sid < 99 ){;}                            //自動判定
@@ -86,7 +89,8 @@ if(isset($_SERVER['HTTPS'])) {$http=(empty($_SERVER['HTTPS'])||$_SERVER['HTTPS']
 //se if( $sys_site == "3" )              $uls= zipaddr_git.   'zipaddr30.js';
 else if( $sys_site == "4" )              $uls= zipaddr_git.   'zipaddrx.js';
 else if( $sys_site == "5" )              $uls= zipaddr_git.   'zipaddra.js';
-	$pre=($sys_site=="4") ?  "D." : "ZP.";        // prefix
+//	$pre=($sys_site=="4") ?  "D." : "ZP.";        // prefix
+	$pre= "ZP.";                                  // prefix
 //モジュール・ファイル生成
 	$js = $jsfile.' src="'.$uls.'?v='.zipaddr_VERS.'"></script>';
 //オプション・パラメータ生成

@@ -118,6 +118,6 @@
             "default": true
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/box-link/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

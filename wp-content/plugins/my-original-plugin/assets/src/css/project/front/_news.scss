@@ -1,0 +1,219 @@
+@use '../../global' as *;
+.p-front {
+  .p-index__news {
+    .p-index__news__columns {
+      .ark-block-columns__inner {
+        // margin-left: 0;
+        // flex-direction: column;
+        // @include mq(tablet) {
+        //   flex-direction: row;
+        //   margin-left: calc(var(--arkb-gap--x) * -1);
+        // }
+
+        .p-index__news__column {
+          $this: &;
+          .ark-block-heading {
+            @include mq(tablet) {
+              writing-mode: vertical-lr;
+            }
+          }
+          //   &:has(h2) {
+          //     width: 100%;
+          //     flex: 1 0 auto;
+          //     margin: 0;
+          //     @include mq(tablet) {
+          //       flex: 1 0 calc(min(110px, 10%) - var(--arkb-gap--x));
+          //       width: calc(min(110px, 10%) - var(--arkb-gap--x));
+          //       margin: 0 0 0 var(--arkb-gap--x);
+          //       .ark-block-heading {
+          //         // writing-mode: vertical-rl;
+          //         @include gradient_headings();
+          //       }
+          //     }
+          //   }
+          //   &:has(h3) {
+          //     width: 100%;
+          //     flex: 1 0 auto;
+          //     margin-left: 0;
+          //     @include mq(tablet) {
+          //       flex: 9 0 calc(min(1065px, 90%) - var(--arkb-gap--x));
+          //       width: calc(min(1065px, 90%) - var(--arkb-gap--x));
+          //       margin: 0 0 0 var(--arkb-gap--x);
+          //     }
+
+          //     .p-index__news__list {
+          //       // .p-postList {
+          //       //.p-postListは'ul'の意
+          //       // display: flex;
+          //       // flex-wrap: wrap;
+
+          //       .p-postList {
+          //         $this: &;
+          //         // カード型
+          //         &:has(+ .-type-card) {
+          //           display: flex;
+          //           flex-wrap: wrap;
+          //           flex-direction: row;
+          //           #{$this}__item {
+          //             //.p-postList__itemはliのclassName
+          //             flex: 1 0 auto;
+          //             width: 100%;
+          //             @include mq(tablet) {
+          //               flex: 1 0 50%;
+          //               width: 50%;
+          //             }
+          //           }
+          //           #{$this}__link {
+          //             // border: 2px solid var(--color-secondary);
+          //             .p-postList__thumb.c-postThumb {
+          //               // width: 96%;
+          //               position: relative;
+          //               width: 100%;
+          //               border-top-left-radius: 8px;
+          //               border-top-right-radius: 8px;
+          //               overflow: hidden;
+          //               &::before {
+          //                 z-index: 2;
+          //               }
+          //             }
+          //             .p-postList__body {
+          //               width: 100%;
+          //               aspect-ratio: 2.414/1;
+          //               padding-top: 2rem;
+          //               padding-left: 1.5em;
+          //               padding-right: 1.5rem;
+          //               // z-index: -1;
+          //               top: auto;
+          //               border-radius: 0;
+          //               border-bottom-left-radius: 8px;
+          //               border-bottom-right-radius: 8px;
+          //             }
+          //           }
+          //         }
+          //         &:has(+ .-type-simple) {
+          //           display: flex;
+          //           flex-wrap: wrap;
+          //           flex-direction: column;
+          //         }
+          //       }
+          //       // }
+
+          //       .p-postList__thumb.c-postThumb {
+          //       }
+          //     }
+          //   }
+        }
+      }
+    }
+    .c-more__circle {
+      @include mq(tablet) {
+        padding-right: calc(2rem + 24px);
+      }
+    }
+  }
+  .p-index__news-copy {
+    .p-index__news__columns {
+      .ark-block-columns__inner {
+        margin-left: 0;
+        flex-direction: column;
+        @include mq(tablet) {
+          flex-direction: row;
+          margin-left: calc(var(--arkb-gap--x) * -1);
+        }
+
+        .p-index__news__column {
+          &:has(h2) {
+            width: 100%;
+            flex: 1 0 auto;
+            margin: 0;
+            @include mq(tablet) {
+              flex: 1 0 calc(min(110px, 10%) - var(--arkb-gap--x));
+              width: calc(min(110px, 10%) - var(--arkb-gap--x));
+              margin: 0 0 0 var(--arkb-gap--x);
+              .ark-block-heading {
+                // writing-mode: vertical-rl;
+                @include gradient_headings();
+              }
+            }
+          }
+          &:has(h3) {
+            width: 100%;
+            flex: 1 0 auto;
+            margin-left: 0;
+            @include mq(tablet) {
+              flex: 9 0 calc(min(1065px, 90%) - var(--arkb-gap--x));
+              width: calc(min(1065px, 90%) - var(--arkb-gap--x));
+              margin: 0 0 0 var(--arkb-gap--x);
+            }
+
+            .p-index__news__list {
+              // .p-postList {
+              //.p-postListは'ul'の意
+              // display: flex;
+              // flex-wrap: wrap;
+
+              .p-postList {
+                $this: &;
+                // カード型
+                &:has(+ .-type-card) {
+                  display: flex;
+                  flex-wrap: wrap;
+                  flex-direction: row;
+                  #{$this}__item {
+                    //.p-postList__itemはliのclassName
+                    flex: 1 0 auto;
+                    width: 100%;
+                    @include mq(tablet) {
+                      flex: 1 0 50%;
+                      width: 50%;
+                    }
+                  }
+                  #{$this}__link {
+                    // border: 2px solid var(--color-secondary);
+                    .p-postList__thumb.c-postThumb {
+                      // width: 96%;
+                      position: relative;
+                      width: 100%;
+                      border-top-left-radius: 8px;
+                      border-top-right-radius: 8px;
+                      overflow: hidden;
+                      &::before {
+                        z-index: 2;
+                      }
+                    }
+                    .p-postList__body {
+                      width: 100%;
+                      aspect-ratio: 2.414/1;
+                      padding-top: 2rem;
+                      padding-left: 1.5em;
+                      padding-right: 1.5rem;
+                      // z-index: -1;
+                      top: auto;
+                      border-radius: 0;
+                      border-bottom-left-radius: 8px;
+                      border-bottom-right-radius: 8px;
+                    }
+                  }
+                }
+                &:has(+ .-type-simple) {
+                  display: flex;
+                  flex-wrap: wrap;
+                  flex-direction: column;
+                }
+              }
+              // }
+
+              .p-postList__thumb.c-postThumb {
+              }
+            }
+          }
+        }
+      }
+    }
+    .c-more__circle {
+      @include mq(tablet) {
+        padding-right: calc(2rem + 24px);
+      }
+    }
+  }
+}

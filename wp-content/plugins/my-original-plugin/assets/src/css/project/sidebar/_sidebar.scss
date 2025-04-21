@@ -4,6 +4,12 @@ $requirement: '.single';
   .p-sidebar {
     &__heading {
       margin-bottom: 16px;
+      .p-sidebar__update{
+        text-transform: uppercase;
+        font-size: var(--font-xs);
+        font-weight: 500;
+        color: var(--color-philippine-gray);
+      }
       .p-sidebar__date {
         //color: var(--color-gainsboro);
         //font-size: var(--font-xs);

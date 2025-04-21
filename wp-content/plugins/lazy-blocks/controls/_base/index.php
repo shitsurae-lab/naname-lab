@@ -65,7 +65,8 @@ class LazyBlocks_Control {
 		'label_settings'                => true,
 		'default_settings'              => true,
 		'help_settings'                 => true,
-		'placement_settings'            => array( 'content', 'inspector' ),
+		'placement_settings'            => array( 'content', 'inspector' /* , 'content-fallback', 'inspector-fallback' */ ),
+		'group_settings'                => true,
 		'width_settings'                => true,
 		'required_settings'             => true,
 		'hide_if_not_selected_settings' => true,
@@ -93,6 +94,7 @@ class LazyBlocks_Control {
 		'help'                 => '',
 		'child_of'             => '',
 		'placement'            => 'content',
+		'group'                => 'default',
 		'width'                => '100',
 		'hide_if_not_selected' => 'false',
 		'required'             => 'false',
@@ -147,7 +149,8 @@ class LazyBlocks_Control {
 				$blocks = lazyblocks()->blocks()->get_blocks();
 
 				// Skip assets enqueue if there are no blocks.
-				if ( empty( $blocks ) ) {
+				// Allow on block builder page even if no blocks, since we need control assets here.
+				if ( empty( $blocks ) && 'lazyblocks' !== get_post_type() ) {
 					return;
 				}
 
@@ -158,12 +161,17 @@ class LazyBlocks_Control {
 			11
 		);
 		add_action(
-			'enqueue_block_editor_assets',
+			'enqueue_block_assets',
 			function() {
+				if ( ! is_admin() ) {
+					return;
+				}
+
 				$blocks = lazyblocks()->blocks()->get_blocks();
 
 				// Skip assets enqueue if there are no blocks.
-				if ( empty( $blocks ) ) {
+				// Allow on block builder page even if no blocks, since we need control assets here.
+				if ( empty( $blocks ) && 'lazyblocks' !== get_post_type() ) {
 					return;
 				}
 

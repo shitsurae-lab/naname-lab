@@ -1,0 +1,10 @@
+@use '../../global' as *;
+
+.p-content__centered {
+  $this: &;
+  &__inner {
+    #{$this }--dev {
+      background-color: #fff;
+    }
+  }
+}

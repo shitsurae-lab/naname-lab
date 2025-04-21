@@ -51,7 +51,7 @@ function arkt_cb_post_meta( $post ) {
 	$is_page   = 'page' === $post_type;
 
 	// nonce
-	wp_nonce_field( 'arkhe_nonce_post_meta', 'arkhe_nonce_post_meta' );
+	wp_nonce_field( 'arkhe_nonce_post_meta', '_ark_nonce' );
 
 	$text_only_topttl = __( 'This is valid only when the title position is "Above the content".', 'arkhe-toolkit' );
 ?>

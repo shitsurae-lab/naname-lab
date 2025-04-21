@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "flexible-table-block/table",
   "title": "Flexible Table",
   "category": "text",
@@ -46,7 +46,8 @@
     "caption": {
       "type": "string",
       "source": "html",
-      "selector": "figcaption"
+      "selector": "figcaption",
+      "__experimentalRole": "content"
     },
     "captionStyles": {
       "type": "string",
@@ -68,7 +69,8 @@
           "query": {
             "content": {
               "type": "string",
-              "source": "html"
+              "source": "html",
+              "__experimentalRole": "content"
             },
             "styles": {
               "type": "string",
@@ -133,7 +135,8 @@
           "query": {
             "content": {
               "type": "string",
-              "source": "html"
+              "source": "html",
+              "__experimentalRole": "content"
             },
             "styles": {
               "type": "string",
@@ -198,7 +201,8 @@
           "query": {
             "content": {
               "type": "string",
-              "source": "html"
+              "source": "html",
+              "__experimentalRole": "content"
             },
             "styles": {
               "type": "string",

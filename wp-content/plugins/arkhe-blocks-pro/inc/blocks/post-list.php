@@ -4,13 +4,15 @@ namespace Arkhe_Blocks\Block\Post_List;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/post-list',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/post-list',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Post_List\cb',
 	]
 );
 
 function cb( $attrs, $content ) {
+
+	if ( ! class_exists( 'Arkhe' ) ) return;
 
 	// ここでは defined('REST_REQUEST')  = true になる //サーバーサイドレンダー？
 

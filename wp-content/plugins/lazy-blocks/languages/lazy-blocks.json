@@ -8,7 +8,7 @@
          "Lazy Blocks": [
             ""
          ],
-         "Gutenberg blocks visual constructor. Custom meta fields or blocks with output without hard coding.": [
+         "Easily create custom blocks and custom meta fields for Gutenberg without hard coding.": [
             ""
          ],
          "Lazy Blocks Team": [
@@ -26,10 +26,19 @@
          "and": [
             ""
          ],
+         "Inactive": [
+            ""
+         ],
+         "Active": [
+            ""
+         ],
          "Blocks": [
             ""
          ],
          "Block": [
+            ""
+         ],
+         "Add Block": [
             ""
          ],
          "Duplicate “%1$s”": [
@@ -44,7 +53,22 @@
          "Export": [
             ""
          ],
+         "Deactivate “%1$s”": [
+            ""
+         ],
+         "Activate “%1$s”": [
+            ""
+         ],
+         "Deactivate": [
+            ""
+         ],
+         "Activate": [
+            ""
+         ],
          "Icon": [
+            ""
+         ],
+         "Slug": [
             ""
          ],
          "Category": [
@@ -125,6 +149,20 @@
          "Export / Import": [
             ""
          ],
+         "Block \"%s\" activated successfully.": [
+            ""
+         ],
+         "Block \"%s\" deactivated successfully.": [
+            ""
+         ],
+         "Activated %s block": [
+            "",
+            "Activated %s blocks"
+         ],
+         "Deactivated %s block": [
+            "",
+            "Deactivated %s blocks"
+         ],
          "No file selected": [
             ""
          ],
@@ -149,6 +187,9 @@
             ""
          ],
          "Added new block '%s'.": [
+            ""
+         ],
+         "(Copy)": [
             ""
          ],
          "Checkbox": [
@@ -256,57 +297,6 @@
          "Import": [
             ""
          ],
-         "Copied!": [
-            ""
-         ],
-         "Control": [
-            ""
-         ],
-         "Search Icon": [
-            ""
-         ],
-         "Type to Search…": [
-            ""
-         ],
-         "No icons found.": [
-            ""
-         ],
-         "Icon Picker": [
-            ""
-         ],
-         "Error loading block preview: %s": [
-            ""
-         ],
-         "Only a single <InnerBlocks /> component can be used per block. Multiple <InnerBlocks /> found inside block \"%s\".": [
-            ""
-         ],
-         "Lazy Blocks Pro": [
-            ""
-         ],
-         "Upgrade Now": [
-            ""
-         ],
-         "Controls Conditional Logic": [
-            ""
-         ],
-         "Panels and Dividers": [
-            ""
-         ],
-         "Posts, Taxonomy, User Controls": [
-            ""
-         ],
-         "Blocks Preloading": [
-            ""
-         ],
-         "SEO Enhancements": [
-            ""
-         ],
-         "And much more…": [
-            ""
-         ],
-         "This field is required": [
-            ""
-         ],
          "Styles": [
             ""
          ],
@@ -319,7 +309,7 @@
          "Condition": [
             ""
          ],
-         "Blocks Constructor": [
+         "Block Builder": [
             ""
          ],
          "Error: Could not generate the preview.": [
@@ -427,9 +417,6 @@
          "Hidden": [
             ""
          ],
-         "Slug": [
-            ""
-         ],
          "Block slug must include only lowercase alphanumeric characters or dashes, and start with a letter. Example: lazyblock/my-custom-block": [
             ""
          ],
@@ -452,6 +439,9 @@
             ""
          ],
          "Appears when inserting a new block": [
+            ""
+         ],
+         "Group": [
             ""
          ],
          "Help text": [
@@ -499,13 +489,13 @@
          "WPML Translation": [
             ""
          ],
-         "Experimental feature, may not work as expected.": [
-            ""
-         ],
          "Type": [
             ""
          ],
          "Control Type": [
+            ""
+         ],
+         "Type to Search…": [
             ""
          ],
          "25%": [
@@ -538,22 +528,22 @@
          "\"Class Name\" support is required to use the following settings.": [
             ""
          ],
+         "Effects": [
+            ""
+         ],
+         "Add visual effects, reveal, scroll animations, etc.": [
+            ""
+         ],
+         "Position": [
+            ""
+         ],
+         "Change block position to either absolute or fixed.": [
+            ""
+         ],
          "Spacings": [
             ""
          ],
          "Change block margins and paddings.": [
-            ""
-         ],
-         "Display": [
-            ""
-         ],
-         "Display / Hide blocks on different screen sizes.": [
-            ""
-         ],
-         "Animate on Scroll": [
-            ""
-         ],
-         "Display block with animation on scroll.": [
             ""
          ],
          "Frame": [
@@ -562,10 +552,28 @@
          "Add border and box shadow to block.": [
             ""
          ],
+         "Transform": [
+            ""
+         ],
+         "Add CSS transformations to block.": [
+            ""
+         ],
          "Custom CSS": [
             ""
          ],
          "Write custom CSS on each inserted blocks.": [
+            ""
+         ],
+         "Display": [
+            ""
+         ],
+         "Display / Hide blocks on different screen sizes.": [
+            ""
+         ],
+         "Attributes": [
+            ""
+         ],
+         "Insert custom HTML attributes with custom content.": [
             ""
          ],
          "Multiple": [
@@ -613,22 +621,125 @@
          "Block Name": [
             ""
          ],
+         "Upgrade Now": [
+            ""
+         ],
+         "Copied!": [
+            ""
+         ],
+         "Control": [
+            ""
+         ],
+         "Search Icon": [
+            ""
+         ],
+         "No icons found.": [
+            ""
+         ],
+         "Icon Picker": [
+            ""
+         ],
+         "Error loading block preview: %s": [
+            ""
+         ],
+         "Only a single <InnerBlocks /> component can be used per block. Multiple <InnerBlocks /> found inside block \"%s\".": [
+            ""
+         ],
+         "Lazy Blocks Pro": [
+            ""
+         ],
+         "Custom block collections and slug namespaces": [
+            ""
+         ],
+         "Controls Conditional Logic": [
+            ""
+         ],
+         "Panels and Dividers": [
+            ""
+         ],
+         "Posts, Taxonomy, User Controls": [
+            ""
+         ],
+         "Blocks Preloading": [
+            ""
+         ],
+         "SEO Enhancements": [
+            ""
+         ],
+         "And much more…": [
+            ""
+         ],
+         "Custom fields are not enabled for this post type. Enable \"custom-fields\" support to use this control.": [
+            ""
+         ],
+         "Learn how": [
+            ""
+         ],
          "Free Content": [
             ""
          ],
          "Block used for adding blocks inside it in cases when template locked from adding blocks.": [
             ""
          ],
+         "Some blocks on this page require attention before you can save.": [
+            ""
+         ],
+         "Validation failed. %d control require attention.": [
+            "",
+            "Validation failed. %d controls require attention."
+         ],
+         "Edit Block": [
+            ""
+         ],
+         "Remove post meta used by this block?": [
+            ""
+         ],
+         "This block created metadata that is still saved in your post.": [
+            ""
+         ],
+         "Would you like to remove any of these meta fields?": [
+            ""
+         ],
+         "Select post meta to remove:": [
+            ""
+         ],
+         "Remove selected Meta": [
+            ""
+         ],
+         "Cancel": [
+            ""
+         ],
+         "This control is required.": [
+            ""
+         ],
          "Alongside Text": [
             ""
          ],
-         "Displays text alongside the checkbox": [
+         "Checked by default": [
             ""
          ],
-         "Checked": [
+         "Unchecked by default": [
             ""
          ],
-         "Classic": [
+         "Allows you to select multiple values": [
+            ""
+         ],
+         "Output Format": [
+            ""
+         ],
+         "Allows you to change attribute output format": [
+            ""
+         ],
+         "Value": [
+            ""
+         ],
+         "Both (Array)": [
+            ""
+         ],
+         "Open Editor": [
+            ""
+         ],
+         "Save": [
             ""
          ],
          "Displays text alongside the color indicator": [
@@ -646,12 +757,6 @@
          "Display color palette with predefined colors": [
             ""
          ],
-         "Output Format": [
-            ""
-         ],
-         "Allows you to change attribute output format": [
-            ""
-         ],
          "Color": [
             ""
          ],
@@ -665,6 +770,9 @@
             ""
          ],
          "Select Time": [
+            ""
+         ],
+         "Reset": [
             ""
          ],
          "Date": [
@@ -698,6 +806,9 @@
             ""
          ],
          "Edit Gallery": [
+            ""
+         ],
+         "Clear the gallery": [
             ""
          ],
          "Medium": [
@@ -736,19 +847,13 @@
          "Allows you to reset selected option value to null": [
             ""
          ],
-         "Value": [
-            ""
-         ],
-         "Both (Array)": [
-            ""
-         ],
          "Row {{#}}": [
             ""
          ],
          "+ Add Row": [
             ""
          ],
-         "Toggle all": [
+         "Toggle all rows": [
             ""
          ],
          "Show Child Controls": [
@@ -756,6 +861,10 @@
          ],
          "Hide Child Controls": [
             ""
+         ],
+         "Show %d Child Control": [
+            "",
+            "Show %d Child Controls"
          ],
          "Row Label": [
             ""
@@ -778,9 +887,6 @@
          "Collapsed by Default": [
             ""
          ],
-         "Multiline": [
-            ""
-         ],
          "Choices": [
             ""
          ],
@@ -790,10 +896,10 @@
          "-- Select --": [
             ""
          ],
-         "Allows you to select multiple values": [
+         "Displays text alongside the toggle": [
             ""
          ],
-         "Displays text alongside the toggle": [
+         "Checked": [
             ""
          ],
          "Looks like this control does not exists.": [

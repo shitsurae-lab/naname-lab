@@ -45,7 +45,7 @@ trait Get {
 			'twitter' => [
 				'check_key'   => 'show_share_tw',
 				'title'       => __( 'Share on Twitter', 'arkhe-toolkit' ),
-				'href'        => 'https://twitter.com/share?',
+				'href'        => 'https://twitter.com/intent/tweet?',
 				'window_size' => 'height=400,width=600',
 				'querys'      => [
 					'url'  => $share_url,

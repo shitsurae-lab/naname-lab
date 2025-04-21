@@ -46,28 +46,40 @@ addFilter('lzb.editor.control.select.render', 'lzb.editor', (render, props) => {
 				onChange={(val) => {
 					props.onChange(val);
 				}}
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
 			/>
 		</BaseControl>
 	);
 });
 
 /**
- * Control value valid in editor.
+ * Required check.
+ *
+ * @param {Object} validationData
+ * @param {number} value
+ * @param {Object} data
+ *
+ * @return {Object} validation data.
  */
-addFilter(
-	'lzb.editor.control.select.isValueValid',
-	'lzb.editor',
-	(isValid, value, data) => {
-		if (data.allow_null === 'true') {
-			isValid = true;
-		}
-
-		return isValid;
+function validate(validationData, value, data) {
+	if (data.allow_null === 'true') {
+		return { valid: true };
 	}
-);
+
+	if (!value || (data.multiple === 'true' && !value.length)) {
+		return {
+			valid: false,
+			message: 'Please select an item in the list.',
+		};
+	}
+
+	return validationData;
+}
+addFilter('lzb.editor.control.select.validate', 'lzb.editor', validate);
 
 /**
- * Control settings render in constructor.
+ * Control settings render in block builder.
  */
 addFilter(
 	'lzb.constructor.control.select.settings',
@@ -102,6 +114,7 @@ addFilter(
 									allow_null: value ? 'true' : 'false',
 								})
 							}
+							__nextHasNoMarginBottom
 						/>
 					</BaseControl>
 				</PanelBody>
@@ -123,6 +136,7 @@ addFilter(
 									multiple: value ? 'true' : 'false',
 								})
 							}
+							__nextHasNoMarginBottom
 						/>
 					</BaseControl>
 				</PanelBody>

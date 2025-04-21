@@ -143,7 +143,7 @@ function wpcf7_normalize_newline( $text, $to = "\n" ) {
 
 	$nls = array( "\r\n", "\r", "\n" );
 
-	if ( ! in_array( $to, $nls ) ) {
+	if ( ! in_array( $to, $nls, true ) ) {
 		return $text;
 	}
 
@@ -191,19 +191,19 @@ function wpcf7_strip_newline( $text ) {
  * Canonicalizes text.
  *
  * @param string $text Input text.
- * @param string|array|object $args Options.
+ * @param string|array|object $options Options.
  * @return string Canonicalized text.
  */
-function wpcf7_canonicalize( $text, $args = '' ) {
+function wpcf7_canonicalize( $text, $options = '' ) {
 	// for back-compat
-	if ( is_string( $args ) and '' !== $args
-	and false === strpos( $args, '=' ) ) {
-		$args = array(
-			'strto' => $args,
+	if ( is_string( $options ) and '' !== $options
+	and false === strpos( $options, '=' ) ) {
+		$options = array(
+			'strto' => $options,
 		);
 	}
 
-	$args = wp_parse_args( $args, array(
+	$options = wp_parse_args( $options, array(
 		'strto' => 'lower',
 		'strip_separators' => false,
 	) );
@@ -215,7 +215,8 @@ function wpcf7_canonicalize( $text, $args = '' ) {
 
 		$is_utf8 = in_array(
 			$charset,
-			array( 'utf8', 'utf-8', 'UTF8', 'UTF-8' )
+			array( 'utf8', 'utf-8', 'UTF8', 'UTF-8' ),
+			true
 		);
 
 		if ( $is_utf8 ) {
@@ -229,19 +230,19 @@ function wpcf7_canonicalize( $text, $args = '' ) {
 		$text = mb_convert_kana( $text, 'asKV', $charset );
 	}
 
-	if ( $args['strip_separators'] ) {
+	if ( $options['strip_separators'] ) {
 		$text = preg_replace( '/[\r\n\t ]+/', '', $text );
 	} else {
 		$text = preg_replace( '/[\r\n\t ]+/', ' ', $text );
 	}
 
-	if ( 'lower' == $args['strto'] ) {
+	if ( 'lower' === $options['strto'] ) {
 		if ( function_exists( 'mb_strtolower' ) ) {
 			$text = mb_strtolower( $text, $charset );
 		} else {
 			$text = strtolower( $text );
 		}
-	} elseif ( 'upper' == $args['strto'] ) {
+	} elseif ( 'upper' === $options['strto'] ) {
 		if ( function_exists( 'mb_strtoupper' ) ) {
 			$text = mb_strtoupper( $text, $charset );
 		} else {
@@ -255,13 +256,21 @@ function wpcf7_canonicalize( $text, $args = '' ) {
 
 
 /**
+ * Returns a canonical keyword usable for a name or an ID purposes.
+ */
+function wpcf7_canonicalize_name( $text ) {
+	return preg_replace( '/[^0-9a-z]+/i', '-', $text );
+}
+
+
+/**
  * Sanitizes Contact Form 7's form unit-tag.
  *
  * @param string $tag Unit-tag.
  * @return string Sanitized unit-tag.
  */
 function wpcf7_sanitize_unit_tag( $tag ) {
-	$tag = preg_replace( '/[^A-Za-z0-9_-]/', '', $tag );
+	$tag = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $tag );
 	return $tag;
 }
 
@@ -274,6 +283,17 @@ function wpcf7_sanitize_unit_tag( $tag ) {
  */
 function wpcf7_antiscript_file_name( $filename ) {
 	$filename = wp_basename( $filename );
+
+	// Apply part of protection logic from sanitize_file_name().
+	$filename = str_replace(
+		array(
+			'?', '[', ']', '/', '\\', '=', '<', '>', ':', ';', ',', "'", '"',
+			'&', '$', '#', '*', '(', ')', '|', '~', '`', '!', '{', '}',
+			'%', '+', '’', '«', '»', '”', '“', chr( 0 )
+		),
+		'',
+		$filename
+	);
 
 	$filename = preg_replace( '/[\r\n\t -]+/', '-', $filename );
 	$filename = preg_replace( '/[\pC\pZ]+/iu', '', $filename );
@@ -289,7 +309,7 @@ function wpcf7_antiscript_file_name( $filename ) {
 	$filename = array_shift( $parts );
 	$extension = array_pop( $parts );
 
-	foreach ( (array) $parts as $part ) {
+	foreach ( $parts as $part ) {
 		if ( preg_match( $script_pattern, $part ) ) {
 			$filename .= '.' . $part . '_';
 		} else {
@@ -522,10 +542,16 @@ function wpcf7_format_atts( $atts ) {
 		}
 
 		static $boolean_attributes = array(
-			'checked', 'disabled', 'multiple', 'readonly', 'required', 'selected',
+			'checked',
+			'disabled',
+			'inert',
+			'multiple',
+			'readonly',
+			'required',
+			'selected',
 		);
 
-		if ( in_array( $name, $boolean_attributes ) and '' === $value ) {
+		if ( in_array( $name, $boolean_attributes, true ) and '' === $value ) {
 			$value = false;
 		}
 
@@ -549,4 +575,39 @@ function wpcf7_format_atts( $atts ) {
 	}
 
 	return trim( $output );
+}
+
+
+/**
+ * Strips surrounding whitespaces.
+ *
+ * @link https://contactform7.com/2024/07/13/consistent-handling-policy-of-surrounding-whitespaces/
+ *
+ * @param string|array $input Input text.
+ * @return string|array Output text.
+ */
+function wpcf7_strip_whitespaces( $input ) {
+	if ( is_array( $input ) ) {
+		return array_map( 'wpcf7_strip_whitespaces', $input );
+	}
+
+	// https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt
+	// https://tc39.es/ecma262/multipage/ecmascript-language-lexical-grammar.html
+	$whitespaces = '\x09-\x0D\x20\x85\xA0\x{1680}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}\x{FEFF}';
+
+	// Strip leading whitespaces
+	$input = preg_replace(
+		sprintf( '/^[%s]+/u', $whitespaces ),
+		'',
+		$input
+	);
+
+	// Strip trailing whitespaces
+	$input = preg_replace(
+		sprintf( '/[%s]+$/u', $whitespaces ),
+		'',
+		$input
+	);
+
+	return $input;
 }

@@ -11,16 +11,16 @@ trait Meta {
 	/**
 	 * meta保存時の nonceチェックなど
 	 */
-	public static function can_save_meta( $nonce = '' ) {
+	public static function can_save_meta( $nonce_action = '' ) {
 
 		// $_POSTチェック
-		if ( empty( $_POST ) || ! isset( $_POST[ $nonce ] ) ) return false;
+		if ( empty( $_POST ) || ! isset( $_POST['_ark_nonce'] ) ) return false;
 
 		// 自動保存時には保存しないように
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return false;
 
 		// nonceキーチェック
-		if ( ! wp_verify_nonce( $_POST[ $nonce ], $nonce ) ) return false;
+		if ( ! wp_verify_nonce( $_POST['_ark_nonce'], $nonce_action ) ) return false;
 
 		return true;
 	}
