@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,62 +27,62 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-// ==================
-// = Plugin Version =
-// ==================
-define( 'AI1WMUE_VERSION', '2.65' );
+if ( ! class_exists( 'Ai1wmve_File_Sorter' ) ) {
 
-// ===============
-// = Plugin Name =
-// ===============
-define( 'AI1WMUE_PLUGIN_NAME', 'all-in-one-wp-migration-unlimited-extension' );
+	class Ai1wmve_File_Sorter extends Ai1wmve_Array_Sorter {
 
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WMUE_LIB_PATH', AI1WMUE_PATH . DIRECTORY_SEPARATOR . 'lib' );
+		public static function by_date_asc( $date_key = 'date' ) {
+			return static::numeric_asc( $date_key );
+		}
 
-// ===================
-// = Controller Path =
-// ===================
-define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'controller' );
+		public static function by_date_desc( $date_key = 'date' ) {
+			return static::reverse( static::by_date_asc( $date_key ) );
+		}
 
-// ==============
-// = Model Path =
-// ==============
-define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
+		public static function by_type_desc( $type_key = 'type' ) {
+			return static::string_desc( $type_key );
+		}
 
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
+		public static function by_type_desc_name_asc( $name_key = 'name', $type_key = 'type' ) {
+			$sorted_type = static::by_type_desc( $type_key );
+			$sorted_name = static::string_asc( $name_key );
 
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
+			return function ( $a, $b ) use ( $sorted_type, $sorted_name ) {
+				$sorted_items = $sorted_type( $a, $b );
+				if ( $sorted_items !== 0 ) {
+					return $sorted_items;
+				}
 
-// =============
-// = View Path =
-// =============
-define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view' );
+				return $sorted_name( $a, $b );
+			};
+		}
 
-// ===============
-// = Vendor Path =
-// ===============
-define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
+		public static function by_type_desc_date_asc( $date_key = 'date', $type_key = 'type' ) {
+			$sorted_type = static::by_type_desc( $type_key );
+			$sorted_date = static::by_date_asc( $date_key );
 
-// ==================
-// = Retention Path =
-// ==================
-define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
+			return function ( $a, $b ) use ( $sorted_type, $sorted_date ) {
+				$sorted_items = $sorted_type( $a, $b );
+				if ( $sorted_items !== 0 ) {
+					return $sorted_items;
+				}
 
-// ===============================
-// = Minimal Base Plugin Version =
-// ===============================
-define( 'AI1WMUE_MIN_AI1WM_VERSION', '7.84' );
+				return $sorted_date( $a, $b );
+			};
+		}
 
-// ===============
-// = Purchase ID =
-// ===============
-define( 'AI1WMUE_PURCHASE_ID', '525b8c76-9c82-42fb-9246-a54236c6016f' );
+		public static function by_type_desc_date_desc( $date_key = 'date', $type_key = 'type' ) {
+			$sorted_type = static::by_type_desc( $type_key );
+			$sorted_date = static::by_date_desc( $date_key );
+
+			return function ( $a, $b ) use ( $sorted_type, $sorted_date ) {
+				$sorted_items = $sorted_type( $a, $b );
+				if ( $sorted_items !== 0 ) {
+					return $sorted_items;
+				}
+
+				return $sorted_date( $a, $b );
+			};
+		}
+	}
+}

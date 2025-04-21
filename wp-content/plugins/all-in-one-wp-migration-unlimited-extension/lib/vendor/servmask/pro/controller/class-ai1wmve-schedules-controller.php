@@ -42,13 +42,7 @@ if ( ! class_exists( 'Ai1wmve_Schedules_Controller' ) ) {
 					$events = new Ai1wmve_Schedule_Events();
 					$event  = $events->find_or_new( $event_id );
 
-					global $wpdb;
-
-					if ( empty( $wpdb->use_mysqli ) ) {
-						$mysql = new Ai1wm_Database_Mysql( $wpdb );
-					} else {
-						$mysql = new Ai1wm_Database_Mysqli( $wpdb );
-					}
+					$mysql = Ai1wm_Database_Utility::create_client();
 
 					// Include table prefixes
 					if ( ai1wm_table_prefix() ) {
@@ -60,11 +54,14 @@ if ( ! class_exists( 'Ai1wmve_Schedules_Controller' ) ) {
 						}
 					}
 
+					$incremental_storages = apply_filters( 'ai1wmve_incremental_storages', array() );
+
 					Ai1wm_Template::render(
 						'schedules/create-edit',
 						array(
-							'event'  => $event,
-							'tables' => $mysql->get_tables(),
+							'event'                => $event,
+							'tables'               => $mysql->get_tables(),
+							'incremental_storages' => $incremental_storages,
 						),
 						AI1WMVE_TEMPLATES_PATH
 					);
@@ -260,12 +257,15 @@ if ( ! class_exists( 'Ai1wmve_Schedules_Controller' ) ) {
 			}
 		}
 
-		public static function log_failed( $params ) {
+		public static function log_failed( $params, $exception ) {
 			if ( isset( $params['event_id'] ) ) {
 				$event_id = $params['event_id'];
 				$events   = new Ai1wmve_Schedule_Events();
 				if ( $event = $events->find( $event_id ) ) {
-					$message = isset( $params['error_message'] ) ? $params['error_message'] : __( 'Unknown cron error', AI1WM_PLUGIN_NAME );
+					$message = $exception->getMessage();
+					if ( empty( $message ) ) {
+						$message = __( 'Unknown cron error', AI1WM_PLUGIN_NAME );
+					}
 					$event->mark_failed( $message );
 				}
 			}

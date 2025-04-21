@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,62 +27,62 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-// ==================
-// = Plugin Version =
-// ==================
-define( 'AI1WMUE_VERSION', '2.65' );
+if ( ! class_exists( 'Ai1wmve_Array_Sorter' ) ) {
 
-// ===============
-// = Plugin Name =
-// ===============
-define( 'AI1WMUE_PLUGIN_NAME', 'all-in-one-wp-migration-unlimited-extension' );
+	class Ai1wmve_Array_Sorter {
 
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WMUE_LIB_PATH', AI1WMUE_PATH . DIRECTORY_SEPARATOR . 'lib' );
+		public static function string_asc( $key = null ) {
+			if ( is_null( $key ) ) {
+				return function ( $a, $b ) {
+					return strcasecmp( $a, $b );
+				};
+			}
 
-// ===================
-// = Controller Path =
-// ===================
-define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'controller' );
+			return static::on_key( $key, static::string_asc() );
+		}
 
-// ==============
-// = Model Path =
-// ==============
-define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
+		public static function string_desc( $key = null ) {
+			if ( is_null( $key ) ) {
+				return static::reverse( static::string_asc() );
+			}
 
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
+			return static::on_key( $key, static::string_desc() );
+		}
 
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
+		public static function numeric_asc( $key = null ) {
+			if ( is_null( $key ) ) {
+				return function ( $a, $b ) {
+					return $a < $b ? -1 : ( $a === $b ? 0 : 1 );
+				};
+			}
 
-// =============
-// = View Path =
-// =============
-define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view' );
+			return static::on_key( $key, static::numeric_asc() );
+		}
 
-// ===============
-// = Vendor Path =
-// ===============
-define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
+		public static function numeric_desc( $key = null ) {
+			if ( is_null( $key ) ) {
+				return static::reverse( static::numeric_asc() );
+			}
 
-// ==================
-// = Retention Path =
-// ==================
-define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
+			return static::on_key( $key, static::numeric_desc() );
+		}
 
-// ===============================
-// = Minimal Base Plugin Version =
-// ===============================
-define( 'AI1WMUE_MIN_AI1WM_VERSION', '7.84' );
+		public static function reverse( $comparator ) {
+			return function ( $a, $b ) use ( $comparator ) {
+				return $comparator( $b, $a );
+			};
+		}
 
-// ===============
-// = Purchase ID =
-// ===============
-define( 'AI1WMUE_PURCHASE_ID', '525b8c76-9c82-42fb-9246-a54236c6016f' );
+		public static function on_key( $key, $function ) {
+			return function ( $a, $b ) use ( $key, $function ) {
+				return $function( $a[ $key ], $b[ $key ] );
+			};
+		}
+
+		public static function sort( &$array, $comparator ) {
+			usort( $array, $comparator );
+
+			return $array;
+		}
+	}
+}

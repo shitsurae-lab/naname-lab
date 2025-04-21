@@ -30,7 +30,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 	class Ai1wmve_Schedule_Event {
 
-
 		const STATUS_ENABLED  = 'Enabled';
 		const STATUS_DISABLED = 'Disabled';
 
@@ -103,6 +102,18 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 		);
 
 		public function __construct( $data ) {
+			if ( ! is_array( $data ) ) {
+				throw new Ai1wmve_Schedules_Exception( __( 'Event data must be array', AI1WM_PLUGIN_NAME ) );
+			}
+
+			if ( empty( $data['event_id'] ) ) {
+				$data['event_id'] = time();
+			}
+
+			if ( empty( $data['storage'] ) ) {
+				$data['storage'] = 'file';
+			}
+
 			foreach ( $data as $name => $value ) {
 				if ( property_exists( $this, $name ) ) {
 					if ( method_exists( $this, $name ) ) {
@@ -219,53 +230,8 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			try {
 				$this->is_running = true;
 				$this->create_schedule();
-				$params = array(
-					'event_id'                => $this->event_id,
-					'secret_key'              => get_option( AI1WM_SECRET_KEY ),
-					$this->storage            => 1,
-					'options'                 => array(),
-					'event_retention_days'    => $this->retention['days'],
-					'event_retention_size'    => (int) $this->retention['total'] . trim( $this->retention['total_unit'] ),
-					'event_retention_backups' => $this->retention['backups'],
-				);
-				foreach ( $this->options as $option ) {
-					$params['options'][ $option ] = 1;
-				}
 
-				if ( $password = $this->password() ) {
-					$params['options']['encrypt_backups']  = 1;
-					$params['options']['encrypt_password'] = $password;
-				}
-
-				if ( ! empty( $this->excluded_files ) ) {
-					$params['options']['exclude_files'] = 1;
-					$params['excluded_files']           = $this->excluded_files;
-				}
-
-				if ( ! empty( $this->excluded_db_tables ) ) {
-					$params['options']['exclude_db_tables'] = 1;
-					$params['excluded_db_tables']           = $this->excluded_db_tables;
-				}
-
-				if ( $this->incremental ) {
-					$params['incremental'] = 1;
-				}
-
-				$blog_id = null;
-				if ( ! empty( $this->sites ) ) {
-					$params['options']['sites'] = $this->sites;
-					if ( count( $this->sites ) === 1 ) {
-						$blog_id = array_shift( $this->sites );
-					}
-				}
-
-				$params['archive'] = str_replace(
-					'.wpress',
-					sprintf( '-%s.wpress', $this->event_id ),
-					ai1wm_archive_file( $blog_id )
-				);
-
-				Ai1wm_Export_Controller::export( $params );
+				Ai1wm_Export_Controller::export( $this->params() );
 			} catch ( Exception $e ) {
 				$this->mark_failed( $e->getMessage() );
 			}
@@ -303,6 +269,10 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			/** @var \DateTime $cron_time */
 			$cron_time = date_create( $time, wp_timezone() );
 			$cron_time->setTime( intval( $this->schedule['hour'] ), intval( $this->schedule['minute'] ) );
+
+			if ( $this->schedule['interval'] === self::INTERVAL_MONTHLY && is_numeric( $this->schedule['day'] ) ) {
+				$cron_time->setDate( $cron_time->format( 'Y' ), $cron_time->format( 'm' ), $this->schedule['day'] );
+			}
 
 			while ( $cron_time < date_create() ) {
 				$cron_time->add( $this->get_interval() );
@@ -390,8 +360,9 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			add_filter( 'ai1wm_notification_ok_toggle', array( $this, 'is_success_notification_enabled' ) );
 			add_filter( 'ai1wm_notification_ok_email', array( $this, 'notification_email' ) );
 
-			$file_size = ai1wm_backup_size( $params );
-			if ( ! $file_size ) {
+			if ( is_file( ai1wm_backup_path( $params ) ) ) {
+				$file_size = ai1wm_backup_size( $params );
+			} else {
 				$file_size = ai1wm_archive_size( $params );
 			}
 
@@ -404,7 +375,7 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			}
 
 			Ai1wm_Notification::ok(
-				sprintf( __( '✅ Scheduled event has completed (%s)', AI1WM_PLUGIN_NAME ), parse_url( site_url(), PHP_URL_HOST ) . parse_url( site_url(), PHP_URL_PATH ) ),
+				sprintf( __( 'Scheduled event has completed (%s)', AI1WM_PLUGIN_NAME ), parse_url( site_url(), PHP_URL_HOST ) . parse_url( site_url(), PHP_URL_PATH ) ),
 				$notification
 			);
 		}
@@ -422,7 +393,7 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			}
 
 			Ai1wm_Notification::error(
-				sprintf( __( '❌ Scheduled event has failed (%s)', AI1WM_PLUGIN_NAME ), parse_url( site_url(), PHP_URL_HOST ) . parse_url( site_url(), PHP_URL_PATH ) ),
+				sprintf( __( 'Scheduled event has failed (%s)', AI1WM_PLUGIN_NAME ), parse_url( site_url(), PHP_URL_HOST ) . parse_url( site_url(), PHP_URL_PATH ) ),
 				$notification
 			);
 		}
@@ -449,7 +420,7 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 			return array_map(
 				function ( $log ) {
 					$log['id']            = $log['time'];
-					$log['time']          = date_i18n( 'd.m.Y', $log['time'] );
+					$log['time']          = date_i18n( 'Y-m-d H:i:s', $log['time'] );
 					$log['status_locale'] = __( $log['status'], AI1WM_PLUGIN_NAME );
 					$log['status_class']  = strtolower( $log['status'] );
 
@@ -466,6 +437,68 @@ if ( ! class_exists( 'Ai1wmve_Schedule_Event' ) ) {
 
 		public static function option_key( $option, $event_id ) {
 			return self::CRON_HOOK . '_' . $option . '_' . $event_id;
+		}
+
+		/**
+		 * @return array
+		 */
+		protected function params() {
+			$params = array(
+				'event_id'                => $this->event_id,
+				'secret_key'              => get_option( AI1WM_SECRET_KEY ),
+				$this->storage            => 1,
+				'options'                 => array(),
+				'event_retention_days'    => $this->retention['days'],
+				'event_retention_size'    => (int) $this->retention['total'] . trim( $this->retention['total_unit'] ),
+				'event_retention_backups' => $this->retention['backups'],
+			);
+			foreach ( $this->options as $option ) {
+				$params['options'][ $option ] = 1;
+			}
+
+			if ( $password = $this->password() ) {
+				$params['options']['encrypt_backups']  = 1;
+				$params['options']['encrypt_password'] = $password;
+			}
+
+			if ( ! empty( $this->excluded_files ) ) {
+				$params['options']['exclude_files'] = 1;
+				$params['excluded_files']           = $this->excluded_files;
+			}
+
+			if ( ! empty( $this->excluded_db_tables ) ) {
+				$params['options']['exclude_db_tables'] = 1;
+				$params['excluded_db_tables']           = $this->excluded_db_tables;
+			}
+
+			if ( $this->incremental ) {
+				$params['incremental'] = 1;
+			}
+
+			$blog_id = null;
+			if ( ! empty( $this->sites ) ) {
+				$params['options']['sites'] = $this->sites;
+				if ( count( $this->sites ) === 1 ) {
+					$blog_id = array_shift( $this->sites );
+				}
+			}
+
+			$params['archive'] = $this->archive( $blog_id );
+
+			return $params;
+		}
+
+		/**
+		 * @param $blog_id
+		 *
+		 * @return string
+		 */
+		protected function archive( $blog_id = null ) {
+			return str_replace(
+				'.wpress',
+				sprintf( '-%s.wpress', $this->event_id ),
+				ai1wm_archive_file( $blog_id )
+			);
 		}
 	}
 }

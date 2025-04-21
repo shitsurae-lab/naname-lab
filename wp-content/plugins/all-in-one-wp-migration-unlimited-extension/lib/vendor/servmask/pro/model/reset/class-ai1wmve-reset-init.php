@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2023 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,62 +27,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
 
-// ==================
-// = Plugin Version =
-// ==================
-define( 'AI1WMUE_VERSION', '2.65' );
+class Ai1wmve_Reset_Init {
 
-// ===============
-// = Plugin Name =
-// ===============
-define( 'AI1WMUE_PLUGIN_NAME', 'all-in-one-wp-migration-unlimited-extension' );
+	public static function execute( $params ) {
 
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WMUE_LIB_PATH', AI1WMUE_PATH . DIRECTORY_SEPARATOR . 'lib' );
+		// Set progress
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			WP_CLI::log( __( 'Reset in progress. This may take a few moments.', AI1WM_PLUGIN_NAME ) );
+		} else {
+			Ai1wm_Status::info( __( 'Your request is being processed. This may take a few moments. Please do not close this window or navigate away from this page while the reset is in progress.', AI1WM_PLUGIN_NAME ) );
+		}
 
-// ===================
-// = Controller Path =
-// ===================
-define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'controller' );
+		// Check if password is provided
+		if ( ! isset( $params['ai1wm_reset_password'] ) ) {
+			throw new Ai1wmve_Error_Exception( __( 'To start the reset process, please enter current user password.', AI1WM_PLUGIN_NAME ) );
+		}
 
-// ==============
-// = Model Path =
-// ==============
-define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
+		$user = wp_get_current_user();
 
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
+		// Check for password
+		if ( isset( $user->data->user_pass, $user->ID ) ) {
+			if ( wp_check_password( $params['ai1wm_reset_password'], $user->data->user_pass, $user->ID ) ) {
+				// If we don't reset DB, unset user's password
+				if ( ! isset( $params['ai1wm_reset_database'] ) ) {
+					unset( $params['ai1wm_reset_password'] );
+				}
 
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
+				return $params;
+			}
+		}
 
-// =============
-// = View Path =
-// =============
-define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view' );
-
-// ===============
-// = Vendor Path =
-// ===============
-define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
-
-// ==================
-// = Retention Path =
-// ==================
-define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
-
-// ===============================
-// = Minimal Base Plugin Version =
-// ===============================
-define( 'AI1WMUE_MIN_AI1WM_VERSION', '7.84' );
-
-// ===============
-// = Purchase ID =
-// ===============
-define( 'AI1WMUE_PURCHASE_ID', '525b8c76-9c82-42fb-9246-a54236c6016f' );
+		throw new Ai1wmve_Error_Exception( __( 'The entered password is not valid. Please ensure you\'re entering the correct password. It\'s essential for security reasons to verify your identity before making significant changes to your site.', AI1WM_PLUGIN_NAME ) );
+	}
+}
