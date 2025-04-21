@@ -117,19 +117,42 @@ class Ai1wmue_Main_Controller extends Ai1wmve_Main_Controller {
 	 * @return void
 	 */
 	public function ai1wm_notice() {
-		?>
-		<div class="error">
-			<p>
-				<?php
-				_e(
-					'Unlimited Extension requires <a href="https://wordpress.org/plugins/all-in-one-wp-migration/" target="_blank">All-in-One WP Migration plugin</a> to be activated. ' .
-					'<a href="https://help.servmask.com/knowledgebase/install-instructions-for-unlimited-extension/" target="_blank">Unlimited Extension install instructions</a>',
-					AI1WMUE_PLUGIN_NAME
-				);
-				?>
-			</p>
-		</div>
-		<?php
+		// Check if the base plugin is installed but not activated
+		if ( ai1wmue_is_base_plugin_installed() && ! ai1wmue_is_base_plugin_active() ) {
+			?>
+			<div class="error">
+				<p>
+					<?php
+					_e(
+						sprintf(
+							'Unlimited Extension requires All-in-One WP Migration plugin to be activated. <a href="%s">Activate Now</a>',
+							wp_nonce_url( 'plugins.php?action=activate&plugin=all-in-one-wp-migration/all-in-one-wp-migration.php', 'activate-plugin_all-in-one-wp-migration/all-in-one-wp-migration.php' )
+						),
+						AI1WMUE_PLUGIN_NAME
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		} elseif ( ! ai1wmue_is_base_plugin_installed() ) {
+			// Base plugin is not installed
+			?>
+			<div class="error">
+				<p>
+					<?php
+					_e(
+						sprintf(
+							'Unlimited Extension requires All-in-One WP Migration plugin to be installed. <a href="%s">Install Now</a> or <a href="%s" target="_blank">Download Manually</a>',
+							wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=all-in-one-wp-migration' ), 'install-plugin_all-in-one-wp-migration' ),
+							'https://wordpress.org/plugins/all-in-one-wp-migration/'
+						),
+						AI1WMUE_PLUGIN_NAME
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		}
 	}
 
 	/**
