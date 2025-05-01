@@ -133,7 +133,7 @@ body.pageOn .l-wrapper {
     #{$this}__text {
       width: fit-content;
       font-size: var(--font-xxl);
-      color: var(--color-desaturated-cyan);
+      color: #333;
     }
   }
 }
@@ -148,7 +148,8 @@ body.pageOn .l-wrapper {
   top: 0;
   left: 0;
   transform: scaleX(0);
-  background-color: var(--color-desaturated-cyan);
+  // background-image: var(--color-azur-lane);
+  background: var(--color-linear-deep-koamaru);
   &.loaded {
     animation-name: curtainAnime;
     animation-duration: 800ms; //カーテンの動き デフォルトは1.2s

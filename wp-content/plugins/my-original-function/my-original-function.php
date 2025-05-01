@@ -45,11 +45,14 @@ include_once(plugin_dir_path(__FILE__) . 'function/add_opening_interaction.php')
 include_once(plugin_dir_path(__FILE__) . 'function/insert_front_slider.php');
 
 //カスタム投稿タイプ等にメインビジュアルを挿入
-// include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
+include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
 
 
 //details・summaryでアコーディオン
 include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
+
+//固定ページの<main>配下にコンテンツを記述
+// include_once(plugin_dir_url(__FILE__) . 'function/insert_page.main.php');
 
 //contact form 7: お問い合わせ完了後に送信完了画面へ遷移
 include_once(plugin_dir_path(__FILE__) . 'function/insert_contact_form_7.php');

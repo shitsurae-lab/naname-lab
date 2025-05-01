@@ -4,7 +4,7 @@ $requirement: '.single';
   .p-sidebar {
     &__heading {
       margin-bottom: 16px;
-      .p-sidebar__update{
+      .p-sidebar__update {
         text-transform: uppercase;
         font-size: var(--font-xs);
         font-weight: 500;
@@ -14,8 +14,7 @@ $requirement: '.single';
         //color: var(--color-gainsboro);
         //font-size: var(--font-xs);
         font-size: var(--font-lg);
-        color: var(--color-weldon-blue);
-        font-family: 'Hind', sans-serif;
+        font-family: 'monserrat', sans-serif;
         letter-spacing: 0.05em;
         line-height: 1.5;
       }
@@ -34,7 +33,7 @@ $requirement: '.single';
       }
     }
     &__content {
-      color: var(--color-spindle);
+      color: var(--color-granite-gray);
       font-size: var(--font-md);
       @include mq(pc) {
         width: calc(100% - 20px);
@@ -73,11 +72,11 @@ $requirement: '.single';
         text-decoration: none;
         position: relative;
         padding-left: 12px;
-        color: var(--color-spindle);
+        color: var(--color-columbia-blue);
         font-size: var(--font-sm);
         font-weight: 500;
         color: transparent;
-        background: var(--color-philippine-silver);
+        background: var(--color-columbia-blue);
         opacity: 0.8;
         transition: background 0.8s ease-out;
         background-clip: text;
@@ -87,7 +86,7 @@ $requirement: '.single';
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: var(--color-philippine-silver);
+          background: var(--color-columbia-blue);
           opacity: 0.8;
           transition: background 0.8s ease-out;
           position: absolute;
@@ -123,7 +122,7 @@ $requirement: '.single';
     #{$this}__contentInner {
       padding: 16px 8px 16px 8px;
       position: relative;
-      background: rgb(128 153 156 / 80%);
+      background: var(--color-columbia-blue);
       border-radius: var(--space-xs);
       &::after {
         position: absolute;
@@ -133,7 +132,7 @@ $requirement: '.single';
         left: 16px;
         border-top-color: rgba(0, 0, 0, 0);
         border-right-color: rgba(0, 0, 0, 0);
-        border-bottom-color: rgb(128 153 156 / 80%);
+        border-bottom-color: var(--color-columbia-blue);
         border-left-color: rgba(0, 0, 0, 0);
         border-style: solid;
         border-width: 8px 6px;
@@ -141,7 +140,7 @@ $requirement: '.single';
     }
     ul {
       display: grid;
-      grid-template-rows: repeat(3, 1fr);
+      // grid-template-rows: repeat(3, 1fr);
       grid-template-columns: repeat(2, auto);
       width: max-content;
       gap: 8px;

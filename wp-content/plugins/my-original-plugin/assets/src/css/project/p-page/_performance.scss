@@ -36,7 +36,7 @@ $u-space--lg: 60px;
       position: absolute;
       width: 32px;
       height: 1px;
-      background: var(--color-weldon-blue);
+      background: var(--color-cadet);
       left: 0;
       bottom: 0;
     }
@@ -44,12 +44,12 @@ $u-space--lg: 60px;
       font-size: $font-size;
       font-family: 'Allura', cursive;
       text-transform: capitalize;
-      color: var(--color-weldon-blue);
+      color: var(--color-cadet);
       line-height: 1;
     }
     h2 {
       font-weight: 400;
-      color: var(--color-weldon-blue);
+      color: var(--color-cadet);
       font-size: var(--font-xs);
       line-height: 1;
       margin-right: auto;
@@ -112,7 +112,7 @@ $u-space--lg: 60px;
           position: absolute;
           width: 32px;
           height: 1px;
-          background: var(--color-weldon-blue);
+          background: var(--color-cadet);
           left: 0;
           bottom: 0;
         }
@@ -120,12 +120,12 @@ $u-space--lg: 60px;
           font-size: var(--font-hero--md);
           font-family: 'Allura', cursive;
           text-transform: capitalize;
-          color: var(--color-weldon-blue);
+          color: var(--color-cadet);
           line-height: 1;
         }
         #{$this}__heading--main {
           font-weight: 400;
-          color: var(--color-weldon-blue);
+          color: var(--color-cadet);
           font-size: var(--font-xs);
           line-height: 1;
           margin-right: auto;

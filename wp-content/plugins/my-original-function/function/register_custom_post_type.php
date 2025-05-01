@@ -19,7 +19,7 @@ function register_custom_post_type()
       'show_in_nav_menus' => true,
       'show_in_menu' => true,
       'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
-      //'has_archive' => true, //投稿した記事の一覧ページ作成
+      'has_archive' => false, //投稿した記事の一覧ページ作成
       'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
       'menu_icon' => 'dashicons-hammer',
       'supports' => array( //記事編集画面に表示する項目

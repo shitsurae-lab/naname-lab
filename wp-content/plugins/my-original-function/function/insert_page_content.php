@@ -164,20 +164,19 @@ function add_custom_content_start_message()
         </div>
         <div class="p-index-mv__box u-gutter">
           <div class="p-index-mv__title c-heading">
-            <h1 class="c-heading__txt u-uppercase u-hero-title--main">Making Things</h1>
+            <h1 class="c-heading__txt u-hero-title--main">Portfolio</h1>
           </div>
-          <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20">From Design to Code, with Empathy</div>
-          <p class="p-index-mv__desc">設計からデザイン、フロントエンド実装まで。<br>
-            日々の試行錯誤を重ねて、伝わる・使いやすいものづくりを目指しています。</p>
+          <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
+          <p class="p-index-mv__desc">課題に寄り添い、戦略からデザイン、実装まで一貫して対応。<br>ユーザー視点と技術的な品質を両立し、成果に直結するWeb制作を行っています。</p>
         </div>
-        <!-- <div class="p-index-mv__scrolldown u-color-secondary">
+        <div class="p-index-mv__scrolldown u-color-secondary">
           <div class="c-scrolldown">
             <div class="c-scrolldown--txt u-uppercase">scroll down</div>
           </div>
           <div class="c-scrolldown--line">
             <div class="c-line"></div>
           </div>
-        </div> -->
+        </div>
       </div>
     </section>
   <?php
@@ -189,24 +188,24 @@ function add_custom_content_start_message()
     <section class="p-page-mv">
       <div class="p-page-mv__inner">
         <div class="p-page-mv__image">
-          <img src="<?php echo esc_url($media_url . '/2025/04/works.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像">
+          <img src="<?php echo esc_url($media_url . '/2025/04/works-three-quarter.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像">
         </div>
         <div class="p-page-mv__box u-gutter">
           <div class="p-page-mv__title c-heading">
             <h1 class="c-heading__txt u-uppercase">work</h1>
           </div>
-          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase">Design & Code with Purpose</div>
-          <p class="p-page-mv__desc">課題に寄り添い、戦略からデザイン、実装まで<br>一貫して対応。<br>
+          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
+          <p class="p-page-mv__desc">課題に寄り添い、戦略からデザイン、実装まで一貫して対応。<br>
             ユーザー視点と技術的な品質を両立し、成果に直結するWeb制作を行っています。</p>
         </div>
-        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
+        <div class="p-page-mv__scrolldown u-color-secondary">
           <div class="c-scrolldown">
             <div class="c-scrolldown--txt u-uppercase">scroll down</div>
           </div>
           <div class="c-scrolldown--line">
             <div class="c-line"></div>
           </div>
-        </div> -->
+        </div>
       </div>
     </section>
   <?php
@@ -219,47 +218,19 @@ function add_custom_content_start_message()
         </div>
         <div class="p-page-mv__box u-gutter">
           <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-hero-title--main">about</h1>
+            <h1 class="c-heading__txt u-uppercase">about</h1>
           </div>
-          <div class="p-page-mv__subtitle u-montserrat u-uppercase c-en u-bold u-mb-20">Crafting Better Web Experiences</div>
-          <p class="p-page-mv__desc"> UI設計から実装まで、一貫して関わるものづくりを。<br>
-            技術と視点を掛け合わせ、使いやすさと心地よさをかたちにします。</p>
+          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
+          <p class="p-page-mv__desc">Webデザイナーとして、UI/UX設計からフロントエンド実装までを手がけています。<br>特に、JavaScriptとCSSを活用したインタラクションデザインや、Figmaを用いたプロトタイピングに注力。<br>最新の技術を積極的に学び、実務へ活かすことを大切にしています。<br>経験を重ねながら、より直感的で魅力的なWeb体験を提供することを目指しています。</p>
         </div>
-        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
+        <div class="p-page-mv__scrolldown u-color-secondary">
           <div class="c-scrolldown">
             <div class="c-scrolldown--txt u-uppercase">scroll down</div>
           </div>
           <div class="c-scrolldown--line">
             <div class="c-line"></div>
           </div>
-        </div> -->
-      </div>
-    </section>
-  <?php
-  } elseif (is_page('contact')) {
-  ?>
-    <section class="p-page-mv">
-      <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <figure><img src="<?php echo esc_url($media_url . '/2025/05/contact-three-quarter@2x.webp') ?>" alt="お問い合わせ"></figure>
         </div>
-        <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-hero-title--main">Contact</h1>
-          </div>
-          <div class="p-page-mv__subtitle u-montserrat u-uppercase c-en u-bold u-mb-20">Open to New Collaborations</div>
-          <p class="p-page-mv__desc">制作のご相談、実装パートナーとしてのご依頼など、<br>
-            ご興味をお持ちいただけましたら、お気軽にご連絡ください。<br>
-            小さなことからでも、ご相談をお待ちしております。</p>
-        </div>
-        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div> -->
       </div>
     </section>
 <?php

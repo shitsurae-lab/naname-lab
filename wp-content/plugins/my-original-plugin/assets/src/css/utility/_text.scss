@@ -15,3 +15,12 @@
 .u-montserrat {
   font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
 }
+
+.u-hero-title--main {
+  font-size: var(--font-hero--md);
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  // color: var(--color-deep-koamaru);
+  line-height: 1;
+  text-transform: uppercase;
+}

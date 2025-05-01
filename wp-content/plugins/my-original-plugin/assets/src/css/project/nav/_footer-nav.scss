@@ -3,7 +3,7 @@
 .l-footer {
   $this: &;
   // background-image: var(--color-moonlit-asteroid);
-  background: var(--color-light-slate-gray);
+  background: var(--color-deep-koamaru);
   &__foot {
     padding-top: calc(3.75rem + 10px);
     @include mq(tablet) {

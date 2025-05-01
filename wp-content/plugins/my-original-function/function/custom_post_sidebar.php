@@ -30,17 +30,7 @@ function custom_post_sidebar()
 
 
       <!-- ここはタグかもしれない...参考)WordPress カテゴリー･タグの取得まとめ  https://www.bossraku.com/blog/327/ 無理しないこと get_the_term_list()を使うらしい -->
-      <div class="p-sidebar__share">
-        <!-- <p class="u-en u-uppercase">share</p> -->
-        <ul>
-          <li>
-            <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title_attribute(); ?>" ; target="_blank"><img src="<?php echo esc_url($icon); ?>" alt=""></a>
-          </li>
-          <li>
-            <a href="http://www.facebook.com/share.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo esc_url($icon_fb); ?>" alt=""></a>
-          </li>
-        </ul>
-      </div>
+
     </div>
     <!-- END //."p-leftside -->
   <?php
@@ -52,11 +42,11 @@ function custom_post_sidebar()
       <div class="p-sidebar__heading">
         <p class="p-sidebar__update">Last update</p>
         <p class="p-sidebar__date">
-            <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
           <?php echo esc_html($mod_date); ?>
         </p>
       </div>
-      <details class="p-tag__details js-details">
+      <details class="p-tag__details -sidebar js-details">
         <summary class="js-summary"><span class="p-summary__inner">keyword<span class="p-summary__icon p-tag__icon"></span></span></summary>
 
         <div class="p-tag__details__content js-content">
@@ -78,19 +68,7 @@ function custom_post_sidebar()
           </div>
         </div>
       </details>
-      <div class="p-sidebar__share">
-        <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
-        <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
-        <!-- <p class="u-en u-uppercase">share</p> -->
-        <ul>
-          <li>
-            <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title_attribute(); ?>" ; target="_blank"><img src="<?php echo esc_url($icon); ?>" alt=""></a>
-          </li>
-          <li>
-            <a href="http://www.facebook.com/share.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo esc_url($icon_fb); ?>" alt=""></a>
-          </li>
-        </ul>
-      </div>
+
     </div>
     <!-- END //.p-sidebar__content -->
 
@@ -126,19 +104,7 @@ function custom_post_sidebar()
             <?php endif; ?>
           <?php endforeach; ?>
         </ul>
-        <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
-          <!-- <p class="u-en u-uppercase">share</p> -->
-          <ul>
-            <li>
-              <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title_attribute(); ?>" ; target="_blank"><img src="<?php echo esc_url($icon); ?>" alt=""></a>
-            </li>
-            <li>
-              <a href="http://www.facebook.com/share.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo esc_url($icon_fb); ?>" alt=""></a>
-            </li>
-          </ul>
-        </div>
+
       </div>
       <!-- END //.p-sidebar__content -->
 
@@ -154,8 +120,8 @@ function custom_post_sidebar()
         <div class="p-sidebar__heading">
           <p class="p-sidebar__update">Last update</p>
           <p class="p-sidebar__date">
-          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
-          <?php echo esc_html($mod_date); ?>
+            <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+            <?php echo esc_html($mod_date); ?>
           </p>
           <!-- 見出しに$term-nameがない場合はfalse(非表示)に: 条件分岐 -->
           <ul>
@@ -174,19 +140,7 @@ function custom_post_sidebar()
 
         </div>
 
-        <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
-          <!-- <p class="u-en u-uppercase">share</p> -->
-          <ul>
-            <li>
-              <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title_attribute(); ?>" ; target="_blank"><img src="<?php echo esc_url($icon); ?>" alt=""></a>
-            </li>
-            <li>
-              <a href="http://www.facebook.com/share.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo esc_url($icon_fb); ?>" alt=""></a>
-            </li>
-          </ul>
-        </div>
+
       </div>
       <!-- END //.p-sidebar__content -->
 
@@ -201,8 +155,8 @@ function custom_post_sidebar()
         <div class="p-sidebar__heading">
           <p class="p-sidebar__update">Last update</p>
           <p class="p-sidebar__date">
-          <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
-          <?php echo esc_html($mod_date); ?>
+            <?php $mod_date = get_the_modified_date('Y.m.d'); ?>
+            <?php echo esc_html($mod_date); ?>
           </p>
           <ul>
             <?php foreach ($terms as $term) : ?>
@@ -218,19 +172,7 @@ function custom_post_sidebar()
             <?php endforeach; ?>
           </ul>
         </div>
-        <div class="p-sidebar__share">
-          <?php $icon = plugins_url('my-original-plugin/assets/dist/media/twitter-pewter-blue-min.svg'); ?>
-          <?php $icon_fb = plugins_url('my-original-plugin/assets/dist/media/facebook-pewter-blue-min.svg'); ?>
-          <!-- <p class="u-en u-uppercase">share</p> -->
-          <ul>
-            <li>
-              <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title_attribute(); ?>" ; target="_blank"><img src="<?php echo esc_url($icon); ?>" alt=""></a>
-            </li>
-            <li>
-              <a href="http://www.facebook.com/share.php?u=<?php the_permalink(); ?>" target="_blank"><img src="<?php echo esc_url($icon_fb); ?>" alt=""></a>
-            </li>
-          </ul>
-        </div>
+
       </div>
       <!-- END //.p-sidebar__content -->
 

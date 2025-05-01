@@ -33,4 +33,34 @@ const intersection = () => {
   });
   //console.log('Intersection Observer APIを読み込んでます');
 };
-export default intersection;
+// export default intersection;
+
+const timeline = () => {
+  const timelineItems = document.querySelectorAll('.js-timeline-item');
+
+  // Intersection Observerの設定
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // indexによって遅延させる
+          setTimeout(() => {
+            entry.target.classList.add('is-show');
+          }, index * 400); // 1個ずつ400ms遅らせて表示(デフォルトは200ms)
+
+          observer.unobserve(entry.target); // 一度表示されたら監視を解除
+        }
+      });
+    },
+    {
+      threshold: 0.1, // 画面に10%でも入ったら反応
+    }
+  );
+
+  // 全アイテムを監視開始
+  timelineItems.forEach((item) => {
+    observer.observe(item);
+  });
+};
+
+export { intersection, timeline };

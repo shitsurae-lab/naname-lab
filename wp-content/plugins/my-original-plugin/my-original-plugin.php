@@ -84,7 +84,7 @@ function add_google_fonts()
   wp_register_style(
     'googleFonts',
     // 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,600&display=swap'
-    'https://fonts.googleapis.com/css?family=Allura|Hind:wght@300;400|Montserrat:wght@300;400&display=swap',
+    'https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap',
     false,
     '1.0'
   );

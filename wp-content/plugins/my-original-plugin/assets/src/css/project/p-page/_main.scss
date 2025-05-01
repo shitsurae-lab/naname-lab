@@ -1,0 +1,418 @@
+@use '../../global' as *;
+
+// Breakpoint設定
+$breakpoint: (
+  mobile: 'not all and (min-width: 768px)',
+  tablet: '(min-width: 768px)',
+  pc: '(min-width: 1000px)',
+  wide: '(min-width: 1200px)',
+);
+
+// Mixin
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.p-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* ================================
+  Timeline
+================================ */
+
+.p-timeline {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 20px;
+  padding: 0;
+  @include mq(tablet) {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    display: none;
+    top: 8px;
+    left: 8px;
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+    transform: translateY(0);
+    transform: translate(-50%, 0);
+    z-index: -1; //タイムラインの縦線の背景にラインを配置
+    @include mq(tablet) {
+      display: block;
+      position: absolute;
+    }
+  }
+
+  @include mq(tablet) {
+    // タブレット以上でも基本1カラム維持
+    column-gap: 0;
+  }
+}
+
+/* ================================
+  Timeline Item
+================================ */
+
+.p-timeline__item {
+  width: 100%;
+  padding-left: 0;
+  text-align: left;
+  // opacity: 0; // 初期状態で非表示
+  // transform: translateY(20px);
+  // transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  // 表示されたらアニメーション
+  // &.is-show {
+  //   opacity: 1;
+  //   transform: translateY(0);
+  // }
+  @include mq(tablet) {
+    // タブレット時の微調整があればここに
+    position: relative;
+    padding-left: 40px;
+  }
+  @include mq(pc) {
+    // PC時の微調整があればここに
+    padding-left: 60px;
+  }
+  &::before {
+    display: none;
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    top: 0;
+    border-radius: 20px;
+    left: 0;
+    transform: translate(15%, 45%);
+    @include mq(tablet) {
+      display: block;
+    }
+  }
+}
+
+/* ================================
+  Timeline Item Content
+================================ */
+
+.p-timeline__content {
+  // background-color: #fff;
+  // border: 1px solid #ddd;
+  // padding: 15px;
+  // border-radius: 5px;
+  // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0; // 初期状態で非表示
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  // 表示されたらアニメーション
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  //   @include mq(tablet) {
+  //     padding: 20px;
+  //   }
+
+  //   @include mq(pc) {
+  //     padding: 24px;
+  //   }
+}
+
+/* ================================
+  Timeline Item Heading
+================================ */
+.p-timeline__heading {
+  margin-bottom: 10px;
+  @include mq(tablet) {
+    margin-bottom: 16px;
+  }
+  &.-mb40 {
+    margin-bottom: 40px;
+  }
+  > h2 {
+    font-size: 20px;
+  }
+}
+/* ================================
+  Card
+================================ */
+.p-timeline__card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  @include mq(tablet) {
+    padding: 20px;
+  }
+
+  @include mq(pc) {
+    padding: 24px;
+  }
+}
+
+/* ================================
+  Table
+================================ */
+.p-skill {
+  $this: &;
+  &-table {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 14px;
+    border-top: none;
+    border-right: none;
+    th {
+      font-weight: 400;
+      // padding: 24px 12px 24px 0;
+      padding: 1rem 0.75rem 1rem 0 !important;
+      border-bottom: 1px solid #eaeaea;
+      text-align: right;
+      text-align: left;
+      width: 100%;
+      display: block;
+      background: transparent;
+      border-left: none;
+      @include mq(pc) {
+        padding: 1.5rem 0.75rem 1.5rem 0 !important;
+        width: 10rem;
+        display: table-cell;
+      }
+    }
+
+    td {
+      padding: 1rem 0 1rem 0.75rem !important;
+      border-bottom: 1px solid #eaeaea;
+      width: 100%;
+      display: block;
+      border-left: none;
+      @include mq(pc) {
+        padding: 1.5rem 0 1.5rem 0.75rem !important;
+        width: calc(100% - 10rem);
+        display: table-cell;
+      }
+      #{$this}-title {
+        position: relative;
+        font-weight: 400;
+        margin: 0 0 5px;
+        line-height: 1.7;
+        @include mq(tablet) {
+          padding-left: 1.2rem;
+          &::before {
+            content: '';
+            margin: 0;
+            width: 10px;
+            height: 1px;
+            background: #232323;
+            display: block;
+            position: absolute;
+            top: 12px;
+            left: 0;
+          }
+        }
+      }
+      .slash {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.25rem;
+        row-gap: 8px;
+        @include mq(tablet) {
+          flex-direction: row;
+          row-gap: 0px;
+        }
+        > li {
+          list-style-type: none;
+          position: relative;
+          padding-left: 1.2rem;
+
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            margin: 0;
+            width: 10px;
+            height: 1px;
+            background: #232323;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+          }
+
+          @include mq(tablet) {
+            padding-left: 0;
+            margin: 0;
+            &:not(:first-child) {
+              &::before {
+                content: '/';
+                display: inline-block;
+                margin: 0 0.5rem;
+              }
+            }
+            &::after {
+              display: none;
+            }
+          }
+        }
+        // END li
+      }
+      // END ul.slash
+    }
+  }
+}
+/* ================================
+  Timeline Date
+================================ */
+
+.p-timeline__date {
+  font-size: 14px;
+
+  @include mq(tablet) {
+    font-size: 18px;
+  }
+
+  @include mq(pc) {
+    font-size: 20px;
+  }
+}
+
+.p-strengths__list {
+  width: 98%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  @include mq(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  @include mq(pc) {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+}
+.p-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  width: 88%;
+  margin: 0 auto;
+  padding: 24px 16px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+  backdrop-filter: blur(40px);
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  display: grid;
+  place-items: center;
+  border: solid 2px transparent;
+  background-clip: padding-box;
+  box-shadow: rgba(0, 0, 0, 0.16) 2px 4px 12px 0px;
+  opacity: 0; // 初期状態で非表示
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  @include mq(tablet) {
+    width: 100%;
+  }
+  // @include mq(pc) {
+  //   width: calc((100% - 20px) / 3);
+  // }
+  // 表示されたらアニメーション
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .p-card__image {
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+    opacity: 0.8;
+    transform: translateY(20px);
+    .c-image {
+      width: 50%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #333333;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .p-card__content {
+      h3 {
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        margin: 20px 0 16px;
+        line-height: 1.1em;
+
+        span {
+          font-size: 12px;
+          font-weight: 300;
+          text-transform: initial;
+        }
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+    }
+    .p-card__chevron {
+      width: 16px;
+      height: 16px;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 16px;
+      transition: 0.5s;
+      opacity: 1;
+    }
+  }
+
+  .sci {
+    // transform: translateY(70px);
+    p {
+      line-height: 1.7;
+      font-size: 14px;
+      transform: translateY(0);
+      opacity: 0;
+      transition: 0.5s;
+      transition-delay: calc(0.1s * var(--i));
+    }
+  }
+
+  &:hover .p-card__image {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  &:hover .p-card__chevron {
+    opacity: 0;
+    //transform: translateY(-36px);
+  }
+  &:hover .sci p {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}

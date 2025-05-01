@@ -3,6 +3,10 @@ import '../css/style.scss';
 import gnav from './gnav';
 gnav();
 
+// Beer CSS
+// import 'beercss/scoped';
+// import 'material-dynamic-colors';
+
 //オープニングアニメーション
 import openingAnime from './openingAnime';
 openingAnime();
@@ -14,17 +18,29 @@ headerAnimation();
 import addSelector from './addSelector';
 addSelector();
 
-//Intersection Observe
-import intersection from './intersection';
-intersection();
+//Intersection Observer - 1
+import { intersection, timeline } from './intersection';
+document.addEventListener('DOMContentLoaded', () => {
+  intersection();
+  timeline();
+});
 
 //-- START GSAP & ScrollTrigger
 
-import { myScroll, myTimeline, myTimeline2 } from './myScrollTrigger';
+import {
+  initScrollAnimations,
+  myScroll,
+  myTimeline,
+  myTimeline2,
+} from './myScrollTrigger';
 
-myScroll();
-myTimeline();
-myTimeline2();
+// DOMContentLoaded 後に初期化関数を呼び出す
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollAnimations();
+  myScroll();
+  myTimeline();
+  myTimeline2();
+});
 
 // const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
 //   const arr = [hoge, fuga, piyo];
@@ -47,6 +63,7 @@ import CreateWave from './CreateWave';
 CreateWave();
 
 //--- START: Swiper ---
+//myswiperは関数が指定されているわけではないので()による関数の実行はしない
 import {
   swiperMini,
   swiperGallery,
@@ -56,8 +73,6 @@ import {
   infinite_loopSlider,
   postSwiper,
 } from './myswiper';
-
-//-- myswiperは関数が指定されているわけではないので()による関数の実行はしない
 
 //-- START summary・detailアニメーション
 import accordionAnim from './accordion';

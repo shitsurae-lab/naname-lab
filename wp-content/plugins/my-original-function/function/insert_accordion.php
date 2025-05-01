@@ -13,7 +13,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('achievement_tag', $args); //タクソノミースラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">
@@ -37,7 +37,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('info_tag'); //タクソノミースラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">
@@ -66,7 +66,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('achievement_tag', $args); //タクソノミー(タグ)スラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">
@@ -94,7 +94,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('info_tag', $args); //タクソノミースラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">
@@ -124,7 +124,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('achievement_tag', $args); //タクソノミースラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">
@@ -152,7 +152,7 @@ function insert_accordion()
     $taxonomy_terms = get_terms('info_tag', $args); //タクソノミースラッグを指定
     if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
       echo '<details class="p-tag__details js-details">
-      <summary class="p-tag__summary js-summary">keywords<span class="p-tag__icon"></span>
+      <summary class="p-tag__summary js-summary">キーワードで絞り込み<span class="p-tag__icon"></span>
       </summary>
       <div class="p-tag__content js-content">
       <div class="p-tag__content__inner">

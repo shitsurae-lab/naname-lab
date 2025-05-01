@@ -17,6 +17,7 @@
   justify-content: space-between;
   flex-direction: column-reverse;
   row-gap: 40px;
+  padding: 0 var(--ark-padding--container) var(--ark-padding--container);
   @include mq(pc) {
     display: flex;
     flex-wrap: wrap;

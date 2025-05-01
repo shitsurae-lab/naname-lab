@@ -64,8 +64,8 @@
   //Min28px Max 40px
   --font-hero: clamp(1.75rem, 1.4091rem + 1.4545vw, 2.5rem);
 
-  //Min40px Max 48px
-  --font-hero--md: clamp(2.5rem, 2.2727rem + 0.9697vw, 3rem);
+  //Min36px Max 64px
+  --font-hero--md: clamp(36px, 5vw, 48px);
 
   //Min 40px Max 72px
   --font-hero--lg: clamp(2.5rem, 1.5909rem + 3.8788vw, 4.5rem);
@@ -116,6 +116,9 @@
   --color-picton: #5ea0e0;
   --color-spindle: #b6bdc7;
   --color-smalt: #0f238c;
+  --color-indigo: #2c2261;
+  --color-deep-koamaru: #2e276e;
+  --color-columbia-blue: #d2d8eb;
   --color-viking: #41afcd;
   --color-golden-yellow: #ffe600;
   --color-tangerine-yellow: #ffcd00;
@@ -129,8 +132,11 @@
   --color-cadet: #5a6b6d; //weldon-blueより2段階黒(shades)寄り
   --color-cinereous: #9c8380;
   --color-antiflash: #f2f5f5;
-  --color-gainsboro: #dbdbde;
+  --color-gainsboro: #dedede;
   --color-cadet-gray: #8aa5a8;
+  --color-ube: #8a87cd;
+  --color-deep-blue: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  --color-azur-lane: linear-gradient(120deg, #7f7fd5, #86a8e7);
 
   //Text Color
   --color-text-primary: #333333;
@@ -212,4 +218,10 @@
     #2a5298 100%
   );
   --color-linear-royal-golden: linear-gradient(0deg, #ffe384 0%, #5570ce 100%);
+  --color-linear-deep-koamaru: linear-gradient(
+    120deg,
+    #2e276e 0%,
+    #6461dc 50%,
+    #7989ec 100%
+  );
 }

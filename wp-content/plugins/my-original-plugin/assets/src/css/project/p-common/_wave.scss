@@ -4,7 +4,9 @@
   $image-sp: '../media/wave-sp.png',
   $image-pc: '../media/wave.png',
   $height-sp: min(48px, 12vw),
-  $height-pc: min(90px, 6vw)
+  $height-pc: min(90px, 6vw),
+  $transY-sp: -48px,
+  $transY-pc: -80px
 ) {
   position: absolute;
   background: $bg;
@@ -14,13 +16,16 @@
   overflow: hidden;
   z-index: 2;
   margin-top: -1px;
+  transform: translateY($transY-sp);
   @include mq(tablet) {
     height: $height-pc;
+    transform: translateY($transY-pc);
   }
 
   &__container {
     width: 100%;
-    height: calc(100% + 10px);
+    height: 100%;
+    // height: calc(100% + 10px);
     background-image: url($image-sp);
     background-size: 50%;
     animation: waves_move 20s linear infinite;
@@ -52,12 +57,16 @@
   .l-footer__foot {
     .p-wave {
       @include mx-wave(
-        $bg: var(--ark-color--gray),
-        $image-sp: '../media/wave-sp-slate.png',
-        $image-pc: '../media/wave-slate.png',
+        $bg: transparent,
+        $image-sp: '../media/wave-sp@2x.webp',
+        $image-pc: '../media/wave@2x.webp',
         $height-sp: min(56px, 12vw),
         $height-pc: min(90px, 6vw)
       );
+      transform: translateY(-48px);
+      @include mq(tablet) {
+        transform: translateY(-80px);
+      }
     }
   }
 }
@@ -65,9 +74,9 @@
 .l-footer__foot {
   .p-wave {
     @include mx-wave(
-      $bg: var(--ark-color--bg),
-      $image-sp: '../media/wave-sp-slate.png',
-      $image-pc: '../media/wave-slate.png',
+      $bg: transparent,
+      $image-sp: '../media/wave-sp@2x.webp',
+      $image-pc: '../media/wave@2x.webp',
       $height-sp: min(56px, 12vw),
       $height-pc: min(90px, 6vw)
     );

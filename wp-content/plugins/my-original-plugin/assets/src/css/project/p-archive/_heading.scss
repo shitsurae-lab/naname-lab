@@ -10,20 +10,22 @@ $category: 'cat';
         letter-spacing: 0.05em;
         font-weight: 400;
         font-size: var(--font-lg);
+        line-height: 1.5;
         &::before {
           content: 'category';
           display: block;
           font-size: var(--font-xxs);
           font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
           position: absolute;
           top: 50%;
           left: 0;
           transform: translateY(-50%);
-          letter-spacing: 0.125em;
+          letter-spacing: 0.05em;
           color: #ffffff;
           text-transform: uppercase;
-          padding: 0.4em 0.6em;
-          background: var(--color-weldon-blue);
+          padding: 0.6em 0.64em;
+          background: var(--color-deep-koamaru);
         }
       }
     }
@@ -54,7 +56,7 @@ $category: 'cat';
           color: #ffffff;
           text-transform: uppercase;
           padding: 0.4em 0.6em;
-          background: var(--color-weldon-blue);
+          background: var(--color-cadet);
         }
       }
     }
