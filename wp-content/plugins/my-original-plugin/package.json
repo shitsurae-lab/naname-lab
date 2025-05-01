@@ -37,5 +37,9 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "beercss": "^3.10.8",
+    "material-dynamic-colors": "^1.1.2"
+  }
 }
