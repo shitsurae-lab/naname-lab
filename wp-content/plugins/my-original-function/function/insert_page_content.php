@@ -90,16 +90,7 @@ function custom_main_visual()
     $uc_term_slug = strtoupper($term_slug);
     $term_name = $term->name;
   ?>
-    <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">アーカイブページ</span></div>
-        <!-- <?php //var_dump($term_name);
-              ?> -->
-      </div>
-    </section>
+
 
   <?php elseif (is_singular() && !is_front_page()) :
     // ### 投稿ページ / 固定ページ
@@ -116,14 +107,7 @@ function custom_main_visual()
     $post_title = get_the_title();
 
   ?>
-    <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo (esc_html(get_title())); ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
-      </div>
-    </section>
+
   <?php
   endif;
 }
@@ -137,14 +121,7 @@ function insert_before_breadcrumb()
     $cp_slug = get_query_var('post_type');
     $uc_cp_slug = strtoupper($cp_slug);
   ?>
-    <!-- <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
-      </div>
-    </section> -->
+
 
   <?php
   endif;
@@ -156,83 +133,14 @@ function add_custom_content_start_message()
 {
   $media_url = wp_upload_dir()['baseurl'];
   if (is_front_page()) {
-  ?>
-    <section class="p-index-mv">
-      <div class="p-index-mv__inner">
-        <div class="p-index-mv__image">
-          <img src="<?php echo esc_url($media_url . '/2025/04/main-visual.svg') ?>" alt="Toshiyuki Kurashimaのメインビジュアル">
-        </div>
-        <div class="p-index-mv__box u-gutter">
-          <div class="p-index-mv__title c-heading">
-            <h1 class="c-heading__txt u-hero-title--main">Portfolio</h1>
-          </div>
-          <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
-          <p class="p-index-mv__desc">課題に寄り添い、戦略からデザイン、実装まで一貫して対応。<br>ユーザー視点と技術的な品質を両立し、成果に直結するWeb制作を行っています。</p>
-        </div>
-        <div class="p-index-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  <?php
-
   } elseif (is_tax('achievement_cat', 'wordpress')) {
-    //WordPressタームのメインビジュアルが入る予定
   } elseif (is_page('achievement_cat')) {
   ?>
-    <section class="p-page-mv">
-      <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <img src="<?php echo esc_url($media_url . '/2025/04/works-three-quarter.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像">
-        </div>
-        <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-uppercase">work</h1>
-          </div>
-          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
-          <p class="p-page-mv__desc">課題に寄り添い、戦略からデザイン、実装まで一貫して対応。<br>
-            ユーザー視点と技術的な品質を両立し、成果に直結するWeb制作を行っています。</p>
-        </div>
-        <div class="p-page-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+
   <?php
   } elseif (is_page('about')) {
   ?>
-    <section class="p-page-mv">
-      <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <figure><img src="<?php echo esc_url($media_url . '/2025/04/about-2-square-three-quarter.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像"></figure>
-        </div>
-        <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-uppercase">about</h1>
-          </div>
-          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20">Making design more accessible</div>
-          <p class="p-page-mv__desc">Webデザイナーとして、UI/UX設計からフロントエンド実装までを手がけています。<br>特に、JavaScriptとCSSを活用したインタラクションデザインや、Figmaを用いたプロトタイピングに注力。<br>最新の技術を積極的に学び、実務へ活かすことを大切にしています。<br>経験を重ねながら、より直感的で魅力的なWeb体験を提供することを目指しています。</p>
-        </div>
-        <div class="p-page-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 <?php
   }
 }
