@@ -47,9 +47,6 @@
     @include mq(pc) {
       padding-top: 40px;
     }
-    #{$this}__subtitle {
-      // color: var(--color-cadet);
-    }
   }
   &__scrolldown {
     // display: grid;
