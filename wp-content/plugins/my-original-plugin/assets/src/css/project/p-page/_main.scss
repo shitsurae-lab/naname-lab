@@ -345,7 +345,8 @@ $breakpoint: (
     opacity: 0.8;
     transform: translateY(20px);
     .c-image {
-      width: 50%;
+      // width: 50%;
+      width: clamp(140px, 50%, 180px);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       overflow: hidden;
