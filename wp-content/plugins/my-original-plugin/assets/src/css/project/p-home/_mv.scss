@@ -3,10 +3,16 @@
 .p-index-section {
   width: 100vw;
   margin: 0 calc(50% - 50vw);
-  height: 100svh;
+  height: 100vh;
   position: relative;
   // color: #fff;
   color: var(--color-granite-gray);
+  @include mq(tablet) {
+    height: 64vh;
+  }
+  @include mq(pc) {
+    height: 100vh;
+  }
 }
 
 .p-index-section__inner {
@@ -76,26 +82,31 @@
   &__inner {
     width: 98%;
     margin: 0 auto;
+    height: 56vh;
     padding: 0 var(--ark-padding--container);
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr;
     @include mq(tablet) {
       width: 100%;
-      margin: 0 auto;
       max-width: 744px;
+      margin: 0 auto;
+      height: 40vh;
       grid-template-rows: 1fr;
       grid-template-columns: repeat(2, 1fr);
     }
     @include mq(pc) {
       width: 100%;
       max-width: 1440px;
+      height: min(80vh, 100vh);
       margin: 0 auto;
       grid-template-rows: 1fr;
       grid-template-columns: 1fr 2fr;
     }
   }
   &__image {
+    display: grid;
+    align-items: center;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     @include mq(tablet) {
@@ -104,9 +115,13 @@
     }
     @include mq(pc) {
     }
+    img {
+      display: block;
+    }
   }
   &__box {
-    padding-top: 20px;
+    display: grid;
+    align-items: center;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
     @include mq(tablet) {
@@ -114,9 +129,6 @@
       grid-row: 1 / -1;
     }
     @include mq(pc) {
-      padding-top: 40px;
-    }
-    #{$this}__subtitle {
     }
   }
   &__scrolldown {

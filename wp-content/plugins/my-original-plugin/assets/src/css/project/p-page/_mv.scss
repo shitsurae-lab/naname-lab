@@ -7,14 +7,16 @@
   &__inner {
     width: 98%;
     margin: 0 auto;
+    height: 56vh;
     padding: 0 var(--ark-padding--container);
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr;
     @include mq(tablet) {
       width: 100%;
-      margin: 0 auto;
       max-width: 744px;
+      margin: 0 auto;
+      height: 40vh;
       grid-template-rows: 1fr;
       grid-template-columns: repeat(2, 1fr);
     }
@@ -22,6 +24,7 @@
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
+      height: min(80vh, 100vh);
       grid-template-rows: 1fr;
       grid-template-columns: 1fr 2fr;
     }
@@ -29,25 +32,41 @@
   &__image {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
+    display: grid;
+    place-items: center;
     @include mq(tablet) {
       grid-column: 2 / -1;
       grid-row: 1 / -1;
     }
     @include mq(pc) {
     }
+    img {
+      display: block;
+    }
+    &.-contact {
+      img {
+        width: 88%;
+        margin: 0 auto;
+      }
+    }
   }
   &__box {
-    padding-top: 20px;
+    // padding-top: 20px;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
+    display: grid;
+    align-items: center;
     @include mq(tablet) {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
     }
     @include mq(pc) {
-      padding-top: 40px;
+      // padding-top: 40px;
     }
   }
+  // &__content {
+
+  // }
   &__scrolldown {
     // display: grid;
     // justify-items: center;

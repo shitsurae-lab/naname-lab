@@ -66,19 +66,8 @@ function custom_main_visual()
     $uc_term_name = strtoupper($term_name);
     $cp_slug = get_query_var('post_type');
     $uc_cp_slug = strtoupper($cp_slug);
-    // $uploads_baseurl = wp_upload_dir()['baseurl'];
-?>
-    <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">カスタム投稿アーカイブ</span></div>
-      </div>
-    </section>
+  // $uploads_baseurl = wp_upload_dir()['baseurl'];
 
-
-  <?php
   elseif (is_archive()) :
     // ### アーカイブページ
     $uploads_baseurl = wp_upload_dir()['baseurl'];
@@ -89,19 +78,7 @@ function custom_main_visual()
     $term_desc = $term->description; //②タームディスクリプション
     $uc_term_slug = strtoupper($term_slug);
     $term_name = $term->name;
-  ?>
-    <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_term_slug; ?></span><span class="p-mv__catch__span">アーカイブページ</span></div>
-        <!-- <?php //var_dump($term_name);
-              ?> -->
-      </div>
-    </section>
-
-  <?php elseif (is_singular() && !is_front_page()) :
+  elseif (is_singular() && !is_front_page()) :
     // ### 投稿ページ / 固定ページ
     $uploads_baseurl = wp_upload_dir()['baseurl'];
     //カテゴリ・タグ・タクソミーアーカイブでタームスラッグを取得する(カテゴリ・タグ・タクソミーアーカイブ共通)
@@ -115,16 +92,6 @@ function custom_main_visual()
     $uc_slug = strtoupper($slug);
     $post_title = get_the_title();
 
-  ?>
-    <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo (esc_html(get_title())); ?></span><span class="p-mv__catch__span">by naname lab...固定</span></div>
-      </div>
-    </section>
-  <?php
   endif;
 }
 // add_action('arkhe_after_header', 'custom_main_visual');
@@ -136,17 +103,6 @@ function insert_before_breadcrumb()
     // カスタム投稿タイプからスラッグを取得
     $cp_slug = get_query_var('post_type');
     $uc_cp_slug = strtoupper($cp_slug);
-  ?>
-    <!-- <section class="l-mv">
-      <div class="p-mv l-container">
-        <div class="p-mv__container">
-          <div id="particles-js"></div>
-        </div>
-        <div class="p-mv__catch"><span class="p-mv__catch__span"><?php echo $uc_cp_slug; ?></span><span class="p-mv__catch__span">by naname lab.</span></div>
-      </div>
-    </section> -->
-
-  <?php
   endif;
 }
 //add_action('arkhe_start_content', 'insert_before_breadcrumb', 10);
@@ -156,21 +112,31 @@ function add_custom_content_start_message()
 {
   $media_url = wp_upload_dir()['baseurl'];
   if (is_front_page()) {
-  ?>
+    $front_page_id = get_option('page_on_front'); //フロントページとして設定された固定ページ
+    if ($front_page_id) {
+      $mv_title = get_field('mv_title', $front_page_id);
+      $mv_subtitle = get_field('mv_subtitle', $front_page_id);
+      $mv_desc = get_field('mv_desc', $front_page_id);
+      $eyecatch_url = get_the_post_thumbnail_url($front_page_id);
+      $alt_text = 'Toshiyuki Kurashima | ' .  get_the_title($front_page_id);
+    }
+?>
     <section class="p-index-mv">
       <div class="p-index-mv__inner">
         <div class="p-index-mv__image">
-          <img src="<?php echo esc_url($media_url . '/2025/04/main-visual.svg') ?>" alt="Toshiyuki Kurashimaのメインビジュアル">
+          <img src="<?php echo esc_url($eyecatch_url) ?>" alt="<?php echo esc_html($alt_text); ?>">
         </div>
         <div class="p-index-mv__box u-gutter">
-          <div class="p-index-mv__title c-heading">
-            <h1 class="c-heading__txt u-uppercase u-hero-title--main">Making Things</h1>
+          <div class="p-index-mv__content">
+            <div class="p-index-mv__title c-hero-heading">
+              <h1 class="c-hero-heading--main u-uppercase"><?php echo (esc_html($mv_title)); ?></h1>
+            </div>
+            <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase"><?php echo esc_html($mv_subtitle); ?></div>
+            <p class="p-index-mv__desc"><?php echo nl2br(esc_html($mv_desc)); ?></p>
           </div>
-          <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20">From Design to Code, with Empathy</div>
-          <p class="p-index-mv__desc">設計からデザイン、フロントエンド実装まで。<br>
-            日々の試行錯誤を重ねて、伝わる・使いやすいものづくりを目指しています。</p>
+          <!-- END p-page-mv__content -->
         </div>
-        <!-- <div class="p-index-mv__scrolldown u-color-secondary">
+        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
           <div class="c-scrolldown">
             <div class="c-scrolldown--txt u-uppercase">scroll down</div>
           </div>
@@ -182,75 +148,35 @@ function add_custom_content_start_message()
     </section>
   <?php
 
-  } elseif (is_tax('achievement_cat', 'wordpress')) {
-    //WordPressタームのメインビジュアルが入る予定
-  } elseif (is_page('achievement_cat')) {
+  } elseif (is_page(array('achievement_cat', 'about', 'contact'))) {
+    $page_slugs = array('achievement_cat', 'about', 'contact');
+    $current_slug = get_post_field('post_name');
+    if (in_array($current_slug, $page_slugs)) {
+      $page = get_page_by_path($current_slug);
+      if ($page) {
+        $page_id = $page->id;
+        $mv_title = get_field('mv_title', $page_id);
+        $mv_subtitle = get_field('mv_subtitle', $page_id);
+        $mv_desc = get_field('mv_desc', $page_id);
+        $eyecatch_url = get_the_post_thumbnail_url();
+        $alt_text = 'Toshiyuki Kurashima | ' .  get_the_title($page_id);
+      }
+    }
   ?>
     <section class="p-page-mv">
       <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <img src="<?php echo esc_url($media_url . '/2025/04/works.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像">
+        <div class="p-page-mv__image -<?php echo esc_attr($current_slug); ?>">
+          <img src="<?php echo esc_url($eyecatch_url) ?>" alt="<?php echo esc_html($alt_text); ?>">
         </div>
         <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-uppercase">work</h1>
+          <div class="p-page-mv__content">
+            <div class="p-page-mv__title c-hero-heading">
+              <h1 class="c-hero-heading--main u-uppercase"><?php echo (esc_html($mv_title)); ?></h1>
+            </div>
+            <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase"><?php echo esc_html($mv_subtitle); ?></div>
+            <p class="p-page-mv__desc"><?php echo nl2br(esc_html($mv_desc)); ?></p>
           </div>
-          <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase">Design & Code with Purpose</div>
-          <p class="p-page-mv__desc">課題に寄り添い、戦略からデザイン、実装まで<br>一貫して対応。<br>
-            ユーザー視点と技術的な品質を両立し、成果に直結するWeb制作を行っています。</p>
-        </div>
-        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div> -->
-      </div>
-    </section>
-  <?php
-  } elseif (is_page('about')) {
-  ?>
-    <section class="p-page-mv">
-      <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <figure><img src="<?php echo esc_url($media_url . '/2025/04/about-2-square-three-quarter.svg') ?>" alt="ポートフォリオサイト | 実績のヒーロー画像"></figure>
-        </div>
-        <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-hero-title--main">about</h1>
-          </div>
-          <div class="p-page-mv__subtitle u-montserrat u-uppercase c-en u-bold u-mb-20">Crafting Better Web Experiences</div>
-          <p class="p-page-mv__desc"> UI設計から実装まで、一貫して関わるものづくりを。<br>
-            技術と視点を掛け合わせ、使いやすさと心地よさをかたちにします。</p>
-        </div>
-        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
-          <div class="c-scrolldown">
-            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
-          </div>
-          <div class="c-scrolldown--line">
-            <div class="c-line"></div>
-          </div>
-        </div> -->
-      </div>
-    </section>
-  <?php
-  } elseif (is_page('contact')) {
-  ?>
-    <section class="p-page-mv">
-      <div class="p-page-mv__inner">
-        <div class="p-page-mv__image">
-          <figure><img src="<?php echo esc_url($media_url . '/2025/05/contact-three-quarter@2x.webp') ?>" alt="お問い合わせ"></figure>
-        </div>
-        <div class="p-page-mv__box u-gutter">
-          <div class="p-page-mv__title c-heading">
-            <h1 class="c-heading__txt u-hero-title--main">Contact</h1>
-          </div>
-          <div class="p-page-mv__subtitle u-montserrat u-uppercase c-en u-bold u-mb-20">Open to New Collaborations</div>
-          <p class="p-page-mv__desc">制作のご相談、実装パートナーとしてのご依頼など、<br>
-            ご興味をお持ちいただけましたら、お気軽にご連絡ください。<br>
-            小さなことからでも、ご相談をお待ちしております。</p>
+          <!-- END p-page-mv__content -->
         </div>
         <!-- <div class="p-page-mv__scrolldown u-color-secondary">
           <div class="c-scrolldown">
@@ -263,5 +189,8 @@ function add_custom_content_start_message()
       </div>
     </section>
 <?php
+  } elseif (is_tax('achievement_cat', 'wordpress')) {
+    //WordPressタームのメインビジュアルが入る予定
+    //} elseif (is_page('achievement_cat')) {
   }
 }
