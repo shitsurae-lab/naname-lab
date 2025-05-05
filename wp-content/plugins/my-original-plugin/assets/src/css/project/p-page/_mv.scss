@@ -5,17 +5,33 @@
   $line-height: 60px;
   $line-height-abs: -60px;
   position: relative;
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url('../media/blob-01.svg');
-    background-repeat: no-repeat;
-    width: calc(100% / 3);
-    aspect-ratio: 16 / 9;
-    z-index: -1;
+  @include mq(tablet) {
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url('../media/blob-01.svg');
+      background-repeat: no-repeat;
+      width: calc(100% / 2);
+      aspect-ratio: 16 / 9;
+      z-index: -1;
+    }
+  }
+  @include mq(pc) {
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url('../media/blob-01.svg');
+      background-repeat: no-repeat;
+      width: calc(100% / 3);
+      aspect-ratio: 16 / 9;
+      z-index: -1;
+    }
   }
   &__inner {
     width: 98%;
