@@ -76,16 +76,16 @@ module.exports = {
           // },
         ],
       },
-      // {
-      //   test: /\.svg/,
-      //   type: 'asset/inline',
-      //   generator: {
-      //     dataUrl: (content) => {
-      //       content = content.toString();
-      //       return svgToMiniDataURI(content);
-      //     },
-      //   },
-      // },
+      {
+        test: /\.svg/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: (content) => {
+            content = content.toString();
+            return svgToMiniDataURI(content);
+          },
+        },
+      },
     ],
   },
 
