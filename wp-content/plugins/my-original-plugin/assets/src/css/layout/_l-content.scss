@@ -32,9 +32,9 @@
   .l-content__body {
     margin: 2rem auto;
     padding: 0 8px;
-    @include mq(tablet) {
-      padding: 0 var(--ark-padding--container) var(--ark-padding--container);
-    }
+    // @include mq(tablet) {
+    //   padding: 0 var(--ark-padding--container) var(--ark-padding--container);
+    // }
   }
 }
 
