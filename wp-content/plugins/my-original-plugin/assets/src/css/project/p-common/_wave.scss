@@ -50,39 +50,6 @@
   }
 }
 
-/* - COMMON - */
-/* フッター */
-//トップページ
-.home {
-  .l-footer__foot {
-    .p-wave {
-      @include mx-wave(
-        $bg: transparent,
-        $image-sp: '../media/wave-sp@2x.webp',
-        $image-pc: '../media/wave@2x.webp',
-        $height-sp: min(56px, 12vw),
-        $height-pc: min(90px, 6vw)
-      );
-      transform: translateY(-48px);
-      @include mq(tablet) {
-        transform: translateY(-80px);
-      }
-    }
-  }
-}
-
-.l-footer__foot {
-  .p-wave {
-    @include mx-wave(
-      $bg: transparent,
-      $image-sp: '../media/wave-sp@2x.webp',
-      $image-pc: '../media/wave@2x.webp',
-      $height-sp: min(56px, 12vw),
-      $height-pc: min(90px, 6vw)
-    );
-  }
-}
-
 /* 固定ページ */
 //トップページ
 .p-front__content {
@@ -126,18 +93,3 @@
     }
   }
 }
-// .p-index--intro {
-//   .p-wave {
-//     @include mx-wave();
-//   }
-// }
-
-// .p-index--gallery {
-//   .p-wave {
-//     @include mx-wave(
-//       $bg: var(--ark-color--gray),
-//       $image-sp: '../media/wave-sp-wh.png',
-//       $image-pc: '../media/wave-wh.png'
-//     );
-//   }
-// }
