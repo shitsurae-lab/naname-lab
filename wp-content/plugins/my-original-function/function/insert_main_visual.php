@@ -129,7 +129,7 @@ function add_custom_content_start_message()
         <div class="p-index-mv__box u-gutter">
           <div class="p-index-mv__content">
             <div class="p-index-mv__title c-hero-heading">
-              <div class="c-hero-heading--main u-uppercase"><?php echo (esc_html($mv_title)); ?></div>
+              <div class="c-hero-heading--main u-uppercase"><?php echo nl2br(esc_html($mv_title)); ?></div>
             </div>
             <div class="p-index-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase"><?php echo esc_html($mv_subtitle); ?></div>
             <p class="p-index-mv__desc"><?php echo nl2br(esc_html($mv_desc)); ?></p>
@@ -171,7 +171,7 @@ function add_custom_content_start_message()
         <div class="p-page-mv__box u-gutter">
           <div class="p-page-mv__content">
             <div class="p-page-mv__title c-hero-heading">
-              <h1 class="c-hero-heading--main u-uppercase"><?php echo (esc_html($mv_title)); ?></h1>
+              <h1 class="c-hero-heading--main u-uppercase"><?php echo nl2br(esc_html($mv_title)); ?></h1>
             </div>
             <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase"><?php echo esc_html($mv_subtitle); ?></div>
             <p class="p-page-mv__desc"><?php echo nl2br(esc_html($mv_desc)); ?></p>
