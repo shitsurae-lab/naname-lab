@@ -2,12 +2,20 @@
 
 //固定ページタイトル&サブタイトル
 .c-pageTitle {
-  &__main {
-    // text-align: left;
-    // letter-spacing: 0.1em;
-  }
   &__sub--custom {
     font-size: 0.9rem;
     font-weight: 400;
+  }
+}
+.c-hero-heading {
+  width: fit-content;
+  &--main {
+    font-size: var(--font-hero--md);
+    display: inline-block;
+    line-height: 1.1;
+    letter-spacing: 0em;
+    color: transparent;
+    text-shadow: -2px -2px 0 var(--color-granite-gray);
+    -webkit-text-stroke: 1px var(--color-granite-gray);
   }
 }
