@@ -11,6 +11,12 @@
   padding-left: var(--ark-padding--container, 0);
   padding-right: var(--ark-padding--container, 0);
 }
+/* 投稿ページ・固定ページ共通 */
+body:not(.home) .l-content {
+  background: var(--color-cultured);
+  padding: var(--ark-padding--container) var(--ark-padding--container);
+}
+
 /* 投稿ページ */
 .single-achievement {
   .l-content > .l-content__body {
