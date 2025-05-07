@@ -188,9 +188,48 @@ function add_custom_content_start_message()
         </div> -->
       </div>
     </section>
-<?php
-  } elseif (is_tax('achievement_cat', 'wordpress')) {
+  <?php
+  } elseif (is_tax()) {
     //WordPressタームのメインビジュアルが入る予定
-    //} elseif (is_page('achievement_cat')) {
+    $current_term = get_queried_object();
+    if ($current_term && isset($current_term->taxonomy)) {
+      $term_slug = $current_term->slug;
+      $term = $current_term;
+      $term_id = $term->term_id;
+      $mv_title = get_field('mv_title', 'term_' . $term_id);
+      $mv_subtitle = get_field('mv_subtitle', 'term_' . $term_id);
+      $mv_desc = get_field('mv_desc', 'term_' . $term_id);
+      $mv_hero_image_url = get_field('term_hero_image', 'term_' . $term_id);
+      $mv_hero_image_alt = get_field('term_hero_image_alt', 'term_' . $term_id);
+      // var_dump($term);
+      // var_dump($mv_hero_image_alt);
+    }
+  ?>
+    <section class="p-page-mv">
+      <div class="p-page-mv__inner">
+        <div class="p-page-mv__image -<?php echo esc_attr($term_slug); ?>">
+          <img src="<?php echo esc_url($mv_hero_image_url) ?>" alt="<?php echo esc_html($mv_hero_image_alt); ?>">
+        </div>
+        <div class="p-page-mv__box u-gutter">
+          <div class="p-page-mv__content">
+            <div class="p-page-mv__title c-hero-heading">
+              <h1 class="c-hero-heading--main u-montserrat u-font--500 u-uppercase"><?php echo nl2br(esc_html($mv_title)); ?></h1>
+            </div>
+            <div class="p-page-mv__subtitle u-color-primary c-en u-bold u-mb-20 u-uppercase"><?php echo esc_html($mv_subtitle); ?></div>
+            <p class="p-page-mv__desc"><?php echo nl2br(esc_html($mv_desc)); ?></p>
+          </div>
+          <!-- END p-page-mv__content -->
+        </div>
+        <!-- <div class="p-page-mv__scrolldown u-color-secondary">
+          <div class="c-scrolldown">
+            <div class="c-scrolldown--txt u-uppercase">scroll down</div>
+          </div>
+          <div class="c-scrolldown--line">
+            <div class="c-line"></div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+<?php
   }
 }
