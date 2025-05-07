@@ -1,12 +1,13 @@
 @use '../global' as *;
 .l-header {
   $this: &;
-  background: rgba(255 255 255 / 80%);
+  // background: rgba(255 255 255 / 80%);
   background: transparent; //overwrite
-  box-shadow: 0 4px 8px -3px rgba(18, 18, 18, 0.06);
+  // box-shadow: 0 4px 8px -3px rgba(18, 18, 18, 0.06);
   box-shadow: none; //overwrite
   height: auto;
-  position: relative;
+  // position: relative;
+  position: fixed; //overwrite
   top: 0;
   transition: transform 0.4s ease-out, background 0.4s ease-out,
     height 0.4s ease-out;
