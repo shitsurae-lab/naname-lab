@@ -5,6 +5,7 @@
   $line-height: 60px;
   $line-height-abs: -60px;
   position: relative;
+  top: 0;
   @include mq(tablet) {
     &::before {
       content: '';
