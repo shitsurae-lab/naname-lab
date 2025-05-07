@@ -2,7 +2,9 @@
 .l-header {
   $this: &;
   background: rgba(255 255 255 / 80%);
+  background: transparent; //overwrite
   box-shadow: 0 4px 8px -3px rgba(18, 18, 18, 0.06);
+  box-shadow: none; //overwrite
   height: auto;
   position: relative;
   top: 0;
@@ -45,8 +47,8 @@
   &__logo {
     justify-content: flex-start;
     @include mq(pc) {
-      &[data-logo='left'] {
-      }
+      // &[data-logo='left'] {
+      // }
     }
   }
 }
