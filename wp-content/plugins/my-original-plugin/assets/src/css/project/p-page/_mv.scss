@@ -72,7 +72,14 @@
     img {
       display: block;
     }
-    &.-contact {
+    &.-contact,
+    &.-woocommerce,
+    &.-wordpress,
+    &.-e-commerce,
+    &.-website-building,
+    &.-design,
+    &.-landing-page,
+    &.-static-site {
       img {
         width: 88%;
         margin: 0 auto;
