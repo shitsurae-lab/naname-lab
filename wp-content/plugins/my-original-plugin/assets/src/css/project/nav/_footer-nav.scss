@@ -58,6 +58,11 @@
       @include mq(tablet) {
         text-align: left;
       }
+      a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
   #{$this}__copyright {
