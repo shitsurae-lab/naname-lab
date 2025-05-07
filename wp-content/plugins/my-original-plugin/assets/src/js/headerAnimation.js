@@ -15,7 +15,8 @@ const headerAnimation = () => {
         header.classList.add('js-fixed');
       } else {
         header.classList.remove('js-head-animation');
-        header.classList.add('js-fixed');
+        // header.classList.add('js-fixed');
+        header.classList.remove('js-fixed');
       }
       offset = lastPosition;
     } else {
