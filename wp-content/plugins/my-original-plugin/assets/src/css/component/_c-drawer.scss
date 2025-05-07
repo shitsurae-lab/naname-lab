@@ -1,0 +1,7 @@
+@use '../global/' as *;
+.c-drawerNav {
+  &__a {
+    display: flex;
+    flex-direction: column;
+  }
+}

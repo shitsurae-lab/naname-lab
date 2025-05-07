@@ -75,6 +75,8 @@ include_once(plugin_dir_path(__FILE__) . 'function/removed_protected.php');
 
 include_once(plugin_dir_path(__FILE__) . 'function/add_page_class.php');
 
+include_once(plugin_dir_path(__FILE__) . 'function/filter_nav_menu.php');
+
 //カスタム投稿タイプ等にメインビジュアルを挿入 フィルターフック
 // include_once(plugin_dir_path(__FILE__) . 'function/filter_main_visual.php');
 
