@@ -65,9 +65,11 @@
     grid-row: 1 / 2;
     display: grid;
     place-items: center;
+    padding-top: 72px;
     @include mq(tablet) {
       grid-column: 2 / -1;
       grid-row: 1 / -1;
+      padding-top: 0;
     }
     @include mq(pc) {
     }
