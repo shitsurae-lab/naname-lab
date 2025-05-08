@@ -15,11 +15,14 @@
   z-index: 199999;
   &.js-fixed {
     position: fixed;
-    background: rgba(255 255 255 / 60%);
+    // background: rgba(255 255 255 / 60%);
     height: auto;
   }
   &.js-head-animation {
     transform: translateY(-100%);
+  }
+  &.js-show-bg {
+    background: rgba(255, 255, 255, 0.8);
   }
   &[data-btns='rl-rr'] {
     #{$this}__body {

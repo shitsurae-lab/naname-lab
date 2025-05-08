@@ -9,27 +9,30 @@ const headerAnimation = () => {
   //「lastposition」===スクロールの値
 
   const onScroll = () => {
-    if (lastPosition > height) {
-      if (lastPosition > offset) {
+    const currentScroll = window.scrollY;
+    if (currentScroll > height) {
+      if (currentScroll > offset) {
+        //スクロールダウン
         header.classList.add('js-head-animation');
-        header.classList.add('js-fixed');
+        header.classList.remove('js-show-bg');
       } else {
+        // スクロールアップ
         header.classList.remove('js-head-animation');
-        // header.classList.add('js-fixed');
-        header.classList.remove('js-fixed');
+        header.classList.add('js-show-bg');
+        //header.classList.remove('js-fixed');
       }
-      offset = lastPosition;
+      header.classList.add('js-fixed');
     } else {
+      //最上部近くでは固定解除
+      header.classList.remove('js-head-animation');
       header.classList.remove('js-fixed');
+      header.classList.remove('js-show-bg');
     }
+    offset = currentScroll;
   };
 
   document.addEventListener('scroll', () => {
-    lastPosition = window.scrollY;
-
-    window.requestAnimationFrame(() => {
-      onScroll();
-    });
+    window.requestAnimationFrame(onScroll);
   });
   // console.log('headerAnimation.jsが読み込まれています');
   return;
