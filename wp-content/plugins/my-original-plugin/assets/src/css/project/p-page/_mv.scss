@@ -37,7 +37,8 @@
   &__inner {
     width: 98%;
     margin: 0 auto;
-    height: 56vh;
+    // height: 56vh;
+    height: 80vh;
     padding: 0 var(--ark-padding--container);
     display: grid;
     grid-template-rows: repeat(2, 1fr);
