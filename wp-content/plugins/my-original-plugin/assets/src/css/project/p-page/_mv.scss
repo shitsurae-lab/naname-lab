@@ -77,6 +77,8 @@
       display: block;
     }
     &.-contact,
+    &.-achievement_cat,
+    &.-about,
     &.-woocommerce,
     &.-wordpress,
     &.-e-commerce,
@@ -85,7 +87,8 @@
     &.-landing-page,
     &.-static-site {
       img {
-        width: 88%;
+        width: 100%;
+        max-width: 88%;
         margin: 0 auto;
       }
     }
