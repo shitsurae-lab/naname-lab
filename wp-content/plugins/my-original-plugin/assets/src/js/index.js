@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
   myTimeline2();
 });
 
+//ローカルナビゲーション
+import { localNav, globalNav } from './navigation';
+document.addEventListener('DOMContentLoaded', () => {
+  localNav();
+  globalNav();
+});
+
 // const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
 //   const arr = [hoge, fuga, piyo];
 //   if (arr.length) {

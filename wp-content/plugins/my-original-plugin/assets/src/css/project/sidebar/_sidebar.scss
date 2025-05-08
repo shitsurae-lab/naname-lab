@@ -72,12 +72,12 @@ $requirement: '.single';
         text-decoration: none;
         position: relative;
         padding-left: 12px;
-        color: var(--color-columbia-blue);
+        color: var(--color-space-cadet);
         font-size: var(--font-sm);
         font-weight: 500;
         color: transparent;
-        background: var(--color-columbia-blue);
-        opacity: 0.8;
+        background: var(--color-space-cadet);
+        opacity: 0.6;
         transition: background 0.8s ease-out;
         background-clip: text;
         &::before {
@@ -86,8 +86,8 @@ $requirement: '.single';
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: var(--color-columbia-blue);
-          opacity: 0.8;
+          background: var(--color-space-cadet);
+          opacity: 0.6;
           transition: background 0.8s ease-out;
           position: absolute;
           top: 50%;
@@ -95,6 +95,9 @@ $requirement: '.single';
           transform: translateY(-50%);
         }
         &:hover {
+          opacity: 1;
+        }
+        &.is-current {
           opacity: 1;
           &::before {
             opacity: 1;

@@ -1,7 +1,11 @@
 @use '../../global' as *;
 
 .c-gnav {
-  .menu-item {
+  $this: &;
+  &__li {
+    color: var(--color-space-cadet);
+    opacity: 0.6;
+    transition: opacity 0.8s ease-out;
     .c-gnav__a {
       flex-direction: column;
       position: relative;
@@ -32,6 +36,12 @@
         width: 0;
         height: 0;
       }
+    }
+    &:hover {
+      opacity: 1;
+    }
+    &.is-current {
+      opacity: 1;
     }
   }
 }
