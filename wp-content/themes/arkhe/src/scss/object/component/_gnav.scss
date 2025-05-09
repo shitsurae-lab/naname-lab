@@ -65,10 +65,9 @@
   }
 
   // メニューのホバーエフェクト
-  &.-current,
-	&.focus, // ← :focusじゃなくて クラス なのはミスじゃない
+  &.focus, // ← :focusじゃなくて クラス なのはミスじゃない
 	&:hover {
-    color: var(--ark-color--main);
+    color: var(--color-yankees-blue);
   }
 }
 
