@@ -42,7 +42,7 @@ include_once(plugin_dir_path(__FILE__) . 'function/register_shortcode.php');
 include_once(plugin_dir_path(__FILE__) . 'function/add_opening_interaction.php');
 
 //フロントページのみにスライダーを実装
-include_once(plugin_dir_path(__FILE__) . 'function/insert_front_slider.php');
+include_once(plugin_dir_path(__FILE__) . 'function/insert_main_content.php');
 
 //カスタム投稿タイプ等にメインビジュアルを挿入
 include_once(plugin_dir_path(__FILE__) . 'function/insert_main_visual.php');
