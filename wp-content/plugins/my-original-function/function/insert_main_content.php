@@ -32,7 +32,7 @@ function show_index_content()
       $thumb_url = esc_url(wp_get_attachment_url(get_post_thumbnail_id($page->ID))); // アイキャッチ画像URL
       $title = get_the_title($page->ID); // ページタイトル
       $permalink_url = esc_url(get_permalink($page->ID)); // パーマリンク
-      $desc = get_field('page_desc', $page->ID); // ACF説明文
+      $desc = get_field('mv_desc', $page->ID); // ACF説明文
       $heading_en = get_field('mv_title', $page->ID); // ACF 英語見出し
       $subheading_en = get_field('mv_subtitle', $page->ID); // ACF 英語見出し
 
@@ -42,7 +42,8 @@ function show_index_content()
 
         <div class="p-index-section__inner" data-section-inner>
           <div class="p-index-section__container  <?php echo $flex_class; ?>">
-            <div class="p-index--section__decoration"></div>
+            <!-- <div class="p-index--section__decoration">
+            </div> -->
             <div class="p-index-section__image">
               <img src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr($title); ?>">
             </div>
