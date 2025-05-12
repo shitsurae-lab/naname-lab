@@ -33,39 +33,35 @@ function show_index_content()
       $title = get_the_title($page->ID); // ページタイトル
       $permalink_url = esc_url(get_permalink($page->ID)); // パーマリンク
       $desc = get_field('page_desc', $page->ID); // ACF説明文
-      $heading_en = get_field('page_heading_en', $page->ID); // ACF 英語見出し
+      $heading_en = get_field('mv_title', $page->ID); // ACF 英語見出し
+      $subheading_en = get_field('mv_subtitle', $page->ID); // ACF 英語見出し
 
-      // SVG画像のファイル名（配列）を用意
-      $svg_files = array_map(function ($n) use ($is_primary) {
-        // primary背景なら "cloud-white-01.svg" ～、secondaryなら "cloud-01.svg" ～
-        $prefix = $is_primary ? 'cloud-white-' : 'cloud-';
-        return $prefix . str_pad($n, 2, '0', STR_PAD_LEFT) . '.svg';
-      }, range(1, 6));
-
-      // SVG配置用HTMLを生成
-      $svg_html = '';
-      foreach ($svg_files as $svg_file) {
-        $svg_url = $upload_baseurl . '/2025/05/' . $svg_file;
-        $svg_html .= '<div class="p-index-section__cloud"><img src="' . esc_url($svg_url) . '" alt="" aria-hidden="true" loading="lazy"></div>';
-      }
+      //$heading_en = get_field('page_heading_en', $page->ID); // ACF 英語見出し
 ?>
       <section class="section p-index-section <?php echo $bg_class; ?> js-appearance" data-section>
-        <!-- <?php //echo $svg_html; // ← SVG画像を先に挿入
-              ?> -->
+
         <div class="p-index-section__inner" data-section-inner>
-          <div class="p-index-section__content  <?php echo $flex_class; ?>">
+          <div class="p-index-section__container  <?php echo $flex_class; ?>">
+            <div class="p-index--section__decoration"></div>
             <div class="p-index-section__image">
               <img src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr($title); ?>">
             </div>
-            <div class="p-index-section__txt">
-              <div class="p-index-section__heading">
-                <span class="p-index-section__heading--sub u-uppercase u-montserrat"><?php echo esc_html($heading_en); ?></span>
-                <h2 class="p-index-section__heading--main"><?php echo esc_html($title); ?></h2>
+            <div class="p-index-section__content">
+              <div class="p-index-section__head">
+                <h2 class="p-index-section__heading">
+                  <span class="p-index-section__heading--sub u-uppercase u-montserrat"><?php echo esc_html($heading_en); ?></span>
+                  <span class="p-index-section__heading--main"><?php echo esc_html($title); ?></span>
+                </h2>
+                <p class="p-index-section__desc u-montserrat u-uppercase"><?php echo esc_html($subheading_en); ?></p>
               </div>
-              <p><?php echo nl2br(esc_html($desc)); ?></p>
-              <a href="<?php echo $permalink_url; ?>" class="u-arkhe-custom-button" data-has-icon="1"><span class="ark-block-button__text">more</span><svg class="ark-block-button__icon -right" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-icon="LsChevronRight" viewBox="0 0 48 48">
-                  <path d="m33 25.1-13.1 13c-.8.8-2 .8-2.8 0-.8-.8-.8-2 0-2.8L28.4 24 17.1 12.7c-.8-.8-.8-2 0-2.8.8-.8 2-.8 2.8 0l13.1 13c.6.6.6 1.6 0 2.2z"></path>
-                </svg></a>
+              <div class="p-index-section__body">
+                <p><?php echo nl2br(esc_html($desc)); ?></p>
+              </div>
+              <div class="p-index-section__link">
+                <a href=" <?php echo $permalink_url; ?>" class="u-arkhe-custom-button" data-has-icon="1"><span class="ark-block-button__text">more</span><svg class="ark-block-button__icon -right" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-icon="LsChevronRight" viewBox="0 0 48 48">
+                    <path d="m33 25.1-13.1 13c-.8.8-2 .8-2.8 0-.8-.8-.8-2 0-2.8L28.4 24 17.1 12.7c-.8-.8-.8-2 0-2.8.8-.8 2-.8 2.8 0l13.1 13c.6.6.6 1.6 0 2.2z"></path>
+                  </svg></a>
+              </div>
             </div>
           </div>
         </div>
