@@ -76,6 +76,10 @@
   //Min 64px, Max 96px
   --font-hero--xl: clamp(4rem, 3.0909rem + 3.8788vw, 6rem);
 
+  //Min 100px, Max 200px
+  //Minimum viewport width: 375px, Maximum viewport width: 1980px
+  --font-hero--xxl: clamp(6.25rem, 4.7897rem + 6.2305vw, 12.5rem);
+
   /*  Global Font */
   //H2
   --global-font-xl: clamp(
