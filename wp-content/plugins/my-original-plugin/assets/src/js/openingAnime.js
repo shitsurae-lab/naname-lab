@@ -1,15 +1,17 @@
-//document.addEventListener('DOMContentLoaded'..がフックになるJS-----
+// モジュール関数として定義
 const openingAnime = () => {
-  //① bodyタグを取得
+  // ① bodyタグを取得
   const bodyElement = document.querySelector('body');
 
-  //②spinnnerエリア
+  // ② スピナー表示のラッパー要素
   const opening = document.createElement('div');
   opening.setAttribute('class', 'p-spinner__wrapper');
-  //②-1 spinnerを作成
+
+  // スピナー本体
   const spinner = document.createElement('div');
   spinner.setAttribute('class', 'p-spinner');
-  //③loadingアニメーション
+
+  // ローダー（初回のみ表示）
   const loader = document.createElement('div');
   loader.setAttribute('class', 'p-loader');
   const loaderContent = document.createElement('div');
@@ -17,92 +19,72 @@ const openingAnime = () => {
   loader.prepend(loaderContent);
   const loaderText = document.createElement('p');
   loaderText.setAttribute('class', 'p-loader__text u-uppercase');
-  loaderContent.prepend(loaderText);
   loaderText.innerText = 'A developer who designs.\nA designer who codes.';
+  loaderContent.prepend(loaderText);
 
-  //④カーテン要素の作成
+  // カーテン要素（共通演出）
   const curtainElement = document.createElement('div');
   curtainElement.setAttribute('class', 'p-curtain');
 
-  //①body要素内の先頭にp-loader
-  bodyElement.prepend(opening);
-  //②p-opening要素内の先頭にp-spinner
-  opening.prepend(spinner);
-  //③ p-openingの後ろにp-loader
-  opening.after(loader);
-  //④ p-loaderの後ろにカーテン要素
-  loader.after(curtainElement);
+  // 要素の追加順序
+  bodyElement.prepend(opening); // スピナー
+  opening.prepend(spinner); // スピナーの中身
+  opening.after(loader); // スピナーの次にローダー
+  loader.after(curtainElement); // ローダーの次にカーテン
 
+  // 初回アクセス判定用関数
+  const isFirstAccess = () => {
+    if (sessionStorage.getItem('access_flg')) {
+      return false; // 2回目以降
+    } else {
+      sessionStorage.setItem('access_flg', 'true');
+      return true; // 初回アクセス
+    }
+  };
+
+  const isFirst = isFirstAccess();
+
+  // アニメーション用クラス追加関数
   const js_opening = () => {
-    opening.classList.add('loaded');
-    //console.log('①js_openingが読み込まれたよ!');
+    opening.classList.add('loaded'); // スピナーの開始アニメーション
   };
 
   const js_loader = () => {
-    loader.classList.add('loaded');
-    //console.log('②js_loaderが読み込まれたよ!');
+    loader.classList.add('loaded'); // ローダーテキストアニメーション（初回のみ）
   };
 
   const js_curtain = () => {
-    curtainElement.classList.add('loaded', 'change');
-    //console.log('③js_curtainが読み込まれたのよ!');
+    curtainElement.classList.add('loaded', 'change'); // カーテンの展開
   };
 
   const js_pageOn = () => {
-    document.body.classList.add('pageOn');
-    curtainElement.classList.remove('change');
-    //console.log('④ js_pageOnが読み込まれたぜ');
+    document.body.classList.add('pageOn'); // ページの表示ONクラス
+    curtainElement.classList.remove('change'); // カーテンを閉じるアニメーション解除
+    opening.remove(); // スピナー要素を削除
   };
 
-  /*コールバック関数 */
+  // 遅延処理のユーティリティ（Promiseで待機）
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  // ページ更新時、最初だけローディングアニメーション
-  //①beforeunloadとunloadは「更新検知」
-  //window.addEventListener('load', () => { //②これは画像まで読み込まれてからの意味
-  document.addEventListener('DOMContentLoaded', () => {
-    let flg = null;
-    let check_access = function () {
-      // ★sessionStorageの値を判定
-      if (sessionStorage.getItem('access_flg')) {
-        // 2回目以降
-        flg = 1;
-      } else {
-        // 1回目
-        sessionStorage.setItem('access_flg', true);
-        flg = 0;
-      }
-      return flg;
-    };
-    let $i = check_access();
-    if ($i == 0) {
-      //1回目アクセスの処理
-      setTimeout(() => {
-        setTimeout(() => {
-          setTimeout(() => {
-            setTimeout(() => {
-              js_pageOn();
-            }, 1000); //curtaniAnime 800ms(duration)の少しあとにjs_pageOnが動くようにする
-            js_curtain();
-          }, 2000); //loaderAnime 2000ms(duration)にあわせてずらした
-          js_loader();
-        }, 1200); //spinnerAnime 1200ms(duration)にあわせてずらした
-        js_opening();
-      }, 0);
-    } else {
-      // 2回目アクセスの処理
-      setTimeout(() => {
-        setTimeout(() => {
-          setTimeout(() => {
-            setTimeout(() => {
-              js_pageOn();
-            }, 1000); //curtaniAnime 800ms(duration)の少しあとにjs_pageOnが動くようにする
-            js_curtain();
-          }, 2000); //loaderAnime 2000ms(duration)にあわせてずらした
-          js_loader();
-        }, 0);
-        opening.remove();
-      }, 0);
+  // アニメーションの実行フロー（非同期で順序管理）
+  const runAnimation = async () => {
+    js_opening(); // スピナー表示開始
+
+    if (isFirst) {
+      await delay(1200); // スピナーが動く時間
+      js_loader(); // ローダー（テキスト）を表示
+      await delay(2000); // ローダーの演出時間
     }
+
+    js_curtain(); // カーテン表示
+    await delay(1000); // カーテンが開くまで待機
+
+    js_pageOn(); // ページ表示完了（bodyにclass追加）
+  };
+
+  // 全てのリソース読み込みが完了した後にアニメーション開始
+  window.addEventListener('load', () => {
+    runAnimation(); // アニメーション実行
   });
 };
 
