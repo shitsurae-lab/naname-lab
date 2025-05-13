@@ -103,22 +103,93 @@
       position: relative;
     }
   }
-}
+  &__image {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding: 32px;
+    margin-bottom: 16px;
+    @include mq(tablet) {
+      width: 50%;
+      margin-bottom: 0;
+    }
+  }
+  &__decoration {
+    position: absolute;
+    width: 30%;
+  }
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    @include mq(tablet) {
+      width: 50%;
+    }
+  }
 
-.p-index-section__image,
-.p-index-section__content {
-  width: 100%; //スマホでは幅いっぱいに
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  @include mq(tablet) {
-    width: 50%;
-    margin-bottom: 0; // 横並び時は margin-bottom をリセット
+  &__head {
+    //見出し+段落のひとかたまり
+    margin-bottom: 48px;
+  }
+  &__heading {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
+    position: relative;
+    width: fit-content;
+    margin-bottom: 16px;
+  }
+  &__heading--main {
+    position: relative;
+    line-height: 1;
+    // margin-bottom: 0;
+    // margin-top: 0;
+    color: var(--color-space-cadet);
+    font-weight: 500;
+    font-size: var(--font-md);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateX(0);
+  }
+  &__heading--sub {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    font-size: var(--font-hero--xl);
+    opacity: 0.1;
+    line-height: 1;
+    color: transparent; /*文字色を透明*/
+    background: rgba(0, 0, 0, 1); /*背景色を設定*/
+    background-clip: text; /*背景を前景のテキストの中に表示*/
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
+      1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/
+  }
+  &__desc {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: transparent; /*文字色を透明*/
+    background: rgba(0, 0, 0, 1); /*背景色を設定*/
+    background-clip: text; /*背景を前景のテキストの中に表示*/
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
+      1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/
+  }
+  &__body {
+    margin-bottom: 24px;
+    > p {
+      font-size: var(--font-sm);
+      line-height: 1.7;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: flex-start;
   }
 }
 
-.p-index-section__image {
-  aspect-ratio: 16 / 9;
+.c-zoom--box {
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: solid 2px transparent;
   background-clip: padding-box;
@@ -276,56 +347,22 @@
   }
 }
 
-.p-index-section {
-  &__head {
-    //見出し+段落のひとかたまり
-    margin-bottom: 80px;
-  }
-  &__heading {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
-  &__heading--main {
-    position: relative;
-    line-height: 1;
-    // margin-bottom: 0;
-    // margin-top: 0;
-    color: var(--color-granite-gray);
-    font-weight: 400;
-    // width: fit-content;
-    font-size: var(--font-sm);
-    // padding-bottom: 0.5em;
-  }
-  &__heading--sub {
-    font-size: var(--font-sm);
-    font-weight: 500;
-    font-size: var(--font-hero--xl);
-    opacity: 0.1;
-    line-height: 1;
-    color: transparent; /*文字色を透明*/
-    background: rgba(0, 0, 0, 1); /*背景色を設定*/
-    background-clip: text; /*背景を前景のテキストの中に表示*/
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
-      1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/
-  }
-  &__desc {
-    font-size: var(--font-md);
-    font-weight: 600;
-    color: transparent; /*文字色を透明*/
-    background: rgba(0, 0, 0, 1); /*背景色を設定*/
-    background-clip: text; /*背景を前景のテキストの中に表示*/
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
-      1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/
-  }
-  &__body {
-    > p {
-      font-size: var(--font-sm);
-      line-height: 1.7;
-    }
-  }
-}
+// .u-flex {
+//   &--primary {
+//     display: flex;
+//     flex-direction: column;
+//     @include mq(tablet) {
+//       flex-direction: row;
+//     }
+//   }
+//   &--secondary {
+//     display: flex;
+//     flex-direction: column;
+//     @include mq(tablet) {
+//       flex-direction: row-reverse;
+//     }
+//   }
+// }
 
 .u-flex {
   &--primary {

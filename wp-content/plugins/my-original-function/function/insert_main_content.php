@@ -36,7 +36,17 @@ function show_index_content()
       $heading_en = get_field('mv_title', $page->ID); // ACF 英語見出し
       $subheading_en = get_field('mv_subtitle', $page->ID); // ACF 英語見出し
 
-      //$heading_en = get_field('page_heading_en', $page->ID); // ACF 英語見出し
+      //あしらいの出力
+      $page_id = isset($page) ? $page->ID : get_the_ID();
+
+      $decorations = [];
+      for ($i = 1; $i <= 5; $i++) {
+        $img = get_field("decoration_svg_$i", $page_id);
+        if (!empty($img) && isset($img['url'])) {
+          $decorations[] = $img;
+        }
+      }
+
 ?>
       <section class="section p-index-section <?php echo $bg_class; ?> js-appearance" data-section>
 
@@ -45,7 +55,10 @@ function show_index_content()
             <!-- <div class="p-index--section__decoration">
             </div> -->
             <div class="p-index-section__image">
-              <img src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr($title); ?>">
+              <div class="c-zoom--box">
+                <img src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr($title); ?>" class="c-zoom--img">
+              </div>
+              <!-- END c-zoom--box -->
             </div>
             <div class="p-index-section__content">
               <div class="p-index-section__head">
