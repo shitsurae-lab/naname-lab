@@ -1,0 +1,24 @@
+@use '../global' as *;
+.p-postList {
+  $this: &;
+  &__link {
+    #{$this}__thumb.c-postThumb {
+      &::before {
+        background: #14245e;
+      }
+    }
+    &:hover {
+      #{$this}__thumb.c-postThumb {
+        &::before {
+          opacity: 0.16;
+        }
+      }
+    }
+    #{$this}__body {
+      h3 {
+        color: var(--color-space-cadet);
+        font-weight: 500;
+      }
+    }
+  }
+}
