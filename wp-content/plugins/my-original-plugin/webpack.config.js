@@ -7,7 +7,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
   //本番環境にアップロード(build)するときはdevtoolをコメントアウトすること
-  //devtool: 'source-map',
+  // devtool: 'source-map',
   entry: {
     main: './assets/src/js/index.js',
   },
