@@ -12,14 +12,13 @@ function show_index_content()
   if (!is_front_page()) return;
   $index = 0; // インデックス用カウンター
   $page_slugs = array('about', 'achievement_cat');
-  $upload_baseurl = wp_upload_dir()['baseurl']; //メディアまでのURLを$media_urlに格納
+  //$upload_baseurl = wp_upload_dir()['baseurl']; //メディアまでのURLを$media_urlに格納
 
   foreach ($page_slugs as $slug) {
+    $index++; // カウンター
     $page = get_page_by_path($slug);
     if ($page) :
       setup_postdata($page);
-
-      $index++; // カウンター
 
       // 偶数/奇数で背景色クラスを決定
       $is_primary = ($index % 2 === 1); // 奇数ならtrue
@@ -36,25 +35,15 @@ function show_index_content()
       $heading_en = get_field('mv_title', $page->ID); // ACF 英語見出し
       $subheading_en = get_field('mv_subtitle', $page->ID); // ACF 英語見出し
 
-      //あしらいの出力
-      $page_id = isset($page) ? $page->ID : get_the_ID();
 
-      $decorations = [];
-      for ($i = 1; $i <= 5; $i++) {
-        $img = get_field("decoration_svg_$i", $page_id);
-        if (!empty($img) && isset($img['url'])) {
-          $decorations[] = $img;
-        }
-      }
 
 ?>
       <section class="section p-index-section <?php echo $bg_class; ?> js-appearance" data-section>
 
         <div class="p-index-section__inner" data-section-inner>
           <div class="p-index-section__container  <?php echo $flex_class; ?>">
-            <!-- <div class="p-index--section__decoration">
-            </div> -->
             <div class="p-index-section__image">
+
               <div class="c-zoom--box">
                 <img src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr($title); ?>" class="c-zoom--img">
               </div>
