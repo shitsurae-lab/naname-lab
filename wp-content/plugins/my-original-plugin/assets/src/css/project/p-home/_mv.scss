@@ -75,16 +75,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    height: inherit;
-    display: flex; /* Flexbox を有効にする */
-    flex-direction: column; /* デフォルトは縦並び（スマホ） */
-    align-items: center; /* 中央揃え */
-    justify-content: center; /* 垂直方向中央揃え */
+    display: grid;
+    place-items: center;
     padding: 16px; /* section__content の padding をこちらに移動 */
+    //display: flex; /* Flexbox を有効にする */
+    //flex-direction: column; /* デフォルトは縦並び（スマホ） */
+    //align-items: center; /* 中央揃え */
+    //justify-content: center; /* 垂直方向中央揃え */
     @include mq(tablet) {
-      flex-direction: row; /* 横並び */
-      justify-content: space-around; /* 左右に余白 */
-      align-items: center;
+      //flex-direction: row; /* 横並び */
+      //justify-content: space-around; /* 左右に余白 */
+      //align-items: center;
     }
   }
   &__container {
