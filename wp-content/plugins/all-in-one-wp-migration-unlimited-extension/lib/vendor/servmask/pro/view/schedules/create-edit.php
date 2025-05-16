@@ -105,19 +105,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<div class="ai1wm-event-field ai1wm-event-field-row">
 									<label for="ai1wmve-exclude_files">
 										<input type="checkbox" id="ai1wmve-exclude_files" class="ai1wm-event-input" v-model="exclude_files"/>
-										<?php _e( 'Do <strong>not</strong> include the selected files', AI1WM_PLUGIN_NAME ); ?>
+										<?php _e( 'Exclude the selected files', AI1WM_PLUGIN_NAME ); ?>
 									</label>
 									<file-browser :value="this.excludedFiles"></file-browser>
 								</div>
 							</div>
 
 							<div class="ai1wm-event-row" v-if="form.type === '<?php echo Ai1wmve_Schedule_Event::TYPE_EXPORT; ?>'">
-								<div class="ai1wm-event-field ai1wm-event-field-row" id="ai1wmve-db-table-excluder">
+								<div class="ai1wm-event-field ai1wm-event-field-row" id="ai1wmve-db-table-excluder" v-show="databaseIncluded">
 									<label for="ai1wmve-exclude_db_tables" v-show="showDbExcluder">
 										<input type="checkbox" id="ai1wmve-exclude_db_tables" class="ai1wm-event-input" v-model="exclude_db_tables"/>
-										<?php _e( 'Do <strong>not</strong> include the selected database tables', AI1WM_PLUGIN_NAME ); ?>
+										<?php _e( 'Exclude the selected database tables', AI1WM_PLUGIN_NAME ); ?>
 									</label>
-									<db-tables v-show="showDbExcluder" :value="this.excludedDbTables" :db-tables='<?php echo json_encode( $tables, JSON_HEX_APOS ); ?>'></db-tables>
+									<db-tables v-show="showDbExcluder" :value="this.excludedDbTables" :db-tables='<?php echo json_encode( $exclude_tables, JSON_HEX_APOS ); ?>' label-id="#ai1wmve-exclude_db_tables" field-name="excluded_db_tables" />
+								</div>
+							</div>
+
+							<div class="ai1wm-event-row" v-if="form.type === '<?php echo Ai1wmve_Schedule_Event::TYPE_EXPORT; ?>'">
+								<div class="ai1wm-event-field ai1wm-event-field-row" id="ai1wmve-db-table-excluder" v-show="databaseIncluded">
+									<label for="ai1wmve-include_db_tables" v-show="showDbIncluder">
+										<input type="checkbox" id="ai1wmve-include_db_tables" class="ai1wm-event-input" v-model="include_db_tables"/>
+										<?php _e( 'Include the selected non‑WP tables', AI1WM_PLUGIN_NAME ); ?>
+									</label>
+									<db-tables v-show="showDbIncluder" :value="this.includedDbTables" :db-tables='<?php echo json_encode( $include_tables, JSON_HEX_APOS ); ?>' label-id="#ai1wmve-include_db_tables" field-name="included_db_tables" />
 								</div>
 							</div>
 						</div>

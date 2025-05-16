@@ -1,16 +1,5 @@
 <?php
 /**
- * Plugin Name: All-in-One WP Migration and Backup
- * Plugin URI: https://servmask.com/
- * Description: All-in-One WP Migration makes moving your entire WordPress site simple. Export or import your database, media, plugins, and themes with just a few clicks.
- * Author: ServMask
- * Author URI: https://servmask.com/
- * Version: 7.94
- * Text Domain: all-in-one-wp-migration
- * Domain Path: /languages
- * Network: True
- * License: GPLv3
- *
  * Copyright (C) 2014-2025 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,8 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Attribution: This code is part of the All-in-One WP Migration plugin, developed by
- *
  * ███████╗███████╗██████╗ ██╗   ██╗███╗   ███╗ █████╗ ███████╗██╗  ██╗
  * ██╔════╝██╔════╝██╔══██╗██║   ██║████╗ ████║██╔══██╗██╔════╝██║ ██╔╝
  * ███████╗█████╗  ██████╔╝██║   ██║██╔████╔██║███████║███████╗█████╔╝
@@ -39,38 +26,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Kangaroos cannot jump here' );
 }
+?>
 
-// Check SSL mode
-if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && ( $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
-	$_SERVER['HTTPS'] = 'on';
-}
-
-// Plugin basename
-define( 'AI1WM_PLUGIN_BASENAME', basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
-
-// Plugin path
-define( 'AI1WM_PATH', dirname( __FILE__ ) );
-
-// Plugin URL
-define( 'AI1WM_URL', plugins_url( '', AI1WM_PLUGIN_BASENAME ) );
-
-// Plugin storage URL
-define( 'AI1WM_STORAGE_URL', plugins_url( 'storage', AI1WM_PLUGIN_BASENAME ) );
-
-// Include constants
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'constants.php';
-
-// Include deprecated
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'deprecated.php';
-
-// Include functions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'functions.php';
-
-// Include exceptions
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'exceptions.php';
-
-// Include loader
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'loader.php';
-
-// Plugin initialization
-$main_controller = new Ai1wm_Main_Controller();
+<li id="ai1wmve-db-table-includer">
+	<?php if ( ! empty( $tables ) ) { ?>
+		<label for="ai1wmve-include_db_tables" v-show="showDbTables">
+			<input type="checkbox" id="ai1wmve-include_db_tables" name="options[include_db_tables]"/>
+			<?php _e( 'Include the selected non‑WP tables', AI1WM_PLUGIN_NAME ); ?>
+			<small style="color: red;"><?php _e( 'new', AI1WM_PLUGIN_NAME ); ?></small>
+		</label>
+		<db-tables v-show="showDbTables" :db-tables='<?php echo json_encode( $tables, JSON_HEX_APOS ); ?>' label-id="#ai1wmve-include_db_tables" field-name="included_db_tables" />
+	<?php } ?>
+</li>
