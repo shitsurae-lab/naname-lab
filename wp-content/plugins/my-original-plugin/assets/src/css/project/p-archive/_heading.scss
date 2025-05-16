@@ -39,12 +39,12 @@ $category: 'cat';
     $this: &;
     &__title {
       .c-pageTitle__main {
-        padding-left: 60px;
+        padding-left: 80px;
         letter-spacing: 0.05em;
         font-weight: 400;
         font-size: var(--font-lg);
         &::before {
-          content: 'tag';
+          content: 'skill';
           display: block;
           font-size: var(--font-xs);
           font-family: 'Montserrat', sans-serif;
