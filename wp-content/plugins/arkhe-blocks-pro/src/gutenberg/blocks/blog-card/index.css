@@ -1,0 +1,61 @@
+.ark-block-blogCard {
+  --ark-thumb_ratio: 61.8%;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 3px;
+  box-shadow: var(--arkb-shadow--s);
+}
+.ark-block-blogCard .arkb-boxLink__inner {
+  flex-direction: row;
+  padding: 1.25rem;
+}
+@media not all and (min-width: 600px) {
+  .ark-block-blogCard .arkb-boxLink__inner {
+    padding: 1rem;
+  }
+}
+.ark-block-blogCard .arkb-boxLink__figure {
+  flex-basis: 25%;
+  align-self: center;
+  max-width: 200px;
+  margin-right: 1rem;
+}
+.ark-block-blogCard .arkb-boxLink__body {
+  padding: 0;
+}
+@media not all and (min-width: 600px) {
+  .ark-block-blogCard .arkb-boxLink__figure + .arkb-boxLink__body {
+    font-size: 0.9rem;
+  }
+}
+.ark-block-blogCard .arkb-boxLink__more {
+  margin-bottom: -4px;
+  padding-top: 4px;
+}
+.ark-block-blogCard .arkb-boxLink__more__text {
+  font-size: 12px;
+  opacity: 0.8;
+}
+@media not all and (min-width: 600px) {
+  .ark-block-blogCard .arkb-boxLink__more__text {
+    font-size: 10px;
+  }
+}
+.ark-block-blogCard .c-postMetas {
+  margin-top: 1em;
+  font-size: 0.75rem;
+}
+
+.arkb-boxLink__more__favicon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+@media not all and (min-width: 600px) {
+  .arkb-boxLink__more__favicon {
+    width: 12px;
+    height: 12px;
+  }
+}/*# sourceMappingURL=index.css.map */

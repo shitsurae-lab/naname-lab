@@ -1,0 +1,103 @@
+.ark-block-boxLinks {
+  --arkb-box-width: 50%;
+  --arkb-gap--x: 1.5rem;
+  --arkb-gap--y: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(var(--arkb-box-width) - var(--arkb-gap--x)), 1fr));
+  -moz-column-gap: var(--arkb-gap--x);
+       column-gap: var(--arkb-gap--x);
+  row-gap: var(--arkb-gap--y);
+}
+
+.ark-block-boxLink {
+  width: 100%;
+  box-shadow: var(--arkb-shadow);
+}
+.ark-block-boxLink .arkb-boxLink__title {
+  font-size: 1rem;
+}
+.ark-block-boxLink .arkb-boxLink__body a {
+  position: relative;
+  z-index: 1;
+}
+
+.arkb-boxLink__figure.-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2rem 0;
+}
+.arkb-boxLink__figure.-icon svg {
+  display: block;
+  width: var(--arkb-boxlink_icon_size, 5em);
+  height: var(--arkb-boxlink_icon_size, 5em);
+  color: currentColor;
+}
+.arkb-boxLink__figure.-icon i {
+  display: block;
+  font-size: var(--arkb-boxlink_icon_size, 5em);
+}
+
+.ark-block-boxLink.-horizontal .arkb-boxLink__inner {
+  flex-direction: row;
+  align-items: stretch;
+}
+.ark-block-boxLink.-horizontal .arkb-boxLink__figure {
+  flex: 1 0 40%;
+}
+.ark-block-boxLink.-horizontal .arkb-boxLink__figure.-icon {
+  flex-basis: auto;
+  padding: 0 0 0 1.5rem;
+}
+.ark-block-boxLink.-horizontal .arkb-boxLink__body {
+  flex: 1 1 100%;
+}
+
+.arkb-boxLink.is-style-banner .arkb-boxLink__inner {
+  position: relative;
+  color: #fff;
+}
+.arkb-boxLink.is-style-banner .arkb-boxLink__figure {
+  z-index: 1;
+}
+.arkb-boxLink.is-style-banner .arkb-boxLink__body {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem;
+}
+
+.arkb-boxLink__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  transition: opacity 0.25s;
+}
+
+.arkb-boxLink__layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.arkb-boxLink__more__svg {
+  margin: -2px 0 -2px 0.5em;
+  transition: transform 0.25s;
+  fill: currentColor;
+}
+
+.arkb-boxLink.has-text-align-center .arkb-boxLink__more {
+  justify-content: center;
+}
+.arkb-boxLink.has-text-align-center .arkb-boxLink__more__svg {
+  margin-right: -1em;
+}/*# sourceMappingURL=index.css.map */

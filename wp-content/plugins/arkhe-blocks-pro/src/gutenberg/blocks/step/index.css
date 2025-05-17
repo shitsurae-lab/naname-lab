@@ -1,0 +1,185 @@
+.ark-block-step {
+  --arkb-step-color: currentColor;
+  counter-reset: step;
+}
+
+.ark-block-step__item {
+  position: relative;
+  margin: 0;
+}
+.ark-block-step__item:last-child::before {
+  content: none !important;
+}
+
+.ark-block-step__head {
+  position: relative;
+  z-index: 1;
+}
+
+.ark-block-step__number {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  box-sizing: content-box;
+  line-height: 1;
+  text-align: center;
+}
+.ark-block-step__number .__label {
+  display: block;
+  padding-bottom: 1px;
+  font-size: 10px;
+}
+.ark-block-step__number::after {
+  display: block;
+  font-size: 20px;
+  content: counter(step);
+  counter-increment: step;
+}
+.ark-block-step__number[data-num]::after {
+  content: attr(data-num);
+}
+.ark-block-step__number[data-num=""]:empty {
+  display: none;
+}
+.ark-block-step__number[data-num=""]::after {
+  display: none;
+}
+
+.ark-block-step__title {
+  font-weight: bold;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.ark-block-step__body {
+  margin-top: 1em;
+}
+
+.ark-block-step.is-style-default {
+  --arkb-step-color: var(--ark-color--main, #333);
+}
+.ark-block-step.is-style-default .ark-block-step__item {
+  padding: 0 0 3em;
+}
+.ark-block-step.is-style-default .ark-block-step__item::before {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  display: block;
+  height: 100%;
+  border-left: 1px dashed var(--ark-color--border, rgba(200, 200, 200, 0.5));
+  content: "";
+}
+.ark-block-step.is-style-default > .ark-block-step__item:last-child {
+  padding-bottom: 0;
+}
+.ark-block-step.is-style-default .ark-block-step__head {
+  display: flex;
+}
+.ark-block-step.is-style-default .ark-block-step__number {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+  color: #fff;
+  background-color: var(--arkb-step-color);
+  border-radius: 50%;
+}
+.ark-block-step.is-style-default .ark-block-step__title {
+  align-self: center;
+}
+.ark-block-step.is-style-default .ark-block-step__body {
+  margin-left: 64px;
+}
+@media not all and (min-width: 600px) {
+  .ark-block-step.is-style-default .ark-block-step__item::before {
+    left: 17px;
+  }
+  .ark-block-step.is-style-default .ark-block-step__number {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+  }
+  .ark-block-step.is-style-default .ark-block-step__number::after {
+    margin-top: -1px;
+    font-size: 16px;
+  }
+  .ark-block-step.is-style-default .__label {
+    transform: scale(0.75);
+  }
+  .ark-block-step.is-style-default .ark-block-step__body {
+    margin-left: 48px;
+  }
+}
+
+.is-style-big .ark-block-step__item {
+  padding: 2em;
+  border-bottom: dashed 1px var(--ark-color--border, rgba(200, 200, 200, 0.5));
+}
+@media not all and (min-width: 1000px) {
+  .is-style-big .ark-block-step__item {
+    padding: 1.5em;
+  }
+}
+.is-style-big .ark-block-step__item:first-child {
+  border-top: dashed 1px var(--ark-color--border, rgba(200, 200, 200, 0.5));
+}
+.is-style-big .ark-block-step__number {
+  margin: 0 0 1em;
+  color: var(--arkb-step-color);
+}
+@media (min-width: 1000px) {
+  .is-style-big .ark-block-step__number::after {
+    font-size: 24px;
+  }
+}
+.is-style-big .__label {
+  font-size: 12px;
+}
+.is-style-big .ark-block-step__title {
+  text-align: center;
+}
+
+.is-style-card .ark-block-step__item {
+  padding: 2em;
+  background: #fff;
+  box-shadow: var(--arkb-shadow);
+}
+@media not all and (min-width: 1000px) {
+  .is-style-card .ark-block-step__item {
+    padding: 1.5em;
+  }
+}
+.is-style-card .ark-block-step__item::before {
+  position: absolute;
+  top: calc(100% + 28px);
+  left: 50%;
+  border: solid 12px transparent;
+  border-top-color: var(--ark-color--border, rgba(200, 200, 200, 0.5));
+  transform: translateX(-50%) translateY(-6px);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  content: "";
+}
+.is-style-card .ark-block-step__item:not(:first-child) {
+  margin-top: 56px;
+}
+.is-style-card .ark-block-step__head {
+  display: flex;
+  align-items: center;
+}
+.is-style-card .ark-block-step__number {
+  min-width: 2em;
+  margin-right: 1em;
+  color: var(--arkb-step-color);
+}
+@media (min-width: 1000px) {
+  .is-style-card .ark-block-step__number::after {
+    font-size: 24px;
+  }
+}
+.is-style-card .__label {
+  min-width: 2em;
+  margin-right: 0.25em;
+  padding: 2px 0 0;
+}/*# sourceMappingURL=index.css.map */

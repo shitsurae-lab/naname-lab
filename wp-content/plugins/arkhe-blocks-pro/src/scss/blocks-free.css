@@ -1,0 +1,67 @@
+.arkb-is-pro-block {
+  position: relative;
+  padding: 2em;
+  color: #000 !important;
+  background-color: #fff !important;
+  border: solid 1px;
+}
+.arkb-is-pro-block .__arkhe_icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  color: #fff;
+  background-color: #000;
+}
+.arkb-is-pro-block .__btnWrap {
+  margin-top: 1.5em;
+}
+.arkb-is-pro-block .__btn {
+  display: inline-flex;
+  padding: 1em;
+  color: #fff;
+  line-height: 1;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ffa95d, #f64444);
+  background-position: 64% 50%;
+  background-size: 200% auto;
+  border: solid 1px;
+  border-radius: 2em;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.25), 0 0 1px 0px rgba(0, 0, 0, 0.1);
+  transition: background-position 0.4s, box-shadow 0.4s;
+}
+.arkb-is-pro-block .__btn svg {
+  margin-left: 0.25em;
+}
+.arkb-is-pro-block .__btn:hover {
+  background-position: 32% 50%;
+  box-shadow: 0 2px 16px 0px rgba(0, 0, 0, 0.1), 0 2px 12px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* stylelint-disable function-url-quotes */
+.components-autocomplete__result[id*=arkhe-blocks-columns]::after,
+.components-autocomplete__result[id*=arkhe-blocks-box-links]::after,
+.components-autocomplete__result[id*=arkhe-blocks-slider]::after,
+.components-autocomplete__result[id*=arkhe-blocks-post-list]::after,
+.components-autocomplete__result[id*=arkhe-blocks-page-list]::after,
+.components-autocomplete__result[id*=arkhe-blocks-rss]::after,
+.components-autocomplete__result[id*=arkhe-blocks-restricted-area]::after,
+.editor-block-list-item-arkhe-blocks-columns::after,
+.editor-block-list-item-arkhe-blocks-box-links::after,
+.editor-block-list-item-arkhe-blocks-slider::after,
+.editor-block-list-item-arkhe-blocks-post-list::after,
+.editor-block-list-item-arkhe-blocks-page-list::after,
+.editor-block-list-item-arkhe-blocks-rss::after,
+.editor-block-list-item-arkhe-blocks-restricted-area::after {
+  width: auto;
+  height: auto;
+  padding: 2px 4px;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  background: none;
+  background-color: #000;
+  content: "Pro";
+}/*# sourceMappingURL=blocks-free.css.map */
