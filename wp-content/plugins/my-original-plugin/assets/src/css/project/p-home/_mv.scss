@@ -231,40 +231,35 @@
     margin-bottom: 48px;
   }
   &__heading {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: flex-start;
     position: relative;
-    width: fit-content;
-    margin-bottom: 16px;
-  }
-  &__heading--main {
-    position: relative;
-    line-height: 1;
-    // margin-bottom: 0;
-    // margin-top: 0;
-    color: var(--color-space-cadet);
-    font-weight: 500;
-    font-size: var(--font-sm);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translateX(0);
   }
   &__heading--sub {
-    font-size: var(--font-sm);
     font-weight: 500;
-    font-size: var(--font-hero--xl);
+    font-size: var(--font-hero--lg);
     opacity: 0.1;
     line-height: 1;
+    display: block;
     color: transparent; /*文字色を透明*/
     background: rgba(0, 0, 0, 1); /*背景色を設定*/
     background-clip: text; /*背景を前景のテキストの中に表示*/
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
       1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/
   }
-  &__desc {
+  &__heading--main {
+    position: absolute;
+    line-height: 1.1;
+    font-weight: 400;
     font-size: var(--font-sm);
+    position: absolute;
+    bottom: calc(var(--font-sm) * -1);
+    left: 0;
+    transform: translateX(0);
+    display: inline-block;
+  }
+  &__desc {
+    margin-top: 40px;
+    font-size: var(--font-sm);
+    line-height: 1.7;
     font-weight: 500;
     color: transparent; /*文字色を透明*/
     background: rgba(0, 0, 0, 1); /*背景色を設定*/
