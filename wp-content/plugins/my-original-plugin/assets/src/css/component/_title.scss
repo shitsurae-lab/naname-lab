@@ -10,12 +10,14 @@
 .c-hero-heading {
   width: fit-content;
   &--main {
-    font-size: var(--font-hero--md);
+    font-size: var(--font-hero--lg);
     display: inline-block;
-    line-height: 1.1;
+    line-height: 1.2;
     letter-spacing: 0em;
-    color: transparent;
-    text-shadow: -2px -2px 0 var(--color-space-cadet);
-    -webkit-text-stroke: 1px var(--color-granite-gray);
+    color: var(--color-space-cadet);
+    // font-size: var(--font-hero--md);
+    // color: transparent;
+    // text-shadow: -2px -2px 0 var(--color-space-cadet);
+    // -webkit-text-stroke: 1px var(--color-granite-gray);
   }
 }
