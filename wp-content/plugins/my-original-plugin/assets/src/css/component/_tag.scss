@@ -6,9 +6,10 @@
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    padding: 2.5rem 0;
     @include mq(tablet) {
       flex-direction: row;
+      padding: 1.5rem 0;
     }
     #{$this}__summary {
       font-size: var(--font-xxs);
@@ -23,7 +24,7 @@
       }
       width: 100%;
       @include mq(tablet) {
-        width: calc(100% / 3);
+        width: calc(40%);
       }
     }
   }
