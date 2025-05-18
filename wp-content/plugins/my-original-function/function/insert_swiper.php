@@ -142,7 +142,7 @@ function insert_front_slider()
             </div>
             <div class="p-index-section__txt">
               <div class="p-index-section__heading">
-                <span class="p-index-section__heading--sub u-uppercase u-montserrat"><?php echo esc_html($heading_en); ?></span>
+                <span class="p-index-section__heading--sub u-uppercase u-dosis"><?php echo esc_html($heading_en); ?></span>
                 <h2 class="p-index-section__heading--main"><?php echo esc_html($title); ?></h2>
               </div>
               <p><?php echo nl2br(esc_html($desc)); ?></p>

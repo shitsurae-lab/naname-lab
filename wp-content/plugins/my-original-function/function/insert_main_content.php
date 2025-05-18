@@ -52,10 +52,10 @@ function show_index_content()
             <div class="p-index-section__content">
               <div class="p-index-section__head">
                 <h2 class="p-index-section__heading">
-                  <span class="p-index-section__heading--sub u-uppercase u-montserrat"><?php echo esc_html($heading_en); ?></span>
+                  <span class="p-index-section__heading--sub u-uppercase u-dosis"><?php echo esc_html($heading_en); ?></span>
                   <span class="p-index-section__heading--main"><?php echo esc_html($title); ?></span>
                 </h2>
-                <p class="p-index-section__desc u-montserrat u-uppercase"><?php echo esc_html($subheading_en); ?></p>
+                <p class="p-index-section__desc u-dosis u-uppercase"><?php echo esc_html($subheading_en); ?></p>
               </div>
               <div class="p-index-section__body">
                 <p><?php echo nl2br(esc_html($desc)); ?></p>
@@ -194,7 +194,7 @@ function show_achievement_cat_terms_list()
                     <img src="<?php echo esc_url($media_url . '/2025/05/webdesign.svg') ?>" alt="webデザインアイコン">
                   </div>
                   <div class="p-card__content">
-                    <h3>Web Design</h3>
+                    <h3 class="u-dosis">Web Design</h3>
                     <p>Photoshop, Illustrator, Figmaを利用したデザイン制作を行っています。</p>
                     <div class="p-card__chevron">
                       <img src=" <?php echo esc_url($media_url . '/2025/04/chevron-down.svg') ?>" alt="下向き矢印(Chevron down)">
@@ -212,7 +212,7 @@ function show_achievement_cat_terms_list()
                     <img src="<?php echo esc_url($media_url . '/2025/05/frontend.svg') ?>" alt="フロントエンドアイコン">
                   </div>
                   <div class="p-card__content">
-                    <h3>Frontend</h3>
+                    <h3 class="u-dosis">Frontend</h3>
                     <p>静的サイトからWordPressまで、webpackを活用した柔軟な開発環境を構築。</p>
                     <div class="p-card__chevron">
                       <img src="<?php echo esc_url($media_url . '/2025/04/chevron-down.svg') ?>" alt="下向き矢印(Chevron down)">
@@ -231,7 +231,7 @@ function show_achievement_cat_terms_list()
                     <img src="<?php echo esc_url($media_url . '/2025/05/wordpress.svg') ?>" alt="cmsアイコン">
                   </div>
                   <div class="p-card__content">
-                    <h3>WordPress</h3>
+                    <h3 class="u-dosis">WordPress</h3>
                     <p>テーマ・プラグインの自作を通じて、編集体験と保守性に優れたWordPressサイトを構築しています。</p>
                     <div class="p-card__chevron">
                       <img src=" <?php echo esc_url($media_url . '/2025/04/chevron-down.svg') ?>" alt="下向き矢印(Chevron down)">
