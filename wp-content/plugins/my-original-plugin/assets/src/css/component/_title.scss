@@ -11,13 +11,23 @@
   width: fit-content;
   &--main {
     font-size: var(--font-hero--lg);
-    display: inline-block;
-    line-height: 1.2;
-    letter-spacing: 0.1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    line-height: 1;
+    letter-spacing: 0.05em;
     color: var(--color-space-cadet);
     // font-size: var(--font-hero--md);
     // color: transparent;
     // text-shadow: -2px -2px 0 var(--color-space-cadet);
     // -webkit-text-stroke: 1px var(--color-granite-gray);
+  }
+  &--line {
+    display: inline-block;
+    background: linear-gradient(
+      180deg,
+      transparent 93.999%,
+      #f5cc42 94%,
+      #f5cc42 100%
+    );
   }
 }
