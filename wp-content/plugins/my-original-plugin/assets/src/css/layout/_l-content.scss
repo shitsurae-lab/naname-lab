@@ -16,6 +16,9 @@ body:not(.home) .l-content {
   background: var(--color-cultured);
   padding: calc(var(--ark-padding--container) / 2) var(--ark-padding--container)
     calc(var(--ark-padding--container) / 2);
+  .l-content__body {
+    margin: 1.5rem auto 3rem;
+  }
 }
 
 /* 投稿ページ */
