@@ -2,6 +2,9 @@
 .p-page__contact {
   $this: &;
   $form-width--lg: 72%;
+  .ark-block-section__body {
+    background-color: var(--color-cultured);
+  }
 
   &__container {
     .p-general__cursive-heading {
