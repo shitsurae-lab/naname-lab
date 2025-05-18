@@ -235,12 +235,12 @@
   }
   &__heading--sub {
     font-weight: 500;
-    font-size: var(--font-hero--lg);
+    font-size: var(--font-bg);
     opacity: 0.1;
     line-height: 1;
     display: block;
     color: transparent; /*文字色を透明*/
-    background: rgba(0, 0, 0, 1); /*背景色を設定*/
+    background: rgba(20, 36, 94, 1); /*背景色を設定*/
     background-clip: text; /*背景を前景のテキストの中に表示*/
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.05),
       1px 2px 3px rgba(255, 255, 255, 0.4); /*テキストの内側にシャドウを付ける*/

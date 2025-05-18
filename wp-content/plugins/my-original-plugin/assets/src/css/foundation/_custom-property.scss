@@ -61,6 +61,9 @@
 
   --font-xxxl: clamp(2.5rem, 1.8182rem + 2.9091vw, 4rem); // Min 40px Max 64px
 
+  //Min100px Max 140px Minimum viewport width: 375px, Maximum viewport width: 1980px
+  --font-bg: clamp(6.25rem, 5.6659rem + 2.4922vw, 8.75rem);
+
   //Min28px Max 40px
   --font-hero: clamp(1.75rem, 1.4091rem + 1.4545vw, 2.5rem);
 
