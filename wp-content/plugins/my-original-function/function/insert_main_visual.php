@@ -162,8 +162,8 @@ function add_custom_content_start_message()
     </section>
   <?php
 
-  } elseif (is_page(array('achievement_cat', 'about', 'contact'))) {
-    $page_slugs = array('achievement_cat', 'about', 'contact');
+  } elseif (is_page(array('achievement_cat', 'about', 'contact', 'inquiry-completed'))) {
+    $page_slugs = array('achievement_cat', 'about', 'contact', 'inquiry-completed');
     $current_slug = get_post_field('post_name');
     if (in_array($current_slug, $page_slugs)) {
       $page = get_page_by_path($current_slug);
