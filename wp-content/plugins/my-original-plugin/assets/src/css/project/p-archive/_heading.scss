@@ -14,8 +14,8 @@ $category: 'cat';
         &::before {
           content: 'category';
           display: block;
-          font-size: var(--font-xxs);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Dosis', sans-serif;
+          font-size: var(--font-xs);
           font-weight: 600;
           position: absolute;
           top: 50%;
@@ -46,8 +46,8 @@ $category: 'cat';
         &::before {
           content: 'skill';
           display: block;
+          font-family: 'Dosis', sans-serif;
           font-size: var(--font-xs);
-          font-family: 'Montserrat', sans-serif;
           position: absolute;
           top: 50%;
           left: 0;
