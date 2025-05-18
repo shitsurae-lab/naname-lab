@@ -92,6 +92,13 @@
         margin: 0 auto;
       }
     }
+    &.-inquiry-completed {
+      img {
+        width: 100%;
+        max-width: 80%;
+        margin: 0 auto;
+      }
+    }
   }
   &__box {
     // padding-top: 20px;
