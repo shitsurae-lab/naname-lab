@@ -12,12 +12,20 @@
   padding-right: var(--ark-padding--container, 0);
 }
 /* 投稿ページ・固定ページ共通 */
-body:not(.home) .l-content {
-  background: var(--color-cultured);
-  padding: calc(var(--ark-padding--container) / 2) var(--ark-padding--container)
-    calc(var(--ark-padding--container) / 2);
-  .l-content__body {
-    margin: 1.5rem auto 3rem;
+body:not(.home) {
+  .l-content {
+    background: var(--color-cultured);
+    padding: calc(var(--ark-padding--container) / 2)
+      var(--ark-padding--container) calc(var(--ark-padding--container) / 2);
+    .l-content__body {
+      margin: 1.5rem auto 3rem;
+    }
+  }
+  &.inquiry-completed {
+    .l-content {
+      padding: calc(var(--ark-padding--container) / 2)
+        var(--ark-padding--container) calc(var(--ark-padding--container) * 4);
+    }
   }
 }
 
