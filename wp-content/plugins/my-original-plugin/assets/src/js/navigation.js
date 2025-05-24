@@ -25,4 +25,16 @@ const globalNav = () => {
   });
 };
 
-export { localNav, globalNav };
+const adaptHeight = () => {
+  const height = document.querySelector('#header').offsetHeight;
+  const mainContent = document.querySelector('#content');
+  const body = document.body;
+  if (!height || !mainContent) {
+    return;
+  }
+  if (body.classList.contains('single')) {
+    mainContent.style.paddingTop = height + 'px';
+  }
+};
+
+export { localNav, globalNav, adaptHeight };

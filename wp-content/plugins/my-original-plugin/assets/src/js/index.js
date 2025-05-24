@@ -43,10 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //ローカルナビゲーション
-import { localNav, globalNav } from './navigation';
+import { localNav, globalNav, adaptHeight } from './navigation';
 document.addEventListener('DOMContentLoaded', () => {
   localNav();
   globalNav();
+  adaptHeight();
 });
 
 // const FuncTime = (hoge = 10, fuga = 20, piyo = 30) => {
