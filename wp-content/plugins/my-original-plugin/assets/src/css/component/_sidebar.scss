@@ -33,3 +33,8 @@
     }
   }
 }
+
+// パスワード保護のページのサイドバーを非表示
+main.has-password-form ~ .pin-spacer {
+  display: none !important;
+}
