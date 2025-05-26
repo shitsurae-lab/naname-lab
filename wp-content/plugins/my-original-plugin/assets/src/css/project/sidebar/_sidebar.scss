@@ -36,10 +36,35 @@ $requirement: '.single';
       color: var(--color-granite-gray);
       font-size: var(--font-md);
       @include mq(pc) {
-        width: calc(100% - 20px);
-        margin-left: 20px;
+        width: 100%;
+        //width: calc(100% - 20px);
+        // margin-left: 20px;
         position: sticky;
         top: 0;
+      }
+    }
+    &__container {
+      h2 {
+        font-size: var(--font-md);
+        color: var(--color-space-cadet);
+        font-weight: 500;
+        position: relative;
+        padding-left: 16px;
+        margin-bottom: 2rem;
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: var(--color-space-cadet);
+        }
+        & + div {
+          display: grid;
+          gap: 20px;
+        }
       }
     }
     &__share {

@@ -71,8 +71,8 @@ function custom_post_sidebar()
 
     </div>
     <!-- END //.p-sidebar__content -->
-
   <?php
+
   // END is_object_in_term($post->ID, 'achievement_cat', ['ecommerce', 'woocommerce', 'wordpress', 'landing-page']) && is_singular('achievement'))
 
   elseif (is_object_in_term($post->ID, 'achievement_cat', ['containing-ecommerce', 'containing-woocommerce', 'containing-wordpress', 'containing-landing-page', 'containing-banner', 'containing-website-building', 'containing-secret', 'containing-static-site', 'containing-design', 'containing-working-on']) && is_singular('achievement')) :
@@ -148,9 +148,10 @@ function custom_post_sidebar()
 
   // END is_object_in_term($post->ID, 'achievement_tag', ['design', 'building-website', 'working-on']) && is_singular('achievement'))
 
+
   elseif (is_singular('skill')) :
     global $post;
-    $terms = get_the_terms($post->ID,  'skill_cat'); ?>
+    $terms = get_the_terms($post->ID, 'skill_cat'); ?>
       <div class="p-sidebar__content">
         <div class="p-sidebar__heading">
           <p class="p-sidebar__update">Last update</p>
@@ -175,13 +176,27 @@ function custom_post_sidebar()
 
       </div>
       <!-- END //.p-sidebar__content -->
-
-    <?php
-  elseif (is_singular('about')) :
-    global $post;
-    ?>
-      <div>ここに'about'に関する見出しが入ります</div>
   <?php
   endif;
+  $post_obj = get_queried_object(); // huga の投稿オブジェクト
+
+  if ($post_obj) {
+    $terms = get_the_terms($post_obj->ID, 'achievement_cat'); // カテゴリー表示したい場合用
+
+    // ACFフィールドをこの投稿だけから取得
+    $heading = get_field('sidebar_heading', $post_obj->ID);
+    $body    = get_field('sidebar_body', $post_obj->ID);
+
+    if ($heading || $body) :
+      echo '<div class="p-sidebar__container">';
+      if ($heading) {
+        echo '<h2>' . esc_html($heading) . '</h2>';
+      }
+      if ($body) {
+        echo '<div>' . wp_kses_post($body) . '</div>';
+      }
+      echo '</div>';
+    endif;
+  }
 }
 add_action('arkhe_start_sidebar', 'custom_post_sidebar', 10);

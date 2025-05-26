@@ -159,12 +159,48 @@ const sectionPinAnimation = () => {
   });
 };
 
+const asidePinAnimation = () => {
+  const selectors = [
+    '.single-achievement .l-main',
+    '.tax-achievement_cat .l-main',
+    '.tax-achievement_tag .l-main',
+  ];
+  selectors.forEach((selector) => {
+    const mainContent = document.querySelector(selector);
+    const aside = document.querySelector('.l-sidebar');
+    if (mainContent && aside) {
+      ScrollTrigger.create({
+        trigger: mainContent,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: aside,
+        pinSpacing: false,
+        // markers: true, // ← デバッグ用
+      });
+    }
+  });
+};
+
+const adaptHeight = () => {
+  const heading = document.querySelector('.p-index-section__heading');
+  const sub = document.querySelector('.p-index-section__heading--sub');
+  if (!sub) {
+    console.warn('要素 .p-index-section__heading--sub が見つからないよ！');
+    return;
+  }
+  const height = sub.offsetTop + sub.offsetHeight;
+  console.log(`高さは${height}です`);
+  heading.style.setProperty('--heading-height', `${height}px`);
+};
+
 /* ----------------------------
    初期化用関数
 ----------------------------- */
 const initScrollAnimations = () => {
   addScrollTriggerClasses();
   sectionPinAnimation();
+  asidePinAnimation();
+  adaptHeight();
 };
 
 export { initScrollAnimations, myScroll, myTimeline, myTimeline2 };
