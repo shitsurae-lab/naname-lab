@@ -39,7 +39,6 @@ function show_index_content()
 
 ?>
       <section class="section p-index-section <?php echo $bg_class; ?> js-appearance" data-section>
-
         <div class="p-index-section__inner" data-section-inner>
           <div class="p-index-section__container  <?php echo $flex_class; ?>">
             <div class="p-index-section__image">
@@ -51,10 +50,11 @@ function show_index_content()
             </div>
             <div class="p-index-section__content">
               <div class="p-index-section__head">
-                <h2 class="p-index-section__heading">
+                <div class="p-index-section__heading">
                   <span class="p-index-section__heading--sub u-uppercase u-dosis"><?php echo esc_html($heading_en); ?></span>
-                  <span class="p-index-section__heading--main"><?php echo esc_html($title); ?></span>
-                </h2>
+                  <h2 class="p-index-section__heading--main"><?php echo esc_html($title); ?></h2>
+                  <span class="p-index-section__heading--en u-uppercase u-dosis"><?php echo esc_html($heading_en); ?></span>
+                </div>
                 <p class="p-index-section__desc u-dosis u-uppercase"><?php echo esc_html($subheading_en); ?></p>
               </div>
               <div class="p-index-section__body">
