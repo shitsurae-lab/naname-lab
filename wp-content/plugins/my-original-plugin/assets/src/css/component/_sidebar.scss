@@ -1,0 +1,35 @@
+@use '../global' as *;
+.p-sidebar__container {
+  padding-right: 0;
+  @include mq(tablet) {
+    padding-right: 20px;
+  }
+  .c-sidebar__head {
+    display: grid;
+    gap: 4px;
+    margin-bottom: 20px;
+    span.c-sidebar__en {
+      line-height: 1.1;
+      font-size: var(--font-md);
+      width: fit-content;
+      position: relative;
+      padding-right: 64px;
+      &::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--color-granite-gray);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+    h3.c-sidebar__subheading {
+      line-height: 1.1;
+      font-weight: 400;
+      font-size: var(--font-sm);
+    }
+  }
+}
