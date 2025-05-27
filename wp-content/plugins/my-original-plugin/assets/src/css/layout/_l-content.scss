@@ -13,7 +13,7 @@
 }
 /* 投稿ページ・固定ページ共通 */
 body {
-  &:not(.home) {
+  &:not(.home).page {
     .l-content {
       background: var(--color-cultured);
       padding: calc(var(--ark-padding--container) / 2)
@@ -21,12 +21,114 @@ body {
       .l-content__body {
         margin: 1.5rem auto 3rem;
       }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        clip-path: polygon(0 0, 0 100%, 100% 100%);
+        height: 8.4vmin;
+        background-color: var(--color-cultured);
+        top: -8vmin;
+        left: 0;
+        z-index: 10;
+        @include mq(tablet) {
+          height: 4.24vmin;
+          top: -4vmin;
+        }
+        @include mq(pc) {
+          height: 8.24vmin;
+          top: -8vmin;
+        }
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: calc(100% / 4);
+        content: '';
+        width: 100%;
+        clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        height: 4.24vmin;
+        background-color: var(--color-space-cadet);
+        top: -4vmin;
+        right: 0;
+        z-index: 5;
+        @include mq(tablet) {
+          height: 2.12vmin;
+          top: -2vmin;
+          width: calc(100% / 5);
+        }
+        @include mq(pc) {
+          height: 4.12vmin;
+          top: -4vmin;
+          width: calc(100% / 5);
+        }
+      }
     }
     &.inquiry-completed {
       .l-content {
         padding: calc(var(--ark-padding--container) / 2)
           var(--ark-padding--container) calc(var(--ark-padding--container) * 4);
       }
+    }
+  }
+  &.archive {
+    .l-content {
+      background: var(--color-cultured);
+      padding: calc(var(--ark-padding--container) / 2)
+        var(--ark-padding--container) calc(var(--ark-padding--container) / 2);
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        clip-path: polygon(0 0, 0 100%, 100% 100%);
+        height: 8.4vmin;
+        background-color: var(--color-cultured);
+        top: -8vmin;
+        left: 0;
+        z-index: 10;
+        @include mq(tablet) {
+          height: 4.24vmin;
+          top: -4vmin;
+        }
+        @include mq(pc) {
+          height: 8.24vmin;
+          top: -8vmin;
+        }
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: calc(100% / 4);
+        content: '';
+        width: 100%;
+        clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        height: 4.24vmin;
+        background-color: var(--color-space-cadet);
+        top: -4vmin;
+        right: 0;
+        z-index: 5;
+        @include mq(tablet) {
+          height: 2.12vmin;
+          top: -2vmin;
+          width: calc(100% / 5);
+        }
+        @include mq(pc) {
+          height: 4.12vmin;
+          top: -4vmin;
+          width: calc(100% / 5);
+        }
+      }
+    }
+  }
+  &.achievement_cat {
+    .p-breadcrumb__list.l-container {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: var(--ark-width--article);
     }
   }
   &.single-achievement {
