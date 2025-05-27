@@ -284,12 +284,13 @@
     }
     &::before {
       width: 40px;
-      background: transparent;
+      // background: transparent;
+      background: var(--color-bright-gray);
       box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3),
         /* ハイライト（上左からの光） */ inset -1px -1px 1px rgba(0, 0, 0, 0.6); /* シャドウ（下右） */
     }
     &::after {
-      width: 16px;
+      width: 10px;
       background: var(--color-space-cadet);
     }
   }
@@ -403,8 +404,10 @@
     }
     @include mq(pc) {
     }
-    img {
-      display: block;
+    #{$this}__airy {
+      img {
+        display: block;
+      }
     }
   }
   &__box {
