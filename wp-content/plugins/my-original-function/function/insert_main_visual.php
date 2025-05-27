@@ -138,7 +138,7 @@ function add_custom_content_start_message()
     <section class="p-index-mv">
       <div class="p-index-mv__inner">
         <div class="p-index-mv__image">
-          <img src="<?php echo esc_url($eyecatch_url) ?>" alt="<?php echo esc_html($alt_text); ?>">
+          <div class="p-index-mv__airy"><img src="<?php echo esc_url($eyecatch_url) ?>" alt="<?php echo esc_html($alt_text); ?>"></div>
         </div>
         <div class="p-index-mv__box u-gutter">
           <div class="p-index-mv__content">
