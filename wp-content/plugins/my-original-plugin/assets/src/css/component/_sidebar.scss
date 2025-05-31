@@ -4,36 +4,56 @@
   @include mq(tablet) {
     padding-right: 20px;
   }
-  .c-sidebar__head {
-    display: grid;
-    gap: 4px;
-    margin-bottom: 20px;
-    span.c-sidebar__en {
-      line-height: 1.1;
-      font-size: var(--font-md);
-      width: fit-content;
-      position: relative;
-      padding-right: 64px;
-      &::before {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 1px;
-        background: var(--color-granite-gray);
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
+  details {
+    .c-sidebar__head {
+      display: grid;
+      grid-template-columns: 1fr 20px;
+      gap: 4px;
+      margin-bottom: 20px;
+      .c-sidebar__en {
+        line-height: 1.1;
+        font-size: var(--font-md);
+        color: var(--color-space-cadet);
+      }
+      .c-summary__icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s;
+        transform: rotate(0deg); // ← 初期状態を明示
+        &::before,
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12px;
+          height: 2px;
+          background: var(--color-space-cadet);
+        }
+        &::before {
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+      }
+      .c-sidebar__subheading {
+        line-height: 1.1;
+        font-weight: 400;
+        font-size: var(--font-xs);
+        grid-column: 1 / -1;
       }
     }
-    h3.c-sidebar__subheading {
-      line-height: 1.1;
-      font-weight: 400;
-      font-size: var(--font-sm);
+    .c-sidebar__body {
+      line-height: 1.7;
+      overflow: hidden;
+    }
+    .c-sidebar__content {
+      padding: 8px 0 16px;
     }
   }
-  .c-sidebar__body {
-    line-height: 1.7;
+  details[open] .c-summary__icon {
+    transform: rotate(180deg);
   }
 }
 
