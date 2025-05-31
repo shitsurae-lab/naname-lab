@@ -1,3 +1,5 @@
+import { gsap } from 'gsap';
+
 const accordionAnim = () => {
   const [...details] = document.querySelectorAll('.js-details');
   const RUNNING_VALUE = 'running'; // アニメーション実行中のときに付与する予定のカスタムデータ属性の値
@@ -98,4 +100,76 @@ const accordionAnim = () => {
   ];
 };
 
-export default accordionAnim;
+const accordionSidebar = () => {
+  const allDetails = document.querySelectorAll('details.accordion');
+  allDetails.forEach((details) => {
+    const summary = details.querySelector('summary.c-sidebar__head');
+    const content = details.querySelector('.c-sidebar__body.js-content');
+
+    let isAnimating = false; // アニメーション中かどうかのフラグ
+
+    // 初期状態
+    gsap.set(content, { height: 0, overflow: 'hidden' });
+    details.open = false;
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isAnimating) return; //連打防止
+      isAnimating = true;
+
+      const isOpen = details.hasAttribute('open');
+
+      if (isOpen) {
+        // 閉じるアニメーション
+        gsap.to(content, {
+          height: 0,
+          duration: 0.4,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            details.removeAttribute('open');
+            isAnimating = false; // アニメーション終了後にフラグ解除
+          },
+        });
+      } else {
+        //  他の open を閉じる（複数開閉対応）
+        allDetails.forEach((other) => {
+          if (other !== details && other.hasAttribute('open')) {
+            const otherContent = other.querySelector('.js-content');
+            gsap.to(otherContent, {
+              height: 0,
+              duration: 0.4,
+              ease: 'power2.inOut',
+              onComplete: () => {
+                other.removeAttribute('open');
+              },
+            });
+          }
+        });
+
+        details.setAttribute('open', 'true');
+        // 一度高さを自動で取得してからセット
+        const fullHeight = content.scrollHeight;
+
+        gsap.fromTo(
+          content,
+          { height: 0 },
+          {
+            height: fullHeight,
+            duration: 0.4,
+            ease: 'power2.out',
+            onComplete: () => {
+              isAnimating = false; // アニメーション終了後にフラグ解除
+            },
+          }
+        );
+      }
+    });
+  });
+};
+
+const accordion = () => {
+  accordionAnim();
+  accordionSidebar();
+};
+
+export default accordion;

@@ -83,8 +83,8 @@ import {
 } from './myswiper';
 
 //-- START summary・detailアニメーション
-import accordionAnim from './accordion';
-accordionAnim();
+import accordion from './accordion';
+accordion();
 //--accordionAnimの中にクリックイベントが記載されているので、accordionAnim();(->関数実行)を行う
 
 import particles from './particles';
