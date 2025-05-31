@@ -32,6 +32,9 @@
       font-size: var(--font-sm);
     }
   }
+  .c-sidebar__body {
+    line-height: 1.7;
+  }
 }
 
 // パスワード保護のページのサイドバーを非表示
