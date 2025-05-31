@@ -152,7 +152,8 @@ body {
       @include mq(pc) {
         max-width: 100%;
         width: calc(
-          100% - var(--ark-width--sidebar) - var(--ark-gap--container)
+          100% - var(--ark-width--sidebar) -
+            calc(var(--ark-gap--container) * 1.5)
         );
         margin-left: 0;
         margin-right: auto;

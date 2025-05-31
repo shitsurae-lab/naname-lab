@@ -22,7 +22,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: row-reverse;
-    column-gap: var(--ark-gap--container);
+    column-gap: calc(var(--ark-gap--container) * 1.5);
   }
 }
 
