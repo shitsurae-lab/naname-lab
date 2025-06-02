@@ -389,7 +389,7 @@
     @include mq(pc) {
       width: 100%;
       max-width: 1440px;
-      height: min(80vh, 100vh);
+      height: 100vh;
       margin: 0 auto;
       grid-template-rows: 1fr;
       grid-template-columns: 1fr 2fr;
