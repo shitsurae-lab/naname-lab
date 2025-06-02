@@ -57,6 +57,9 @@ include_once(plugin_dir_path(__FILE__) . 'function/insert_accordion.php');
 //contact form 7: お問い合わせ完了後に送信完了画面へ遷移
 include_once(plugin_dir_path(__FILE__) . 'function/insert_contact_form_7.php');
 
+//フッターに波
+include_once(plugin_dir_path(__FILE__) . 'function/insert_footer_content.php');
+
 /**
  *フィルターフック
  */
