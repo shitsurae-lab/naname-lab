@@ -1,0 +1,44 @@
+@use '../global' as *;
+
+.c-footer_wave {
+  width: 100%;
+}
+.u-parallax > use {
+  //animation: move-forever 12s linear infinite;
+  animation: move-forever 20s linear infinite;
+}
+.u-parallax > use:nth-child(1) {
+  animation-delay: -2s;
+}
+.u-parallax > use:nth-child(2) {
+  //animation-delay: -2s;
+  animation-delay: -5s;
+  // animation-duration: 5s;
+  animation-duration: 15s;
+}
+.u-parallax > use:nth-child(3) {
+  //animation-delay: -4s;
+  animation-delay: -10s;
+  //animation-duration: 3s;
+  animation-duration: 10s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
+.u-editorial {
+  display: block;
+  width: 100%;
+  height: 10vw;
+  max-height: 100vh;
+  margin: 0;
+  bottom: 0px;
+  opacity: 1;
+  @include mq(tablet) {
+    height: 4vw;
+  }
+}

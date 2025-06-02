@@ -1,36 +1,41 @@
 @use '../../global' as *;
 
 .l-footer {
+  // background: transparent;
   $this: &;
   // background-image: var(--color-moonlit-asteroid);
-  background: var(--color-space-cadet);
+  // background: var(--color-space-cadet); //疑似要素の波を使う際にはこの記述が必要
   position: relative;
-  &::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 64px;
-    position: absolute;
-    //top: -12%;
-    top: calc((64px - 2px) * -1);
-    left: 0;
-    background-image: url('../media/wave-space-cadet-sp.svg');
-    background-repeat: repeat-x;
-    background-size: 50%;
-    animation: waves_move 20s linear infinite;
-    transform-origin: 0% 0%;
+  //START: 疑似要素の波
+  // &::before {
+  //   content: '';
+  //   display: block;
+  //   width: 100%;
+  //   height: 64px;
+  //   position: absolute;
+  //   //top: -12%;
+  //   top: calc((64px - 2px) * -1);
+  //   left: 0;
+  //   background-image: url('../media/wave-space-cadet-sp.svg');
+  //   background-repeat: repeat-x;
+  //   background-size: 50%;
+  //   animation: waves_move 20s linear infinite;
+  //   transform-origin: 0% 0%;
 
-    @include mq(tablet) {
-      background-image: url('../media/wave-space-cadet.svg');
-      height: 56px;
-      top: calc((56px - 2px) * -1);
-    }
-    @include mq(pc) {
-      height: 48px;
-      top: calc((48px - 2px) * -1);
-    }
-  }
+  //   @include mq(tablet) {
+  //     background-image: url('../media/wave-space-cadet.svg');
+  //     height: 56px;
+  //     top: calc((56px - 2px) * -1);
+  //   }
+  //   @include mq(pc) {
+  //     height: 48px;
+  //     top: calc((48px - 2px) * -1);
+  //   }
+  // }
+  //END 疑似要素の波
+
   &__foot {
+    background: var(--color-space-cadet);
     padding-top: calc(3.75rem + 10px);
     @include mq(tablet) {
       padding-top: 6rem;
