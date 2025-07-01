@@ -1,11 +1,11 @@
 @use '../../global' as *;
 
 .l-footer {
-  // background: transparent;
   $this: &;
+  position: relative;
+  background: var(--color-cultured);
   // background-image: var(--color-moonlit-asteroid);
   // background: var(--color-space-cadet); //疑似要素の波を使う際にはこの記述が必要
-  position: relative;
   //START: 疑似要素の波
   // &::before {
   //   content: '';
@@ -75,6 +75,13 @@
       color: var(--color-primary);
       text-align: center;
     }
+  }
+}
+
+.home,
+.single-achievement {
+  .l-footer {
+    background: #ffffff;
   }
 }
 
