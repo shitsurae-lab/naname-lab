@@ -17,12 +17,10 @@
   justify-content: space-between;
   flex-direction: column-reverse;
   row-gap: 40px;
+  overflow: hidden;
   @include mq(pc) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     flex-direction: row-reverse;
-    column-gap: calc(var(--ark-gap--container) * 1.5);
+    // column-gap: calc(var(--ark-gap--container) * 1.5);
   }
 }
 
