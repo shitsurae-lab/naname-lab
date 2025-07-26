@@ -2,10 +2,10 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=XML%20Sitemap%20Feed
 Tags: sitemap, xml, news, robots, Google News
-Requires at least: 4.4
+Requires at least: 4.6
 Requires PHP: 5.6
 Tested up to: 6.8
-Stable tag: 5.5.4
+Stable tag: 5.5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -141,10 +141,23 @@ Please read more on [FAQ's and Troubleshooting](https://premium.status301.com/kn
 
 == Upgrade Notice ==
 
-= 5.5.4 =
-Performance improvement and bugfixes.
+= 5.5.6 =
+Fix admin notice dismissal and possible excessively long URL on admin post search.
 
 == Changelog ==
+
+= 5.5.6 =
+Date: 20250717
+* FIX: Possible excessively long URL on admin post search, thanks @leedxw
+* FIX: Notice dismiss failing
+
+= 5.5.5 =
+Date: 20250625
+* Polylang index lastmods per language in core sitemap
+* Resturcture admin notices
+* FIX: SEOPress notices
+* FIX: core sitemap index lastmods (post order)
+* FIX: Polylang Pro compatibility, thanks @followalter
 
 = 5.5.4 =
 Date: 20250427
