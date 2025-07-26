@@ -3,10 +3,11 @@
  * Plugin name: Smart Custom Fields
  * Plugin URI: https://github.com/inc2734/smart-custom-fields/
  * Description: Smart Custom Fields is a simple plugin that management custom fields.
- * Version: 5.0.0
+ * Version: 5.0.3
  * Author: inc2734
  * Author URI: https://2inc.org
  * Text Domain: smart-custom-fields
+ * Domain Path: /languages
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -47,19 +48,32 @@ class Smart_Custom_Fields {
 	}
 
 	/**
-	 * Loading translation files
+	 * Plugins loaded.
 	 */
 	public function plugins_loaded() {
 		do_action( SCF_Config::PREFIX . 'load' );
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.meta.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.setting.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.group.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.abstract-field-base.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.revisions.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.ajax.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.options-page.php';
-		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.cache.php';
+
 		require_once plugin_dir_path( __FILE__ ) . 'classes/class.scf.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.abstract-field-base.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.ajax.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.cache.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.group.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.meta.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.options-page.php';
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.setting.php';
+
+		add_action( 'init', array( $this, '_init' ) );
+		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'ajax_request' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'current_screen', array( $this, 'current_screen' ) );
+	}
+
+	/**
+	 * Initialize.
+	 */
+	public function _init() {
+		require_once plugin_dir_path( __FILE__ ) . 'classes/models/class.revisions.php';
 		new Smart_Custom_Fields_Revisions();
 
 		if ( function_exists( 'wpseo_init' ) ) {
@@ -77,18 +91,10 @@ class Smart_Custom_Fields {
 			}
 		}
 
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
-		add_action( 'init', array( $this, 'register_post_type' ) );
-		add_action( 'init', array( $this, 'ajax_request' ) );
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'current_screen', array( $this, 'current_screen' ) );
-	}
-
-	/**
-	 * The action hook provides in after_setup_themeto be able to add fields
-	 * from themes not only plugins.
-	 */
-	public function after_setup_theme() {
+		/**
+		 * The action hook provides in after_setup_themeto be able to add fields
+		 * from themes not only plugins.
+		 */
 		do_action( SCF_Config::PREFIX . 'fields-loaded' );
 	}
 

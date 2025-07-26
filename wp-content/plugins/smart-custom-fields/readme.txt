@@ -4,8 +4,8 @@ Donate link: http://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: plugin, custom field, custom, field, meta, meta field, repeat, repeatable
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.4
-Stable tag: 5.0.0
+Tested up to: 6.8
+Stable tag: 5.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,10 @@ https://www.youtube.com/watch?v=WxPZurn0yvI
 * Message
 
 = How to get meta data ? =
+
+**The return value of each of the following methods is not sanitized. Please sanitize them if necessary. **
+
+https://developer.wordpress.org/apis/security/escaping/
 
 **Post meta data**
 
@@ -129,6 +133,15 @@ You can translate this plugin into your language by using [GlotPress](https://tr
 2. Post edit page.
 
 == Changelog ==
+
+= 5.0.3 =
+* Fixed a bug that caused a fatal error when using `SCF::add_options_page()`.
+
+= 5.0.2 =
+* Fixed a Notice error regarding translation.
+* Fixed xss vulnerability.
+* Fixed an issue where WYSIWYG fields were not working properly in the block editor.
+* Fixed an issue where sorting would not work properly when multiple field groups were set on the same options page and Post Attributes > Order was specified.
 
 = 5.0.0 =
 * WordPress 6.4 or higher is now required.
