@@ -22,6 +22,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$sysid[12]="TieredWorks, tieredworks";
 	$sysid[13]="Forminator,  forminator";
 	$sysid[14]="booking-package,bookingpackage";
+	$sysid[15]="YubinBango,";
 	$sysid[99]="###other###, tricks";
 //
 	$contf7= strpos($output, 'wpcf7-form');       //Contact Form 7
@@ -40,10 +41,12 @@ function zipaddr_jp_change($output, $opt=""){
 	$tieredw=strpos($output, 'SF-contact');       //TieredWorks
 	$formina=strpos($output, 'forminator-label'); //Forminator
 	$bookpak=strpos($output, 'id="booking-package"'); //booking-package
+	$yubingo=strpos($output, 'h-adr');            //YubinBango
 	$yubin=  strpos($output, '郵便番号');
 //フォームの自動判定
 	$sid= "";
-		 if( $contf7 !==false ) $sid= 1;
+		 if( $yubingo!==false ) $sid= 15;
+	else if( $contf7 !==false ) $sid= 1;
 	else if( $mwform !==false ) $sid= 2;
 	else if( $trustf !==false ) $sid= 3;
 	else if( $ninjaf !==false ){$sid= 4; $sys_dyna="1";}
@@ -71,7 +74,7 @@ function zipaddr_jp_change($output, $opt=""){
 	$jsfile= '<script type="text/javascript" charset="UTF-8"';
 	$http="http"; $lcpath="";                     // http,  // local_path
 if(isset($_SERVER['HTTPS'])) {$http=(empty($_SERVER['HTTPS'])||$_SERVER['HTTPS']=='off')? 'http':'https';}
-	$pth= isset($_SERVER['SERVER_NAME']) ?  $http.'://'.$_SERVER['SERVER_NAME'] : ""; // host用
+	$pth= isset($_SERVER['SERVER_NAME']) ?  $http.'://'.sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME'])) : ""; // host用
 	if( empty($sys_site) ) $sys_site= "4";        // パラメータの初期変換
 	if( empty($sys_keta) ) $sys_keta= "7";
 //	if( $sys_site=="1"  || $opt!="" ) $sys_site= "4"; // welcartはzipaddrx.js
@@ -97,7 +100,7 @@ else if( $sys_site == "5" )              $uls= zipaddr_git.   'zipaddra.js';
 	$js.= $jsfile.">function zipaddr_ownb(){" .$pre."dli='".$sys_deli."';";
 //	$js.= empty($ninjaf) ? $pre."wp='1';" : $pre."wp='2';";
 	$js.= $pre."wp='1';";
-	$js.= $pre."uver='".get_bloginfo('version')."';";
+	$js.= $pre."uver='".zipaddrjp_suji(get_bloginfo('version'))."';";
 //	$js.= $pre."min=".$sys_keta.";"  .$pre."uver='".get_bloginfo('version')."';";
 //	if( $opt != "" )    $js.= $pre."welcart='1';";
 	if( $sys_tate!="" ) $js.= $pre."top=".    $sys_tate. ";";
@@ -116,7 +119,8 @@ else if( $sys_site == "5" )              $uls= zipaddr_git.   'zipaddra.js';
 		$js.= $jsfile.' src="'.zipaddr_git.$apid.'.js"></script>';
 	}
 //stylesheetファイル生成
-	if( $sys_site=="2" || $sys_site=="3" ) $js.= '<link rel="stylesheet" href="'.$lcpath.'" />'; // style
+//	if( $sys_site=="2" || $sys_site=="3" ) $js.= '<link rel="stylesheet" href="'.$lcpath.'" />'; // style
+	if( $sys_site=="2" || $sys_site=="3" ) wp_enqueue_style('zipaddr-jp',$lcpath,array(),1.1); // style
 //オウンコード設定パラメータ生成
 //	if( $sys_parm != "" ){
 		$skip1= "skip=1";
@@ -132,7 +136,7 @@ else if( $sys_site == "5" )              $uls= zipaddr_git.   'zipaddra.js';
 	else
 	if( !empty($sys_drct) ){                      // 無条件挿入
 		$ans= $output;
-		$urlh= isset($_SERVER['REQUEST_URI']) ?  $_SERVER['REQUEST_URI'] : "";
+		$urlh= isset($_SERVER['REQUEST_URI']) ?  sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : "";
 		$wk= explode(";", $sys_drct);
 		foreach($wk as $ka => $da){
 			if( strpos($urlh,$da)!==false ) {$ans=$output.$js; break;}
@@ -141,19 +145,5 @@ else if( $sys_site == "5" )              $uls= zipaddr_git.   'zipaddra.js';
 	else
 		$ans= str_ireplace("<form", $js."<form", $output);
 	return $ans;
-}
-function zipaddr_jp_usces($formtag,$type,$data) {return zipaddr_jp_change($formtag,"1");}
-function zipaddr_jp_welcart($script) {return $script;
-	$keywd1="if(delivery_days[selected]";
-$addon="
-if(typeof Zip.welorder==='function'){
-	var wk1= $('#delivery_country').val();
-	var wk2= $('#delivery_pref').val();
-	if( wk1!='' && wk2!='' ) {delivery_country=wk1; delivery_pref=wk2;}
-}
-";
-	$wk0= strpos($script,$keywd1);
-	if( $wk0!==false ) {$script= str_replace($keywd1, $addon.$keywd1, $script);}
-	return $script;
 }
 ?>

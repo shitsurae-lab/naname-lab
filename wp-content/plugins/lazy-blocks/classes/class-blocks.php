@@ -282,24 +282,24 @@ class LazyBlocks_Blocks {
 	/**
 	 * Disable month dropdown.
 	 *
-	 * @param array  $return disabled dropdown or no.
+	 * @param array  $result disabled dropdown or no.
 	 * @param object $post_type current post type name.
 	 *
 	 * @return array
 	 */
-	public function disable_months_dropdown( $return, $post_type ) {
-		return 'lazyblocks' === $post_type ? true : $return;
+	public function disable_months_dropdown( $result, $post_type ) {
+		return 'lazyblocks' === $post_type ? true : $result;
 	}
 
 	/**
 	 * Add active/inactive class to row
 	 *
 	 * @param array $classes Array of post classes.
-	 * @param array $class Additional classes added to the post.
+	 * @param array $classname Additional classes added to the post.
 	 * @param int   $post_id The post ID.
 	 * @return array
 	 */
-	public function post_class( $classes, $class, $post_id ) {
+	public function post_class( $classes, $classname, $post_id ) {
 		if ( ! is_admin() ) {
 			return $classes;
 		}
@@ -552,28 +552,40 @@ class LazyBlocks_Blocks {
 
 		'lazyblocks_code_editor_html'                => '',
 		'lazyblocks_code_editor_callback'            => '',
-		'lazyblocks_code_editor_css'                 => '',
 		'lazyblocks_code_frontend_html'              => '',
 		'lazyblocks_code_frontend_callback'          => '',
-		'lazyblocks_code_frontend_css'               => '',
+
+		'lazyblocks_style_block'                     => '',
+		'lazyblocks_style_editor'                    => '',
+
+		'lazyblocks_script_view'                     => '',
 
 		'lazyblocks_styles'                          => array(),
 
-		'lazyblocks_supports_multiple'               => 'true',
-		'lazyblocks_supports_classname'              => 'true',
+		'lazyblocks_supports_color'                  => 'false',
+		'lazyblocks_supports_typography'             => 'false',
+		'lazyblocks_supports_spacing'                => 'false',
+		'lazyblocks_supports_dimensions'             => 'false',
+		'lazyblocks_supports_shadow'                 => 'false',
+		'lazyblocks_supports_layout'                 => 'false',
+		'lazyblocks_supports_align'                  => array( 'wide', 'full' ),
 		'lazyblocks_supports_anchor'                 => 'false',
-		'lazyblocks_supports_html'                   => 'false',
+		'lazyblocks_supports_classname'              => 'true',
+		'lazyblocks_supports_multiple'               => 'true',
 		'lazyblocks_supports_inserter'               => 'true',
 		'lazyblocks_supports_reusable'               => 'true',
 		'lazyblocks_supports_lock'                   => 'true',
-		'lazyblocks_supports_align'                  => array( 'wide', 'full' ),
+		'lazyblocks_supports_html'                   => 'false',
 
 		// Ghost Kit Extensions.
+		'lazyblocks_supports_ghostkit_effects'       => 'false',
+		'lazyblocks_supports_ghostkit_position'      => 'false',
 		'lazyblocks_supports_ghostkit_spacings'      => 'false',
-		'lazyblocks_supports_ghostkit_display'       => 'false',
-		'lazyblocks_supports_ghostkit_scroll_reveal' => 'false',
 		'lazyblocks_supports_ghostkit_frame'         => 'false',
+		'lazyblocks_supports_ghostkit_transform'     => 'false',
 		'lazyblocks_supports_ghostkit_custom_css'    => 'false',
+		'lazyblocks_supports_ghostkit_display'       => 'false',
+		'lazyblocks_supports_ghostkit_attributes'    => 'false',
 
 		'lazyblocks_condition_post_types'            => '',
 	);
@@ -666,7 +678,7 @@ class LazyBlocks_Blocks {
 
 		// Sanitize each part.
 		$sanitized_parts = array_map(
-			function( $part ) {
+			function ( $part ) {
 				return strtolower( preg_replace( '/[^a-zA-Z0-9\-]+/', '', $part ) );
 			},
 			$parts
@@ -714,9 +726,10 @@ class LazyBlocks_Blocks {
 				if (
 					'lazyblocks_icon' === $meta ||
 					'lazyblocks_code_editor_html' === $meta ||
-					'lazyblocks_code_editor_css' === $meta ||
 					'lazyblocks_code_frontend_html' === $meta ||
-					'lazyblocks_code_frontend_css' === $meta
+					'lazyblocks_style_editor' === $meta ||
+					'lazyblocks_style_block' === $meta ||
+					'lazyblocks_script_view' === $meta
 				) {
 					$new_meta_value = wp_slash( $data[ $meta ] );
 				} else {
@@ -899,7 +912,7 @@ class LazyBlocks_Blocks {
 	 * @param array $all_controls - control data.
 	 */
 	public function marshal_block_data_with_controls( $id = null, $post_title = null, $block_data = null, $all_controls = null ) {
-		$get_meta_value = function( $name ) use ( $id, $block_data ) {
+		$get_meta_value = function ( $name ) use ( $id, $block_data ) {
 			// Get post meta data.
 			if ( $id ) {
 				return $this->get_meta_value_by_id( $name, $id );
@@ -943,6 +956,34 @@ class LazyBlocks_Blocks {
 			'multiple'        => $get_meta_value( 'lazyblocks_supports_multiple' ),
 			'inserter'        => $get_meta_value( 'lazyblocks_supports_inserter' ),
 			'reusable'        => $get_meta_value( 'lazyblocks_supports_reusable' ),
+			'color'           => $get_meta_value( 'lazyblocks_supports_color' ),
+			'layout'          => $get_meta_value( 'lazyblocks_supports_layout' ),
+			'shadow'          => $get_meta_value( 'lazyblocks_supports_shadow' ),
+			'spacing'         => $get_meta_value( 'lazyblocks_supports_spacing' ),
+			'dimensions'      => $get_meta_value( 'lazyblocks_supports_dimensions' ),
+			'typography'      => ( function () use ( $get_meta_value ) {
+				$typography = $get_meta_value( 'lazyblocks_supports_typography' );
+
+				if ( is_array( $typography ) ) {
+					$experimental_map = array(
+						'fontFamily'     => '__experimentalFontFamily',
+						'textDecoration' => '__experimentalTextDecoration',
+						'fontStyle'      => '__experimentalFontStyle',
+						'fontWeight'     => '__experimentalFontWeight',
+						'letterSpacing'  => '__experimentalLetterSpacing',
+						'textTransform'  => '__experimentalTextTransform',
+						'writingMode'    => '__experimentalWritingMode',
+					);
+
+					foreach ( $experimental_map as $old_key => $new_key ) {
+						if ( isset( $typography[ $old_key ] ) ) {
+							$typography[ $new_key ] = $typography[ $old_key ];
+						}
+					}
+				}
+
+				return $typography;
+			} )(),
 			'lock'            => $get_meta_value( 'lazyblocks_supports_lock' ),
 			'align'           => $align,
 			'ghostkit'        => array(
@@ -974,12 +1015,17 @@ class LazyBlocks_Blocks {
 					'output_method'     => $get_meta_value( 'lazyblocks_code_output_method' ),
 					'editor_html'       => $get_meta_value( 'lazyblocks_code_editor_html' ),
 					'editor_callback'   => '',
-					'editor_css'        => $get_meta_value( 'lazyblocks_code_editor_css' ),
 					'frontend_html'     => $get_meta_value( 'lazyblocks_code_frontend_html' ),
 					'frontend_callback' => '',
-					'frontend_css'      => $get_meta_value( 'lazyblocks_code_frontend_css' ),
 					'show_preview'      => $get_meta_value( 'lazyblocks_code_show_preview' ),
 					'single_output'     => $get_meta_value( 'lazyblocks_code_single_output' ),
+				),
+				'style'          => array(
+					'block'  => $get_meta_value( 'lazyblocks_style_block' ),
+					'editor' => $get_meta_value( 'lazyblocks_style_editor' ),
+				),
+				'script'         => array(
+					'view' => $get_meta_value( 'lazyblocks_script_view' ),
 				),
 				'styles'         => $styles,
 				'condition'      => $get_meta_value( 'lazyblocks_condition_post_types' ) ? $get_meta_value( 'lazyblocks_condition_post_types' ) : array(),
@@ -1390,7 +1436,7 @@ class LazyBlocks_Blocks {
 				'api_version'     => 3,
 				'attributes'      => $attributes,
 				'supports'        => $block['supports'],
-				'render_callback' => function( $render_attributes, $render_content = null ) {
+				'render_callback' => function ( $render_attributes, $render_content = null ) {
 					// Usually this context is used to properly preload content in the Pro plugin.
 					$render_context = is_admin() ? 'editor' : 'frontend';
 
@@ -1400,9 +1446,11 @@ class LazyBlocks_Blocks {
 				},
 				'example'         => array(),
 				'styles'          => $block['styles'],
-				'editor_script'   => 'lazyblocks-editor',
-				'editor_style'    => 'lazyblocks-editor',
+				'editor_script'   => array( 'lazyblocks-editor' ),
+				'editor_style'    => array( 'lazyblocks-editor' ),
 			);
+
+			$data = apply_filters( 'lzb/register_block_type_data', $data, $block );
 
 			// Register block type.
 			register_block_type( $block['slug'], $data );
@@ -1424,6 +1472,18 @@ class LazyBlocks_Blocks {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Check if block content exists.
+	 * We have to check for '0' string because it is a valid output.
+	 *
+	 * @param string $output - output string.
+	 *
+	 * @return bool
+	 */
+	public function is_block_content_exists( $output ) {
+		return null !== $output && '' !== $output && false !== $output;
 	}
 
 	/**
@@ -1483,7 +1543,7 @@ class LazyBlocks_Blocks {
 		}
 
 		// Custom output.
-		if ( ! $result && isset( $block['code'] ) ) {
+		if ( ! $this->is_block_content_exists( $result ) && isset( $block['code'] ) ) {
 			$code = $block['code'];
 
 			// Theme template file.
@@ -1533,6 +1593,11 @@ class LazyBlocks_Blocks {
 			}
 		}
 
+		// If block render is empty, we should not render anything.
+		if ( 'frontend' === $context && ! $this->is_block_content_exists( $result ) ) {
+			return null;
+		}
+
 		// Replace the <InnerBlocks /> with the block content.
 		if ( 'frontend' === $context ) {
 			// Add inner-blocks wrapper with class lazyblock-inner-blocks.
@@ -1559,20 +1624,85 @@ class LazyBlocks_Blocks {
 			$result = preg_replace( '/<InnerBlocks([\S\s]*?)\/>/', $content, $result );
 		}
 
-		// add wrapper.
-		$allow_wrapper = apply_filters( 'lzb/block_render/allow_wrapper', $result && 'frontend' === $context, $attributes, $context );
-		// phpcs:ignore
-		$allow_wrapper = apply_filters( $block['slug'] . '/' . $context . '_allow_wrapper', $allow_wrapper, $attributes );
-		// phpcs:ignore
-		$allow_wrapper = apply_filters( $block['slug'] . '/allow_wrapper', $allow_wrapper, $attributes, $context );
+		// DEPRECATED filter to remove wrapper from block frontend code.
+		// We keep it to support legacy user code https://wordpress.org/support/topic/forcing-blocks-to-auto-have-wrappers-useblockprops/.
+		$allow_wrapper = true;
 
-		if ( $allow_wrapper ) {
+		if ( 'frontend' === $context ) {
+			$allow_wrapper = apply_filters_deprecated(
+				'lzb/block_render/allow_wrapper',
+				array( $allow_wrapper, $attributes, $context ),
+				'4.0.0',
+				'',
+				'Use `useBlockProps` attribute in your blocks to control the block wrapper - https://www.lazyblocks.com/docs/blocks-code/use-block-props/'
+			);
+
+			// phpcs:ignore
+			$allow_wrapper = apply_filters_deprecated(
+				$block['slug'] . '/' . $context . '_allow_wrapper',
+				array( $allow_wrapper, $attributes ),
+				'4.0.0',
+				'',
+				'Use `useBlockProps` attribute in your blocks to control the block wrapper - https://www.lazyblocks.com/docs/blocks-code/use-block-props/'
+			);
+
+			// phpcs:ignore
+			$allow_wrapper = apply_filters_deprecated(
+				$block['slug'] . '/allow_wrapper',
+				array( $allow_wrapper, $attributes, $context ),
+				'4.0.0',
+				'',
+				'Use `useBlockProps` attribute in your blocks to control the block wrapper - https://www.lazyblocks.com/docs/blocks-code/use-block-props/'
+			);
+		}
+
+		$has_block_props = preg_match( '/<(\w+)([^>]*)\s+useBlockProps([^>]*)>/', $result );
+
+		// If user didn't add useBlockProps, add our wrapper with useBlockProps attribute to parse it later.
+		if ( $allow_wrapper && ! $has_block_props ) {
+			$result = '<div useBlockProps>' . $result . '</div>';
+		}
+
+		// Parse any useBlockProps (whether added by user or by us) on frontend only.
+		if ( 'frontend' === $context && preg_match( '/<(\w+)([^>]*)\s+useBlockProps([^>]*)>/', $result, $matches ) ) {
+			$tag_name     = isset( $matches[1] ) ? $matches[1] : 'div';
+			$before_attrs = isset( $matches[2] ) ? $matches[2] : '';
+			$after_attrs  = isset( $matches[3] ) ? $matches[3] : '';
+
+			// Combine all attributes.
+			$combined_attrs = $before_attrs . ' ' . $after_attrs;
+
+			// Extract attributes.
 			$array_atts = array(
 				'class' => '',
 			);
 
+			// Extract class attribute if exists.
+			$class_matches = array();
+			if ( preg_match( '/class=["\'](.*?)["\']/', $combined_attrs, $class_matches ) ) {
+				$array_atts['class'] = $class_matches[1];
+			}
+
+			// Extract id attribute if exists.
+			$id_matches = array();
+			if ( preg_match( '/id=["\'](.*?)["\']/', $combined_attrs, $id_matches ) ) {
+				$array_atts['id'] = $id_matches[1];
+			}
+
+			// Extract other attributes like data-* attributes.
+			$attr_matches = array();
+			if ( preg_match_all( '/(\w+(?:-\w+)*)=["\'](.*?)["\']/', $combined_attrs, $attr_matches, PREG_SET_ORDER ) ) {
+				foreach ( $attr_matches as $attr_match ) {
+					// Skip class and id as we've already handled them.
+					if ( 'class' !== $attr_match[1] && 'id' !== $attr_match[1] ) {
+						$array_atts[ $attr_match[1] ] = $attr_match[2];
+					}
+				}
+			}
+
+			// Add block unique class.
 			if ( isset( $attributes['blockUniqueClass'] ) && $attributes['blockUniqueClass'] ) {
-				$array_atts['class'] .= $attributes['blockUniqueClass'];
+				$array_atts['class'] .= ( $array_atts['class'] ? ' ' : '' ) . $attributes['blockUniqueClass'];
 			}
 
 			if ( isset( $attributes['align'] ) && $attributes['align'] ) {
@@ -1587,17 +1717,23 @@ class LazyBlocks_Blocks {
 				$array_atts['id'] = esc_attr( $attributes['anchor'] );
 			}
 
+			// Get block wrapper attributes.
 			$html_atts = get_block_wrapper_attributes( $array_atts );
 
-			$result = '<div ' . $html_atts . '>' . $result . '</div>';
+			// Replace the original tag with useBlockProps with the new one.
+			$result = preg_replace(
+				'/<' . $tag_name . '[^>]*\s+useBlockProps[^>]*>/',
+				'<' . $tag_name . ' ' . $html_atts . '>',
+				$result
+			);
 		}
 
 		// add filter for block output.
-		$result = apply_filters( 'lzb/block_render/output', $result, $attributes, $context );
+		$result = apply_filters( 'lzb/block_render/output', $result, $attributes, $context, $block );
 		// phpcs:ignore
-		$result = apply_filters( $block['slug'] . '/' . $context . '_output', $result, $attributes );
+		$result = apply_filters( $block['slug'] . '/' . $context . '_output', $result, $attributes, $block );
 		// phpcs:ignore
-		$result = apply_filters( $block['slug'] . '/output', $result, $attributes, $context );
+		$result = apply_filters( $block['slug'] . '/output', $result, $attributes, $context, $block );
 
 		return $result;
 	}

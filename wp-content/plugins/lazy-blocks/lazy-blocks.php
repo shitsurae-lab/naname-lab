@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  Lazy Blocks
  * Description:  Easily create custom blocks and custom meta fields for Gutenberg without hard coding.
- * Version:      3.8.3
+ * Version:      4.0.3
  * Author:       Lazy Blocks Team
  * Author URI:   https://www.lazyblocks.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
  * License:      GPLv2 or later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'LAZY_BLOCKS_VERSION' ) ) {
-	define( 'LAZY_BLOCKS_VERSION', '3.8.3' );
+	define( 'LAZY_BLOCKS_VERSION', '4.0.3' );
 }
 
 if ( ! class_exists( 'LazyBlocks' ) ) :
@@ -333,14 +333,14 @@ if ( ! class_exists( 'LazyBlocks' ) ) :
 			// Customize the url setting to fix incorrect asset URLs.
 			add_filter(
 				'lzb/plugin_url',
-				function() use ( $url ) {
+				function () use ( $url ) {
 					return $url . ( lazyblocks()->is_pro() ? 'core-plugin/' : '' );
 				}
 			);
 
 			add_filter(
 				'lzb_pro/plugin_url',
-				function() use ( $url ) {
+				function () use ( $url ) {
 					return $url;
 				}
 			);
