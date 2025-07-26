@@ -78,7 +78,7 @@ function ai1wmue_install_base_plugin() {
 		require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 	}
 
-	if ( ! class_exists( 'WP_Upgrader' ) ) {
+	if ( ! class_exists( 'WP_Upgrader', false ) ) {
 		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 	}
 
