@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Redirection - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-02-07 14:03:24+0000\n"
+"PO-Revision-Date: 2025-06-13 01:33:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -552,10 +552,18 @@ msgstr "一般"
 msgid "Redirect"
 msgstr "リダイレクト"
 
+#: redirection-strings.php:126 redirection.js:2
+msgid "Some servers may be configured to serve file resources directly, preventing a redirect occurring."
+msgstr "一部のサーバーがファイルリソースを直接処理するように設定されている可能性があります。これにより、リダイレクトが妨げられています。"
+
 #: redirection-strings.php:270 redirection-strings.php:279
 #: redirection-strings.php:701 redirection.js:2
 msgid "Site"
 msgstr "サイト"
+
+#: redirection-strings.php:744 redirection.js:2
+msgid "Unable to make request due to browser security. This is typically because your WordPress and Site URL settings are inconsistent, or the request was blocked by your site CORS policy."
+msgstr "ブラウザのセキュリティにより、リクエストを実行できません。これは通常、WordPress とサイトの URL 設定に一貫性がないか、リクエストがサイトの CORS ポリシーによってブロックされたことが原因です。"
 
 #: redirection-strings.php:685 redirection.js:2
 msgid "Ignore & Pass Query"
@@ -805,6 +813,10 @@ msgstr "CSV には一部の情報しか含まれず、すべてのインポー�
 msgid "All imports will be appended to the current database - nothing is merged."
 msgstr "すべてのインポートは現在のデータベースに追加されます。何もマージはされません。"
 
+#: redirection-strings.php:246 redirection-strings.php:612 redirection.js:2
+msgid "Note that you will need to set the Apache module path in your Redirection options."
+msgstr "Redirection のオプションに Apache のモジュールのパスを指定する必要があることにご留意ください。"
+
 #: redirection-strings.php:155 redirection.js:2
 msgid "I need support!"
 msgstr "サポートが必要です。"
@@ -857,9 +869,21 @@ msgstr "すべてを表示"
 msgid "Working!"
 msgstr "動作しています。"
 
+#: redirection-strings.php:123 redirection.js:2
+msgid "Your target URL should be an absolute URL like {{code}}https://domain.com/%(url)s{{/code}} or start with a slash {{code}}/%(url)s{{/code}}."
+msgstr "ターゲット URL は {{code}}https://domain.com/%(url)s{{/code}} のような絶対 URL もしくは {{code}}/%(url)s{{/code}} のようにスラッシュから始める必要があります。"
+
+#: redirection-strings.php:122 redirection.js:2
+msgid "Your source is the same as a target and this will create a loop. Leave a target blank if you do not want to take action."
+msgstr "ソースがターゲットと同じなため、この設定ではループが発生します。何もしない場合はターゲットを空欄にしてください。"
+
 #: redirection-strings.php:109 redirection.js:2
 msgid "The target URL you want to redirect, or auto-complete on post name or permalink."
 msgstr "リダイレクト先のURL、もしくは投稿のタイトルやパーマリンクを入力できます。"
+
+#: redirection-strings.php:263 redirection.js:2
+msgid "Include these details in your report along with a description of what you were doing and a screenshot."
+msgstr "これらの問題の詳細を、実行内容の説明とスクリーンショットをあわせて説明文に含めてください。"
 
 #: redirection-strings.php:261 redirection.js:2
 msgid "Create An Issue"
@@ -1012,6 +1036,10 @@ msgstr "セットアップ完了"
 msgid "Retry"
 msgstr "再試行"
 
+#: redirection-strings.php:171 redirection.js:2
+msgid "You have different URLs configured on your WordPress Settings > General page, which is usually an indication of a misconfiguration, and it can cause problems with the REST API. Please review your settings."
+msgstr "WordPress の設定 > 一般ページで異なる URL が設定されています。これは通常設定ミスであり、REST API で問題が発生する可能性があります。設定を見直してください。"
+
 #: redirection-strings.php:170 redirection.js:2
 msgid "If you do experience a problem then please consult your plugin documentation, or try contacting your host support. This is generally {{link}}not a problem caused by Redirection{{/link}}."
 msgstr "問題が発生した場合はプラグインのマニュアルを参照するか、ホスティングサービスのサポートに連絡してください。これは一般的に {{link}}Redirection プラグインによって引き起こされる問題ではありません{{/link}}。"
@@ -1125,6 +1153,10 @@ msgstr "Redirection バージョン %(version)s をインストールしてい�
 #: redirection-strings.php:204 redirection.js:2
 msgid "Welcome to Redirection 🚀🎉"
 msgstr "Redirection へようこそ 🚀🎉"
+
+#: redirection-strings.php:117 redirection.js:2
+msgid "To prevent a greedy regular expression you can use {{code}}^{{/code}} to anchor it to the start of the URL. For example: {{code}}%(example)s{{/code}}"
+msgstr "貪欲 (Greedy) な正規表現を防ぐには、{{code}}^{{/code}}を使ってURLの先頭にアンカーを付けます。例えば {{code}}%(example)s{{/code}} のように指定します。"
 
 #: redirection-strings.php:115 redirection.js:2
 msgid "Remember to enable the \"regex\" option if this is a regular expression."

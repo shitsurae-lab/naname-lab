@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Advanced Custom Fields (ACF®) - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-18 02:13:39+0000\n"
+"PO-Revision-Date: 2025-07-23 14:45:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -258,7 +258,7 @@ msgstr "無効なリクエストです。"
 msgid "Sorry, you do not have permission to do that."
 msgstr "その操作を行う権限がありません。"
 
-#: src/Site_Health/Site_Health.php:720
+#: src/Site_Health/Site_Health.php:726
 msgid "Blocks Using Post Meta"
 msgstr "投稿メタを使用したブロック"
 
@@ -266,6 +266,10 @@ msgstr "投稿メタを使用したブロック"
 #: includes/admin/views/acf-field-group/pro-features.php:27
 #: includes/admin/views/global/header.php:27
 msgid "ACF PRO logo"
+msgstr "ACF PRO ロゴ"
+
+#: includes/admin/views/acf-field-group/field.php:37
+msgid "ACF PRO Logo"
 msgstr "ACF PRO ロゴ"
 
 #: includes/fields/class-acf-field-icon_picker.php:773
@@ -494,7 +498,7 @@ msgstr "投稿が以下に等しい場合"
 msgid "Has no user selected"
 msgstr "ユーザーが選択されていません"
 
-#: src/Site_Health/Site_Health.php:587
+#: src/Site_Health/Site_Health.php:593
 msgid "Registered Post Types (JSON)"
 msgstr "登録された投稿タイプ (JSON)"
 
@@ -506,11 +510,11 @@ msgstr "ACF PRO 機能"
 msgid "Learn&nbsp;more"
 msgstr "さらに詳しく"
 
-#: includes/admin/admin.php:62 includes/admin/views/escaped-html-notice.php:24
+#: includes/admin/admin.php:63 includes/admin/views/escaped-html-notice.php:24
 msgid "Show&nbsp;details"
 msgstr "詳細を表示"
 
-#: includes/admin/admin.php:63
+#: includes/admin/admin.php:64
 msgid "Hide&nbsp;details"
 msgstr "詳細を隠す"
 
@@ -558,7 +562,7 @@ msgstr "4ヶ月無料"
 msgid "Select Options Pages"
 msgstr "オプションページを選択"
 
-#: includes/admin/admin.php:357
+#: includes/admin/admin.php:381
 msgid "Support"
 msgstr "サポート"
 
@@ -594,17 +598,17 @@ msgstr "フィールドグループ"
 msgid "This Field"
 msgstr "このフィールド"
 
-#: includes/admin/admin.php:361
+#: includes/admin/admin.php:385
 msgid "ACF PRO"
 msgstr "ACF PRO"
 
-#: includes/admin/admin.php:359
+#: includes/admin/admin.php:383
 msgid "Feedback"
 msgstr "フィードバック"
 
 #. translators: This text is prepended by a link to ACF's website, and appended
 #. by a link to WP Engine's website.
-#: includes/admin/admin.php:332
+#: includes/admin/admin.php:356
 msgid "is developed and maintained by"
 msgstr "によって開発され、維持されている"
 
@@ -1025,7 +1029,7 @@ msgstr "高度な設定"
 msgid "Pages"
 msgstr "固定ページ"
 
-#: includes/admin/admin.php:46 includes/admin/admin.php:361
+#: includes/admin/admin.php:47 includes/admin/admin.php:385
 #: src/Site_Health/Site_Health.php:254
 msgid "ACF"
 msgstr "ACF"
@@ -2013,6 +2017,10 @@ msgstr "この %s にアップロードされました"
 msgid "Namespace Route"
 msgstr "名前空間ルート"
 
+#: includes/admin/views/acf-post-type/advanced-settings.php:758
+msgid "Admin Menu Parent"
+msgstr "親メニュー管理者"
+
 #: includes/admin/views/acf-post-type/advanced-settings.php:692
 #: includes/admin/views/acf-taxonomy/advanced-settings.php:702
 msgid "Item Link Description"
@@ -2061,6 +2069,11 @@ msgstr "投稿を限定公開しました。"
 msgid "Item Published Privately"
 msgstr "限定公開された項目"
 
+#. translators: %s Singular form of post type name
+#: includes/admin/views/acf-post-type/advanced-settings.php:588
+msgid "%s published privately."
+msgstr "%s を限定公開しました。"
+
 #: includes/admin/views/acf-post-type/advanced-settings.php:105
 msgid "Admin menu name for the post type."
 msgstr "投稿タイプの管理メニュー名。"
@@ -2096,9 +2109,20 @@ msgstr "リンクするフィールドグループを選択してください。
 msgid "Select one or many field groups..."
 msgstr "1つまたは複数のフィールド グループを選択します..."
 
+#. translators: %s number of taxonomies synchronized
+#: includes/admin/post-types/admin-taxonomies.php:333
+msgid "Taxonomy synchronized."
+msgid_plural "%s taxonomies synchronized."
+msgstr[0] "%s つのタクソノミーを同期しました。"
+
 #: includes/admin/post-types/admin-field-group.php:279
 msgid "Field Settings Tabs"
 msgstr "フィールド設定タブ"
+
+#. Author URI of the plugin
+#: acf.php
+msgid "https://wpengine.com/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=plugin_directory&utm_content=advanced_custom_fields"
+msgstr "https://wpengine.com/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=plugin_directory&utm_content=advanced_custom_fields"
 
 #: includes/admin/post-types/admin-field-group.php:91
 msgid "Close modal"
@@ -2232,6 +2256,10 @@ msgstr "カスタム値を保存"
 msgid "Allow Other Choice"
 msgstr "他の選択肢を許可"
 
+#: includes/admin/views/acf-field-group/fields.php:65
+msgid "Get started creating new custom fields for your posts, pages, custom post types and other WordPress content."
+msgstr "投稿、ページ、カスタム投稿タイプ、その他の WordPress コンテンツ用の新しいカスタム フィールドの作成を始めましょう。"
+
 #: includes/admin/views/acf-field-group/list-empty.php:12
 msgid "Add Your First Field Group"
 msgstr "最初のフィールドグループを追加"
@@ -2361,7 +2389,7 @@ msgstr "明度"
 msgid "Clear color"
 msgstr "色をクリア"
 
-#: includes/admin/admin.php:131 includes/admin/admin.php:133
+#: includes/admin/admin.php:127 includes/admin/admin.php:129
 msgid "Overview"
 msgstr "概要"
 
@@ -2395,11 +2423,11 @@ msgstr "タクソノミー"
 msgid "Posts"
 msgstr "投稿"
 
-#: includes/admin/admin.php:173
+#: includes/admin/admin.php:169
 msgid "View details"
 msgstr "詳細を表示"
 
-#: includes/admin/admin.php:172
+#: includes/admin/admin.php:168
 msgid "Version %s"
 msgstr "バージョン %s"
 
@@ -2419,7 +2447,7 @@ msgstr "最終更新日: %s"
 msgid "Widgets"
 msgstr "ウィジェット"
 
-#: includes/admin/admin.php:174
+#: includes/admin/admin.php:170
 msgid "Visit website"
 msgstr "サイトへ移動"
 
@@ -2427,11 +2455,11 @@ msgstr "サイトへ移動"
 msgid "Attachments"
 msgstr "添付ファイル"
 
-#: includes/admin/admin.php:148 includes/admin/admin.php:150
+#: includes/admin/admin.php:144 includes/admin/admin.php:146
 msgid "Help & Support"
 msgstr "ヘルプとサポート"
 
-#: includes/admin/admin.php:171
+#: includes/admin/admin.php:167
 msgid "Information"
 msgstr "情報"
 
@@ -2478,7 +2506,7 @@ msgstr "クラス \"%s\" は存在しません。"
 msgid "Located in: %s"
 msgstr "位置: %s"
 
-#: includes/admin/admin.php:151
+#: includes/admin/admin.php:147
 msgid "We are fanatical about support, and want you to get the best out of your website with ACF. If you run into any difficulties, there are several places you can find help:"
 msgstr "私たちはサポートを非常に重要視しており、ACF を使ったサイトを最大限に活用していただきたいと考えています。何か問題が発生した場合には、複数の場所でサポートを受けることができます:"
 
@@ -2486,15 +2514,15 @@ msgstr "私たちはサポートを非常に重要視しており、ACF を使�
 msgid "Invalid field group parameter(s)."
 msgstr "無効なフィールドグループパラメータ。"
 
-#: includes/admin/admin.php:162
+#: includes/admin/admin.php:158
 msgid "<a href=\"%s\" target=\"_blank\">Help Desk</a>. The support professionals on our Help Desk will assist with your more in depth, technical challenges."
 msgstr "<a href=\"%s\" target=\"_blank\">ヘルプデスク</a>。サポートの専門家がお客様のより詳細な技術的課題をサポートします。"
 
-#: includes/admin/admin.php:154
+#: includes/admin/admin.php:150
 msgid "<a href=\"%s\" target=\"_blank\">Documentation</a>. Our extensive documentation contains references and guides for most situations you may encounter."
 msgstr "<a href=\"%s\" target=\"_blank\">ドキュメンテーション</a>。私たちの豊富なドキュメントには、お客様が遭遇する可能性のあるほとんどの状況に対するリファレンスやガイドが含まれています。"
 
-#: includes/admin/admin.php:136
+#: includes/admin/admin.php:132
 msgid "Before creating your first Field Group, we recommend first reading our <a href=\"%s\" target=\"_blank\">Getting started</a> guide to familiarize yourself with the plugin's philosophy and best practises."
 msgstr "初めてフィールドグループを作成する前にまず<a href=\"%s\" target=\"_blank\">スタートガイド</a>に目を通して、プラグインの理念やベストプラクティスを理解することをおすすめします。"
 
@@ -2506,15 +2534,15 @@ msgstr "プラグイン中の位置: %s"
 msgid "Located in theme: %s"
 msgstr "テーマ内の位置: %s"
 
-#: includes/admin/admin.php:139
+#: includes/admin/admin.php:135
 msgid "Please use the Help & Support tab to get in touch should you find yourself requiring assistance."
 msgstr "お困りの際は「ヘルプとサポート」タブからお問い合わせください。"
 
-#: includes/admin/admin.php:134
+#: includes/admin/admin.php:130
 msgid "The Advanced Custom Fields plugin provides a visual form builder to customize WordPress edit screens with extra fields, and an intuitive API to display custom field values in any theme template file."
 msgstr "Advanced Custom Fields プラグインは、WordPress の編集画面を追加フィールドでカスタマイズするためのビジュアルフォームビルダーと、カスタムフィールドの値を任意のテーマテンプレートファイルに表示するための直感的な API を提供します。"
 
-#: includes/admin/admin.php:158
+#: includes/admin/admin.php:154
 msgid "<a href=\"%s\" target=\"_blank\">Discussions</a>. We have an active and friendly community on our Community Forums who may be able to help you figure out the 'how-tos' of the ACF world."
 msgstr "<a href=\"%s\" target=\"_blank\">ディスカッション</a>。コミュニティフォーラムには、活発でフレンドリーなコミュニティがあり、ACFの世界の「ハウツー」を理解する手助けをしてくれるかもしれません。"
 
@@ -2857,7 +2885,7 @@ msgstr "画像が選択されていません"
 
 #: includes/admin/admin-tools.php:107
 #: includes/admin/views/global/navigation.php:254
-#: includes/admin/views/tools/tools.php:13
+#: includes/admin/views/tools/tools.php:14
 msgid "Tools"
 msgstr "ツール"
 
@@ -2914,7 +2942,7 @@ msgstr "削除"
 msgid "Featured Image"
 msgstr "アイキャッチ画像"
 
-#: includes/admin/admin.php:355
+#: includes/admin/admin.php:379
 #: includes/admin/views/browse-fields-modal.php:102
 msgid "Documentation"
 msgstr "ドキュメンテーション"
@@ -3263,10 +3291,6 @@ msgstr "フィールドグループリストに表示"
 msgid "Field groups with a lower order will appear first"
 msgstr "下位のフィールドグループを最初に表示"
 
-#: includes/admin/views/acf-field-group/options.php:156
-msgid "Order No."
-msgstr "注文番号"
-
 #: includes/admin/views/acf-field-group/options.php:147
 msgid "Below fields"
 msgstr "フィールドの下"
@@ -3539,7 +3563,7 @@ msgstr "スパムを検出しました"
 msgid "Validate Email"
 msgstr "メールを確認"
 
-#: includes/assets.php:376 includes/forms/form-comment.php:140
+#: includes/assets.php:379 includes/forms/form-comment.php:140
 msgid "Edit field group"
 msgstr "フィールドグループを編集"
 
@@ -3587,12 +3611,12 @@ msgstr "任意の値あり"
 msgid "Are you sure?"
 msgstr "本当に実行しますか ?"
 
-#: includes/assets.php:368 includes/validation.php:257
+#: includes/assets.php:371 includes/validation.php:257
 #: includes/validation.php:265
 msgid "Validation failed"
 msgstr "検証失敗"
 
-#: includes/assets.php:367
+#: includes/assets.php:370
 msgid "Validation successful"
 msgstr "検証成功"
 
@@ -4550,11 +4574,11 @@ msgstr "値は数字である必要があります"
 msgid "Use AJAX to lazy load choices?"
 msgstr "AJAX を使用して選択肢を遅延読み込みしますか ?"
 
-#: includes/assets.php:369
+#: includes/assets.php:372
 msgid "1 field requires attention"
 msgstr "1つのフィールドで確認が必要です"
 
-#: includes/assets.php:370
+#: includes/assets.php:373
 msgid "%d fields require attention"
 msgstr "%d個のフィールドで確認が必要です"
 
@@ -4878,6 +4902,10 @@ msgstr "インポートしたい ACF の JSON ファイルを選択してくだ�
 #: includes/admin/post-types/admin-field-groups.php:92
 msgid "Location"
 msgstr "位置"
+
+#: includes/admin/views/acf-field-group/options.php:156
+msgid "Order No."
+msgstr "表示順番"
 
 #. Plugin Name of the plugin
 #: acf.php acf.php:290
