@@ -157,7 +157,7 @@
     // grid-template-rows: 16px repeat(4, 1fr) 16px;
     @include mq(tablet) {
       width: 50%;
-      padding: 32px;
+      padding: 0 32px 32px;
       // grid-template-columns: 32px repeat(4, 1fr) 32px;
       // grid-template-rows: 32px repeat(4, 1fr) 32px;
       margin-bottom: 0;
