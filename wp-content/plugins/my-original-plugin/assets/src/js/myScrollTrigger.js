@@ -212,12 +212,30 @@ const sections = document.querySelectorAll('[data-section]');
 
 sections.forEach((section) => {
   const inner = section.querySelector('[data-section-inner]');
-  const image = section.querySelector('.p-index-section__image img');
-  const imageWrapper = section.querySelector('.p-index-section__image');
-  const text = section.querySelector('.p-index-section__txt');
+  const img = section.querySelector('.p-index-section__image img');
+  const image = section.querySelector('.p-index-section__image');
+  const headElements = section.querySelectorAll(
+    '.p-index-section__heading, .p-index-section__desc'
+  );
+  const body = section.querySelector('.p-index-section__body');
+  const link = section.querySelector('.p-index-section__link');
+  const elementToBatch = [image, ...Array.from(headElements), body, link];
 
   // ✅️1-1スクロールをすると、要素が順にフェードインする
-  //   gsap.set([image, text], { opacity: 0, yPercent: 20 });
+  gsap.set(elementToBatch, { opacity: 0, yPercent: 2 });
+  ScrollTrigger.batch(elementToBatch, {
+    onEnter: (batch) => {
+      gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out', // イージングを指定してより滑らかに
+      });
+    },
+    start: 'top 90%',
+    //markers: true,
+  });
 
   //   const tl = gsap.timeline({
   //     scrollTrigger: {
@@ -258,7 +276,7 @@ sections.forEach((section) => {
   });
   // +1, +2 どちらかを選択（両方はNG）
   // ✅ 2 +1 画像に拡大スクロールアニメーションを追加
-  gsap.to(image, {
+  gsap.to(img, {
     scale: 1.8,
     ease: 'none',
     scrollTrigger: {
