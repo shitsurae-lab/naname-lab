@@ -125,6 +125,14 @@ body {
     }
   }
   &.achievement_cat {
+    .p-breadcrumb {
+      padding-left: var(--ark-padding--container);
+      padding-right: var(--ark-padding--container);
+      @include mq(pc) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
     .p-breadcrumb__list.l-container {
       padding-left: 0;
       padding-right: 0;
@@ -132,6 +140,14 @@ body {
     }
   }
   &.single-achievement {
+    .p-breadcrumb {
+      padding-left: var(--ark-padding--container);
+      padding-right: var(--ark-padding--container);
+      @include mq(pc) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
     .p-breadcrumb__list.l-container {
       padding-left: 0;
       padding-right: 0;
@@ -166,7 +182,7 @@ body {
 .page {
   .l-content__body {
     margin: 2rem auto;
-    padding: 0 8px;
+    // padding: 0 8px;
     // @include mq(tablet) {
     //   padding: 0 var(--ark-padding--container) var(--ark-padding--container);
     // }
