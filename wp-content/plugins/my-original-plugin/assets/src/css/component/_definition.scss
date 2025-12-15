@@ -69,7 +69,7 @@
           justify-content: flex-start;
         }
         li {
-          width: min(110px, calc(100% / 3));
+          width: min(180px, calc(100% / 2));
           position: relative;
           padding-left: 20px;
           @include mq(tablet) {
