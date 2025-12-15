@@ -39,5 +39,4 @@ jobs:
               Port 10022
 
       - name: Rsync Deploy
-        # 4. SSHオプションから安全でない設定を削除
-        run: rsync -vrlp -e "ssh -p 10022" ./wp-content/ naname@naname.wpx.jp:/home/naname/naname-lab.net/public_html/wp-content
+        run: rsync -vrlp -e "ssh -p 10022" ./wp-content/ naname@162.43.107.10:/home/naname/naname-lab.net/public_html/wp-content
