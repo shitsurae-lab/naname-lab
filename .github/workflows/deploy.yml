@@ -1,23 +1,37 @@
-name: deploy to server
+name: Deploy to Server
 
+# 実行トリガーを限定する
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches: [main]
-  # Allows you to run this workflow manually from the Actions tab
+  # pull_request はシークレット漏洩リスクがあるため削除
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    # ⚠️ 重要: 権限を最小限の読み取りに制限
+    permissions:
+      contents: read
+
     steps:
-      - uses: actions/checkout@v2
-      - name: install SSH key
-        uses: shimataro/ssh-key-action@v2
+      # 1. actions/checkout を特定コミットSHAで固定
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Install SSH Key and Validate Known Hosts
+        # 2. shimataro/ssh-key-action を特定コミットSHAで固定
+        uses: shimataro/ssh-key-action@8f0e25e199bee71fe79bcde5b1fda02e7831b191
         with:
           key: ${{ secrets.SECRET_SSH_KEY }}
-          known_hosts: 162.43.107.10
-      - name: rsync deploy
-        run: rsync -vrlp -e "ssh -p 10022 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./wp-content/ naname@naname.wpx.jp:/home/naname/naname-lab.net/public_html/wp-content
+          # 3. ホスト鍵検証のために、サーバーの公開鍵をシークレット化（推奨）
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          config: |
+            Host 162.43.107.10
+              User naname
+              Port 10022
+
+      - name: Rsync Deploy
+        # 4. SSHオプションから安全でない設定を削除
+        run: rsync -vrlp -e "ssh -p 10022" ./wp-content/ naname@naname.wpx.jp:/home/naname/naname-lab.net/public_html/wp-content
