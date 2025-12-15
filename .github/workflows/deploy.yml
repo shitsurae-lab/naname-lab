@@ -20,6 +20,12 @@ jobs:
       # 1. actions/checkout を特定コミットSHAで固定
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
+      # --- 🔑 新たに追加するステップ（ホスト鍵キャッシュの削除）---
+      - name: Clear old known_hosts (Temporary)
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+      # ----------------------------------------------------------------
       - name: Install SSH Key and Validate Known Hosts
         # 2. shimataro/ssh-key-action を特定コミットSHAで固定
         uses: shimataro/ssh-key-action@8f0e25e199bee71fe79bcde5b1fda02e7831b191
