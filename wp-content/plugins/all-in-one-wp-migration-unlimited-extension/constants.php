@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2025 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,6 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Attribution: This code is part of the All-in-One WP Migration plugin, developed by
  *
  * ███████╗███████╗██████╗ ██╗   ██╗███╗   ███╗ █████╗ ███████╗██╗  ██╗
  * ██╔════╝██╔════╝██╔══██╗██║   ██║████╗ ████║██╔══██╗██╔════╝██║ ██╔╝
@@ -30,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WMUE_VERSION', '2.73' );
+define( 'AI1WMUE_VERSION', '2.81' );
 
 // ===============
 // = Plugin Name =
@@ -52,16 +54,6 @@ define( 'AI1WMUE_CONTROLLER_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'con
 // ==============
 define( 'AI1WMUE_MODEL_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'model' );
 
-// ===============
-// = Export Path =
-// ===============
-define( 'AI1WMUE_EXPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'export' );
-
-// ===============
-// = Import Path =
-// ===============
-define( 'AI1WMUE_IMPORT_PATH', AI1WMUE_MODEL_PATH . DIRECTORY_SEPARATOR . 'import' );
-
 // =============
 // = View Path =
 // =============
@@ -72,6 +64,11 @@ define( 'AI1WMUE_TEMPLATES_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'view
 // ===============
 define( 'AI1WMUE_VENDOR_PATH', AI1WMUE_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor' );
 
+// ===============
+// = Service URL =
+// ===============
+define( 'AI1WMUE_SERVICE_URL', 'https://plugin-assets.wp-migration.com/v4/unlimited-extension/service.wasm' );
+
 // ==================
 // = Retention Path =
 // ==================
@@ -80,7 +77,7 @@ define( 'AI1WMUE_RETENTION_NAME', 'retention.json' );
 // ===============================
 // = Minimal Base Plugin Version =
 // ===============================
-define( 'AI1WMUE_MIN_AI1WM_VERSION', '7.84' );
+define( 'AI1WMUE_MIN_AI1WM_VERSION', '7.99' );
 
 // ===============
 // = Purchase ID =

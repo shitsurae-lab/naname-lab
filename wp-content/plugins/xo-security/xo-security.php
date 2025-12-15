@@ -10,7 +10,7 @@
  * Plugin Name:       XO Security
  * Plugin URI:        https://xakuro.com/wordpress/xo-security/
  * Description:       XO Security is a plugin to enhance login related security.
- * Version:           3.10.4
+ * Version:           3.10.8
  * Requires at least: 4.9
  * Requires PHP:      5.6
  * Author:            Xakuro
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XO_SECURITY_VERSION', '3.10.4' );
+define( 'XO_SECURITY_VERSION', '3.10.8' );
 define( 'XO_SECURITY_URL', plugins_url( '', __FILE__ ) );
 define( 'XO_SECURITY_DIR', __DIR__ );
 

@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import clsx from 'clsx';
 import type { Property } from 'csstype';
 import type { ReactElement } from 'react';
 
@@ -12,10 +13,6 @@ import { useSelect } from '@wordpress/data';
 import { useState } from '@wordpress/element';
 import {
 	BaseControl,
-	Button,
-	Flex,
-	FlexBlock,
-	FlexItem,
 	Popover,
 	ColorPalette,
 	__experimentalVStack as VStack,
@@ -40,6 +37,7 @@ type Props = {
 		color: Property.Color;
 	}[];
 	value: Property.Color | undefined;
+	className?: string;
 };
 
 export default function ColorControl( {
@@ -48,6 +46,7 @@ export default function ColorControl( {
 	onChange,
 	colors: colorsProp = [],
 	value,
+	className,
 }: Props ) {
 	const instanceId = useInstanceId( ColorControl, 'ftb-color-control' );
 	const headingId = `${ instanceId }-heading`;
@@ -62,8 +61,6 @@ export default function ColorControl( {
 
 	const [ isPickerOpen, setIsPickerOpen ] = useState< boolean >( false );
 
-	const handleOnReset = () => onChange( undefined );
-
 	const handleOnChange = ( inputValue: Property.Color | undefined ) => onChange( inputValue );
 
 	const handleOnPickerOpen = () => setIsPickerOpen( true );
@@ -71,18 +68,15 @@ export default function ColorControl( {
 	const handleOnPickerClose = () => setIsPickerOpen( false );
 
 	return (
-		<BaseControl className="ftb-color-control" help={ help } __nextHasNoMarginBottom>
+		<BaseControl
+			className={ clsx( 'ftb-color-control', className ) }
+			help={ help }
+			__nextHasNoMarginBottom
+		>
 			<VStack aria-labelledby={ headingId } role="group">
-				<Flex>
-					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
-						{ label }
-					</Text>
-					<FlexItem>
-						<Button variant="secondary" onClick={ handleOnReset } size="small">
-							{ __( 'Reset', 'flexible-table-block' ) }
-						</Button>
-					</FlexItem>
-				</Flex>
+				<Text id={ headingId } upperCase size="11" weight="500">
+					{ label }
+				</Text>
 				<ColorIndicatorButton
 					label={ __( 'Color', 'flexible-table-block' ) }
 					value={ value }

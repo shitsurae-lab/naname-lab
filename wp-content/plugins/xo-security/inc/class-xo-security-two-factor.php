@@ -291,7 +291,7 @@ class XO_Security_Two_Factor {
 				<input type="text" name="google_authenticator_code" id="google_authenticator_code" class="input" value="" maxlength="6" size="6" required="required" autocomplete="off" spellcheck="false" autofocus />
 			</p>
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Log In' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php echo esc_attr( 'Log In' ); ?>" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 				<input type="hidden" name="testcookie" value="1" />
 			</p>

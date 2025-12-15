@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import clsx from 'clsx';
 import type { Property } from 'csstype';
 
 /**
@@ -12,9 +13,6 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
-	Flex,
-	FlexBlock,
-	FlexItem,
 	__experimentalGrid as Grid,
 	__experimentalHStack as HStack,
 	__experimentalVStack as VStack,
@@ -51,6 +49,7 @@ type Props = {
 	};
 	allowSides?: boolean;
 	hasIndicator?: boolean;
+	className?: string;
 };
 
 type ValuesKey = keyof typeof DEFAULT_VALUES;
@@ -63,6 +62,7 @@ export default function BorderWidthControl( {
 	values: valuesProp,
 	allowSides = true,
 	hasIndicator = true,
+	className,
 }: Props ) {
 	const values = {
 		...DEFAULT_VALUES,
@@ -90,12 +90,6 @@ export default function BorderWidthControl( {
 	const toggleLinked = () => {
 		setIsLinked( ! isLinked );
 		setSide( undefined );
-	};
-
-	const handleOnReset = () => {
-		setIsLinked( true );
-		setSide( undefined );
-		onChange( DEFAULT_VALUES );
 	};
 
 	const handleOnFocus = ( focusSide: SideValue ) => setSide( focusSide );
@@ -141,23 +135,18 @@ export default function BorderWidthControl( {
 	};
 
 	return (
-		<BaseControl className="ftb-border-width-control" help={ help } __nextHasNoMarginBottom>
+		<BaseControl
+			className={ clsx( 'ftb-border-width-control', className ) }
+			help={ help }
+			__nextHasNoMarginBottom
+		>
 			<VStack aria-labelledby={ headingId } role="group">
-				<Flex>
-					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
-						{ label }
-					</Text>
-					<FlexItem>
-						<Button variant="secondary" onClick={ handleOnReset } size="small">
-							{ __( 'Reset', 'flexible-table-block' ) }
-						</Button>
-					</FlexItem>
-				</Flex>
+				<Text id={ headingId } upperCase size="11" weight="500">
+					{ label }
+				</Text>
 				<HStack alignment="center" justify="space-between" style={ { minHeight: '40px' } }>
 					<HStack justify="start">
-						{ hasIndicator && (
-							<SideIndicatorControl sides={ side === undefined ? undefined : [ side ] } />
-						) }
+						{ hasIndicator && <SideIndicatorControl side={ side } /> }
 						{ ( isLinked || ! allowSides ) && (
 							<div>
 								<UnitControl

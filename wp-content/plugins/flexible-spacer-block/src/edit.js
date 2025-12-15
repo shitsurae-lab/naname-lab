@@ -10,7 +10,6 @@ import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { InspectorControls, BlockControls, useBlockProps } from '@wordpress/block-editor';
 import {
-	PanelBody,
 	ResizableBox,
 	RangeControl,
 	ToggleControl,
@@ -18,13 +17,18 @@ import {
 	ExternalLink,
 	ToolbarGroup,
 	ToolbarButton,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalUnitControl as UnitControl,
 	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
+	__experimentalGrid as Grid,
+	__experimentalVStack as VStack,
 } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { View } from '@wordpress/primitives';
 import { Icon, settings, mobile, tablet, desktop } from '@wordpress/icons';
 import { addQueryArgs } from '@wordpress/url';
+import { useViewportMatch } from '@wordpress/compose';
 
 /**
  * Internal dependencies
@@ -40,6 +44,7 @@ import {
 
 export default function Edit( { attributes, isSelected, setAttributes, toggleSelection } ) {
 	const [ heightAll, setHeightAll ] = useState( DEFAULT_SPACER_HEIGHT.DEFAULT_SPACER_HEIGHT_UNIT );
+	const [ activeDevice, setActiveDevice ] = useState( undefined );
 	const [ isResizingLg, setIsResizingLg ] = useState( false );
 	const [ isResizingMd, setIsResizingMd ] = useState( false );
 	const [ isResizingSm, setIsResizingSm ] = useState( false );
@@ -51,6 +56,7 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 		select( 'flexible-spacer-block' ).getIsResponsive()
 	);
 	const { setIsResponsive } = useDispatch( 'flexible-spacer-block' );
+	const isMobile = useViewportMatch( 'medium', '<' );
 
 	const isEnableMd = parseInt( fsbConf.breakpoint.md ) !== parseInt( fsbConf.breakpoint.sm );
 	const isShowBlock = fsbConf.showBlock;
@@ -79,6 +85,10 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 			setHeightAll( heightLg );
 		}
 	}, [ heightLg, heightMd, heightSm ] );
+
+	const defaultLgValue = defaultValue.lg + defaultValue.lg_unit;
+	const defaultMdValue = defaultValue.md + defaultValue.md_unit;
+	const defaultSmValue = defaultValue.sm + defaultValue.sm_unit;
 
 	const settingUrl = addQueryArgs( 'options-general.php', {
 		page: 'flexible-spacer-block-option',
@@ -132,15 +142,33 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 
 	const SPACER_CONTROLS = [
 		{
-			label: __( 'Height (All)', 'flexible-spacer-block' ),
+			label: __( 'All heights', 'flexible-spacer-block' ),
 			icon: settings,
 			slug: 'all',
 			value: heightAll,
 			quantity: parseQuantityAndUnitFromRawValue( heightAll )[ 0 ],
 			onChange: ( value ) => onChangeHeightAll( heightAll, value ),
+			hasValue: () =>
+				heightLg !== defaultLgValue ||
+				heightMd !== defaultMdValue ||
+				heightSm !== defaultSmValue ||
+				isNegativeLg ||
+				isNegativeMd ||
+				isNegativeSm,
+			onDeselect: () => {
+				setAttributes( {
+					heightLg: defaultLgValue,
+					heightMd: isEnableMd ? defaultMdValue : defaultLgValue,
+					heightSm: defaultSmValue,
+					isNegativeLg: false,
+					isNegativeMd: false,
+					isNegativeSm: false,
+				} );
+				setHeightAll( defaultLgValue );
+			},
 		},
 		{
-			label: __( 'Height (Desktop)', 'flexible-spacer-block' ),
+			label: __( 'Desktop height', 'flexible-spacer-block' ),
 			icon: desktop,
 			slug: 'lg',
 			value: heightLg,
@@ -153,9 +181,11 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 					setAttributes( { isNegativeMd: value } );
 				}
 			},
+			hasValue: () => heightLg !== defaultLgValue || isNegativeLg,
+			onDeselect: () => setAttributes( { heightLg: defaultLgValue, isNegativeLg: false } ),
 		},
 		{
-			label: __( 'Height (Tablet)', 'flexible-spacer-block' ),
+			label: __( 'Tablet height', 'flexible-spacer-block' ),
 			icon: tablet,
 			slug: 'md',
 			value: heightMd,
@@ -163,9 +193,11 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 			onChange: ( value ) => onChangeHeightMd( heightMd, value ),
 			isNegative: isNegativeMd,
 			onNegativeChange: ( value ) => setAttributes( { isNegativeMd: value } ),
+			hasValue: () => heightMd !== defaultMdValue || isNegativeMd,
+			onDeselect: () => setAttributes( { heightMd: defaultMdValue, isNegativeMd: false } ),
 		},
 		{
-			label: __( 'Height (Mobile)', 'flexible-spacer-block' ),
+			label: __( 'Mobile height', 'flexible-spacer-block' ),
 			icon: mobile,
 			slug: 'sm',
 			value: heightSm,
@@ -173,6 +205,8 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 			onChange: ( value ) => onChangeHeightSm( temporaryWidthSm || heightSm, value ),
 			isNegative: isNegativeSm,
 			onNegativeChange: ( value ) => setAttributes( { isNegativeSm: value } ),
+			hasValue: () => heightSm !== defaultSmValue || isNegativeSm,
+			onDeselect: () => setAttributes( { heightSm: defaultSmValue, isNegativeSm: false } ),
 		},
 	];
 
@@ -221,6 +255,15 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 		},
 	].filter( Boolean );
 
+	const dropdownMenuProps = ! isMobile
+		? {
+				popoverProps: {
+					placement: 'left-start',
+					offset: 259,
+				},
+		  }
+		: {};
+
 	return (
 		<>
 			<BlockControls>
@@ -238,44 +281,64 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Spacer settings', 'flexible-spacer-block' ) }
+				<ToolsPanel
+					label={ __( 'Settings', 'flexible-spacer-block' ) }
+					dropdownMenuProps={ dropdownMenuProps }
 					className="fsb-flexible-spacer__sidebar"
 				>
-					{ SPACER_CONTROLS.map( ( control, index ) => (
-						<div key={ index } className={ `fsb-flexible-spacer__sidebar-${ control.slug }` }>
-							<RangeControl
-								label={ control.label }
-								beforeIcon={ <Icon icon={ control.icon } /> }
-								min={ MIN_SPACER_HEIGHT }
-								max={ MAX_SPACER_HEIGHT }
-								value={ control.quantity }
-								withInputField={ false }
-								onChange={ control.onChange }
-								__nextHasNoMarginBottom
-								__next40pxDefaultSize
-							/>
-							<UnitControl
-								value={ control.value }
-								min={ MIN_SPACER_HEIGHT }
-								onChange={ control.onChange }
-								size="__unstable-large"
-							/>
-							{ control.onNegativeChange && (
-								<ToggleControl
-									label={ __( 'Negative space', 'flexible-spacer-block' ) }
-									checked={ control.isNegative }
-									onChange={ control.onNegativeChange }
-									__nextHasNoMarginBottom
-								/>
-							) }
-							<HorizontalRule />
-						</div>
+					{ SPACER_CONTROLS.map( ( control ) => (
+						<ToolsPanelItem
+							key={ control.slug }
+							label={ control.label }
+							isShownByDefault
+							hasValue={ control.hasValue }
+							onDeselect={ control.onDeselect }
+							__nextHasNoMarginBottom
+						>
+							<VStack spacing={ 4 }>
+								<VStack
+									spacing={ 2 }
+									onMouseEnter={ () => setActiveDevice( control.slug ) }
+									onMouseLeave={ () => setActiveDevice( undefined ) }
+								>
+									<Grid align="end" templateColumns="1fr 0.7fr">
+										<RangeControl
+											label={ control.label }
+											beforeIcon={ <Icon icon={ control.icon } /> }
+											min={ MIN_SPACER_HEIGHT }
+											max={ MAX_SPACER_HEIGHT }
+											value={ control.quantity }
+											withInputField={ false }
+											onChange={ control.onChange }
+											__nextHasNoMarginBottom
+											__next40pxDefaultSize
+										/>
+										<UnitControl
+											hideLabelFromVision
+											label={ control.label }
+											value={ control.value }
+											min={ MIN_SPACER_HEIGHT }
+											onChange={ control.onChange }
+											size="__unstable-large"
+										/>
+									</Grid>
+									{ control.onNegativeChange && (
+										<ToggleControl
+											label={ __( 'Negative space', 'flexible-spacer-block' ) }
+											checked={ control.isNegative }
+											onChange={ control.onNegativeChange }
+											__nextHasNoMarginBottom
+										/>
+									) }
+								</VStack>
+								<HorizontalRule />
+							</VStack>
+						</ToolsPanelItem>
 					) ) }
 					<ExternalLink href={ settingUrl }>
 						{ __( 'Plugin Setting', 'flexible-spacer-block' ) }
 					</ExternalLink>
-				</PanelBody>
+				</ToolsPanel>
 			</InspectorControls>
 			<View { ...blockProps }>
 				<div className="fsb-flexible-spacer__inner">
@@ -300,10 +363,10 @@ export default function Edit( { attributes, isSelected, setAttributes, toggleSel
 							</div>
 							<div style={ { height: device.height } }>
 								<ResizableBox
-									className={ clsx( {
-										'is-selected': isSelected,
+									className={ clsx( 'fsb-flexible-spacer__device-resizer', {
 										'is-resizing': device.isResizing,
 										'is-negative': !! device.isNegative,
+										'is-active': activeDevice === device.slug,
 									} ) }
 									minHeight={ MIN_SPACER_HEIGHT }
 									enable={ {

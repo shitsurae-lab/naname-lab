@@ -15,7 +15,6 @@ import {
 	FlexBlock,
 	SelectControl,
 	TextControl,
-	__experimentalHStack as HStack,
 	__experimentalSpacer as Spacer,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
@@ -225,13 +224,13 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 
 	return (
 		<>
-			<Spacer marginBottom="4" as={ Flex } justify="end">
+			<Spacer marginBottom="4" as={ Flex } justify="end" className="ftb-table-cell-settings-clear">
 				<Button variant="link" isDestructive onClick={ onResetCellSettings }>
 					{ __( 'Clear cell settings', 'flexible-table-block' ) }
 				</Button>
 			</Spacer>
 			<Spacer marginBottom="4" as={ Flex }>
-				<FlexBlock>
+				<FlexBlock className="ftb-table-cell-settings-font-size">
 					<UnitControl
 						label={ __( 'Cell font size', 'flexible-table-block' ) }
 						value={ cellStylesObj?.fontSize }
@@ -241,7 +240,7 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 						size="__unstable-large"
 					/>
 				</FlexBlock>
-				<FlexBlock>
+				<FlexBlock className="ftb-table-cell-settings-line-height">
 					<TextControl
 						label={ __( 'Cell line height', 'flexible-table-block' ) }
 						value={ cellStylesObj?.lineHeight || '' }
@@ -255,21 +254,18 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 					/>
 				</FlexBlock>
 			</Spacer>
-			<HStack alignment="start">
-				<UnitControl
-					label={ __( 'Cell width', 'flexible-table-block' ) }
-					value={ cellStylesObj?.width }
-					units={ cellWidthUnits }
-					min={ 0 }
-					onChange={ onChangeWidth }
-					size="__unstable-large"
-					__unstableInputWidth="calc(50% - 8px)"
-				/>
-				<Button variant="secondary" size="small" onClick={ () => onChangeWidth( undefined ) }>
-					{ __( 'Reset', 'flexible-table-block' ) }
-				</Button>
-			</HStack>
+			<UnitControl
+				className="ftb-table-cell-settings-width"
+				label={ __( 'Cell width', 'flexible-table-block' ) }
+				value={ cellStylesObj?.width }
+				units={ cellWidthUnits }
+				min={ 0 }
+				onChange={ onChangeWidth }
+				size="__unstable-large"
+				__unstableInputWidth="calc(50% - 8px)"
+			/>
 			<ToggleGroupControl
+				className="ftb-table-cell-settings-percentage-width"
 				__nextHasNoMarginBottom
 				__next40pxDefaultSize
 				hideLabelFromVision
@@ -296,11 +292,13 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 			</ToggleGroupControl>
 			<hr />
 			<ColorControl
+				className="ftb-table-cell-settings-text-color"
 				label={ __( 'Cell text color', 'flexible-table-block' ) }
 				value={ cellStylesObj.color }
 				onChange={ onChangeColor }
 			/>
 			<ColorControl
+				className="ftb-table-cell-settings-background-color"
 				label={ __( 'Cell background color', 'flexible-table-block' ) }
 				value={ cellStylesObj.backgroundColor }
 				colors={ [
@@ -314,82 +312,83 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 			/>
 			<hr />
 			<PaddingControl
+				className="ftb-table-cell-settings-padding"
 				label={ __( 'Cell padding', 'flexible-table-block' ) }
 				values={ pickPadding( cellStylesObj ) }
 				onChange={ onChangePadding }
 			/>
 			<hr />
 			<BorderRadiusControl
+				className="ftb-table-cell-settings-border-radius"
 				label={ __( 'Cell border radius', 'flexible-table-block' ) }
 				values={ pickBorderRadius( cellStylesObj ) }
 				onChange={ onChangeBorderRadius }
 			/>
 			<BorderWidthControl
+				className="ftb-table-cell-settings-border-width"
 				label={ __( 'Cell border width', 'flexible-table-block' ) }
 				values={ pickBorderWidth( cellStylesObj ) }
 				onChange={ onChangeBorderWidth }
 			/>
 			<BorderStyleControl
+				className="ftb-table-cell-settings-border-style"
 				label={ __( 'Cell border style', 'flexible-table-block' ) }
 				values={ pickBorderStyle( cellStylesObj ) }
 				onChange={ onChangeBorderStyle }
 			/>
 			<BorderColorControl
+				className="ftb-table-cell-settings-border-color"
 				label={ __( 'Cell border color', 'flexible-table-block' ) }
 				values={ pickBorderColor( cellStylesObj ) }
 				onChange={ onChangeBorderColor }
 			/>
 			<hr />
-			<BaseControl id="flexible-table-block-cell-text-align" __nextHasNoMarginBottom>
-				<div aria-labelledby="flexible-table-block-cell-text-align-heading" role="group">
-					<span
-						id="flexible-table-block-cell-text-align-heading"
-						className="ftb-base-control-label"
+			<fieldset className="ftb-table-cell-settings-alignment">
+				<BaseControl.VisualLabel as="legend">
+					{ __( 'Cell alignment', 'flexible-table-block' ) }
+				</BaseControl.VisualLabel>
+				<Flex style={ { marginBottom: '-16px' } } justify="start" align="start">
+					<ToggleGroupControl
+						hideLabelFromVision
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label={ __( 'Text alignment', 'flexible-table-block' ) }
+						value={ cellStylesObj?.textAlign }
+						isDeselectable
+						onChange={ onChangeTextAlign }
 					>
-						{ __( 'Cell alignment', 'flexible-table-block' ) }
-					</span>
-					<Flex style={ { marginBottom: '-16px' } } justify="start" align="start">
-						<ToggleGroupControl
-							hideLabelFromVision
-							__nextHasNoMarginBottom
-							__next40pxDefaultSize
-							label={ __( 'Text alignment', 'flexible-table-block' ) }
-							value={ cellStylesObj?.textAlign }
-							isDeselectable
-							onChange={ onChangeTextAlign }
-						>
-							{ TEXT_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => (
-								<ToggleGroupControlOptionIcon
-									key={ value }
-									value={ value }
-									icon={ icon }
-									label={ label }
-								/>
-							) ) }
-						</ToggleGroupControl>
-						<ToggleGroupControl
-							hideLabelFromVision
-							__nextHasNoMarginBottom
-							__next40pxDefaultSize
-							label={ __( 'Vertical alignment', 'flexible-table-block' ) }
-							value={ cellStylesObj?.verticalAlign }
-							isDeselectable
-							onChange={ onChangeVerticalAlign }
-						>
-							{ VERTICAL_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => (
-								<ToggleGroupControlOptionIcon
-									key={ value }
-									value={ value }
-									icon={ icon }
-									label={ label }
-								/>
-							) ) }
-						</ToggleGroupControl>
-					</Flex>
-				</div>
-			</BaseControl>
+						{ TEXT_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => (
+							<ToggleGroupControlOptionIcon
+								key={ value }
+								value={ value }
+								icon={ icon }
+								label={ label }
+							/>
+						) ) }
+					</ToggleGroupControl>
+					<ToggleGroupControl
+						hideLabelFromVision
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label={ __( 'Vertical alignment', 'flexible-table-block' ) }
+						value={ cellStylesObj?.verticalAlign }
+						isDeselectable
+						onChange={ onChangeVerticalAlign }
+					>
+						{ VERTICAL_ALIGNMENT_CONTROLS.map( ( { icon, label, value } ) => (
+							<ToggleGroupControlOptionIcon
+								key={ value }
+								value={ value }
+								icon={ icon }
+								label={ label }
+							/>
+						) ) }
+					</ToggleGroupControl>
+				</Flex>
+			</fieldset>
 			<hr />
 			<ToggleGroupControl
+				className="ftb-table-cell-settings-tag"
 				__nextHasNoMarginBottom
 				__next40pxDefaultSize
 				label={ __( 'Cell tag', 'flexible-table-block' ) }
@@ -402,6 +401,7 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 				) ) }
 			</ToggleGroupControl>
 			<TextControl
+				className="ftb-table-cell-settings-custom-class"
 				label={ __( 'Cell CSS class(es)', 'flexible-table-block' ) }
 				autoComplete="off"
 				value={ targetCell.className || '' }
@@ -415,6 +415,7 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 					<hr />
 					{ selectedCellTags.includes( 'th' ) && (
 						<TextControl
+							className="ftb-table-cell-settings-id"
 							label={ createInterpolateElement(
 								__( '<code>id</code> attribute', 'flexible-table-block' ),
 								{ code: <code /> }
@@ -427,6 +428,7 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 						/>
 					) }
 					<TextControl
+						className="ftb-table-cell-settings-headers"
 						label={ createInterpolateElement(
 							__( '<code>headers</code> attribute', 'flexible-table-block' ),
 							{ code: <code /> }
@@ -439,6 +441,7 @@ export default function TableCellSettings( { setAttributes, vTable, selectedCell
 					/>
 					{ selectedCellTags.includes( 'th' ) && (
 						<SelectControl
+							className="ftb-table-cell-settings-scope"
 							label={ createInterpolateElement(
 								__( '<code>scope</code> attribute', 'flexible-table-block' ),
 								{ code: <code /> }

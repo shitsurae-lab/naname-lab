@@ -8,13 +8,13 @@
          "Lazy Blocks": [
             ""
          ],
+         "https://www.lazyblocks.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline": [
+            ""
+         ],
          "Easily create custom blocks and custom meta fields for Gutenberg without hard coding.": [
             ""
          ],
          "Lazy Blocks Team": [
-            ""
-         ],
-         "https://www.lazyblocks.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline": [
             ""
          ],
          "Documentation": [
@@ -75,6 +75,12 @@
             ""
          ],
          "Description": [
+            ""
+         ],
+         "Lazy Blocks cache has been cleared.": [
+            ""
+         ],
+         "Clear Cache": [
             ""
          ],
          "Basic": [
@@ -182,6 +188,9 @@
          "Imported %s template": [
             "",
             "Imported %s templates"
+         ],
+         "Export permission denied.": [
+            ""
          ],
          "Template for these post types '%s' already exists.": [
             ""
@@ -705,6 +714,15 @@
          "Upgrade Now": [
             ""
          ],
+         "Value": [
+            ""
+         ],
+         "Choices": [
+            ""
+         ],
+         "+ Add Choice": [
+            ""
+         ],
          "Control": [
             ""
          ],
@@ -806,9 +824,6 @@
             ""
          ],
          "Allows you to change attribute output format": [
-            ""
-         ],
-         "Value": [
             ""
          ],
          "Both (Array)": [
@@ -965,12 +980,6 @@
          "Collapsed by Default": [
             ""
          ],
-         "Choices": [
-            ""
-         ],
-         "+ Add Choice": [
-            ""
-         ],
          "-- Select --": [
             ""
          ],
@@ -981,6 +990,15 @@
             ""
          ],
          "Looks like this control does not exists.": [
+            ""
+         ],
+         "Edit URL": [
+            ""
+         ],
+         "Add URL": [
+            ""
+         ],
+         "URL Editor": [
             ""
          ]
       }

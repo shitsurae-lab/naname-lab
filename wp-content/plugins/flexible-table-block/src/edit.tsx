@@ -17,8 +17,17 @@ import {
 	// @ts-ignore: has no exported member
 	useBlockEditingMode,
 } from '@wordpress/block-editor';
-import { ToolbarDropdownMenu, PanelBody } from '@wordpress/components';
-import { blockTable, justifyLeft } from '@wordpress/icons';
+import { ToolbarDropdownMenu, PanelBody, __experimentalText as Text } from '@wordpress/components';
+import {
+	blockTable,
+	justifyLeft,
+	tableRowAfter,
+	tableRowBefore,
+	tableColumnBefore,
+	tableColumnAfter,
+	tableColumnDelete,
+	tableRowDelete,
+} from '@wordpress/icons';
 import { store as noticesStore } from '@wordpress/notices';
 import type { BlockEditProps } from '@wordpress/blocks';
 
@@ -47,16 +56,7 @@ import {
 	type VSelectedCells,
 } from './utils/table-state';
 import { convertToObject } from './utils/style-converter';
-import {
-	tableRowAfter,
-	tableRowBefore,
-	tableColumnBefore,
-	tableColumnAfter,
-	tableColumnDelete,
-	tableRowDelete,
-	tableMergeCell,
-	tableSplitCell,
-} from './icons';
+import { tableMergeCell, tableSplitCell } from './icons';
 import type { BlockAttributes, SectionName, ContentJustifyValue } from './BlockAttributes';
 
 function TableEdit( props: BlockEditProps< BlockAttributes > ) {
@@ -347,17 +347,25 @@ function TableEdit( props: BlockEditProps< BlockAttributes > ) {
 						<PanelBody
 							title={ __( 'Table settings', 'flexible-table-block' ) }
 							initialOpen={ false }
+							className="flexible-table-block-table-settings-panel"
 						>
 							<TableSettings { ...tableSettingsProps } />
 						</PanelBody>
-						{ selectedCells && !! selectedCells.length && (
-							<PanelBody title={ tableCellSettingsLabel } initialOpen={ false }>
+						<PanelBody
+							title={ tableCellSettingsLabel }
+							initialOpen={ false }
+							className="flexible-table-block-table-cell-settings-panel"
+						>
+							{ selectedCells && !! selectedCells.length ? (
 								<TableCellSettings { ...tableCellSettingsProps } />
-							</PanelBody>
-						) }
+							) : (
+								<Text>{ __( 'No cells selected.', 'flexible-table-block' ) }</Text>
+							) }
+						</PanelBody>
 						<PanelBody
 							title={ __( 'Caption settings', 'flexible-table-block' ) }
 							initialOpen={ false }
+							className="flexible-table-block-table-caption-settings-panel"
 						>
 							<TableCaptionSettings { ...tableCaptionSettingProps } />
 						</PanelBody>

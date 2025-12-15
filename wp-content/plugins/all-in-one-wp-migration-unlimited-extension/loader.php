@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2020 ServMask Inc.
+ * Copyright (C) 2014-2025 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,6 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Attribution: This code is part of the All-in-One WP Migration plugin, developed by
  *
  * ███████╗███████╗██████╗ ██╗   ██╗███╗   ███╗ █████╗ ███████╗██╗  ██╗
  * ██╔════╝██╔════╝██╔══██╗██║   ██║████╗ ████║██╔══██╗██╔════╝██║ ██╔╝
@@ -29,43 +31,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Include all the files that you want to load in here
 if ( defined( 'WP_CLI' ) ) {
-	require_once AI1WMUE_VENDOR_PATH .
-				DIRECTORY_SEPARATOR .
-				'servmask' .
-				DIRECTORY_SEPARATOR .
-				'command' .
-				DIRECTORY_SEPARATOR .
-				'ai1wm-wp-cli.php';
+	require_once AI1WMUE_VENDOR_PATH . '/servmask/command/ai1wm-wp-cli.php';
 }
 
-require_once AI1WMUE_VENDOR_PATH .
-			DIRECTORY_SEPARATOR .
-			'servmask' .
-			DIRECTORY_SEPARATOR .
-			'pro' .
-			DIRECTORY_SEPARATOR .
-			'ai1wmve.php';
+require_once AI1WMUE_VENDOR_PATH . '/servmask/pro/ai1wmve.php';
 
-require_once AI1WMUE_CONTROLLER_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-main-controller.php';
+require_once AI1WMUE_CONTROLLER_PATH . '/class-ai1wmue-main-controller.php';
+require_once AI1WMUE_CONTROLLER_PATH . '/class-ai1wmue-settings-controller.php';
 
-require_once AI1WMUE_CONTROLLER_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-settings-controller.php';
+require_once AI1WMUE_MODEL_PATH . '/export/class-ai1wmue-export-retention.php';
+require_once AI1WMUE_MODEL_PATH . '/import/class-ai1wmue-import-database.php';
+require_once AI1WMUE_MODEL_PATH . '/import/class-ai1wmue-import-settings.php';
+require_once AI1WMUE_MODEL_PATH . '/import/class-ai1wmue-import-upload.php';
 
-require_once AI1WMUE_MODEL_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-settings.php';
-
-require_once AI1WMUE_EXPORT_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-export-retention.php';
-
-require_once AI1WMUE_IMPORT_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-import-settings.php';
-
-require_once AI1WMUE_IMPORT_PATH .
-			DIRECTORY_SEPARATOR .
-			'class-ai1wmue-import-database.php';
+require_once AI1WMUE_MODEL_PATH . '/class-ai1wmue-settings.php';

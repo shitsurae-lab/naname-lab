@@ -136,4 +136,22 @@ class Permalink_Manager_Permastructure_Functions {
 
 		return trim( $default_uri, "/" );
 	}
+
+	/**
+	 * Get the permalink base (home URL) for custom permalink
+	 *
+	 * @param string|int|WP_Post|WP_Term $element
+	 *
+	 * @return string
+	 */
+	public static function get_permalink_base( $element = null ) {
+		$home_url = trim( get_option( 'home' ), "/" );
+
+		// Make sure that the custom permalinks have a valid scheme
+		if ( strpos( $home_url, 'http' ) === false ) {
+			$home_url = set_url_scheme( $home_url );
+		}
+
+		return apply_filters( 'permalink_manager_filter_permalink_base', $home_url, $element );
+	}
 }

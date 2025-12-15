@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2023 ServMask Inc.
+ * Copyright (C) 2014-2025 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,6 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Attribution: This code is part of the All-in-One WP Migration plugin, developed by
  *
  * ███████╗███████╗██████╗ ██╗   ██╗███╗   ███╗ █████╗ ███████╗██╗  ██╗
  * ██╔════╝██╔════╝██╔══██╗██║   ██║████╗ ████║██╔══██╗██╔════╝██║ ██╔╝
@@ -64,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<td class="ai1wm-column-time">
 				<?php echo $event->time(); ?>
 			</td>
-			<td class="ai1wm-column-last-run ai1wm-column-last-run-<?php echo strtolower( $event->last_run() ); ?>"">
+			<td class="ai1wm-column-last-run ai1wm-column-last-status-<?php echo strtolower( $event->last_run() ); ?>"">
 				<span><?php echo $event->last_run(); ?></span>
 			</td>
 			<td class="ai1wm-column-actions ai1wmve-schedule-actions">
@@ -90,6 +92,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<a tabindex="-1" href="#" data-event_id="<?php echo esc_attr( $event->event_id() ); ?>" data-event_title="<?php echo esc_attr( $event->title() ); ?>" role="menuitem" aria-label="<?php _e( 'View log', AI1WM_PLUGIN_NAME ); ?>" class="ai1wmve-schedule-view-log">
 									<i class="ai1wm-icon-eye"></i>
 									<span><?php _e( 'View log', AI1WM_PLUGIN_NAME ); ?></span>
+								</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="#" data-event_id="<?php echo esc_attr( $event->event_id() ); ?>" role="menuitem" aria-label="<?php _e( 'Clean log', AI1WM_PLUGIN_NAME ); ?>" class="ai1wmve-schedule-clean-log">
+									<i class="ai1wm-icon-broom"></i>
+									<span><?php _e( 'Clean log', AI1WM_PLUGIN_NAME ); ?></span>
 								</a>
 							</li>
 							<li class="divider"></li>

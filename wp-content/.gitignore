@@ -1,2 +1,18 @@
 node_modules
 /ai1wm-backups/
+
+# WordPress
+/wp-content/uploads/
+wp-config.php
+.env
+.env.*
+
+# Cache / logs
+/wp-content/cache/
+/wp-content/wflogs/
+/wp-content/debug.log
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

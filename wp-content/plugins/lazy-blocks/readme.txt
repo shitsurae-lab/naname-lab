@@ -4,9 +4,9 @@
 * Tags: gutenberg, blocks, custom, meta, fields
 * Donate link: https://www.lazyblocks.com/pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=donate
 * Requires at least: 6.2
-* Tested up to: 6.8
-* Requires PHP: 7.2
-* Stable tag: 4.0.3
+* Tested up to: 6.9
+* Requires PHP: 8.0
+* Stable tag: 4.2.0
 * License: GPLv2 or later
 * License URI: <http://www.gnu.org/licenses/gpl-2.0.html>
 
@@ -138,6 +138,40 @@ The manual installation method involves downloading our Lazy Blocks plugin and u
 3. Available block controls
 
 ## Changelog
+
+= 4.2.0 - Dec 3, 2025 =
+
+* added caching for the get_blocks() function to prevent loading block custom posts on every page load. This fixes the issue with heavy SQL calls on sites using a large number of blocks (20+)
+* fixed URL control inside the 'content' placement. Since you asked to keep it working in Content, we restored the control here and now display settings in a Modal - this is a workaround for Gutenberg limitations with URL components inside iframe preview
+* fixed required control check and post locking when a block is rendered inside a preview example
+* **Pro:**
+* added Link control: <https://www.lazyblocks.com/docs/blocks-controls/link/>
+* added Token Field control: <https://www.lazyblocks.com/docs/blocks-controls/token-field/>
+* added Token Field appearance for Taxonomy control
+* fixed incorrect path display for theme template code folder for blocks with custom namespace
+
+= 4.1.1 - Sep 25, 2025 =
+
+* security fix: prevent unauthorized block export access
+* added `$content` attribute to `lzb/block_render/output` filters
+* **Pro:**
+* fixed rendering blocks in widgets screen when Rank Math is active
+
+= 4.1.0 - Aug 18, 2025 =
+
+* !breaking change - in Theme Templates renamed `$context` to `$render_location` to use `$context` for Gutenberg blocks Context feature instead: <https://www.lazyblocks.com/docs/blocks-code/relationships/>
+* requires PHP version 8.0 or higher, with version 8.3 and above recommended
+* added JS filter for devs: `lzb.registerBlockType.args`
+* added PHP filters for devs: `lzb/register_blocks`, `lzb/get_blocks`
+* fixed content wrapper controls color inheritance from parent
+* fixed losing focus from input fields in the inspector controls when block render preview updated
+* fixed URL control rendering in Content - display fallback Text control
+* disable possibility to add URL control inside Repeater inserted inside Content
+* remove child controls when the repeater control removed
+* minor fixes
+* **Pro:**
+* added support for block relations and context
+* improved block content retrieval for SEO plugins to enable accurate analysis and added preload to prevent multiple fetches on editor page load. Learn more -> <https://www.lazyblocks.com/docs/blocks-code/relationships/>
 
 = 4.0.3 - Jul 7, 2025 =
 

@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import clsx from 'clsx';
 import type { PropertyValue } from 'csstype';
 
 /**
@@ -12,9 +13,6 @@ import { useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Button,
-	Flex,
-	FlexBlock,
-	FlexItem,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 	__experimentalHStack as HStack,
@@ -48,6 +46,7 @@ type Props = {
 	};
 	allowSides?: boolean;
 	hasIndicator?: boolean;
+	className?: string;
 };
 
 type ValuesKey = keyof typeof DEFAULT_VALUES;
@@ -59,6 +58,7 @@ export default function BorderStyleControl( {
 	values: valuesProp,
 	allowSides = true,
 	hasIndicator = true,
+	className,
 }: Props ) {
 	const values = {
 		...DEFAULT_VALUES,
@@ -77,14 +77,9 @@ export default function BorderStyleControl( {
 		? __( 'Unlink sides', 'flexible-table-block' )
 		: __( 'Link sides', 'flexible-table-block' );
 
-	const allInputValue: string | 0 = isMixed ? '' : values.top;
+	const allInputValue: string | undefined = isMixed ? undefined : values.top || undefined;
 
 	const toggleLinked = () => setIsLinked( ! isLinked );
-
-	const handleOnReset = () => {
-		setIsLinked( true );
-		onChange( DEFAULT_VALUES );
-	};
 
 	const handleOnClickAll = ( value: string | number | undefined ) => {
 		const newValue =
@@ -116,20 +111,17 @@ export default function BorderStyleControl( {
 	};
 
 	return (
-		<BaseControl className="ftb-border-style-control" help={ help } __nextHasNoMarginBottom>
+		<BaseControl
+			className={ clsx( 'ftb-border-style-control', className ) }
+			help={ help }
+			__nextHasNoMarginBottom
+		>
 			<VStack aria-labelledby={ headingId } role="group">
-				<Flex>
-					<Text id={ headingId } upperCase size="11" weight="500" as={ FlexBlock }>
-						{ isMixed && isLinked
-							? `${ label } ${ __( '(Mixed)', 'flexible-table-block' ) }`
-							: label }
-					</Text>
-					<FlexItem>
-						<Button variant="secondary" onClick={ handleOnReset } size="small">
-							{ __( 'Reset', 'flexible-table-block' ) }
-						</Button>
-					</FlexItem>
-				</Flex>
+				<Text id={ headingId } upperCase size="11" weight="500">
+					{ isMixed && isLinked
+						? `${ label } ${ __( '(Mixed)', 'flexible-table-block' ) }`
+						: label }
+				</Text>
 				<HStack alignment="start" justify="space-between">
 					{ isLinked ? (
 						<HStack spacing={ 2 } justify="start">
@@ -157,13 +149,13 @@ export default function BorderStyleControl( {
 						<VStack spacing={ 1 }>
 							{ SIDE_CONTROLS.map( ( item ) => (
 								<HStack spacing={ 2 } justify="start" key={ item.value }>
-									{ hasIndicator && <SideIndicatorControl sides={ [ item.value ] } /> }
+									{ hasIndicator && <SideIndicatorControl side={ item.value } /> }
 									<ToggleGroupControl
 										hideLabelFromVision
 										__nextHasNoMarginBottom
 										__next40pxDefaultSize
 										label={ item.label }
-										value={ values[ item.value as ValuesKey ] }
+										value={ values[ item.value as ValuesKey ] || undefined }
 										isDeselectable
 										onChange={ ( value ) => handleOnClick( value, item.value as ValuesKey ) }
 									>

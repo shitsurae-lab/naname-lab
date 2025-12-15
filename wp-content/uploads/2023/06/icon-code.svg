@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="icon-code" viewBox="0 0 160 160">
+  <defs>
+    <style>.cls-1,.cls-2{fill:none;stroke:#80999c;stroke-linecap:round;stroke-miterlimit:10;stroke-width:6px;}.cls-2{fill-rule:evenodd;}</style>
+  </defs>
+  <line class="cls-1" x1="61.61" y1="124.59" x2="98.39" y2="35.41"></line>
+  <path class="cls-2" d="m107.86,47.57s34.16,27.42,36.49,29.16,1.89,3.64,0,5.1-36.49,30.62-36.49,30.62"></path>
+  <path class="cls-2" d="m51.47,47.57s-34.16,27.42-36.49,29.16-1.89,3.64,0,5.1,36.49,30.62,36.49,30.62"></path>
+</svg>

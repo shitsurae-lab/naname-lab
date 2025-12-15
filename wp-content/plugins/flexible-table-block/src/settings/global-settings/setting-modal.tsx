@@ -194,6 +194,7 @@ export default function SettingModal( { options, isAdministrator, setIsSettingMo
 			title={ __( 'Flexible Table Block Global setting', 'flexible-table-block' ) }
 			className="ftb-global-setting-modal"
 			onRequestClose={ () => setIsSettingModalOpen( false ) }
+			size="large"
 		>
 			{ isWaiting && (
 				<HStack justify="center" className="ftb-global-setting-modal__loading">
@@ -642,7 +643,6 @@ export default function SettingModal( { options, isAdministrator, setIsSettingMo
 									{ __( 'Responsive breakpoint (px)', 'flexible-table-block' ) }
 								</Heading>
 								<RangeControl
-									id="flexible-table-block-global-breakpoint"
 									help={ __(
 										'Set the screen width (breakpoint) as the basis for switching between desktop and mobile devices.',
 										'flexible-table-block'

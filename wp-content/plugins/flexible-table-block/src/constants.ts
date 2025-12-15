@@ -6,6 +6,9 @@ import {
 	justifyLeft,
 	justifyCenter,
 	justifyRight,
+	justifyTop,
+	justifyCenterVertical,
+	justifyBottom,
 	alignLeft,
 	alignCenter,
 	alignRight,
@@ -15,9 +18,6 @@ import {
  * Internal dependencies
  */
 import {
-	alignTop,
-	alignMiddle,
-	alignBottom,
 	borderSolid,
 	borderDotted,
 	borderDashed,
@@ -68,6 +68,7 @@ export const MAX_RESPONSIVE_BREAKPOINT = 1200 as const;
 // Available units on UnitControl component.
 export const FONT_SIZE_UNITS = [ 'px', 'em', 'rem', '%' ];
 export const TABLE_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ];
+export const TABLE_HEIGHT_UNITS = [ 'px', 'em', 'rem', '%' ];
 export const CELL_WIDTH_UNITS = [ 'px', 'em', 'rem', '%' ];
 export const BORDER_SPACING_UNITS = [ 'px', 'em', 'rem' ];
 export const BORDER_RADIUS_UNITS = [ 'px', 'em', 'rem' ];
@@ -156,17 +157,17 @@ export const TEXT_ALIGNMENT_CONTROLS = [
 
 export const VERTICAL_ALIGNMENT_CONTROLS = [
 	{
-		icon: alignTop,
+		icon: justifyTop,
 		label: __( 'Align top', 'flexible-table-block' ),
 		value: 'top',
 	},
 	{
-		icon: alignMiddle,
+		icon: justifyCenterVertical,
 		label: __( 'Align middle', 'flexible-table-block' ),
 		value: 'middle',
 	},
 	{
-		icon: alignBottom,
+		icon: justifyBottom,
 		label: __( 'Align bottom', 'flexible-table-block' ),
 		value: 'bottom',
 	},
@@ -242,12 +243,12 @@ export const CORNER_CONTROLS = [
 		value: 'topRight',
 	},
 	{
-		label: __( 'Bottom right', 'flexible-table-block' ),
-		value: 'bottomRight',
-	},
-	{
 		label: __( 'Bottom left', 'flexible-table-block' ),
 		value: 'bottomLeft',
+	},
+	{
+		label: __( 'Bottom right', 'flexible-table-block' ),
+		value: 'bottomRight',
 	},
 ] as const;
 

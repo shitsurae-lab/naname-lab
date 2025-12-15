@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 125.34 32.81">
+  <defs>
+    <style>
+      .cls-1 {
+        mask: url(#mask);
+      }
+
+      .cls-2 {
+        filter: url(#luminosity-noclip);
+      }
+
+      .cls-3 {
+        mask: url(#mask-1);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+        mix-blend-mode: multiply;
+      }
+
+      .cls-5 {
+        fill: url(#_新規グラデーションスウォッチ_07);
+      }
+    </style>
+    <filter id="luminosity-noclip" x="0" y="0" width="125.34" height="32.81" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <filter id="luminosity-noclip-2" x="0" y="-9557.76" width="125.34" height="32766" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <mask id="mask-1" x="0" y="-9557.76" width="125.34" height="32766" maskUnits="userSpaceOnUse"/>
+    <linearGradient id="linear-gradient" x1="3818.62" y1="32.81" x2="3818.62" y2="0" gradientTransform="translate(3881.29) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4d4d4d"/>
+      <stop offset=".04" stop-color="#585858"/>
+      <stop offset=".29" stop-color="#939393"/>
+      <stop offset=".52" stop-color="#c1c1c1"/>
+      <stop offset=".72" stop-color="#e3e3e3"/>
+      <stop offset=".89" stop-color="#f7f7f7"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="mask" x="0" y="0" width="125.34" height="32.81" maskUnits="userSpaceOnUse">
+      <g class="cls-2">
+        <g class="cls-3">
+          <path class="cls-4" d="M.23,30.78c3.67-5.06,13.71-18,21.72-19.71,9.99-2.12,11.94,11.61,28.24-4.95,14.42-14.65,33.68-.05,45.86,12.63,6.78,4.21,8.67-1.98,14.31-.78,5.47,1.16,12.32,9.99,14.82,13.45.44.61-.09,1.38-.94,1.38H1.62c-1.25,0-2.03-1.13-1.38-2.02Z"/>
+        </g>
+      </g>
+    </mask>
+    <linearGradient id="_新規グラデーションスウォッチ_07" data-name="新規グラデーションスウォッチ 07" x1="3818.62" y1="32.81" x2="3818.62" y2="0" gradientTransform="translate(3881.29) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset=".34" stop-color="#dae0f5"/>
+      <stop offset=".62" stop-color="#e2e7f6"/>
+      <stop offset="1" stop-color="#f6f6fb"/>
+    </linearGradient>
+  </defs>
+  <g id="cloud">
+    <g class="cls-1">
+      <path id="cloud-02" class="cls-5" d="M.23,30.78c3.67-5.06,13.71-18,21.72-19.71,9.99-2.12,11.94,11.61,28.24-4.95,14.42-14.65,33.68-.05,45.86,12.63,6.78,4.21,8.67-1.98,14.31-.78,5.47,1.16,12.32,9.99,14.82,13.45.44.61-.09,1.38-.94,1.38H1.62c-1.25,0-2.03-1.13-1.38-2.02Z"/>
+    </g>
+  </g>
+</svg>

@@ -39,7 +39,7 @@ if (!options || !options.blocks || !options.blocks.length) {
 const blocksWithErrors = {};
 
 export default function BlockEdit(props) {
-	const { lazyBlockData, clientId, isSelected, attributes } = props;
+	const { lazyBlockData, clientId, isSelected, attributes, context } = props;
 
 	const isFirstLoad = useRef(true);
 	const isMounted = useRef(true);
@@ -50,9 +50,10 @@ export default function BlockEdit(props) {
 	const [allowErrorNotice, setAllowErrorNotice] = useState(!isSelected);
 	const [invalidControlsCount, setInvalidControlsCount] = useState(0);
 
-	const { innerBlockSelected, postType } = useSelect(
+	const { innerBlockSelected, postType, isPreviewMode } = useSelect(
 		(select) => {
-			const { hasSelectedInnerBlock } = select('core/block-editor');
+			const { hasSelectedInnerBlock, getSettings } =
+				select('core/block-editor');
 
 			// This select is not available in the Widgets editor, so we have to check it.
 			const { getCurrentPostType } = select('core/editor') || {};
@@ -60,6 +61,7 @@ export default function BlockEdit(props) {
 			return {
 				innerBlockSelected: hasSelectedInnerBlock(clientId, true),
 				postType: getCurrentPostType && getCurrentPostType(),
+				isPreviewMode: getSettings().isPreviewMode,
 			};
 		},
 		[clientId]
@@ -136,8 +138,8 @@ export default function BlockEdit(props) {
 		let shouldLock = 0;
 		let thereIsRequired = false;
 
-		// Prevent if not allowed or component already unmounted.
-		if (!allowErrorNotice || !isMounted.current) {
+		// Prevent if not allowed, component already unmounted, or in preview mode (e.g., block inserter preview).
+		if (!allowErrorNotice || !isMounted.current || isPreviewMode) {
 			return;
 		}
 
@@ -396,6 +398,7 @@ export default function BlockEdit(props) {
 					block={lazyBlockData.slug}
 					clientId={clientId}
 					attributes={attsForRender}
+					context={context}
 					withBlockProps
 				/>
 			</>
@@ -447,6 +450,7 @@ export default function BlockEdit(props) {
 							block={lazyBlockData.slug}
 							clientId={clientId}
 							attributes={attsForRender}
+							context={context}
 						/>
 					</div>
 				) : null}

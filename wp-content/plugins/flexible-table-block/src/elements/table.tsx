@@ -202,6 +202,20 @@ export default function Table( {
 		}
 	};
 
+	const focusFirstCell = () => {
+		if ( ! tableRef.current ) {
+			return;
+		}
+		const tableElement: HTMLTableElement = tableRef.current;
+		const firstTabbableElement = tableElement.querySelector(
+			`th > [contenteditable="true"], td > [contenteditable="true"]`
+		);
+		if ( ! firstTabbableElement ) {
+			return;
+		}
+		( firstTabbableElement as HTMLElement ).focus();
+	};
+
 	const onChangeCellContent = ( content: string, targetCell: VCell ) => {
 		// If inline highlight is applied to the RichText, this process is performed before rendering the component, causing a warning error.
 		// Therefore, nothing is performed if the component has not yet been rendered.
@@ -252,7 +266,7 @@ export default function Table( {
 			// Focus on the next cell.
 			isTabMove = true;
 
-			const tableElement: HTMLElement = tableRef.current;
+			const tableElement: HTMLTableElement = tableRef.current;
 			const { ownerDocument } = tableElement;
 			const { activeElement } = ownerDocument;
 
@@ -491,7 +505,7 @@ export default function Table( {
 												{ rowIndex === 0 && vColIndex === 0 && (
 													<Button
 														className={ clsx( 'ftb-row-before-inserter', {
-															'ftb-row-before-inserter--has-prev-section': sectionIndex > 0,
+															'has-prev-section': sectionIndex > 0,
 														} ) }
 														label={ __( 'Insert row before', 'flexible-table-block' ) }
 														tabIndex={ options.focus_control_button ? 0 : -1 }
@@ -499,6 +513,7 @@ export default function Table( {
 														iconSize={ 18 }
 														onClick={ ( event: MouseEvent ) => {
 															onInsertRow( sectionName, rowIndex );
+															focusFirstCell();
 															event.stopPropagation();
 														} }
 													/>
@@ -527,13 +542,14 @@ export default function Table( {
 															selectedLine.sectionName === sectionName &&
 															selectedLine.rowIndex === rowIndex && (
 																<Button
-																	className="ftb-row-deleter"
+																	className="ftb-row-remover"
 																	label={ __( 'Delete row', 'flexible-table-block' ) }
 																	tabIndex={ options.focus_control_button ? 0 : -1 }
+																	size="compact"
 																	icon={ trash }
-																	iconSize={ 20 }
 																	onClick={ ( event: MouseEvent ) => {
 																		onDeleteRow( sectionName, rowIndex );
+																		focusFirstCell();
 																		event.stopPropagation();
 																	} }
 																/>
@@ -549,6 +565,7 @@ export default function Table( {
 														iconSize={ 18 }
 														onClick={ ( event: MouseEvent ) => {
 															onInsertColumn( cell, 0 );
+															focusFirstCell();
 															event.stopPropagation();
 														} }
 													/>
@@ -560,7 +577,7 @@ export default function Table( {
 															label={ __( 'Select column', 'flexible-table-block' ) }
 															tabIndex={ options.focus_control_button ? 0 : -1 }
 															icon={ chevronDown }
-															iconSize={ 18 }
+															iconSize={ 16 }
 															variant={
 																isColumnSelected && selectedLine.vColIndex === vColIndex
 																	? 'primary'
@@ -573,13 +590,14 @@ export default function Table( {
 														/>
 														{ isColumnSelected && selectedLine.vColIndex === vColIndex && (
 															<Button
-																className="ftb-column-deleter"
+																className="ftb-column-remover"
 																label={ __( 'Delete column', 'flexible-table-block' ) }
 																tabIndex={ options.focus_control_button ? 0 : -1 }
+																size="compact"
 																icon={ trash }
-																iconSize={ 20 }
 																onClick={ ( event: MouseEvent ) => {
 																	onDeleteColumn( vColIndex );
+																	focusFirstCell();
 																	event.stopPropagation();
 																} }
 															/>
@@ -589,7 +607,7 @@ export default function Table( {
 												{ vColIndex === 0 && (
 													<Button
 														className={ clsx( 'ftb-row-after-inserter', {
-															'ftb-row-after-inserter--has-next-section':
+															'has-next-section':
 																sectionIndex < Object.keys( filteredVTable ).length - 1 &&
 																rowIndex + rowSpan - 1 === filteredVTable[ sectionName ].length - 1,
 														} ) }
@@ -599,6 +617,7 @@ export default function Table( {
 														iconSize={ 18 }
 														onClick={ ( event: MouseEvent ) => {
 															onInsertRow( sectionName, rowIndex + rowSpan );
+															focusFirstCell();
 															event.stopPropagation();
 														} }
 													/>
@@ -631,6 +650,7 @@ export default function Table( {
 													iconSize={ 18 }
 													onClick={ ( event: MouseEvent ) => {
 														onInsertColumn( cell, 1 );
+														focusFirstCell();
 														event.stopPropagation();
 													} }
 												/>

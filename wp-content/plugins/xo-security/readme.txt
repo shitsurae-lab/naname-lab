@@ -2,9 +2,9 @@
 Contributors: ishitaka
 Tags: security, login, two factor, brute force, maintenance
 Requires at least: 4.9
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 3.10.4
+Stable tag: 3.10.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,23 @@ Please initialize the settings.
 Please install mbstring and GD module.
 
 == Changelog ==
+
+= 3.10.8 =
+
+* Fixed a bug that sometimes prevented access to the login page.
+
+= 3.10.7 =
+
+* Fixed a mistake in version 3.10.6.
+
+= 3.10.6 =
+
+* Fixed an issue where the URL in the email sent when resetting a password was incorrect when changing the login page.
+
+= 3.10.5 =
+
+* Supported WordPress 6.9.
+* Fixed a bug that sometimes prevented access to the login page.
 
 = 3.10.4 =
 

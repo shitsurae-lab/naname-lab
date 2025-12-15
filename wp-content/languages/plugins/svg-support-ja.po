@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - SVG Support - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-04 14:01:55+0000\n"
+"PO-Revision-Date: 2025-08-08 13:30:46+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -201,6 +201,10 @@ msgstr "アンインストール時にプラグインのデータをすべて削
 msgid "Delete Plugin Data"
 msgstr "プラグインデータの削除"
 
+#: functions/attachment.php:385
+msgid "Sorry, this file couldn't be sanitized for security reasons and wasn't uploaded."
+msgstr "このファイルはセキュリティ上の理由からサニタイズ処理できなかったため、アップロードされませんでした。"
+
 #: admin/svgs-settings-page.php:479
 msgid "on Twitter"
 msgstr "(Twitterアカウント)"
@@ -302,6 +306,10 @@ msgstr "高度な設定"
 msgid "Donate using PayPal"
 msgstr "PayPalを使って寄付する"
 
+#: admin/svgs-settings-page.php:57
+msgid "SVG Support has grown to be installed on 1,000,000+ active websites. That's insane! It's developed and maintained by one person alone. If you find it useful, please consider donating to help keep it going. I truly appreciate any contribution."
+msgstr "SVG Support は、100万以上のアクティブなサイトにインストールされるまでに成長しました。1人で開発しメンテナンスしているプラグインにもかかわらずです ! このプラグインを気に入っていただけましたら、継続的な開発やメンテナンスのための寄付を検討いただけないでしょうか。どんな寄付でも、心から感謝いたします。"
+
 #: admin/svgs-settings-page.php:54
 msgid "Send Some Love"
 msgstr "プラグインを気に入っていただけた方に"
@@ -353,6 +361,10 @@ msgstr "PayPal: "
 #: admin/svgs-settings-page-help.php:138
 msgid "Donation Methods:"
 msgstr "寄付方法:"
+
+#: admin/svgs-settings-page-help.php:136
+msgid "SVG Support (this plugin) has grown to be used by over 1 million websites actively and is maintained solely by one person. I couldn't possibly tell you how many hours have gone into the development, maintenance and support of this plugin. If you find it useful and would like to donate to help keep it going, that would be amazing! I truly appreciate the support and how far this has come."
+msgstr "SVG Support (このプラグイン) は、100万以上のサイトで活発に利用されるまでに成長し、たった1人の開発者によってメンテナンスされています。このプラグインの開発、メンテナンス、サポートには、計り知れないほどの時間が費やされてきました。もしこのプラグインがお役に立てば、ぜひとも寄付していただき、継続にご協力いただければ幸いです。皆様のご支援と、ここまでの発展に心から感謝いたします。"
 
 #: admin/svgs-settings-page-help.php:134
 msgid "Donations"
@@ -538,6 +550,10 @@ msgstr "オープンソースのプロジェクトを使って、SVG ファイ�
 msgid "Force Inline SVG?"
 msgstr "強制的に SVG をインラインレンダリング"
 
+#: admin/svgs-settings-page.php:259
+msgid "Checking this will use the expanded JS file instead of the minified JS file. Useful if you want to minify this externally using a caching plugin or similar."
+msgstr "これをチェックすると、最小化された JS ファイルの代わりに完全に展開された JS ファイルが使用されます。キャッシュプラグインなどほかの方法で最小化するときに便利です。"
+
 #: admin/svgs-settings-page.php:254
 msgid "Use Expanded JS?"
 msgstr "展開された JS ファイルを使用"
@@ -578,6 +594,10 @@ msgstr "の5段階評価をお願いします。"
 msgid "Ratings & Reviews"
 msgstr "評価とレビュー"
 
+#: admin/svgs-settings-page.php:300
+msgid "(Classic Editor Only) Checking this will make sure that either the default class or the custom one you set in \"CSS Class to target\" option will be inserted into the style attributes of img tags when you insert SVG images into a post. Additionally, it will remove all of the default WordPress classes. It will leave normal image types as default and only affect SVG files."
+msgstr "(旧エディターのみ) これにチェックを入れると、SVG 画像を投稿に挿入する際に、デフォルトのクラスまたは「CSSクラス指定」オプションで設定したカスタムクラスが img タグのスタイル属性に挿入されます。また、WordPress のデフォルトのクラスはすべて削除されます。通常の画像タイプはデフォルトのままとなり、SVG ファイルのみに適用されます。"
+
 #: functions/featured-image.php:23
 msgid "Render this SVG inline (advanced)"
 msgstr "SVG をインラインでレンダリング (高度な設定)"
@@ -589,6 +609,10 @@ msgstr "アイキャッチ画像に設定した SVG のインラインレンダ�
 #: admin/svgs-settings-page.php:464
 msgid "Use odd shapes as links"
 msgstr "異形の領域をリンクとして設定可"
+
+#: admin/svgs-settings-page.php:463
+msgid "Include multiple URLs inside single SVG"
+msgstr "1つの SVG 内に複数の URL を設定可能"
 
 #: admin/svgs-settings-page.php:462
 msgid "Animate SVG using CSS or JS"
@@ -613,6 +637,10 @@ msgstr "このプラグインを使うと、他の画像と同様に SVG ファ�
 #: admin/svgs-settings-page.php:347
 msgid "Advanced Usage"
 msgstr "高度な使い方"
+
+#: admin/svgs-settings-page.php:181
+msgid "You don't need to enable this to simply use SVG files as images. Enabling this will trigger advanced options and SVG functionality such as inline rendering."
+msgstr "有効化すると、SVG のインラインレンダリングなど高度なオプションが設定できるようになります。SVG ファイルを単に画像として扱うときは有効化する必要はありません。"
 
 #: admin/svgs-settings-page.php:176
 msgid "Enable Advanced Mode?"
@@ -696,6 +724,10 @@ msgstr "ターゲットとする CSS クラス"
 #: admin/svgs-settings-page.php:293
 msgid "Automatically insert class?"
 msgstr "クラスの自動挿入"
+
+#: admin/svgs-settings-page.php:235
+msgid "Normally, scripts are placed in head of the HTML document. If \"Yes\" is selected, the script is placed before the closing body tag. This requires the theme to have the wp_footer() template tag in the appropriate place."
+msgstr "通常、スクリプトは HTML ドキュメントの head タグ内に配置されます。「はい」を選択した場合、スクリプトは body 終了タグの前に配置されます。この場合、テーマの適切な場所に wp_footer() テンプレートタグが必要です。"
 
 #: admin/svgs-settings-page.php:230
 msgid "Output JS in Footer?"

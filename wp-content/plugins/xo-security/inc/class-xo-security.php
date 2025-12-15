@@ -37,8 +37,6 @@ class XO_Security {
 	 * @global wpdb $wpdb WordPress database abstraction object.
 	 */
 	public function __construct() {
-		load_plugin_textdomain( 'xo-security' );
-
 		if ( is_admin() ) {
 			require_once __DIR__ . '/class-xo-login-log-list-table.php';
 			require_once __DIR__ . '/class-xo-security-admin.php';
@@ -454,7 +452,7 @@ class XO_Security {
 	 * @param array $defaults An array of default login form arguments.
 	 */
 	public function login_form_defaults( $defaults ) {
-		$defaults['label_username'] = __( 'Username' );
+		$defaults['label_username'] = __( 'Username', 'xo-security' );
 		return $defaults;
 	}
 
@@ -468,7 +466,7 @@ class XO_Security {
 	public function gettext_login_id_username( $translation, $text, $domain ) {
 		if ( 'wp-login.php' === $GLOBALS['pagenow'] ) {
 			if ( 'default' === $domain && 'Username or Email Address' === $text ) {
-				$translation = __( 'Username' );
+				$translation = __( 'Username', 'xo-security' );
 			}
 		}
 		return $translation;
@@ -787,11 +785,13 @@ class XO_Security {
 		if ( isset( $this->options['login_page_name'] ) ) {
 			$loginfile     = $this->options['login_page_name'] . '.php';
 			$formated_path = '/' . ltrim( $path, '/' );
-			if ( '/wp-login.php' === $formated_path || preg_match( '#/wp-login\.php\?action=\w+#', $formated_path ) ) {
+			$pattern       = '/wp-login\.php(\?|.+&)action=\w+';
+
+			if ( '/wp-login.php' === $formated_path || preg_match( '#' . $pattern . '#', $formated_path ) ) {
 				$url = $this->get_login_url( $url, $loginfile );
 			} elseif ( is_multisite() && ! is_subdomain_install() ) {
 				$blog = get_site( $blog_id );
-				if ( $blog->path . 'wp-login.php' === $formated_path || preg_match( '#' . $blog->path . 'wp-login\.php\?action=\w+#', $formated_path ) ) {
+				if ( $blog->path . 'wp-login.php' === $formated_path || preg_match( '#' . $blog->path . $pattern . '#', $formated_path ) ) {
 					$url = $this->get_login_url( $url, $loginfile );
 				}
 			}
@@ -832,14 +832,14 @@ class XO_Security {
 		global $wp, $wp_filesystem;
 
 		$login_page_filename = ( isset( $this->options['login_page_name'] ) ? $this->options['login_page_name'] . '.php' : '' );
-		if ( $wp->request === $login_page_filename ) {
+		if ( basename( $wp->request ) === $login_page_filename ) {
 			$path = ABSPATH . $login_page_filename;
 			if ( ! file_exists( $path ) ) {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 				if ( WP_Filesystem() ) {
 					$loginfile_content = "<?php require_once './wp-login.php'; ?>";
 					if ( $wp_filesystem->put_contents( $path, stripslashes( $loginfile_content ), FS_CHMOD_FILE ) ) {
-						wp_safe_redirect( home_url( $login_page_filename ) );
+						wp_safe_redirect( site_url( $login_page_filename ) );
 						exit();
 					}
 				}

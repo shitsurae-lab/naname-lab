@@ -34,7 +34,7 @@ class Smart_Custom_Fields_Field_Related_Posts extends Smart_Custom_Fields_Field_
 	 */
 	protected function options() {
 		return array(
-			'post-type'   => '',
+			'post-type'   => array(),
 			'limit'       => 0,
 			'instruction' => '',
 			'notes'       => '',
@@ -158,6 +158,17 @@ class Smart_Custom_Fields_Field_Related_Posts extends Smart_Custom_Fields_Field_
 		$disabled  = $this->get_disable_attribute( $index );
 		$post_type = $this->get( 'post-type' );
 		$limit     = $this->get( 'limit' );
+
+		// Normalize post-type to array format for backward compatibility.
+		if ( ! is_array( $post_type ) ) {
+			if ( empty( $post_type ) ) {
+				// If post-type is not specified, default to 'post' (backward compatibility with 4.2.2).
+				$post_type = array( 'post' );
+			} else {
+				// If post-type is a string, convert to array.
+				$post_type = array( $post_type );
+			}
+		}
 
 		$choices_posts  = array();
 		$posts_per_page = get_option( 'posts_per_page' );
