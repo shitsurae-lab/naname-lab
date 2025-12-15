@@ -154,8 +154,10 @@ body {
     }
     .l-content {
       .l-content__body {
-        padding-left: 0;
-        padding-right: 0;
+        @include mq(pc) {
+          padding-left: 0;
+          padding-right: 0;
+        }
       }
     }
   }
