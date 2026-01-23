@@ -103,23 +103,21 @@ else if( $sys_site == "5" ) $uls= zipaddr_git.   'zipaddra.js';
 //モジュール・ファイル生成
 	$js = $jsfile.' src="'.$uls.'?v='.zipaddr_VERS.'"></script>';
 //オプション・パラメータ生成
-	$js.= $jsfile.">function zipaddr_ownb(){" .$pre."dli='".$sys_deli."';";
-//	$js.= empty($ninjaf) ? $pre."wp='1';" : $pre."wp='2';";
-	$js.= $pre."wp='1';";
-	$js.= $pre."uver='".zipaddrjp_suji(get_bloginfo('version'))."';";
-//	$js.= $pre."min=".$sys_keta.";"  .$pre."uver='".get_bloginfo('version')."';";
-//	if( $opt != "" )    $js.= $pre."welcart='1';";
-	if( $sys_tate!="" ) $js.= $pre."top=".    $sys_tate. ";";
-	if( $sys_yoko!="" ) $js.= $pre."left=".   $sys_yoko. ";";
-	if( $sys_pfon!="" ) $js.= $pre."pfon=".   $sys_pfon. ";";
-	if( $sys_sfon!="" ) $js.= $pre."sfon=".   $sys_sfon. ";";
-	if( $sys_focs!="" ) $js.= $pre."focus='". $sys_focs."';";
-	if( $sys_syid!="" ) $js.= $pre."sysid='". $sys_syid."';";
-	if( $sys_plce!="" ) $js.= $pre."holder='".$sys_plce."';";
-	if( $sys_dyna!="" ) $js.= $pre."dyna='".  $sys_dyna."';";
-	if( $sys_site=="3") $js.= $pre."min='7';";
-	if( defined('zipaddr_IDENT') && zipaddr_IDENT == "3" ) $js.= $pre."usces='1';";
-	$js.= '}</script>';
+	$jx= "function zipaddr_ownb(){" .$pre."dli='".$sys_deli."';";
+	$jx.= $pre."wp='1';";
+	$jx.= $pre."uver='".zipaddrjp_suji(get_bloginfo('version'))."';";
+	if( $sys_tate!="" ) $jx.= $pre."top=".    $sys_tate. ";";
+	if( $sys_yoko!="" ) $jx.= $pre."left=".   $sys_yoko. ";";
+	if( $sys_pfon!="" ) $jx.= $pre."pfon=".   $sys_pfon. ";";
+	if( $sys_sfon!="" ) $jx.= $pre."sfon=".   $sys_sfon. ";";
+	if( $sys_focs!="" ) $jx.= $pre."focus='". $sys_focs."';";
+	if( $sys_syid!="" ) $jx.= $pre."sysid='". $sys_syid."';";
+	if( $sys_plce!="" ) $jx.= $pre."holder='".$sys_plce."';";
+	if( $sys_dyna!="" ) $jx.= $pre."dyna='".  $sys_dyna."';";
+	if( $sys_site=="3") $jx.= $pre."min='7';";
+	if( defined('zipaddr_IDENT') && zipaddr_IDENT == "3" ) $jx.= $pre."usces='1';";
+	$jx.= '}';
+	$js.= '<script defer src="data:text/javascript;base64,'.base64_encode($jx).'"></script>';
 //pmファイル生成
 	if( !empty($apid) ){
 		$js.= $jsfile.' src="'.zipaddr_git.$apid.'.js"></script>';
