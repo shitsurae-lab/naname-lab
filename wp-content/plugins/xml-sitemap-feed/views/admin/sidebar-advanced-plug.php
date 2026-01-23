@@ -10,12 +10,12 @@
 	<h3><span class="dashicons dashicons-yes-alt" style="color:#2a8c41"></span> <?php esc_html_e( 'Sitemap notifier	', 'xml-sitemap-feed' ); ?></h3>
 	<p>
 		<strong>
-			<?php printf( /* translators: %s: Sitemap name */ esc_html__( 'Notify Google by automaticly resubmitting your %s to Google Search Console upon each new publication.', 'xml-sitemap-feed' ), esc_html( $sitemap_name ) ); ?>
+			<?php esc_html_e( 'Instantly notify search engines by automatically resubmitting your sitemap index upon each new publication.', 'xml-sitemap-feed' ); ?>
 			<?php
 			printf(
 				/* translators: %s: Advanced plugin name (linked to https://premium.status301.com/) */
 				esc_html__( 'Available in %s.', 'xml-sitemap-feed' ),
-				'<a href="' . esc_url( $adv_plugin_url ) . '" target="_blank">' . esc_html( $adv_plugin_name ) . '</a>'
+				'<a href="https://premium.status301.com/downloads/xml-sitemap-advanced/" target="_blank">' . __( 'XML Sitemap Advanced', 'xml-sitemap-feed' ) . '</a>'
 			);
 			?>
 		</strong>

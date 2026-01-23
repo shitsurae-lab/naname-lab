@@ -299,7 +299,7 @@
                     if( isset( $screen->taxonomy ) && !empty($screen->taxonomy) )
                         return;
                     
-                    if ( empty ( $options['allow_reorder_default_interfaces'][$screen->post_type] )     ||  ( isset ( $options['allow_reorder_default_interfaces'][$screen->post_type] )  &&  $options['allow_reorder_default_interfaces'][$screen->post_type]   !==      'yes' ) )
+                    if ( isset( $options['allow_reorder_default_interfaces'][$screen->post_type] )  && $options['allow_reorder_default_interfaces'][$screen->post_type] !== 'yes' )
                         return;
                         
                     if ( wp_is_mobile() || ( function_exists( 'jetpack_is_mobile' ) && jetpack_is_mobile() ) )
