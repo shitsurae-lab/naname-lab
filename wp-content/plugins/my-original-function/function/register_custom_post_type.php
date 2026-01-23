@@ -86,6 +86,21 @@ function register_custom_post_type()
   register_taxonomy_for_object_type('achievement_cat', 'achievement');
   register_taxonomy_for_object_type('achievement_tag', 'achievement');
 
+  // =============================
+  // ★ ここに追加（REST API拡張）
+  // =============================
+  add_action('rest_api_init', function () {
+    register_rest_field(
+      'achievement',
+      'acf',
+      [
+        'get_callback' => function ($post) {
+          return get_fields($post['id']);
+        },
+        'schema' => null,
+      ]
+    );
+  });
 
 
   //カスタム投稿タイプ③(スキル)
