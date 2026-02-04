@@ -100,6 +100,17 @@ function register_custom_post_type()
         'schema' => null,
       ]
     );
+    // ⭐ タクソノミー achievement_cat の ACF
+    register_rest_field(
+      'achievement_cat',
+      'acf',
+      [
+        'get_callback' => function ($term) {
+          return get_fields('achievement_cat_' . $term['id']);
+        },
+        'schema' => null,
+      ]
+    );
   });
 
 
