@@ -107,6 +107,10 @@ function register_custom_post_type()
       [
         'get_callback' => function ($term) {
           return get_fields('achievement_cat_' . $term['id']);
+          // もし term_image というフィールド（ID）があれば、URLに変換して追加する
+          if (isset($fields['term_image']) && is_numeric($fields['term_image'])) {
+            $fields['term_image_url'] = wp_get_attachment_image_url($fields['term_image'], 'full');
+          }
         },
         'schema' => null,
       ]
