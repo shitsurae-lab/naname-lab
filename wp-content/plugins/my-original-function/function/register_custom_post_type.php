@@ -115,6 +115,17 @@ function register_custom_post_type()
         'schema' => null,
       ]
     );
+    // ⭐ 3. 固定ページ（page）用の設定を追加
+    register_rest_field(
+      'page',
+      'acf',
+      [
+        'get_callback' => function ($post) {
+          return get_fields($post['id']);
+        },
+        'schema' => null,
+      ]
+    );
   });
 
 
