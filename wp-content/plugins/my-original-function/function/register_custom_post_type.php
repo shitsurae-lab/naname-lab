@@ -126,6 +126,18 @@ function register_custom_post_type()
         'schema' => null,
       ]
     );
+    // ACF: works_datailの説明文を取得
+    register_rest_field(
+      'achievement',
+      'work_detail', // ここがAPI上のキー名になります
+      [
+        'get_callback' => function ($post) {
+          // acf内の特定のフィールドだけを返却
+          return get_field('work_detail', $post['id']);
+        },
+        'schema' => null,
+      ]
+    );
   });
 
 
