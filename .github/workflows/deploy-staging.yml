@@ -6,7 +6,7 @@ on:
       - staging
 
 env:
-  DRY_RUN: 'true'
+  DRY_RUN: 'false'
   SSH_PORT: '10022'
   SSH_TARGET: 'naname@162.43.107.10'
   DEST: '/home/naname/naname-lab.net/public_html/staging.naname-lab.net/wp-content'
