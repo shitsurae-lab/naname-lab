@@ -1,6 +1,40 @@
-# npmなどの依存モジュール
+# --- OS / エディタ ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- 依存モジュール ---
 node_modules/
-# ローカル用の設定ファイル
+
+# --- ローカル用の設定ファイル ---
 local-xdebuginfo.php
-# All in One WP Migrationのバックアップ(巨大ファイルのため)
-wp-content/ai1wm-backups/
+movefile.yml
+
+# --- DB・データの書き出し ---
+*.sql
+*.sql.gz
+*.csv
+SHOW
+
+# --- 機密・環境依存 ---
+wp-config.php
+.env
+*.log
+
+# --- WordPress コア（本番が正） ---
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+
+# --- wp-content は自作プラグイン2つだけ追跡 ---
+/wp-content/*
+!/wp-content/plugins/
+/wp-content/plugins/*
+!/wp-content/plugins/my-original-function/
+!/wp-content/plugins/my-original-plugin/
+.DS_Store*

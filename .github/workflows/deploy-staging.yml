@@ -1,0 +1,49 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+env:
+  DRY_RUN: 'false'
+  SSH_PORT: '10022'
+  SSH_TARGET: 'naname@162.43.107.10'
+  DEST: '/home/naname/naname-lab.net/public_html/staging.naname-lab.net/wp-content'
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: PHP syntax check
+        run: |
+          find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@8f0e25e199bee71fe79bcde5b1fda02e7831b191
+        with:
+          key: ${{ secrets.SECRET_SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Safety check (destination must be staging)
+        run: |
+          case "$DEST" in
+            *staging.naname-lab.net*) echo "OK: $DEST" ;;
+            *) echo "ERROR: DEST is not staging"; exit 1 ;;
+          esac
+          ssh -p "$SSH_PORT" "$SSH_TARGET" "test -d '$DEST'"
+
+      - name: Rsync to staging
+        run: |
+          OPTS="-vrlpi --exclude=*.log"
+          if [ "$DRY_RUN" = "true" ]; then OPTS="$OPTS --dry-run"; fi
+          rsync $OPTS \
+            -e "ssh -p $SSH_PORT" \
+            ./wp-content/ \
+            "$SSH_TARGET:$DEST"
