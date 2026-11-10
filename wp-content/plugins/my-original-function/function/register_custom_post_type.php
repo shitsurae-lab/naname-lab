@@ -1,12 +1,25 @@
 <?php
-function register_custom_post_type()
+
+/**
+ * カスタム投稿タイプ・タクソノミーの登録と、REST APIの項目追加
+ *
+ * - init のときに実行:     投稿タイプ・タクソノミーの登録(register_*_post_type / register_*_taxonomies)
+ * - rest_api_init のとき:  APIが返す項目の追加(register_rest_fields)
+ *
+ * 投稿タイプ: achievement(実績) / skill(スキル。未使用。後日削除予定)
+ */
+
+// =============================
+// 登録(init)
+// =============================
+
+// ---- 実績 ----
+function register_achievement_post_type()
 {
-  //カスタム投稿タイプ①(実績)
   register_post_type(
-    'achievement', //投稿タイプ名識別子
+    'achievement', // 投稿タイプ名識別子
     [
-      //START: $args(第2パラメーター)
-      'label' => '実績', //カスタム投稿タイプ名称(管理画面に表示)
+      'label' => '実績',
       'labels' => array(
         'add_new' => '実績の追加',
         'edit_item' => '実績の編集',
@@ -15,14 +28,13 @@ function register_custom_post_type()
       ),
       'description' => 'カスタム投稿タイプ("achievement")に関する説明',
       'public' => true,
-      //'show_ui' => true,
       'show_in_nav_menus' => true,
       'show_in_menu' => true,
-      'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
-      'has_archive' => false, //投稿した記事の一覧ページ作成
-      'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
+      'hierarchical' => true,   // 階層構造をもたせる
+      'has_archive' => false,   // 一覧ページを作らない
+      'show_in_rest' => true,   // REST APIを有効化 *Gutenbergには必須
       'menu_icon' => 'dashicons-hammer',
-      'supports' => array( //記事編集画面に表示する項目
+      'supports' => array(
         'title',
         'editor',
         'thumbnail',
@@ -31,122 +43,62 @@ function register_custom_post_type()
         'revisions',
         'page-attributes'
       ),
-      'menu_position' => 5, //投稿の下に表示
+      'menu_position' => 5,
       'taxonomies' => array('achievement_cat', 'achievement_tag')
-      //END: $args(第2パラメーター)
-    ],
+    ]
   );
+}
+add_action('init', 'register_achievement_post_type');
 
-  //カスタムタクソノミー(「実績」カテゴリー: カテゴリー形式)の登録
+function register_achievement_taxonomies()
+{
+  // 実績カテゴリー(カテゴリー形式)
   register_taxonomy(
-    'achievement_cat', //カスタム分類名(カスタムタクソノミースラッグ)
-    'achievement', //上記のカスタム分類名が使用される投稿タイプ名(ターム?)
+    'achievement_cat',
+    'achievement',
     array(
-      'label' => '実績カテゴリー', //カスタムタクソノミーラベル名
-      'labels'
-      => array(
+      'label' => '実績カテゴリー',
+      'labels' => array(
         'popular_items' => '実績カテゴリー',
         'edit_item' => '実績カテゴリーを編集',
         'add_new_item' => '新規実績カテゴリーを追加',
         'search_items' => '実績カテゴリーを検索'
       ),
-      'public' => true,  // 管理画面及びサイト上に公開
-      'description' => '実績カテゴリーの説明文です。',  //説明文
-      'hierarchical' => true,  //カテゴリー形式
-      'show_in_rest' => true,  //Gutenberg で表示
-      // 'rewrite' => array(
-      //   'slug' => 'achievement',
-      //   'hierarchical' => true
-      // )
+      'public' => true,
+      'description' => '実績カテゴリーの説明文です。',
+      'hierarchical' => true,   // カテゴリー形式
+      'show_in_rest' => true,
     )
   );
-  //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
+
+  // 実績タグ(タグ形式)
   register_taxonomy(
-    'achievement_tag', //カスタム分類名(カスタムタクソノミースラッグ)
-    'achievement', //上記のカスタム分類名が使用される投稿タイプ名
+    'achievement_tag',
+    'achievement',
     array(
-      'label' => '実績タグ', //カスタムタクソノミーラベル名
-      'labels'
-      => array(
+      'label' => '実績タグ',
+      'labels' => array(
         'popular_items' => 'タグ',
         'edit_item' => 'タグを編集',
         'add_new_item' => 'タグを追加',
         'search_items' => 'タグを検索'
       ),
-      'public' => true,  // 管理画面及びサイト上に公開
-      'description' => 'タグの説明文です。',  //説明文
-      'hierarchical' => false,  //タグ形式
-      'show_in_rest' => true, //Gutenberg で表示
-      // 'rewrite' => array(
-      //   'slug' => 'achievement',
-      //   'hierarchical' => true
-      // )
+      'public' => true,
+      'description' => 'タグの説明文です。',
+      'hierarchical' => false,  // タグ形式
+      'show_in_rest' => true,
     )
   );
-  register_taxonomy_for_object_type('achievement_cat', 'achievement');
-  register_taxonomy_for_object_type('achievement_tag', 'achievement');
+}
+add_action('init', 'register_achievement_taxonomies');
 
-  // =============================
-  // ★ ここに追加（REST API拡張）
-  // =============================
-  add_action('rest_api_init', function () {
-    register_rest_field(
-      'achievement',
-      'acf',
-      [
-        'get_callback' => function ($post) {
-          return get_fields($post['id']);
-        },
-        'schema' => null,
-      ]
-    );
-    // ⭐ タクソノミー achievement_cat の ACF
-    register_rest_field(
-      'achievement_cat',
-      'acf',
-      [
-        'get_callback' => function ($term) {
-          return get_fields('achievement_cat_' . $term['id']);
-          // もし term_image というフィールド（ID）があれば、URLに変換して追加する
-          if (isset($fields['term_image']) && is_numeric($fields['term_image'])) {
-            $fields['term_image_url'] = wp_get_attachment_image_url($fields['term_image'], 'full');
-          }
-        },
-        'schema' => null,
-      ]
-    );
-    // ⭐ 3. 固定ページ（page）用の設定を追加
-    register_rest_field(
-      'page',
-      'acf',
-      [
-        'get_callback' => function ($post) {
-          return get_fields($post['id']);
-        },
-        'schema' => null,
-      ]
-    );
-    // ACF: works_datailの説明文を取得
-    register_rest_field(
-      'achievement',
-      'work_detail', // ここがAPI上のキー名になります
-      [
-        'get_callback' => function ($post) {
-          // acf内の特定のフィールドだけを返却
-          return get_field('work_detail', $post['id']);
-        },
-        'schema' => null,
-      ]
-    );
-  });
-
-
-  //カスタム投稿タイプ③(スキル)
+// ---- スキル(未使用。後日削除予定) ----
+function register_skill_post_type()
+{
   register_post_type(
-    'skill', //投稿タイプ名識別子
+    'skill',
     [
-      //START: $args(第2パラメーター)
-      'label' => 'スキル', //カスタム投稿タイプ名称(管理画面に表示)
+      'label' => 'スキル',
       'labels' => array(
         'add_new' => '新規追加',
         'edit_item' => '編集',
@@ -158,11 +110,11 @@ function register_custom_post_type()
       'show_ui' => true,
       'show_in_nav_menus' => true,
       'show_in_menu' => true,
-      'hierarchical' => true, //カスタム投稿タイプに階層構造をもたせる
-      'has_archive' => true, //投稿した記事の一覧ページ作成
-      'show_in_rest' => true, //REST APIを有効化 *Gutenbergには必須
+      'hierarchical' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
       'menu_icon' => 'dashicons-art',
-      'supports' => array( //記事編集画面に表示する項目
+      'supports' => array(
         'title',
         'editor',
         'thumbnail',
@@ -171,60 +123,90 @@ function register_custom_post_type()
         'revisions',
         'page-attributes'
       ),
-      'menu_position' => 5, //投稿の下に表示
+      'menu_position' => 5,
       'taxonomies' => array('skill_cat', 'skill_tag')
-      //END: $args(第2パラメーター)
-    ],
+    ]
   );
+}
+add_action('init', 'register_skill_post_type');
 
-  //カスタムタクソノミー(「実績」カテゴリー: カテゴリー形式)の登録
+function register_skill_taxonomies()
+{
+  // スキルカテゴリー(カテゴリー形式)
   register_taxonomy(
-    'skill_cat', //カスタム分類名(カスタムタクソノミースラッグ)
-    'skill', //上記のカスタム分類名が使用される投稿タイプ名(ターム?)
+    'skill_cat',
+    'skill',
     array(
-      'label' => 'スキルカテゴリー', //カスタムタクソノミーラベル名
-      'labels'
-      => array(
+      'label' => 'スキルカテゴリー',
+      'labels' => array(
         'popular_items' => 'スキルカテゴリー',
         'edit_item' => 'スキルカテゴリーを編集',
         'add_new_item' => '新規スキルカテゴリーを追加',
         'search_items' => 'スキルカテゴリーを検索'
       ),
-      'public' => true,  // 管理画面及びサイト上に公開
-      'description' => 'スキルカテゴリーの説明文です。',  //説明文
-      'hierarchical' => true,  //カテゴリー形式
-      'show_in_rest' => true,  //Gutenberg で表示
-      // 'rewrite' => array(
-      //   'slug' => 'skill',
-      //   'hierarchical' => true
-      // )
+      'public' => true,
+      'description' => 'スキルカテゴリーの説明文です。',
+      'hierarchical' => true,
+      'show_in_rest' => true,
     )
   );
-  //カスタムタクソノミー(「実績」タグ: タグ形式)の登録
+
+  // スキルタグ(タグ形式)
   register_taxonomy(
-    'skill_tag', //カスタム分類名(カスタムタクソノミースラッグ)
-    'skill', //上記のカスタム分類名が使用される投稿タイプ名
+    'skill_tag',
+    'skill',
     array(
-      'label' => 'スキルタグ', //カスタムタクソノミーラベル名
-      'labels'
-      => array(
+      'label' => 'スキルタグ',
+      'labels' => array(
         'popular_items' => 'タグ',
         'edit_item' => 'タグを編集',
         'add_new_item' => 'タグを追加',
         'search_items' => 'タグを検索'
       ),
-      'public' => true,  // 管理画面及びサイト上に公開
-      'description' => 'タグの説明文です。',  //説明文
-      'hierarchical' => false,  //タグ形式
-      'show_in_rest' => true,  //Gutenberg で表示
-      // 'rewrite' => array(
-      //   'slug' => 'skill',
-      //   'hierarchical' => true
-      // )
+      'public' => true,
+      'description' => 'タグの説明文です。',
+      'hierarchical' => false,
+      'show_in_rest' => true,
     )
   );
-  register_taxonomy_for_object_type('skill_cat', 'skill');
-  register_taxonomy_for_object_type('skill_tag', 'skill');
 }
+add_action('init', 'register_skill_taxonomies');
 
-add_action('init', 'register_custom_post_type');
+// =============================
+// APIの項目追加(rest_api_init)
+// =============================
+function register_rest_fields()
+{
+  // 実績: ACFの全フィールド
+  register_rest_field('achievement', 'acf', [
+    'get_callback' => function ($post) {
+      return get_fields($post['id']);
+    },
+    'schema' => null,
+  ]);
+
+  // 実績: work_detail(ACFのグループ。APIのキー名は work_detail)
+  register_rest_field('achievement', 'work_detail', [
+    'get_callback' => function ($post) {
+      return get_field('work_detail', $post['id']);
+    },
+    'schema' => null,
+  ]);
+
+  // 実績カテゴリー: ACFの全フィールド
+  register_rest_field('achievement_cat', 'acf', [
+    'get_callback' => function ($term) {
+      return get_fields('achievement_cat_' . $term['id']);
+    },
+    'schema' => null,
+  ]);
+
+  // 固定ページ: ACFの全フィールド
+  register_rest_field('page', 'acf', [
+    'get_callback' => function ($post) {
+      return get_fields($post['id']);
+    },
+    'schema' => null,
+  ]);
+}
+add_action('rest_api_init', 'register_rest_fields');
